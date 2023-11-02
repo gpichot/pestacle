@@ -1,0 +1,16 @@
+{
+  "name": "@gpichot/spectacle-deck",
+  "version": "1.0.0",
+  "description": "",
+  "module": "src/index.tsx",
+  "types": "src/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "spectacle": "^10.1.6"
+  }
+}

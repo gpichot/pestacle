@@ -1,0 +1,23 @@
+{
+  "name": "@gpichot/talks",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vite-plugin-react-deck": "workspace:*",
+    "@gpichot/spectacle-deck": "workspace:*"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react-swc": "^3.4.1",
+    "vite": "^4.5.0"
+  }
+}
