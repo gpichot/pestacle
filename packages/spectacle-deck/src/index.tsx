@@ -26,3 +26,31 @@ export function Deck({ deck }: { deck: DeckType }) {
     </React.StrictMode>
   );
 }
+
+export function Danger({ children }: { children: React.ReactNode }) {
+  return <div style={{ color: "red" }}>{children}</div>;
+}
+
+export function Doc({ children }: { children: React.ReactNode }) {
+  return <div style={{ color: "blue" }}>{children}</div>;
+}
+
+export function FilePane({ children }: { children: React.ReactNode }) {
+  return <div style={{ color: "green" }}>{children}</div>;
+}
+
+export function Information({ children }: { children: React.ReactNode }) {
+  return <div style={{ color: "orange" }}>{children}</div>;
+}
+
+export function ItemsColumn({ children }: { children: React.ReactNode }) {
+  return <div style={{ color: "items" }}>{children}</div>;
+}
+
+export function Success({ children }: { children: React.ReactNode }) {
+  return <div style={{ color: "green" }}>{children}</div>;
+}
+
+export function Side({ children }: { children: React.ReactNode }) {
+  return <div>{children}</div>;
+}

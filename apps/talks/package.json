@@ -11,10 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@gpichot/spectacle-deck": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "vite-plugin-react-deck": "workspace:*",
-    "@gpichot/spectacle-deck": "workspace:*"
+    "rehype-highlight": "^7.0.0",
+    "spectacle": "^10.1.6",
+    "vite-plugin-react-deck": "workspace:*"
   },
   "devDependencies": {
     "@vitejs/plugin-react-swc": "^3.4.1",

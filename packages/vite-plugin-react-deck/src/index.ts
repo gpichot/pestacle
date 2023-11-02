@@ -3,6 +3,7 @@ import { PluginOption } from "vite";
 import { transformSlidesMdxToReact } from "./slides";
 import { createAppDeckFile, createIndexFile } from "./helpers";
 import * as glob from "glob";
+import { ReactDeckOptions } from "./types";
 
 async function checkIfDirectoryExists(path: string) {
   try {
@@ -13,7 +14,7 @@ async function checkIfDirectoryExists(path: string) {
   }
 }
 
-export default (): PluginOption => {
+export default (options: ReactDeckOptions): PluginOption => {
   let isProd = false;
   const deckConfig = {
     decks: [] as {
@@ -100,6 +101,7 @@ export default (): PluginOption => {
       const content = await fs.readFile(id, "utf-8");
       const data = await transformSlidesMdxToReact(content, {
         production: isProd,
+        ...options,
       });
       return data;
     },
