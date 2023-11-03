@@ -12,9 +12,9 @@
   "license": "ISC",
   "dependencies": {
     "@gpichot/spectacle-deck": "workspace:*",
+    "@mdx-js/react": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rehype-highlight": "^7.0.0",
     "spectacle": "^10.1.6",
     "vite-plugin-react-deck": "workspace:*"
   },

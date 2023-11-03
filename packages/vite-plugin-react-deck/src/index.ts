@@ -105,10 +105,10 @@ export default (options: ReactDeckOptions): PluginOption => {
         ...options,
       });
       const dir = path.relative(process.cwd(), id);
-      return data.replace(
+      return data /*.replace(
         /\.\/assets/gi,
         `/${dir.replace("deck.mdx", "")}assets`
-      );
+      )*/;
     },
 
     transformIndexHtml: {

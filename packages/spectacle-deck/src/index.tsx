@@ -8,6 +8,14 @@ import { template } from "./template";
 import customComponents from "./components/map";
 
 export { default as FilePane } from "./components/FilePane";
+export { ItemsColumn } from "./components/ItemsColumn";
+export { Image } from "./components/Image";
+export {
+  default as HorizontalList,
+  HorizontalListItem,
+} from "./components/HorizontalList";
+export { default as Timeline, TimelineItem } from "./components/Timeline";
+export { IconBox } from "./components/IconBox";
 
 export type SlideType = {
   metadata: Record<string, unknown> & { layout?: string };
@@ -20,14 +28,8 @@ export type DeckType = {
 };
 
 export function PassThrough({ children }: { children: React.ReactNode }) {
-  console.log("PassThrough", children);
   return <>{children}</>;
 }
-
-const componentsMap = {
-  ...customComponents,
-  wrapper: Layout,
-};
 
 export function Layout({
   children,
@@ -49,6 +51,11 @@ export function Layout({
 
   return <>{children}</>;
 }
+
+const componentsMap = {
+  ...customComponents,
+  wrapper: Layout,
+};
 export function Deck({ deck }: { deck: DeckType }) {
   React.useEffect(() => {
     document.title = (deck.metadata.title as string) || "Untitled";
@@ -83,10 +90,6 @@ export function Information({ children }: { children: React.ReactNode }) {
   return <div style={{ color: "orange" }}>{children}</div>;
 }
 
-export function ItemsColumn({ children }: { children: React.ReactNode }) {
-  return <div style={{ color: "items" }}>{children}</div>;
-}
-
 export function Success({ children }: { children: React.ReactNode }) {
   return <div style={{ color: "green" }}>{children}</div>;
 }
@@ -94,3 +97,4 @@ export function Success({ children }: { children: React.ReactNode }) {
 export function Side({ children }: { children: React.ReactNode }) {
   return <div>{children}</div>;
 }
+Side.mdxType = "Side";

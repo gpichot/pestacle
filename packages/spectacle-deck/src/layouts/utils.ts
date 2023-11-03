@@ -25,7 +25,6 @@ export function getCode(children: React.ReactNode) {
 
 export function getMatchingMdxType(children: React.ReactNode, mdxType: string) {
   const allChild = React.Children.toArray(children);
-  console.log(allChild);
 
   const matchFn = (child: React.ReactNode) => {
     if (!React.isValidElement(child)) return false;

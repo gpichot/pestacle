@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { SVGObject } from "./styled";
+import { getMatchingMdxType } from "./utils";
+import { Image } from "../components/Image";
 
 const DivWithHeading = styled.div`
   h2 {
@@ -24,8 +26,9 @@ export const SidedImageLayout = ({
   height?: number;
 }) => {
   const isReversed = position === "left";
+  const [component, rest] = getMatchingMdxType(children, "Image") || image;
 
-  if (!image) {
+  if (!image && !component.length) {
     console.error("No image provided for SidedImageLayout");
     return null;
   }
@@ -50,7 +53,7 @@ export const SidedImageLayout = ({
           padding: isReversed ? "0 7rem 0 4rem" : "0 4rem 0 7rem",
         }}
       >
-        {children}
+        {rest}
       </div>
       <div
         style={{
@@ -62,27 +65,7 @@ export const SidedImageLayout = ({
           backgroundColor: "white",
         }}
       >
-        {!image.endsWith(".svg") ? (
-          <img
-            src={image}
-            alt="image"
-            style={{
-              height: height || "100%",
-              objectFit: "cover",
-              objectPosition: "center",
-            }}
-          />
-        ) : (
-          <SVGObject
-            type="image/svg+xml"
-            data={image}
-            style={{
-              height: height || "100%",
-              minWidth: "30vw",
-              width: "100%",
-            }}
-          />
-        )}
+        {component || <Image src={image} />}
       </div>
     </DivWithHeading>
   );

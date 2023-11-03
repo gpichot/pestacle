@@ -2,6 +2,7 @@ import matter from "gray-matter";
 import { compile } from "@mdx-js/mdx";
 
 import { ReactDeckOptions } from "./types";
+import { extractMainCodeAsChildren } from "./codegen";
 
 type CompileOptions = Pick<ReactDeckOptions, "rehypePlugins">;
 
@@ -160,34 +161,4 @@ ${source}
 const CRLF = "\r\n";
 function normalizeNewline(input: string) {
   return input.replace(new RegExp(CRLF, "g"), "\n");
-}
-
-function extractMainCodeAsChildren(source: string) {
-  // Retrieve `const _components = {` line
-  // up to return statement
-  const start = source.indexOf("const _components = {");
-  const endReturn = source.indexOf("return ", start);
-  const end = source.indexOf("\n", endReturn);
-  const components = source.slice(start, end);
-
-  if (!components) {
-    return "";
-  }
-  const withWrapper = components.replace(
-    /return\s*</gm,
-    "const {wrapper: MDXLayout} = _components;\nreturn <"
-  );
-
-  const hasLayout = withWrapper.match(/\n\s*return <>/gm);
-  if (hasLayout) {
-    return withWrapper
-      .replace(/\n\s*return <>/gm, "\nreturn <MDXLayout {...props}>")
-      .replace(/<\/>;\s*$/gm, "</MDXLayout>;\n");
-  }
-
-  const result = withWrapper
-    .replace(/\n\s*return\s*</gm, "\nreturn <MDXLayout {...props}><")
-    .replace(/>;\s*$/gm, "></MDXLayout>;\n");
-
-  return result;
 }
