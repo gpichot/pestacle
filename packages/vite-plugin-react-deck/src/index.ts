@@ -4,6 +4,7 @@ import { transformSlidesMdxToReact } from "./slides";
 import { createAppDeckFile, createIndexFile } from "./helpers";
 import * as glob from "glob";
 import { ReactDeckOptions } from "./types";
+import path from "node:path";
 
 async function checkIfDirectoryExists(path: string) {
   try {
@@ -103,7 +104,11 @@ export default (options: ReactDeckOptions): PluginOption => {
         production: isProd,
         ...options,
       });
-      return data;
+      const dir = path.relative(process.cwd(), id);
+      return data.replace(
+        /\.\/assets/gi,
+        `/${dir.replace("deck.mdx", "")}assets`
+      );
     },
 
     transformIndexHtml: {

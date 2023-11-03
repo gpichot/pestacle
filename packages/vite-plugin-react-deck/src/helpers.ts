@@ -4,7 +4,6 @@ export function createIndexFile({ entrypoint }: { entrypoint: string }) {
   <head>
     <meta charset="utf-8" />
     <title>Title</title>
-    <base href="/" />
 
     <style>
       html {

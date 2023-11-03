@@ -66,22 +66,19 @@ export async function transformSlidesMdxToReact(
   const compiledSlides = await Promise.all(
     enrichedSlides.map(async (slide) => {
       const code = addInlineModules(slide.content, inlineModules);
-      const result = await compile(code, {
+      // For vite seee https://vitejs.dev/guide/env-and-mode.html#production-replacement
+      const normalizedCode = code.replace("process.env", "process\u200b.env");
+      const result = await compile(normalizedCode, {
         outputFormat: "program",
         jsx: !isProd,
+        providerImportSource: "@mdx-js/react",
         ...options,
       });
+      const mainCode = extractMainCodeAsChildren(result.value.toString());
 
       return {
         ...slide,
-        mdxContent: extractInlineModules(
-          result.value
-            .toString()
-            .replace(
-              "export default function MDXContent",
-              "function MDXContent"
-            )
-        ).content,
+        mdxContent: mainCode,
       };
     })
   );
@@ -91,8 +88,8 @@ export async function transformSlidesMdxToReact(
 import React from 'react';
 ${
   isProd
-    ? 'import {Fragment as _Fragment, jsx as _jsx, jsxs as _jsxs} from "react/jsx-runtime";'
-    : ""
+    ? 'import {Fragment as _Fragment, jsx as _jsx, jsxs as _jsxs} from "react/jsx-runtime";import {useMDXComponents as _provideComponents} from "@mdx-js/react" '
+    : "import {useMDXComponents as _provideComponents} from '@mdx-js/react';"
 }
   
 export default {
@@ -101,9 +98,11 @@ export default {
       .map(
         (slide) => `{
         metadata: ${JSON.stringify(slide.metadata)},
-        slideComponent: () => {
+        slideComponent: (baseProps) => {
+          const props = {...baseProps, frontmatter: ${JSON.stringify(
+            slide.metadata
+          )} };
           ${slide.mdxContent}
-          return ${isProd ? "_jsx(MDXContent, {})" : "<MDXContent />"}
         }
       }`
       )
@@ -161,4 +160,34 @@ ${source}
 const CRLF = "\r\n";
 function normalizeNewline(input: string) {
   return input.replace(new RegExp(CRLF, "g"), "\n");
+}
+
+function extractMainCodeAsChildren(source: string) {
+  // Retrieve `const _components = {` line
+  // up to return statement
+  const start = source.indexOf("const _components = {");
+  const endReturn = source.indexOf("return ", start);
+  const end = source.indexOf("\n", endReturn);
+  const components = source.slice(start, end);
+
+  if (!components) {
+    return "";
+  }
+  const withWrapper = components.replace(
+    /return\s*</gm,
+    "const {wrapper: MDXLayout} = _components;\nreturn <"
+  );
+
+  const hasLayout = withWrapper.match(/\n\s*return <>/gm);
+  if (hasLayout) {
+    return withWrapper
+      .replace(/\n\s*return <>/gm, "\nreturn <MDXLayout {...props}>")
+      .replace(/<\/>;\s*$/gm, "</MDXLayout>;\n");
+  }
+
+  const result = withWrapper
+    .replace(/\n\s*return\s*</gm, "\nreturn <MDXLayout {...props}><")
+    .replace(/>;\s*$/gm, "></MDXLayout>;\n");
+
+  return result;
 }

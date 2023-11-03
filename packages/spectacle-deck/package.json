@@ -11,6 +11,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "spectacle": "^10.1.6"
+    "@fontsource/bitter": "^5.0.15",
+    "react-is": "^18.2.0",
+    "react-spring": "^9.7.3",
+    "react-syntax-highlighter": "^15.5.0",
+    "spectacle": "^10.1.6",
+    "styled-components": "^6.1.0"
+  },
+  "devDependencies": {
+    "@mdx-js/react": "^3.0.0",
+    "@types/react": "^18.2.34",
+    "@types/react-dom": "^18.2.14"
   }
 }
