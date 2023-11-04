@@ -58,9 +58,10 @@ const componentsMap = {
   h1: (props: React.ComponentProps<"h1">) => (
     <CustomHeading
       fontSize="h1"
-      fontWeight={400}
       color="white"
       style={{
+        fontWeight: 500,
+        fontFamily: 'Bitter,"Helvetica Neue",Helvetica,Arial,sans-serif',
         fontSize: 67,
         flex: "0 1 65vw",
         maxWidth: "65%",

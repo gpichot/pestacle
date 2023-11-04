@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    /* Target node 14 */
+    "module": "ESNext",
+    "lib": ["ES2020"],
+    "target": "ES2020",
+    "skipLibCheck": true,
+
+    /* Transpile with esbuild */
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noFallthroughCasesInSwitch": true,
+    "useUnknownInCatchVariables": true,
+
+    // Options
+    "outDir": "dist",
+    "baseUrl": "./src",
+    "esModuleInterop": true,
+    "declaration": true,
+    "jsx": "react",
+    "types": ["./src/node.d.ts"]
+  },
+  "include": ["src/**/*"],
+  "files": ["src/style.d.ts"]
+}

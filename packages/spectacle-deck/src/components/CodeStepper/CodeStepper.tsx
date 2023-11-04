@@ -1,7 +1,7 @@
 import React from "react";
 import ReactIs from "react-is";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import gruvboxDark from "react-syntax-highlighter/dist/cjs/styles/prism/gruvbox-dark";
+import { gruvboxDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Stepper } from "spectacle";
 import styled from "styled-components";
 
@@ -32,7 +32,7 @@ const CodeContainer = styled.div`
 
 function useCodeSteps(code: string) {
   return React.useMemo(() => {
-    const prefixes = code.match(/(?:\/\/|<!--) @.*\n/g) || [];
+    const prefixes = code.match(/(?:\/\/|<!--) @.*\n/g) || ([] as string[]);
     const prefixesLength = prefixes.reduce(
       (acc, prefix) => acc + prefix.length,
       0

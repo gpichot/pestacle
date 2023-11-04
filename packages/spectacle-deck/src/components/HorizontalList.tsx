@@ -29,6 +29,7 @@ export default function HorizontalList({
               return item;
             }
             return React.cloneElement(item, {
+              // @ts-expect-error cloning
               position: k + 1,
               isVisible: k <= step,
               isLast: k === step,

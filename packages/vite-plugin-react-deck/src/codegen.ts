@@ -19,7 +19,7 @@ export function extractMainCodeAsChildren(source: string) {
       .replace(/\n\s*return <>/gm, "\nreturn <MDXLayout {...props}>")
       .replace(/<\/>;\s*$/gm, "</MDXLayout>;\n")
       .replace(
-        "return _jsxs(_Fragment, {",
+        /return _jsxs?\(_Fragment, \{/,
         "  return _jsx(MDXLayout, {...props,"
       );
   }
@@ -28,7 +28,7 @@ export function extractMainCodeAsChildren(source: string) {
     .replace(/\n\s*return\s*</gm, "\nreturn <MDXLayout {...props}><")
     .replace(/>;\s*$/gm, "></MDXLayout>;\n")
     .replace(
-      "return _jsx(_components",
+      /return _jsxs?\(_components/gm,
       "  return _jsx(MDXLayout, {...props, children: _jsx(_components"
     )
     .replace(/}\);$/gm, "})});");

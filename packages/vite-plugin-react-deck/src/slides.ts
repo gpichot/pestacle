@@ -84,7 +84,7 @@ export async function transformSlidesMdxToReact(
     })
   );
 
-  return addInlineModules(
+  const output = addInlineModules(
     `
 import React from 'react';
 ${
@@ -92,26 +92,36 @@ ${
     ? 'import {Fragment as _Fragment, jsx as _jsx, jsxs as _jsxs} from "react/jsx-runtime";import {useMDXComponents as _provideComponents} from "@mdx-js/react" '
     : "import {useMDXComponents as _provideComponents} from '@mdx-js/react';"
 }
+
+${compiledSlides
+  .map(
+    (slide, index) => ` 
+export function Slide${index}(baseProps) {
+  const props = {...baseProps, frontmatter: ${JSON.stringify(slide.metadata)} };
+  ${slide.mdxContent}
+}
+`
+  )
+  .join("\n")}
   
-export default {
-    metadata: ${JSON.stringify(metadata)},
-    slides: [${compiledSlides
-      .map(
-        (slide) => `{
-        metadata: ${JSON.stringify(slide.metadata)},
-        slideComponent: (baseProps) => {
-          const props = {...baseProps, frontmatter: ${JSON.stringify(
-            slide.metadata
-          )} };
-          ${slide.mdxContent}
-        }
-      }`
-      )
-      .join(",")}
-    ]
-  };`,
+export default function Deck() {
+  };
+Deck.metadata = ${JSON.stringify(metadata)};
+Deck.slides = [
+  ${compiledSlides
+    .map(
+      (slide, index) => `{
+      metadata: ${JSON.stringify(slide.metadata)},
+      slideComponent: Slide${index}
+    }`
+    )
+    .join(",")}
+]
+  `,
     inlineModules
   );
+
+  return output;
 }
 
 /*

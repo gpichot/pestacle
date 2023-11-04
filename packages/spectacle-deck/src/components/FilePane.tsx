@@ -8,6 +8,7 @@ export default function FilePane({
 }: React.ComponentProps<"div"> & { name: string; priority?: number }) {
   return React.isValidElement(children)
     ? React.cloneElement(children, {
+        // @ts-expect-error cloning
         priority,
         name,
       })
