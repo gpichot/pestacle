@@ -151,7 +151,7 @@ export default function CodeStepper({
   } = useCodeSteps(code);
   return (
     <CodeContainer>
-      {import.meta.env.DEV && Boolean(prefixes?.length) && (
+      {import.meta.env.DEV && false && Boolean(prefixes?.length) && (
         <div style={{ position: "absolute", top: 0, opacity: 0.5, left: 0 }}>
           <Highlighter language={language} style={gruvboxDark}>
             {prefixes.join("")}

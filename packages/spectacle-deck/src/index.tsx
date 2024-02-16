@@ -7,8 +7,11 @@ import theme from "./theme";
 import { template } from "./template";
 import customComponents from "./components/map";
 
+export * from 'spectacle'
+
 export { default as FilePane } from "./components/FilePane";
 export { ItemsColumn } from "./components/ItemsColumn";
+export { Doc, DocItem } from "./components/DocumentationItem";
 export { Image } from "./components/Image";
 export {
   default as HorizontalList,
@@ -82,10 +85,6 @@ export function Danger({ children }: { children: React.ReactNode }) {
   return <div style={{ color: "red" }}>{children}</div>;
 }
 
-export function Doc({ children }: { children: React.ReactNode }) {
-  return <div style={{ color: "blue" }}>{children}</div>;
-}
-
 export function Information({ children }: { children: React.ReactNode }) {
   return <div style={{ color: "orange" }}>{children}</div>;
 }
@@ -93,8 +92,20 @@ export function Information({ children }: { children: React.ReactNode }) {
 export function Success({ children }: { children: React.ReactNode }) {
   return <div style={{ color: "green" }}>{children}</div>;
 }
+export function Warning({ children }: { children: React.ReactNode }) {
+  return <div style={{ color: "yellow" }}>{children}</div>;
+}
 
 export function Side({ children }: { children: React.ReactNode }) {
   return <div>{children}</div>;
 }
+
 Side.mdxType = "Side";
+
+export function Documentation({ children }: { children: React.ReactNode }) {
+  return <div>{children}</div>;
+}
+
+export function Box({ children }: { children: React.ReactNode }) {
+  return <div>{children}</div>;
+}

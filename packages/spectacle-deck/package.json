@@ -1,34 +1,36 @@
 {
   "name": "@gpichot/spectacle-deck",
-  "version": "1.0.6",
+  "version": "1.1.5",
   "description": "",
   "module": "src/index.tsx",
   "types": "src/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tnode scripts/bundle.ts"
+    "dev": "tnode scripts/bundle.ts",
+    "build": "tnode scripts/bundle.ts",
+    "publish": "./publish.sh"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@fontsource/bitter": "^5.0.15",
+    "@fontsource/bitter": "^5.0.16",
     "@mdx-js/react": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
     "react-spring": "^9.7.3",
     "react-syntax-highlighter": "^15.5.0",
-    "spectacle": "^10.1.6",
-    "styled-components": "^6.1.0"
+    "spectacle": "^10.1.7",
+    "styled-components": "^6.1.8"
   },
   "devDependencies": {
     "@arnaud-barre/tnode": "^0.19.2",
-    "@types/react": "^18.2.34",
-    "@types/react-dom": "^18.2.14",
-    "@types/react-is": "^18.2.3",
-    "@types/react-syntax-highlighter": "^15.5.9",
-    "esbuild": "^0.19.5",
-    "typescript": "^5.2.2"
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "@types/react-is": "^18.2.4",
+    "@types/react-syntax-highlighter": "^15.5.11",
+    "esbuild": "^0.19.11",
+    "typescript": "^5.3.3"
   }
 }

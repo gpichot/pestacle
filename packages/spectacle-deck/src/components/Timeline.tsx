@@ -11,8 +11,8 @@ import {
 import styled from "styled-components";
 
 const TimelineItemStyled = styled(animated.div)<{
-  isOdd: boolean;
-  isEven: boolean;
+  isOdd?: boolean;
+  isEven?: boolean;
 }>`
   flex: 1;
   flex-flow: column nowrap;
@@ -102,6 +102,8 @@ export function TimelineItem(
   props: React.ComponentPropsWithoutRef<"div"> & {
     isPhantom?: boolean;
     isLast?: boolean;
+    isOdd?: boolean;
+    isEven?: boolean;
   }
 ) {
   const { children, title, isPhantom, isLast, ...rest } = props;

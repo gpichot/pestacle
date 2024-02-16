@@ -44,8 +44,8 @@ export default (options: ReactDeckOptions): PluginOption => {
         typeof inputs === "string"
           ? [inputs, ...decks]
           : Array.isArray(inputs)
-          ? [...inputs, ...decks]
-          : { ...inputs, ...newInputs };
+            ? [...inputs, ...decks]
+            : { ...inputs, ...newInputs };
 
       return {
         ...config,
@@ -97,7 +97,10 @@ export default (options: ReactDeckOptions): PluginOption => {
         });
         return contentIndex;
       }
-      if (!id.endsWith("deck.mdx")) return;
+      if (!id.endsWith("deck.mdx")) {
+        // console.log('passing')
+        return;
+      }
 
       const content = await fs.readFile(id, "utf-8");
       const data = await transformSlidesMdxToReact(content, {
@@ -130,3 +133,4 @@ export default (options: ReactDeckOptions): PluginOption => {
     },
   };
 };
+

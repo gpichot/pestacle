@@ -40,8 +40,9 @@ export function getMatchingMdxType(children: React.ReactNode, mdxType: string) {
   const matchFn = (child: React.ReactNode) => {
     if (!React.isValidElement(child)) return false;
     if (typeof child.type !== "function") return false;
+    if (child.type.name === mdxType) return true;
     if ("mdxType" in child.type === false) return false;
-    // @ts-expect-error checked above
+
     return child.type.mdxType === mdxType;
   };
 

@@ -1,6 +1,7 @@
 import { CenteredLayout } from "./CenteredLayout";
 import { Default3Layout } from "./Default3Layout";
 import { MainSectionLayout } from "./MainSectionLayout";
+import { QuoteLayout } from "./QuoteLayout";
 import { SectionLayout } from "./SectionLayout";
 import { SidedCodeLayout } from "./SideCodeLayout";
 import { SidedImageLayout } from "./SideImageLayout";
@@ -10,6 +11,7 @@ export default {
   mainSection: MainSectionLayout,
   centered: CenteredLayout,
   default3: Default3Layout,
+  quote: QuoteLayout,
   sidedCode: SidedCodeLayout,
   sidedImage: SidedImageLayout,
   side: SideLayout,

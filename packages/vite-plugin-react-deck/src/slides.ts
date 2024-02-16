@@ -1,8 +1,10 @@
 import matter from "gray-matter";
+import fs from "fs";
 import { compile } from "@mdx-js/mdx";
 
 import { ReactDeckOptions } from "./types";
 import { extractMainCodeAsChildren } from "./codegen";
+import remarkGfm from "remark-gfm";
 
 type CompileOptions = Pick<ReactDeckOptions, "rehypePlugins">;
 
@@ -42,7 +44,7 @@ export async function transformSlidesMdxToReact(
   const { content: finalContent, inlineModules } = extractInlineModules(
     normalizeNewline(content)
   );
-  const slides = finalContent.split("---");
+  const slides = finalContent.split("---\n");
 
   const enrichedSlides = [] as {
     metadata: Record<string, unknown> | null;
@@ -65,7 +67,7 @@ export async function transformSlidesMdxToReact(
   }
 
   const compiledSlides = await Promise.all(
-    enrichedSlides.map(async (slide) => {
+    enrichedSlides.map(async (slide, index) => {
       const code = addInlineModules(slide.content, inlineModules);
       // For vite seee https://vitejs.dev/guide/env-and-mode.html#production-replacement
       const normalizedCode = code.replace("process.env", "process\u200b.env");
@@ -73,9 +75,12 @@ export async function transformSlidesMdxToReact(
         outputFormat: "program",
         jsx: !isProd,
         providerImportSource: "@mdx-js/react",
+        remarkPlugins: [remarkGfm],
         ...options,
       });
-      const mainCode = extractMainCodeAsChildren(result.value.toString());
+      const mainCode = extractMainCodeAsChildren(result.value.toString(), {
+        isJsx: !isProd,
+      });
 
       return {
         ...slide,
@@ -87,39 +92,41 @@ export async function transformSlidesMdxToReact(
   const output = addInlineModules(
     `
 import React from 'react';
-${
-  isProd
-    ? 'import {Fragment as _Fragment, jsx as _jsx, jsxs as _jsxs} from "react/jsx-runtime";import {useMDXComponents as _provideComponents} from "@mdx-js/react" '
-    : "import {useMDXComponents as _provideComponents} from '@mdx-js/react';"
-}
+${isProd
+      ? 'import {Fragment as _Fragment, jsx as _jsx, jsxs as _jsxs} from "react/jsx-runtime";import {useMDXComponents as _provideComponents} from "@mdx-js/react" '
+      : "import {useMDXComponents as _provideComponents} from '@mdx-js/react';"
+    }
 
 ${compiledSlides
-  .map(
-    (slide, index) => ` 
+      .map(
+        (slide, index) => ` 
 export function Slide${index}(baseProps) {
   const props = {...baseProps, frontmatter: ${JSON.stringify(slide.metadata)} };
   ${slide.mdxContent}
 }
 `
-  )
-  .join("\n")}
+      )
+      .join("\n")}
   
 export default function Deck() {
   };
 Deck.metadata = ${JSON.stringify(metadata)};
 Deck.slides = [
   ${compiledSlides
-    .map(
-      (slide, index) => `{
+      .map(
+        (slide, index) => `{
       metadata: ${JSON.stringify(slide.metadata)},
       slideComponent: Slide${index}
     }`
-    )
-    .join(",")}
+      )
+      .join(",")}
 ]
   `,
     inlineModules
   );
+
+
+  fs.writeFileSync("slides.js", output);
 
   return output;
 }

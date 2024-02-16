@@ -13,8 +13,10 @@ export function ItemsColumn(divProps: React.ComponentProps<"div">) {
           style={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
+            justifyItems: 'center',
+            alignItems: "stretch",
             height: "100%",
+            rowGap: '2rem',
             ...style,
           }}
           {...props}
@@ -37,6 +39,8 @@ export function ItemsColumn(divProps: React.ComponentProps<"div">) {
 }
 
 const ItemColumnWrapperStyled = styled(animated.div)`
+  display: flex;
+  justify-content: center;
   * {
     text-align: center !important;
   }
