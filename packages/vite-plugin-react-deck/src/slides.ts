@@ -38,11 +38,11 @@ export async function transformSlidesMdxToReact(
     ...options
   }: {
     production: boolean;
-  } & CompileOptions
+  } & CompileOptions,
 ) {
   const { data: metadata, content } = matter(sourceContent);
   const { content: finalContent, inlineModules } = extractInlineModules(
-    normalizeNewline(content)
+    normalizeNewline(content),
   );
   const slides = finalContent.split("---\n");
 
@@ -86,45 +86,45 @@ export async function transformSlidesMdxToReact(
         ...slide,
         mdxContent: mainCode,
       };
-    })
+    }),
   );
 
   const output = addInlineModules(
     `
 import React from 'react';
-${isProd
-      ? 'import {Fragment as _Fragment, jsx as _jsx, jsxs as _jsxs} from "react/jsx-runtime";import {useMDXComponents as _provideComponents} from "@mdx-js/react" '
-      : "import {useMDXComponents as _provideComponents} from '@mdx-js/react';"
-    }
+${
+  isProd
+    ? 'import {Fragment as _Fragment, jsx as _jsx, jsxs as _jsxs} from "react/jsx-runtime";import {useMDXComponents as _provideComponents} from "@mdx-js/react" '
+    : "import {useMDXComponents as _provideComponents} from '@mdx-js/react';"
+}
 
 ${compiledSlides
-      .map(
-        (slide, index) => ` 
+  .map(
+    (slide, index) => ` 
 export function Slide${index}(baseProps) {
   const props = {...baseProps, frontmatter: ${JSON.stringify(slide.metadata)} };
   ${slide.mdxContent}
 }
-`
-      )
-      .join("\n")}
+`,
+  )
+  .join("\n")}
   
 export default function Deck() {
   };
 Deck.metadata = ${JSON.stringify(metadata)};
 Deck.slides = [
   ${compiledSlides
-      .map(
-        (slide, index) => `{
+    .map(
+      (slide, index) => `{
       metadata: ${JSON.stringify(slide.metadata)},
       slideComponent: Slide${index}
-    }`
-      )
-      .join(",")}
+    }`,
+    )
+    .join(",")}
 ]
   `,
-    inlineModules
+    inlineModules,
   );
-
 
   fs.writeFileSync("slides.js", output);
 
@@ -146,7 +146,7 @@ export function extractInlineModules(
     inlineModules = new Set(),
   }: {
     inlineModules?: Set<string>;
-  } = {}
+  } = {},
 ) {
   /*
    * Set aside all inline JSX import and export statements from the MDX file.

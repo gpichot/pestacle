@@ -1,14 +1,14 @@
-
-
 const Patterns = {
-  FragmentProd: /_jsxs\(_Fragment, {\s*children:|\s*\}\);/g,
-  FragmentDev: /<>\s*|\s*<\/>;\s*$/g
-}
+  FragmentProd: /^\s*_jsxs\(_Fragment, {\s*children:|\s*\}\);/g,
+  FragmentDev: /^\s*<>\s*|\s*<\/>;\s*$/g,
+};
 /**
  * Extracts the main code from the MDX file and returns it as a string.
  */
-export function extractMainCodeAsChildren(source: string, {
-  isJsx }: { isJsx: boolean }) {
+export function extractMainCodeAsChildren(
+  source: string,
+  { isJsx }: { isJsx: boolean },
+) {
   // Retrieve `const _components = {` line
   // up to return statement
   const start = source.indexOf("const _components = {");
@@ -28,18 +28,18 @@ export function extractMainCodeAsChildren(source: string, {
   // The return statement multilines without the return keyword
   const footer = lines.slice(returnPos).join("\n").replace("return", "");
 
-
   if (isJsx) {
-    const finalFooter = footer.replace(Patterns.FragmentDev, "")
+    const finalFooter = footer
+      .replace(Patterns.FragmentDev, " ")
+      .replace(/;$/, "");
     return `${header}
   const {wrapper: MDXLayout} = _components;
   return <MDXLayout {...props}>${finalFooter}</MDXLayout>;
-  `.trim()
+  `.trim();
   }
 
-
   const finalFooter = footer.match(/^\s*_jsxs?\(_Fragment,/gm)
-    ? footer.replace(Patterns.FragmentProd, "")
+    ? footer.replace(Patterns.FragmentProd, " ")
     : footer;
   return `
 ${header}
@@ -49,7 +49,7 @@ ${header}
     ...props,
     children: _content
   }) : _content;
-  `.trim()
+  `.trim();
 
   //const withWrapper = components.replace(
   //  /};\s*return/gm,
@@ -80,5 +80,8 @@ ${header}
 }
 
 function removeFragment(components: string) {
-  return components.replace(/};\s*return/gm, "};\n  const {wrapper: MDXLayout} = ");
+  return components.replace(
+    /};\s*return/gm,
+    "};\n  const {wrapper: MDXLayout} = ",
+  );
 }

@@ -14,19 +14,30 @@ const DivWithHeading = styled.div`
   }
 `;
 
+/**
+ * Parse a ratio like 6/5
+ */
+function parseRatio(ratio: string) {
+  const [a, b] = ratio.split("/");
+  return { left: parseInt(a), right: parseInt(b) };
+}
+
 export const SidedImageLayout = ({
   children,
   image,
   position,
   height,
+  ratio: ratioProp,
 }: {
   children: React.ReactNode;
   image?: string;
   position?: "left" | "right";
+  ratio?: string;
   height?: number;
 }) => {
   const isReversed = position === "left";
   const [component, rest] = getMatchingMdxType(children, "Image") || image;
+  const ratio = parseRatio(ratioProp || "6/4");
 
   if (!image && !component.length) {
     console.error("No image provided for SidedImageLayout");
@@ -46,7 +57,7 @@ export const SidedImageLayout = ({
     >
       <div
         style={{
-          flex: 1,
+          flex: `${ratio.left || 6} 0`,
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -57,8 +68,7 @@ export const SidedImageLayout = ({
       </div>
       <div
         style={{
-          flex: 1,
-          maxWidth: "40vw",
+          flex: `${ratio.right || 4} 0`,
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",

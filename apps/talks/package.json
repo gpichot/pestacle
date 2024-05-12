@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
+    "dev": "sleep 1 && vite dev",
     "build": "vite build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

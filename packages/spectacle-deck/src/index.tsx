@@ -7,7 +7,7 @@ import theme from "./theme";
 import { template } from "./template";
 import customComponents from "./components/map";
 
-export * from 'spectacle'
+export * from "spectacle";
 
 export { default as FilePane } from "./components/FilePane";
 export { ItemsColumn } from "./components/ItemsColumn";
