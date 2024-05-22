@@ -21,11 +21,11 @@ const CodeContainer = styled.div`
     &:before {
       content: " ";
       position: absolute;
-      background-color: #f4967688;
+      background-color: rgba(var(--color-primary-rgb), 0.5);
     }
 
     &[data-step-active="true"]:before {
-      background-color: #f49676;
+      background-color: var(--color-secondary);
     }
   }
 `;
@@ -35,7 +35,7 @@ function useCodeSteps(code: string) {
     const prefixes = code.match(/(?:\/\/|<!--) @.*\n/g) || ([] as string[]);
     const prefixesLength = prefixes.reduce(
       (acc, prefix) => acc + prefix.length,
-      0
+      0,
     );
 
     const codeWithoutPrefixes = code.slice(prefixesLength);
@@ -163,58 +163,63 @@ export default function CodeStepper({
         alwaysVisible={!hasSteps}
         priority={priority ? priority + 1 : undefined}
       >
-        {(step, _, isActive) => (
-          <CodeWrapper
-            name={name}
-            stepName={(step as Step | null)?.name}
-            hasName={hasName}
-          >
-            <Highlighter
-              language={language}
-              wrapLines
-              showLineNumbers
-              style={gruvboxDark}
-              lineNumberStyle={(lineNumber: number) => {
-                const { highlight = [] } = (step as Step) || {};
-                const isHighlighted = highlight.includes(lineNumber);
-
-                return {
-                  fontWeight: isHighlighted ? "bold" : "normal",
-                };
-              }}
-              lineProps={(lineNumber: number) => {
-                const { hiddenLines = [], highlight = [] } =
-                  (step as Step) || {};
-                const isVisible =
-                  hasSteps && isActive
-                    ? !hiddenLines.includes(lineNumber)
-                    : isActive || !hasSteps;
-                const isHighlighted = highlight.includes(lineNumber);
-                const getOpacity = () => {
-                  if (!isVisible) return 0;
-                  if (isHighlighted || !highlight.length) return 1;
-                  return 0.8;
-                };
-
-                return {
-                  ...(isHighlighted && {
-                    "data-highlight-line": isHighlighted,
-                    "data-step-active": isActive,
-                  }),
-                  style: {
-                    opacity: getOpacity(),
-                    transition: "all 0.3s ease",
-                    display: "block",
-                    width: "100%",
-                    backgroundColor: isHighlighted ? "#f4967622" : "",
-                  },
-                };
-              }}
+        {(step, _, isActive) => {
+          console.log({ step, isActive });
+          return (
+            <CodeWrapper
+              name={name}
+              stepName={(step as Step | null)?.name}
+              hasName={hasName}
             >
-              {codeNormalized}
-            </Highlighter>
-          </CodeWrapper>
-        )}
+              <Highlighter
+                language={language}
+                wrapLines
+                showLineNumbers
+                style={gruvboxDark}
+                lineNumberStyle={(lineNumber: number) => {
+                  const { highlight = [] } = (step as Step) || {};
+                  const isHighlighted = highlight.includes(lineNumber);
+
+                  return {
+                    fontWeight: isHighlighted ? "bold" : "normal",
+                  };
+                }}
+                lineProps={(lineNumber: number) => {
+                  const { hiddenLines = [], highlight = [] } =
+                    (step as Step) || {};
+                  const isVisible =
+                    hasSteps && isActive
+                      ? !hiddenLines.includes(lineNumber)
+                      : isActive || !hasSteps;
+                  const isHighlighted = highlight.includes(lineNumber);
+                  const getOpacity = () => {
+                    if (!isVisible) return 0;
+                    if (isHighlighted || !highlight.length) return 1;
+                    return 0.8;
+                  };
+
+                  return {
+                    ...(isHighlighted && {
+                      "data-highlight-line": isHighlighted,
+                      "data-step-active": isActive,
+                    }),
+                    style: {
+                      opacity: getOpacity(),
+                      transition: "all 0.3s ease",
+                      display: "block",
+                      width: "100%",
+                      backgroundColor: isHighlighted
+                        ? "rgba(var(--color-secondary-rgb), 0.13)"
+                        : "",
+                    },
+                  };
+                }}
+              >
+                {codeNormalized}
+              </Highlighter>
+            </CodeWrapper>
+          );
+        }}
       </Stepper>
     </CodeContainer>
   );

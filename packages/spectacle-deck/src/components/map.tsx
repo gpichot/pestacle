@@ -10,6 +10,7 @@ import {
 } from "./styled";
 
 import CodeStepper from "./CodeStepper/CodeStepper";
+import { QRCode } from "./QRCode";
 
 const componentsMap = {
   ...mdxComponentMap,
@@ -98,7 +99,10 @@ const componentsMap = {
   a: ({ children, ...props }: React.ComponentProps<"a">) => {
     const domain = new URL(props.href || "").hostname;
     return (
-      <a {...props} style={{ color: "#f49676", textDecoration: "none" }}>
+      <a
+        {...props}
+        style={{ color: "var(--color-secondary)", textDecoration: "none" }}
+      >
         {children}{" "}
         <small
           style={{
@@ -109,6 +113,15 @@ const componentsMap = {
         </small>
       </a>
     );
+  },
+  directive: (props: React.ComponentProps<"div">) => {
+    // @ts-expect-error
+    if (props._name === "qrcode") {
+      // @ts-expect-error
+      const url = React.Children.toArray(props.children)[0].props.href;
+      return <QRCode url={url} />;
+    }
+    return <div {...props} />;
   },
 } as const;
 

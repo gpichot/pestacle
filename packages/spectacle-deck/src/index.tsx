@@ -3,9 +3,13 @@ import { MDXProvider } from "@mdx-js/react";
 import { Deck as SpectacleDeck, Slide } from "spectacle";
 
 import Layouts from "./layouts";
-import theme from "./theme";
+import { default as baseTheme } from "./theme";
 import { template } from "./template";
 import customComponents from "./components/map";
+import { createGlobalStyle } from "styled-components";
+import { SlideWrapper } from "./SlideWrapper";
+import { LayoutComponent, PestacleProvider } from "./context";
+import { createCssVariables } from "./colors";
 
 export * from "spectacle";
 
@@ -34,49 +38,60 @@ export function PassThrough({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
-export function Layout({
-  children,
-  frontmatter,
-}: {
-  children: React.ReactNode;
-  frontmatter: { layout?: string };
-}) {
-  const layout = frontmatter?.layout || "default";
-  const Layout = layout in Layouts ? Layouts[layout] : null;
+export const layouts = Layouts;
 
-  if (layout && !Layout) {
-    console.warn(`Layout ${layout} not found`);
-  }
-
-  if (Layout) {
-    return <Layout {...frontmatter}>{children}</Layout>;
-  }
-
-  return <>{children}</>;
+interface ThemeOptions {
+  themeTokens: {
+    colors: Record<string, string>;
+  };
 }
 
 const componentsMap = {
   ...customComponents,
-  wrapper: Layout,
+  wrapper: SlideWrapper,
 };
-export function Deck({ deck }: { deck: DeckType }) {
+export function Deck({
+  deck,
+  theme,
+  layouts = Layouts,
+}: {
+  deck: DeckType;
+  theme: ThemeOptions;
+  layouts?: Record<string, LayoutComponent>;
+}) {
   React.useEffect(() => {
     document.title = (deck.metadata.title as string) || "Untitled";
   }, [deck.metadata.title]);
+
+  const GlobalStyle = React.useMemo(() => {
+    const cssVariables = createCssVariables(theme.themeTokens.colors);
+    return createGlobalStyle`
+      :root {
+        ${cssVariables}
+      }
+    `;
+  }, [theme]);
+
   return (
     <React.StrictMode>
-      <MDXProvider components={componentsMap}>
-        <SpectacleDeck theme={theme} template={template}>
-          {deck.slides.map((slide, i) => {
-            const Component = slide.slideComponent;
-            return (
-              <Slide key={i}>
-                <Component />
-              </Slide>
-            );
-          })}
-        </SpectacleDeck>
-      </MDXProvider>
+      <PestacleProvider layouts={layouts}>
+        <MDXProvider components={componentsMap}>
+          <GlobalStyle />
+          <SpectacleDeck
+            theme={{ ...baseTheme, ...theme.themeTokens }}
+            template={template}
+          >
+            {deck.slides.map((slide, i) => {
+              const Component = slide.slideComponent;
+              return (
+                <Slide key={i}>
+                  <Component />
+                </Slide>
+              );
+            })}
+          </SpectacleDeck>
+        </MDXProvider>
+      </PestacleProvider>
     </React.StrictMode>
   );
 }

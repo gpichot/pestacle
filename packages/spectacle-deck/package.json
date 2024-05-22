@@ -14,23 +14,24 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@fontsource/bitter": "^5.0.16",
-    "@mdx-js/react": "^3.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-is": "^18.2.0",
+    "@fontsource/bitter": "^5.0.18",
+    "@mdx-js/react": "^3.0.1",
+    "qr-creator": "^1.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-is": "^18.3.1",
     "react-spring": "^9.7.3",
     "react-syntax-highlighter": "^15.5.0",
-    "spectacle": "^10.1.7",
-    "styled-components": "^6.1.8"
+    "spectacle": "^10.1.8",
+    "styled-components": "^6.1.11"
   },
   "devDependencies": {
     "@arnaud-barre/tnode": "^0.19.2",
-    "@types/react": "^18.2.47",
-    "@types/react-dom": "^18.2.18",
-    "@types/react-is": "^18.2.4",
-    "@types/react-syntax-highlighter": "^15.5.11",
-    "esbuild": "^0.19.11",
-    "typescript": "^5.3.3"
+    "@types/react": "^18.3.2",
+    "@types/react-dom": "^18.3.0",
+    "@types/react-is": "^18.3.0",
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "esbuild": "^0.21.3",
+    "typescript": "^5.4.5"
   }
 }

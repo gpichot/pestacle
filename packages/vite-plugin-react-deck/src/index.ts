@@ -6,6 +6,8 @@ import * as glob from "glob";
 import { ReactDeckOptions } from "./types";
 import path from "node:path";
 
+export { defineConfig } from "./config";
+
 async function checkIfDirectoryExists(path: string) {
   try {
     await fs.access(path);
@@ -15,7 +17,40 @@ async function checkIfDirectoryExists(path: string) {
   }
 }
 
-export default (options: ReactDeckOptions): PluginOption => {
+async function findDecks({ port }: { port: number }) {
+  const decks = await glob.glob("./src/**/deck.mdx");
+
+  return decks.map((deck) => ({
+    deckFile: deck,
+    deckUrl: `http://localhost:${port}/${deck.replace("src/", "").replace("deck.mdx", "")}`,
+  }));
+}
+
+async function fileExists(name: string, path: string) {
+  const candidateExts = [".ts", ".tsx", ".js", ".jsx"];
+  for await (const ext of candidateExts) {
+    const fullPath = `${path}${ext}`;
+    try {
+      await fs.access(fullPath);
+      return fullPath.replace(/^\./, "");
+    } catch {
+      continue;
+    }
+  }
+}
+
+async function loadCustomConfig() {
+  const layoutsFile = await fileExists("layouts", "./pestacle/layouts");
+
+  return {
+    layoutsFile: layoutsFile,
+  };
+}
+
+export default async (options: ReactDeckOptions): Promise<PluginOption> => {
+  const config = await loadCustomConfig();
+  console.log(config);
+
   let isProd = false;
   const deckConfig = {
     decks: [] as {
@@ -94,7 +129,10 @@ export default (options: ReactDeckOptions): PluginOption => {
 
         const contentIndex = createAppDeckFile({
           slidePath: `${directory}/deck.mdx`,
+          theme: options.theme,
+          config,
         });
+        console.log({ contentIndex });
         return contentIndex;
       }
       if (!id.endsWith("deck.mdx")) {
@@ -131,6 +169,16 @@ export default (options: ReactDeckOptions): PluginOption => {
         return html.replace("__SCRIPT__", `${deckPath}/__deck.tsx`);
       },
     },
+    configureServer(server) {
+      server.httpServer?.once("listening", async () => {
+        const port = server.config.server.port || 5173;
+
+        const decks = await findDecks({ port });
+
+        for (const deck of decks) {
+          console.log(`Deck available at ${deck.deckUrl}`);
+        }
+      });
+    },
   };
 };
-

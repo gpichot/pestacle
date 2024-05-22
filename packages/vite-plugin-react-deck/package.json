@@ -15,19 +15,25 @@
   "license": "ISC",
   "devDependencies": {
     "@arnaud-barre/tnode": "^0.19.2",
-    "@types/node": "^20.8.10",
-    "@types/react": "^18.2.34",
-    "esbuild": "^0.19.5",
-    "typescript": "^5.2.2",
-    "vite": "^4.5.0",
-    "vitest": "^0.34.6"
+    "@types/lodash": "^4.17.4",
+    "@types/node": "^20.12.12",
+    "@types/react": "^18.3.2",
+    "esbuild": "^0.21.3",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11",
+    "vitest": "^1.6.0"
   },
   "dependencies": {
-    "@mdx-js/mdx": "^3.0.0",
-    "@mdx-js/react": "^3.0.0",
-    "@swc/core": "^1.4.1",
-    "glob": "^10.3.10",
+    "@mdx-js/mdx": "^3.0.1",
+    "@mdx-js/react": "^3.0.1",
+    "@swc/core": "^1.5.7",
+    "glob": "^10.3.15",
     "gray-matter": "^4.0.3",
-    "remark-gfm": "^4.0.0"
+    "hastscript": "^9.0.0",
+    "lodash": "^4.17.21",
+    "remark-directive": "^3.0.0",
+    "remark-gfm": "^4.0.0",
+    "unist-util-visit": "^5.0.0",
+    "zod": "^3.23.8"
   }
 }

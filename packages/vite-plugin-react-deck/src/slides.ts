@@ -1,12 +1,39 @@
 import matter from "gray-matter";
+import remarkDirective from "remark-directive";
 import fs from "fs";
 import { compile } from "@mdx-js/mdx";
 
 import { ReactDeckOptions } from "./types";
 import { extractMainCodeAsChildren } from "./codegen";
 import remarkGfm from "remark-gfm";
+import { visit } from "unist-util-visit";
 
-type CompileOptions = Pick<ReactDeckOptions, "rehypePlugins">;
+type CompileOptions = Pick<ReactDeckOptions, "rehypePlugins" | "remarkPlugins">;
+
+function myRemarkPlugin() {
+  /**
+   * @param {import('mdast').Root} tree
+   *   Tree.
+   * @returns {undefined}
+   *   Nothing.
+   */
+  return (tree) => {
+    visit(tree, (node) => {
+      if (
+        node.type === "containerDirective" ||
+        node.type === "leafDirective" ||
+        node.type === "textDirective"
+      ) {
+        const data = node.data || (node.data = {});
+
+        data.hName = "directive";
+        data.hProperties = node.attributes;
+        data.hProperties._name = node.name;
+        data.hProperties._kind = node.type;
+      }
+    });
+  };
+}
 
 /**
  * Slides are separated by "---" in the markdown file.
@@ -23,7 +50,7 @@ type CompileOptions = Pick<ReactDeckOptions, "rehypePlugins">;
  * # Slide 1
  *
  * ---
- *
+ t
  * layout: slide2
  *
  * ---
@@ -75,8 +102,13 @@ export async function transformSlidesMdxToReact(
         outputFormat: "program",
         jsx: !isProd,
         providerImportSource: "@mdx-js/react",
-        remarkPlugins: [remarkGfm],
         ...options,
+        remarkPlugins: [
+          remarkGfm,
+          remarkDirective,
+          myRemarkPlugin,
+          ...options.remarkPlugins,
+        ],
       });
       const mainCode = extractMainCodeAsChildren(result.value.toString(), {
         isJsx: !isProd,

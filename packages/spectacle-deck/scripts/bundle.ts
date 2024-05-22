@@ -17,7 +17,7 @@ const serverOptions: BuildOptions = {
     ".png": "dataurl",
   },
   external: Object.keys(packageJSON.peerDependencies || {}).concat(
-    Object.keys(packageJSON.dependencies || {})
+    Object.keys(packageJSON.dependencies || {}),
   ),
 };
 
@@ -51,8 +51,8 @@ module.exports = mod;
   // copyFileSync("README.md", "dist/README.md");
 
   execSync(
-    "tsc src/index.tsx --declaration --jsx react --emitDeclarationOnly --outDir dist --module es2020 --target es2020 --allowSyntheticDefaultImports --skipLibCheck --moduleResolution node --types ./src/node.d.ts,./src/style.d.ts",
-    { stdio: "inherit" }
+    "tsc src/index.tsx --declaration --jsx react --emitDeclarationOnly --outDir dist --module preserve --target es2020 --allowSyntheticDefaultImports --skipLibCheck --moduleResolution bundler --types ./src/node.d.ts,./src/style.d.ts",
+    { stdio: "inherit" },
   );
 
   writeFileSync(
@@ -78,7 +78,7 @@ module.exports = mod;
         dependencies: packageJSON.dependencies,
       },
       null,
-      2
-    )
+      2,
+    ),
   );
 });

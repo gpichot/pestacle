@@ -14,7 +14,7 @@ const serverOptions: BuildOptions = {
   target: "node14",
   legalComments: "inline",
   external: Object.keys(packageJSON.peerDependencies || {}).concat(
-    Object.keys(packageJSON.dependencies || {})
+    Object.keys(packageJSON.dependencies || {}),
   ),
 };
 
@@ -49,8 +49,8 @@ module.exports.default = react;`,
   // copyFileSync("README.md", "dist/README.md");
 
   execSync(
-    "tsc src/index.ts --declaration --emitDeclarationOnly --outDir dist --module es2020 --target es2020 --allowSyntheticDefaultImports --moduleResolution node",
-    { stdio: "inherit" }
+    "tsc src/index.ts --declaration --emitDeclarationOnly --outDir dist --module preserve --target es2020 --allowSyntheticDefaultImports --moduleResolution bundler",
+    { stdio: "inherit" },
   );
 
   writeFileSync(
@@ -83,7 +83,7 @@ module.exports.default = react;`,
         dependencies: packageJSON.dependencies,
       },
       null,
-      2
-    )
+      2,
+    ),
   );
 });

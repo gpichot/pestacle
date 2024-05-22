@@ -27,7 +27,7 @@ export const Image = (props: React.ComponentProps<typeof SpectacleImage>) => (
 
 export const CustomHeading = styled(Heading)`
   strong {
-    color: #f49676;
+    color: var(--color-secondary);
     font-weight: 500;
   }
 `;
@@ -67,7 +67,7 @@ export const HeadingThree = styled.h3`
   margin-top: 0;
 
   strong {
-    color: #f49676;
+    color: var(--color-secondary);
     font-weight: 500;
   }
 `;

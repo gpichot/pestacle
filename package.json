@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^20.8.10",
-    "turbo": "^1.12.3"
+    "@types/node": "^20.12.12",
+    "turbo": "^1.13.3"
   }
 }
