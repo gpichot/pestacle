@@ -222,7 +222,7 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
         const contentIndex = createAppDeckFile({
           slidePath: `${directory}/deck.mdx`,
           theme: options.theme,
-          config,
+          config: { ...config, transition: options.transition },
         });
         return contentIndex;
       }

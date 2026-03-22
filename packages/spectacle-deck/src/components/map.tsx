@@ -1,5 +1,5 @@
 import React from "react";
-import { mdxComponentMap } from "spectacle";
+import { Appear, mdxComponentMap } from "spectacle";
 
 import CodeStepper from "./CodeStepper/CodeStepper";
 import { QRCode } from "./QRCode";
@@ -120,6 +120,16 @@ const componentsMap = {
       // @ts-expect-error
       const url = React.Children.toArray(props.children)[0].props.href;
       return <QRCode url={url} />;
+    }
+    // @ts-expect-error
+    if (props._name === "appear") {
+      return (
+        <>
+          {React.Children.toArray(props.children).map((child, i) => (
+            <Appear key={i}>{child}</Appear>
+          ))}
+        </>
+      );
     }
     return <div {...props} />;
   },

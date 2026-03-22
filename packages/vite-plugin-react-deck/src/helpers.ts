@@ -324,7 +324,7 @@ export function createAppDeckFile({
 }: {
   slidePath: string;
   theme: keyof typeof themes;
-  config: { layoutsFile: string | undefined };
+  config: { layoutsFile: string | undefined; transition?: string };
 }) {
   if (!themes[theme]) {
     throw new Error(`Theme ${theme} not found`);
@@ -346,7 +346,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <StrictMode>
-    <Deck deck={deck} theme={${JSON.stringify(themeObject)}} layouts={layouts} />
+    <Deck deck={deck} theme={${JSON.stringify(themeObject)}} layouts={layouts}${config.transition ? ` transition="${config.transition}"` : ""} />
   </StrictMode>
 )
 

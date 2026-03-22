@@ -82,11 +82,9 @@ export async function transformSlidesMdxToReact(
     metadata: Record<string, unknown> | null;
     content: string;
   }[];
-  const LAYOUT_REGEX = /\S*\nlayout: (.*)/g;
-
   let frontmatterForNextSlide: Record<string, unknown> | null = null;
   for (const slide of slides) {
-    if (LAYOUT_REGEX.test(slide)) {
+    if (isFrontmatterBlock(slide)) {
       frontmatterForNextSlide = matter(`---\n${slide}\n---`).data;
       continue;
     }
@@ -206,6 +204,18 @@ ${[...inlineModules.keys()].join("\n")}
 
 ${source}
   `;
+}
+
+/**
+ * Check if a block between --- separators is a frontmatter block
+ * (all non-empty lines are YAML key-value pairs).
+ */
+function isFrontmatterBlock(text: string): boolean {
+  const lines = text
+    .split("\n")
+    .map((l) => l.trim())
+    .filter((l) => l.length > 0);
+  return lines.length > 0 && lines.every((l) => /^[\w][\w-]*\s*:/.test(l));
 }
 
 const CRLF = "\r\n";
