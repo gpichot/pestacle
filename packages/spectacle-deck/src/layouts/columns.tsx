@@ -6,7 +6,7 @@ const DivWithHeading = styled.div`
     margin-top: 0;
   }
   h2 strong {
-    color: #f49676;
+    color: var(--color-secondary);
     font-weight: 400;
   }
 `;

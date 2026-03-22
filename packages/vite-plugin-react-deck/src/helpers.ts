@@ -31,16 +31,20 @@ export function createAppDeckFile({
 }: {
   slidePath: string;
   theme: string;
-  config: { layoutsFile: string };
+  config: { layoutsFile: string | undefined };
 }) {
   if (!themes[theme]) {
     throw new Error(`Theme ${theme} not found`);
   }
   const themeObject = themes[theme];
+
+  const layoutImport = config.layoutsFile
+    ? `import layouts from "${config.layoutsFile}";`
+    : "import { layouts } from '@gpichot/spectacle-deck';";
   return `import React, { StrictMode } from "react";
 import * as ReactDOM from "react-dom/client";
 import { Deck } from '@gpichot/spectacle-deck';
-import layouts from "${config.layoutsFile}";
+${layoutImport};
 
 import deck from "${slidePath}";
 
@@ -51,5 +55,12 @@ root.render(
   <StrictMode>
     <Deck deck={deck} theme={${JSON.stringify(themeObject)}} layouts={layouts} />
   </StrictMode>
-)`;
+)
+
+let link = document.createElement('link')
+link.rel = 'stylesheet'
+link.type = 'text/css'
+link.href =  'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css'
+document.head.appendChild(link)
+`;
 }

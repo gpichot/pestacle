@@ -3,12 +3,16 @@ import styled from "styled-components";
 import { Margins, getHeading } from "./utils";
 
 const CenteredLayoutContent = styled.div`
+  h1,
   h2,
-  h3 {
+  h3,
+  h4,
+  h5 {
+    flex: 0 1 auto;
   }
 `;
 export const CenteredLayout = (
-  props: React.ComponentPropsWithoutRef<"div">
+  props: React.ComponentPropsWithoutRef<"div">,
 ) => {
   const [heading, rest] = getHeading(props.children);
   return (

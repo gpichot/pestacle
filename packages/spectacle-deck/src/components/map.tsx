@@ -64,7 +64,7 @@ const componentsMap = {
         fontWeight: 500,
         fontFamily: 'Bitter,"Helvetica Neue",Helvetica,Arial,sans-serif',
         fontSize: 67,
-        flex: "0 1 65vw",
+        flex: "0 1 auto",
         maxWidth: "65%",
         textAlign: "left",
       }}

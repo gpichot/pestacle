@@ -48,9 +48,6 @@ async function loadCustomConfig() {
 }
 
 export default async (options: ReactDeckOptions): Promise<PluginOption> => {
-  const config = await loadCustomConfig();
-  console.log(config);
-
   let isProd = false;
   const deckConfig = {
     decks: [] as {
@@ -110,6 +107,7 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
     },
 
     async load(id) {
+      const config = await loadCustomConfig();
       const deck = deckConfig.decks.find((deck) => deck.index === id);
       if (deck) {
         return createIndexFile({

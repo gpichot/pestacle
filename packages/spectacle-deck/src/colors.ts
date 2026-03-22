@@ -5,7 +5,7 @@ export function extractColors(color: string): {
   r: number;
   g: number;
   b: number;
-} {
+} | null {
   if (color.startsWith("rgb")) {
     const [r, g, b] = color
       .replace("rgb(", "")
@@ -21,7 +21,7 @@ export function extractColors(color: string): {
     const b = parseInt(hex.substring(4, 6), 16);
     return { r, g, b };
   }
-  throw new Error(`Invalid color format: ${color}`);
+  return null;
 }
 
 /**
@@ -33,7 +33,9 @@ export function createCssVariables(colors: { [key: string]: string }) {
     .join("\n");
   const rgbs = Object.entries(colors)
     .map(([key, value]) => {
-      const { r, g, b } = extractColors(value);
+      const color = extractColors(value);
+      if (!color) return "";
+      const { r, g, b } = color;
       return `--color-${key}-rgb: ${r}, ${g}, ${b};`;
     })
     .join("\n");

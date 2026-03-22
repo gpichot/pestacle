@@ -28,8 +28,8 @@ const DocContainer = styled.div`
 const DocLink = styled.a`
   text-decoration: none;
   font-weight: normal;
-  font-family: Bitter, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #f49676;
+  font-family: var(--font-family);
+  color: var(--color-secondary);
 `;
 
 const DocLinkItem = styled(DocLink)`

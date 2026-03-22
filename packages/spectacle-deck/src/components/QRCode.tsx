@@ -49,6 +49,7 @@ export function QRCode({ url, size = "md" }: QRCodeProps) {
         padding: "1rem 1rem 0.6rem 1rem",
         borderRadius: "1rem",
         backgroundColor,
+        maxWidth: width,
       }}
     />
   );
