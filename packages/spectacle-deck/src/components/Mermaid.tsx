@@ -16,6 +16,10 @@ export function Mermaid({ chart, width = "100%" }: MermaidProps) {
 
     async function renderChart() {
       try {
+        const styles = getComputedStyle(document.documentElement);
+        const resolve = (name: string, fallback: string) =>
+          styles.getPropertyValue(name).trim() || fallback;
+
         const mermaid = await import("mermaid");
         mermaid.default.initialize({
           startOnLoad: false,
@@ -23,9 +27,9 @@ export function Mermaid({ chart, width = "100%" }: MermaidProps) {
           themeVariables: {
             darkMode: true,
             background: "transparent",
-            primaryColor: "var(--color-primary)",
-            secondaryColor: "var(--color-secondary)",
-            tertiaryColor: "var(--color-tertiary)",
+            primaryColor: resolve("--color-primary", "#1a1a2e"),
+            secondaryColor: resolve("--color-secondary", "#16213e"),
+            tertiaryColor: resolve("--color-tertiary", "#0f3460"),
             primaryTextColor: "#ffffff",
             secondaryTextColor: "#ffffffcc",
             lineColor: "#ffffffaa",
