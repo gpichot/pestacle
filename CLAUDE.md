@@ -90,22 +90,30 @@ pnpm turbo type-check
 
 ## Testing
 
-Tests use Vitest. There are currently two test files:
+Tests use Vitest. Run all tests from the root:
 
 ```bash
-# Run tests for the vite plugin (codegen tests)
-cd packages/vite-plugin-react-deck && npx vitest run
-
-# Run tests for spectacle-deck (code directive parsing tests)
-cd packages/spectacle-deck && npx vitest run
+pnpm test
 ```
 
-Test files:
+Or per package:
 
-- `packages/vite-plugin-react-deck/src/codegen.test.ts` - Tests MDX code
-  extraction (4 snapshot tests)
-- `packages/spectacle-deck/src/components/CodeStepper/code-directives.test.ts` -
-  Tests directive parsing (4 tests)
+```bash
+cd packages/vite-plugin-react-deck && pnpm test
+cd packages/spectacle-deck && pnpm test
+```
+
+### Testing philosophy
+
+- **Focus on key features and integration tests** — test the observable behavior
+  and outputs that matter (e.g. "MDX input produces correct slide exports",
+  "color strings are parsed correctly").
+- **Avoid fine-grained unit tests that freeze implementation details** — don't
+  test internal helpers, private functions, or exact intermediate data
+  structures. These make refactoring harder without catching real bugs.
+- **Test at the boundaries** — the MDX-to-React transformation pipeline, config
+  validation, and public utility functions are good test targets. Internal
+  wiring between components is not.
 
 ## Package Build
 
