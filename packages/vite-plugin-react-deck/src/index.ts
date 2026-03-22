@@ -1,8 +1,10 @@
 import * as fs from "node:fs/promises";
 
 import * as glob from "glob";
+import matter from "gray-matter";
 import type { PluginOption } from "vite";
 
+import type { DeckMeta } from "./helpers";
 import {
   createAppDeckFile,
   createDecksIndexFile,
@@ -30,6 +32,49 @@ async function findDecks({ port }: { port: number }) {
     deckFile: deck,
     deckUrl: `http://localhost:${port}/${deck.replace("src/", "").replace("deck.mdx", "")}`,
   }));
+}
+
+async function extractDeckMeta(filePath: string): Promise<{
+  title?: string;
+  author?: string;
+  date?: string;
+  description?: string;
+  slideCount: number;
+}> {
+  try {
+    const raw = await fs.readFile(filePath, "utf-8");
+    const { data, content } = matter(raw);
+
+    // Count slides (split by --- separator, filter out layout-only blocks)
+    const slides = content.split("---\n");
+    const LAYOUT_REGEX = /\S*\nlayout: (.*)/g;
+    let slideCount = 0;
+    for (const slide of slides) {
+      if (!LAYOUT_REGEX.test(slide) && slide.trim().length > 0) {
+        slideCount++;
+      }
+      LAYOUT_REGEX.lastIndex = 0;
+    }
+
+    // Try to extract title from first heading if not in frontmatter
+    let title = data.title;
+    if (!title) {
+      const headingMatch = content.match(/^#\s+\*{0,2}(.+?)\*{0,2}\s*$/m);
+      if (headingMatch) {
+        title = headingMatch[1].replace(/\*+/g, "").trim();
+      }
+    }
+
+    return {
+      title,
+      author: data.author,
+      date: data.date,
+      description: data.description,
+      slideCount,
+    };
+  } catch {
+    return { slideCount: 0 };
+  }
 }
 
 async function fileExists(_name: string, path: string) {
@@ -135,10 +180,20 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
         return createDecksIndexFile();
       }
       if (id === "__decks.tsx") {
-        const decks = deckConfig.decks.map((d) => ({
-          name: d.name,
-          path: `/${d.index.replace("/index.html", "/")}`,
-        }));
+        const decks: DeckMeta[] = await Promise.all(
+          deckConfig.decks.map(async (d) => {
+            const meta = await extractDeckMeta(d.originalFile);
+            return {
+              name: d.name,
+              path: `/${d.index.replace("/index.html", "/")}`,
+              title: meta.title,
+              author: meta.author,
+              date: meta.date,
+              description: meta.description,
+              slideCount: meta.slideCount,
+            };
+          }),
+        );
         return createDecksPageFile({ decks, theme: options.theme });
       }
 
