@@ -57,7 +57,7 @@ function useCodeSteps(code: string) {
 function getCodeDetails(children: React.ReactNode) {
   const child = React.Children.toArray(children)[0];
 
-  if (!React.isValidElement(child)) {
+  if (!React.isValidElement<{ className?: string; children?: string }>(child)) {
     return {
       language: "",
       code: ReactIs.isFragment(child) ? "" : String(child || ""),

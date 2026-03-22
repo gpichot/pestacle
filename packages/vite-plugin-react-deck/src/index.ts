@@ -150,8 +150,7 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
 
     transformIndexHtml: {
       order: "pre",
-      enforce: "pre",
-      transform: async (html, ctx) => {
+      handler: async (html, ctx) => {
         const originalUrl = ctx.originalUrl?.split("?")[0] || "";
         const deckDir = ctx.path.replace("/index.html", "");
         const dir = originalUrl ? `./src${originalUrl}` : `.${deckDir}`;

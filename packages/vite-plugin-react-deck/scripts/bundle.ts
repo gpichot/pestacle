@@ -50,7 +50,7 @@ module.exports.default = react;`,
   // copyFileSync("README.md", "dist/README.md");
 
   execSync(
-    "tsc src/index.ts --declaration --emitDeclarationOnly --outDir dist --module preserve --target es2020 --allowSyntheticDefaultImports --moduleResolution bundler",
+    "tsc src/index.ts --declaration --emitDeclarationOnly --outDir dist --module preserve --target es2020 --allowSyntheticDefaultImports --moduleResolution bundler --skipLibCheck",
     { stdio: "inherit" },
   );
 
