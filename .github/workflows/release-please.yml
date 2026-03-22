@@ -43,11 +43,7 @@ jobs:
         if: needs.release-please.outputs.spectacle-deck--release_created == 'true'
         run: pnpm publish --no-git-checks --provenance --access public
         working-directory: packages/spectacle-deck/dist
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish vite-plugin-react-deck
         if: needs.release-please.outputs.vite-plugin-react-deck--release_created == 'true'
         run: pnpm publish --no-git-checks --provenance --access public
         working-directory: packages/vite-plugin-react-deck/dist
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
