@@ -99,3 +99,172 @@ layout: centered
 :qrcode[https://www.com/feedback]
 
 ### **Feedback**
+
+---
+
+layout: section
+
+---
+
+# **Section Layout**
+
+Showcase of remaining layouts and components
+
+---
+
+layout: default3
+position: right
+
+---
+
+# **Default3 Layout**
+
+This layout features decorative hexagon patterns on one side and content on the other.
+
+It supports a `position` prop to place the hexagons on the left or right.
+
+---
+
+layout: sidedCode
+
+---
+
+## **Sided Code Layout**
+
+Code is displayed on one side with text content on the other.
+
+```jsx
+function Greeting({ name }) {
+  return (
+    <div>
+      <h1>Hello, {name}!</h1>
+      <p>Welcome to Pestacle.</p>
+    </div>
+  );
+}
+```
+
+---
+
+layout: sidedImage
+image: https://picsum.photos/800/600
+
+---
+
+## **Sided Image Layout**
+
+This layout places an image on one side and text content on the other.
+
+It supports custom aspect ratios and image positioning.
+
+---
+
+layout: side
+
+---
+
+import { Side } from "@gpichot/spectacle-deck";
+
+## **Side Layout**
+
+Main content goes here on the primary column.
+
+You can add any markdown or components.
+
+<Side>
+
+### Sidebar
+
+Extra context or supplementary info goes in the side panel.
+
+</Side>
+
+---
+
+layout: centered
+
+---
+
+import { HorizontalList, HorizontalListItem } from "@gpichot/spectacle-deck";
+
+### **HorizontalList**
+
+<HorizontalList columns={3}>
+  <HorizontalListItem title="Step 1">
+
+Define your slides in MDX format.
+
+  </HorizontalListItem>
+  <HorizontalListItem title="Step 2">
+
+Add layouts and components via frontmatter.
+
+  </HorizontalListItem>
+  <HorizontalListItem title="Step 3">
+
+Present with keyboard navigation.
+
+  </HorizontalListItem>
+</HorizontalList>
+
+---
+
+layout: centered
+
+---
+
+import { ItemsColumn } from "@gpichot/spectacle-deck";
+
+### **ItemsColumn**
+
+<ItemsColumn>
+
+**First item** - appears on first step
+
+**Second item** - appears on second step
+
+**Third item** - appears on third step
+
+</ItemsColumn>
+
+---
+
+layout: centered
+
+---
+
+import { IconBox } from "@gpichot/spectacle-deck";
+
+### **IconBox**
+
+<IconBox icon="📦">
+
+#### Package
+
+A box with an icon above text content.
+
+</IconBox>
+
+---
+
+layout: centered
+
+---
+
+import { Doc, DocItem, FilePane } from "@gpichot/spectacle-deck";
+
+### **Doc & FilePane**
+
+<FilePane name="example.tsx">
+
+```tsx
+const App = () => <h1>Hello</h1>;
+export default App;
+```
+
+</FilePane>
+
+<Doc label="Documentation" link="https://example.com">
+  <DocItem label="React Docs" link="https://react.dev" />
+  <DocItem label="MDX Docs" link="https://mdxjs.com" />
+</Doc>
