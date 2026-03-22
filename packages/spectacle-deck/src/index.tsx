@@ -20,6 +20,7 @@ export {
   HorizontalListItem,
 } from "./components/HorizontalList";
 export { IconBox } from "./components/IconBox";
+export { InlineText } from "./components/InlineText";
 export { Image } from "./components/Image";
 export { ItemsColumn } from "./components/ItemsColumn";
 export { Mermaid } from "./components/Mermaid";
