@@ -43,6 +43,10 @@ export const layouts = Layouts;
 interface ThemeOptions {
   themeTokens: {
     colors: Record<string, string>;
+    fonts?: {
+      header?: string;
+      text?: string;
+    };
   };
 }
 
@@ -63,25 +67,34 @@ export function Deck({
     document.title = (deck.metadata.title as string) || "Untitled";
   }, [deck.metadata.title]);
 
+  const mergedTheme = React.useMemo(() => {
+    const fonts = {
+      ...baseTheme.fonts,
+      ...(theme.themeTokens.fonts ?? {}),
+    };
+    return {
+      ...baseTheme,
+      ...theme.themeTokens,
+      fonts,
+    };
+  }, [theme]);
+
   const GlobalStyle = React.useMemo(() => {
     const cssVariables = createCssVariables(theme.themeTokens.colors);
     return createGlobalStyle`
       :root {
         ${cssVariables}
-        --font-family: ${baseTheme.fonts.text}
+        --font-family: ${mergedTheme.fonts.text}
       }
     `;
-  }, [theme]);
+  }, [theme, mergedTheme]);
 
   return (
     <React.StrictMode>
       <PestacleProvider layouts={layouts}>
         <MDXProvider components={componentsMap}>
           <GlobalStyle />
-          <SpectacleDeck
-            theme={{ ...baseTheme, ...theme.themeTokens }}
-            template={template}
-          >
+          <SpectacleDeck theme={mergedTheme} template={template}>
             {deck.slides.map((slide, i) => {
               const Component = slide.slideComponent;
               return (
