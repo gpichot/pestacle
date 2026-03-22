@@ -235,7 +235,7 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
           slidePath: `${directory}/deck.mdx`,
           theme: options.theme,
           deckTheme,
-          config,
+          config: { ...config, transition: options.transition },
         });
         return contentIndex;
       }

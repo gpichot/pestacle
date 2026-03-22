@@ -10,9 +10,19 @@ import Layouts from "./layouts";
 import { SlideWrapper } from "./SlideWrapper";
 import { template } from "./template";
 import { default as baseTheme } from "./theme";
+import { resolveTransition } from "./transitions";
 
 export * from "spectacle";
 
+export {
+  AnimatedCounter,
+  FadeIn,
+  ProgressRing,
+  ScaleIn,
+  Spotlight,
+  StaggerChildren,
+  TypeWriter,
+} from "./components/animations";
 export { Doc, DocItem } from "./components/DocumentationItem";
 export { default as FilePane } from "./components/FilePane";
 export {
@@ -24,6 +34,11 @@ export { Image } from "./components/Image";
 export { ItemsColumn } from "./components/ItemsColumn";
 export { Mermaid } from "./components/Mermaid";
 export { default as Timeline, TimelineItem } from "./components/Timeline";
+export {
+  dropTransition,
+  noneTransition,
+  resolveTransition,
+} from "./transitions";
 
 export type SlideType = {
   metadata: Record<string, unknown> & { layout?: string };
@@ -59,10 +74,13 @@ export function Deck({
   deck,
   theme,
   layouts = Layouts,
+  transition,
 }: {
   deck: DeckType;
   theme: ThemeOptions;
   layouts?: Record<string, LayoutComponent>;
+  /** Default slide transition. Can be a name ("fade", "slide", "drop", "none") or a SlideTransition object. */
+  transition?: string;
 }) {
   React.useEffect(() => {
     document.title = (deck.metadata.title as string) || "Untitled";
@@ -95,11 +113,19 @@ export function Deck({
       <PestacleProvider layouts={layouts}>
         <MDXProvider components={componentsMap}>
           <GlobalStyle />
-          <SpectacleDeck theme={mergedTheme} template={template}>
+          <SpectacleDeck
+            theme={mergedTheme}
+            template={template}
+            transition={resolveTransition(transition)}
+          >
             {deck.slides.map((slide, i) => {
               const Component = slide.slideComponent;
+              const slideTransitionName = slide.metadata?.transition as
+                | string
+                | undefined;
+              const slideTransition = resolveTransition(slideTransitionName);
               return (
-                <Slide key={i}>
+                <Slide key={i} transition={slideTransition}>
                   <Component />
                 </Slide>
               );

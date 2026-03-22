@@ -296,6 +296,16 @@ Weekly npm downloads across the React ecosystem keep growing every year.
 
 ---
 
+layout: section
+
+---
+
+# **Animations & Transitions**
+
+New animation components and slide transitions
+
+---
+
 layout: centered
 
 ---
@@ -312,3 +322,146 @@ import { Mermaid } from "@gpichot/spectacle-deck";
   D --> E[Spectacle Deck]
 `}
 />
+
+---
+
+layout: centered
+transition: none
+
+---
+
+import { FadeIn } from "@gpichot/spectacle-deck";
+
+### **FadeIn**
+
+<FadeIn>
+
+This content fades in from below.
+
+</FadeIn>
+
+<FadeIn direction="left" delay={300}>
+
+This fades in from the left with a delay.
+
+</FadeIn>
+
+<FadeIn direction="right" delay={600}>
+
+And this from the right.
+
+</FadeIn>
+
+---
+
+layout: centered
+transition: none
+
+---
+
+import { ScaleIn } from "@gpichot/spectacle-deck";
+
+### **ScaleIn**
+
+<ScaleIn>
+
+This content scales in from zero.
+
+</ScaleIn>
+
+<ScaleIn delay={400} from={0.5}>
+
+This scales from 50% with a delay.
+
+</ScaleIn>
+
+---
+
+layout: centered
+transition: none
+
+---
+
+import { StaggerChildren } from "@gpichot/spectacle-deck";
+
+### **StaggerChildren**
+
+<StaggerChildren stagger={150} direction="up">
+
+**First item** staggered in
+
+**Second item** staggered in
+
+**Third item** staggered in
+
+**Fourth item** staggered in
+
+</StaggerChildren>
+
+---
+
+layout: centered
+transition: none
+
+---
+
+import { TypeWriter } from "@gpichot/spectacle-deck";
+
+### **TypeWriter**
+
+<TypeWriter speed={40}>
+  Hello, I am typing this out character by character!
+</TypeWriter>
+
+---
+
+layout: centered
+transition: none
+
+---
+
+import { AnimatedCounter, ProgressRing } from "@gpichot/spectacle-deck";
+
+### **AnimatedCounter & ProgressRing**
+
+<div style={{ display: "flex", gap: "4rem", alignItems: "center", justifyContent: "center" }}>
+
+<div style={{ textAlign: "center" }}>
+
+<div
+  style={{
+    fontSize: "3rem",
+    fontWeight: "bold",
+    color: "var(--color-secondary)",
+  }}
+>
+  <AnimatedCounter to={42} duration={2000} />
+</div>
+
+Releases
+
+</div>
+
+<ProgressRing value={87} size={140} strokeWidth={10}>
+
+<div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>87%</div>
+
+</ProgressRing>
+
+<div style={{ textAlign: "center" }}>
+
+<div
+  style={{
+    fontSize: "3rem",
+    fontWeight: "bold",
+    color: "var(--color-secondary)",
+  }}
+>
+  <AnimatedCounter to={1500} duration={2000} prefix="+" suffix="ms" />
+</div>
+
+Saved
+
+</div>
+
+</div>

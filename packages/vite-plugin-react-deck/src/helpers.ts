@@ -327,7 +327,7 @@ export function createAppDeckFile({
   theme: keyof typeof themes;
   /** Theme override from the deck's frontmatter. Can be a built-in theme name or a custom module path. */
   deckTheme?: string;
-  config: { layoutsFile: string | undefined };
+  config: { layoutsFile: string | undefined; transition?: string };
 }) {
   const resolvedThemeName = deckTheme ?? theme;
   const isBuiltinTheme = resolvedThemeName in themes;
@@ -366,7 +366,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <StrictMode>
-    <Deck deck={deck} theme={theme} layouts={layouts} />
+    <Deck deck={deck} theme={theme} layouts={layouts}${config.transition ? ` transition="${config.transition}"` : ""} />
   </StrictMode>
 )
 
