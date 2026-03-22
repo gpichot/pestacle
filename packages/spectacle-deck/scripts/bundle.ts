@@ -1,7 +1,6 @@
 import { execSync } from "node:child_process";
 import { rmSync, writeFileSync } from "node:fs";
 import { type BuildOptions, build, context } from "esbuild";
-
 import packageJSON from "../package.json";
 
 const dev = process.argv.includes("--dev");

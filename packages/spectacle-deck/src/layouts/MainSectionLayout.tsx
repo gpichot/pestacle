@@ -1,7 +1,5 @@
 import type React from "react";
-
 import { FlexBox } from "spectacle";
-
 import frontImage from "../front.png";
 
 export const MainSectionLayout = ({

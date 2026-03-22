@@ -1,5 +1,4 @@
 import type React from "react";
-
 import styled from "styled-components";
 
 const DocWrapper = styled.div`

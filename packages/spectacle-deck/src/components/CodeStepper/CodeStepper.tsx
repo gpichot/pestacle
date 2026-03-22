@@ -4,7 +4,6 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { gruvboxDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Stepper } from "spectacle";
 import styled from "styled-components";
-
 import { parseStepDirectives, type Step } from "./code-directives";
 
 const Highlighter = SyntaxHighlighter as unknown as React.ElementType;
