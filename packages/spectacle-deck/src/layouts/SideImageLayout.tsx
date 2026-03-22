@@ -1,8 +1,7 @@
-import React from "react";
+import type React from "react";
 import styled from "styled-components";
-import { SVGObject } from "./styled";
-import { getMatchingMdxType } from "./utils";
 import { Image } from "../components/Image";
+import { getMatchingMdxType } from "./utils";
 
 const DivWithHeading = styled.div`
   h2 {
@@ -19,7 +18,7 @@ const DivWithHeading = styled.div`
  */
 function parseRatio(ratio: string) {
   const [a, b] = ratio.split("/");
-  return { left: parseInt(a), right: parseInt(b) };
+  return { left: parseInt(a, 10), right: parseInt(b, 10) };
 }
 
 export const SidedImageLayout = ({

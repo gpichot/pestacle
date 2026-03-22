@@ -1,28 +1,26 @@
-import React from "react";
 import { MDXProvider } from "@mdx-js/react";
-import { Deck as SpectacleDeck, Slide, DeckContext } from "spectacle";
-
-import Layouts from "./layouts";
-import { default as baseTheme } from "./theme";
-import { template } from "./template";
-import customComponents from "./components/map";
+import React from "react";
+import { DeckContext, Slide, Deck as SpectacleDeck } from "spectacle";
 import { createGlobalStyle } from "styled-components";
-import { SlideWrapper } from "./SlideWrapper";
-import { LayoutComponent, PestacleProvider } from "./context";
 import { createCssVariables } from "./colors";
+import customComponents from "./components/map";
+import { type LayoutComponent, PestacleProvider } from "./context";
+import Layouts from "./layouts";
+import { SlideWrapper } from "./SlideWrapper";
+import { template } from "./template";
+import { default as baseTheme } from "./theme";
 
 export * from "spectacle";
-
-export { default as FilePane } from "./components/FilePane";
-export { ItemsColumn } from "./components/ItemsColumn";
 export { Doc, DocItem } from "./components/DocumentationItem";
-export { Image } from "./components/Image";
+export { default as FilePane } from "./components/FilePane";
 export {
   default as HorizontalList,
   HorizontalListItem,
 } from "./components/HorizontalList";
-export { default as Timeline, TimelineItem } from "./components/Timeline";
 export { IconBox } from "./components/IconBox";
+export { Image } from "./components/Image";
+export { ItemsColumn } from "./components/ItemsColumn";
+export { default as Timeline, TimelineItem } from "./components/Timeline";
 
 export type SlideType = {
   metadata: Record<string, unknown> & { layout?: string };

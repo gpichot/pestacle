@@ -1,6 +1,6 @@
-import React from "react";
+import type React from "react";
 import styled from "styled-components";
-import { Margins, getHeading } from "./utils";
+import { getHeading, Margins } from "./utils";
 
 const CenteredLayoutContent = styled.div`
   h1,

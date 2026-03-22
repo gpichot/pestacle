@@ -2,7 +2,9 @@
 
 ## What is this?
 
-Pestacle is a monorepo for building presentation slide decks from MDX files. It combines Spectacle (a React presentation library) with a custom Vite plugin to provide a seamless authoring experience.
+Pestacle is a monorepo for building presentation slide decks from MDX files. It
+combines Spectacle (a React presentation library) with a custom Vite plugin to
+provide a seamless authoring experience.
 
 ## Repository Organization
 
@@ -58,15 +60,20 @@ pestacle/
 
 ### Layout System
 
-Layouts are React components selected via frontmatter `layout` field. They receive slide children and optional `position` prop. Custom layouts can override built-in ones via `pestacle/layouts.ts`.
+Layouts are React components selected via frontmatter `layout` field. They
+receive slide children and optional `position` prop. Custom layouts can override
+built-in ones via `pestacle/layouts.ts`.
 
 ### Theming
 
-Two built-in themes (green/purple) define primary, secondary, tertiary colors. Colors are injected as CSS variables (`--color-primary`, `--color-secondary-rgb`, etc.) for use in styled-components.
+Two built-in themes (green/purple) define primary, secondary, tertiary colors.
+Colors are injected as CSS variables (`--color-primary`,
+`--color-secondary-rgb`, etc.) for use in styled-components.
 
 ### Component Mapping
 
-MDX elements are mapped to custom components via `components/map.tsx`. This maps standard markdown elements (h1, pre, code, etc.) to styled Pestacle components.
+MDX elements are mapped to custom components via `components/map.tsx`. This maps
+standard markdown elements (h1, pre, code, etc.) to styled Pestacle components.
 
 ## Build & Dev Commands
 
@@ -94,12 +101,16 @@ cd packages/spectacle-deck && npx vitest run
 ```
 
 Test files:
-- `packages/vite-plugin-react-deck/src/codegen.test.ts` - Tests MDX code extraction (4 snapshot tests)
-- `packages/spectacle-deck/src/components/CodeStepper/code-directives.test.ts` - Tests directive parsing (4 tests)
+
+- `packages/vite-plugin-react-deck/src/codegen.test.ts` - Tests MDX code
+  extraction (4 snapshot tests)
+- `packages/spectacle-deck/src/components/CodeStepper/code-directives.test.ts` -
+  Tests directive parsing (4 tests)
 
 ## Package Build
 
 Both packages use esbuild (`scripts/bundle.ts`) to produce:
+
 - `.cjs` (CommonJS) and `.mjs` (ESM) bundles
 - TypeScript declarations via `tsc`
 - PNG files handled as data URLs (spectacle-deck)
@@ -124,4 +135,5 @@ Both packages use esbuild (`scripts/bundle.ts`) to produce:
 - Layouts are exported as a named map from `layouts/index.tsx`
 - Each slide component receives `children` and optional `frontmatter`
 - Styled-components use CSS variables from the theme for colors
-- The Vite plugin generates virtual files (`__deck.tsx`, `index.html`) at dev/build time
+- The Vite plugin generates virtual files (`__deck.tsx`, `index.html`) at
+  dev/build time

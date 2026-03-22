@@ -1,14 +1,13 @@
 import React from "react";
 import { animated, useSpring } from "react-spring";
 import { Stepper } from "spectacle";
-
+import styled from "styled-components";
 import {
   TimelineItemBody,
   TimelineItemContent,
   TimelineItemContentPhantom,
   TimelineItemTitle,
 } from "./Timeline.styled";
-import styled from "styled-components";
 
 const TimelineItemStyled = styled(animated.div)<{
   isOdd?: boolean;
@@ -70,7 +69,7 @@ export default function Timeline(props: React.ComponentPropsWithoutRef<"div">) {
       activeStyle={style}
       inactiveStyle={style}
     >
-      {(value, step) => {
+      {(_value, step) => {
         return children.map((child, index) => {
           if (!React.isValidElement(child)) {
             return child;
@@ -104,7 +103,7 @@ export function TimelineItem(
     isLast?: boolean;
     isOdd?: boolean;
     isEven?: boolean;
-  }
+  },
 ) {
   const { children, title, isPhantom, isLast, ...rest } = props;
   const guideLineProps = useSpring({

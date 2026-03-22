@@ -1,9 +1,9 @@
-import React from "react";
+import type React from "react";
 import {
-  Link as SpectacleLink,
-  Image as SpectacleImage,
-  Heading,
   FlexBox,
+  Heading,
+  Image as SpectacleImage,
+  Link as SpectacleLink,
 } from "spectacle";
 import styled from "styled-components";
 

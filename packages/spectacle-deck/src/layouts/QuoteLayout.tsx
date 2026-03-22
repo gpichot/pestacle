@@ -1,7 +1,6 @@
-import React from "react";
+import type React from "react";
 import styled from "styled-components";
 import { getMatchingMdxType } from "./utils";
-import { BaseLayout } from "./BaseLayout";
 
 function invariant(condition: any, message: string) {
   if (!condition) {

@@ -5,10 +5,15 @@
   "module": "src/index.tsx",
   "types": "src/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run",
     "dev": "tnode scripts/bundle.ts",
     "build": "tnode scripts/bundle.ts",
-    "publish": "./publish.sh"
+    "publish": "./publish.sh",
+    "lint": "biome lint ./src",
+    "lint:fix": "biome lint --write ./src",
+    "format": "biome format --write ./src",
+    "format:check": "biome format ./src",
+    "type-check": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
@@ -32,6 +37,7 @@
     "@types/react-is": "^18.3.0",
     "@types/react-syntax-highlighter": "^15.5.13",
     "esbuild": "^0.21.3",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
   }
 }

@@ -79,7 +79,7 @@ ${header}
   //return result;
 }
 
-function removeFragment(components: string) {
+function _removeFragment(components: string) {
   return components.replace(
     /};\s*return/gm,
     "};\n  const {wrapper: MDXLayout} = ",

@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { usePestacle } from "./context";
 
 export function SlideWrapper({
@@ -9,12 +9,13 @@ export function SlideWrapper({
   frontmatter: { layout?: string };
 }) {
   const { layouts } = usePestacle();
-  const layout = frontmatter?.layout || "default";
-  console.log(layouts, layout);
-  const Layout = layout in layouts ? layouts[layout] : null;
+  const layoutName = frontmatter?.layout || "default";
+  const Layout = layoutName in layouts ? layouts[layoutName] : null;
 
-  if (layout && !Layout) {
-    console.warn(`Layout ${layout} not found`);
+  if (layoutName && layoutName !== "default" && !Layout) {
+    throw new Error(
+      `Layout "${layoutName}" not found. Available layouts: ${Object.keys(layouts).join(", ")}`,
+    );
   }
 
   if (Layout) {

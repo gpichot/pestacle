@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import styled from "styled-components";
 
 const DefaultLayoutHeading = styled.div`
@@ -10,7 +10,6 @@ const DefaultLayoutHeading = styled.div`
     margin: 0;
   }
 `;
-
 
 export const BaseLayout = ({
   children,

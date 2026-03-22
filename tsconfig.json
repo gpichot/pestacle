@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "lib": ["ES2020"],
+    "target": "ES2020",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noFallthroughCasesInSwitch": true,
+    "useUnknownInCatchVariables": true,
+    "esModuleInterop": true,
+    "declaration": true
+  },
+  "references": [
+    { "path": "packages/spectacle-deck" },
+    { "path": "packages/vite-plugin-react-deck" }
+  ],
+  "files": []
+}

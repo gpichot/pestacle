@@ -1,7 +1,7 @@
-import React from "react";
-import { ColumnsLayout } from "./columns";
-import { Margins, getCodeChildren } from "./utils";
+import type React from "react";
 import styled from "styled-components";
+import { ColumnsLayout } from "./columns";
+import { getCodeChildren, Margins } from "./utils";
 
 const CodeSide = styled.div`
   pre {
