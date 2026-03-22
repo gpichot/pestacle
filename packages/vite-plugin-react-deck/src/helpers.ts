@@ -320,33 +320,53 @@ export function createIndexFile({ entrypoint }: { entrypoint: string }) {
 export function createAppDeckFile({
   slidePath,
   theme,
+  deckTheme,
   config,
 }: {
   slidePath: string;
   theme: keyof typeof themes;
+  /** Theme override from the deck's frontmatter. Can be a built-in theme name or a custom module path. */
+  deckTheme?: string;
   config: { layoutsFile: string | undefined };
 }) {
-  if (!themes[theme]) {
-    throw new Error(`Theme ${theme} not found`);
+  const resolvedThemeName = deckTheme ?? theme;
+  const isBuiltinTheme = resolvedThemeName in themes;
+  const isCustomThemePath =
+    !isBuiltinTheme &&
+    (resolvedThemeName.startsWith("./") ||
+      resolvedThemeName.startsWith("../") ||
+      resolvedThemeName.startsWith("/"));
+
+  if (!isBuiltinTheme && !isCustomThemePath) {
+    const available = Object.keys(themes).join(", ");
+    throw new Error(
+      `Theme "${resolvedThemeName}" not found. Available built-in themes: ${available}. ` +
+        `For custom themes, use a relative path (e.g. "./pestacle/themes/my-theme").`,
+    );
   }
-  const themeObject = themes[theme];
 
   const layoutImport = config.layoutsFile
     ? `import layouts from "${config.layoutsFile}";`
     : "import { layouts } from '@gpichot/spectacle-deck';";
+
+  const themeCode = isBuiltinTheme
+    ? `const theme = ${JSON.stringify(themes[resolvedThemeName as keyof typeof themes])};`
+    : `import { themeTokens as _customThemeTokens } from "${resolvedThemeName}";\nconst theme = { themeTokens: _customThemeTokens };`;
+
   return `import React, { StrictMode } from "react";
 import * as ReactDOM from "react-dom/client";
 import { Deck } from '@gpichot/spectacle-deck';
 ${layoutImport};
 
 import deck from "${slidePath}";
+${themeCode}
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <StrictMode>
-    <Deck deck={deck} theme={${JSON.stringify(themeObject)}} layouts={layouts} />
+    <Deck deck={deck} theme={theme} layouts={layouts} />
   </StrictMode>
 )
 
