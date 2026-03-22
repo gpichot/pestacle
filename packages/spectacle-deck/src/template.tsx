@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Box, FullScreen } from "spectacle";
 
 export const template = ({ slideNumber, numberOfSlides }) => {

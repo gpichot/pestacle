@@ -1,6 +1,7 @@
-import React from "react";
+import type React from "react";
+
 import { ColumnsLayout } from "./columns";
-import { Margins, getMatchingMdxType } from "./utils";
+import { getMatchingMdxType, Margins } from "./utils";
 
 export function SideLayout({
   children,

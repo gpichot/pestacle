@@ -1,5 +1,6 @@
-import React from "react";
+import type React from "react";
 import styled from "styled-components";
+
 import { Margins } from "./utils";
 
 function MultipleHexagons({ position }: { position: "left" | "right" }) {

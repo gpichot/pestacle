@@ -1,8 +1,8 @@
-import { UserConfig, defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
-import reactDeck from "vite-plugin-react-deck";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
+import { defineConfig, type UserConfig } from "vite";
+import reactDeck from "vite-plugin-react-deck";
 
 const watchedPackages = ["vite-plugin-react-deck", "@gpichot/spectacle-deck"];
 

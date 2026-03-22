@@ -1,16 +1,16 @@
 import React from "react";
 import { mdxComponentMap } from "spectacle";
+
+import CodeStepper from "./CodeStepper/CodeStepper";
+import { QRCode } from "./QRCode";
 import {
   CustomHeading,
   CustomQuote,
   HeadingThree,
   HeadingTwo,
-  InlineCode,
   Image,
+  InlineCode,
 } from "./styled";
-
-import CodeStepper from "./CodeStepper/CodeStepper";
-import { QRCode } from "./QRCode";
 
 const componentsMap = {
   ...mdxComponentMap,

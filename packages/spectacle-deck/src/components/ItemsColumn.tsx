@@ -1,22 +1,22 @@
+import { animated, useSpring } from "@react-spring/web";
 import React from "react";
 import { Stepper } from "spectacle";
 import styled from "styled-components";
-import { useSpring, animated } from "@react-spring/web";
 
 export function ItemsColumn(divProps: React.ComponentProps<"div">) {
   const { style, children, ...props } = divProps;
   const childrenArray = React.Children.toArray(children);
   return (
     <Stepper values={childrenArray}>
-      {(value, step) => (
+      {(_value, step) => (
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            justifyItems: 'center',
+            justifyItems: "center",
             alignItems: "stretch",
             height: "100%",
-            rowGap: '2rem',
+            rowGap: "2rem",
             ...style,
           }}
           {...props}

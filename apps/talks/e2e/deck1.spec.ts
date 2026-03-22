@@ -1,4 +1,5 @@
 import { test } from "@playwright/test";
+
 import { DeckPage } from "./DeckPage";
 
 test.describe("Deck 1 - Crossing the bridge", () => {
@@ -55,14 +56,14 @@ test.describe("Deck 1 - Crossing the bridge", () => {
     await deck.goToSlide(3);
 
     await deck.expectTextVisible(
-      "React is a JavaScript library for building user interfaces"
+      "React is a JavaScript library for building user interfaces",
     );
   });
 
   test("quote slide screenshot", async () => {
     await deck.goToSlide(3);
     await deck.expectTextVisible(
-      "React is a JavaScript library for building user interfaces"
+      "React is a JavaScript library for building user interfaces",
     );
     await deck.expectScreenshot("deck1-quote-slide.png");
   });

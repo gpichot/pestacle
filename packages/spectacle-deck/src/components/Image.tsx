@@ -1,12 +1,11 @@
-import React from "react";
+import type React from "react";
+
 import { SVGObject } from "../layouts/styled";
 
-export interface ImageProps extends React.ComponentProps<"img"> { }
+export interface ImageProps extends React.ComponentProps<"img"> {}
 
 export function Image(props: ImageProps) {
-  const { src, height, width,
-    style, ...otherProps
-  } = props;
+  const { src, height, width, style, ...otherProps } = props;
   if (!src?.endsWith(".svg")) {
     return (
       <img
@@ -17,7 +16,7 @@ export function Image(props: ImageProps) {
           height: height || "100%",
           objectFit: "cover",
           objectPosition: "center",
-          ...style
+          ...style,
         }}
       />
     );
@@ -30,7 +29,7 @@ export function Image(props: ImageProps) {
         height: height || "100%",
         minWidth: "30vw",
         width: width || "100%",
-        ...style
+        ...style,
       }}
     />
   );

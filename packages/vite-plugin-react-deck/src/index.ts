@@ -1,10 +1,12 @@
 import * as fs from "node:fs/promises";
-import { PluginOption } from "vite";
-import { transformSlidesMdxToReact } from "./slides";
-import { createAppDeckFile, createIndexFile } from "./helpers";
-import * as glob from "glob";
-import { ReactDeckOptions } from "./types";
 import path from "node:path";
+
+import * as glob from "glob";
+import type { PluginOption } from "vite";
+
+import { createAppDeckFile, createIndexFile } from "./helpers";
+import { transformSlidesMdxToReact } from "./slides";
+import type { ReactDeckOptions } from "./types";
 
 export { defineConfig } from "./config";
 
@@ -26,16 +28,14 @@ async function findDecks({ port }: { port: number }) {
   }));
 }
 
-async function fileExists(name: string, path: string) {
+async function fileExists(_name: string, path: string) {
   const candidateExts = [".ts", ".tsx", ".js", ".jsx"];
   for await (const ext of candidateExts) {
     const fullPath = `${path}${ext}`;
     try {
       await fs.access(fullPath);
       return fullPath.replace(/^\./, "");
-    } catch {
-      continue;
-    }
+    } catch {}
   }
 }
 
@@ -121,7 +121,7 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
         const dir = directory.startsWith(".") ? directory : `./${directory}`;
         const path = `${dir}/deck.mdx`;
         if (!(await checkIfDirectoryExists(path))) {
-          console.warn(`No deck.mdx file found in ${path}`);
+          this.warn(`No deck.mdx file found in ${path}`);
           return;
         }
 
@@ -130,11 +130,9 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
           theme: options.theme,
           config,
         });
-        console.log({ contentIndex });
         return contentIndex;
       }
       if (!id.endsWith("deck.mdx")) {
-        // console.log('passing')
         return;
       }
 
@@ -143,7 +141,7 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
         production: isProd,
         ...options,
       });
-      const dir = path.relative(process.cwd(), id);
+      const _dir = path.relative(process.cwd(), id);
       return data /*.replace(
         /\.\/assets/gi,
         `/${dir.replace("deck.mdx", "")}assets`
@@ -174,7 +172,7 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
         const decks = await findDecks({ port });
 
         for (const deck of decks) {
-          console.log(`Deck available at ${deck.deckUrl}`);
+          server.config.logger.info(`Deck available at ${deck.deckUrl}`);
         }
       });
     },

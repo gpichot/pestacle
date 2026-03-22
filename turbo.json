@@ -7,6 +7,11 @@
     "dev": {
       "dependsOn": ["^build"]
     },
-    "type-check": {}
+    "type-check": {},
+    "test": {},
+    "lint": {},
+    "lint:fix": {},
+    "format": {},
+    "format:check": {}
   }
 }
