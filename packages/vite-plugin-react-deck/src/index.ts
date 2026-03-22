@@ -213,15 +213,28 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
       if (id.endsWith("__deck.tsx")) {
         const directory = id.replace("/__deck.tsx", "");
         const dir = directory.startsWith(".") ? directory : `./${directory}`;
-        const path = `${dir}/deck.mdx`;
-        if (!(await checkIfDirectoryExists(path))) {
-          this.warn(`No deck.mdx file found in ${path}`);
+        const deckMdxPath = `${dir}/deck.mdx`;
+        if (!(await checkIfDirectoryExists(deckMdxPath))) {
+          this.warn(`No deck.mdx file found in ${deckMdxPath}`);
           return;
+        }
+
+        // Read frontmatter to check for per-deck theme override
+        let deckTheme: string | undefined;
+        try {
+          const raw = await fs.readFile(deckMdxPath, "utf-8");
+          const { data } = matter(raw);
+          if (typeof data.theme === "string") {
+            deckTheme = data.theme;
+          }
+        } catch {
+          // Ignore read errors, fall back to config theme
         }
 
         const contentIndex = createAppDeckFile({
           slidePath: `${directory}/deck.mdx`,
           theme: options.theme,
+          deckTheme,
           config,
         });
         return contentIndex;
