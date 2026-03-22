@@ -12,6 +12,6 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.12.12",
-    "turbo": "^1.13.3"
+    "turbo": "^2.8.20"
   }
 }
