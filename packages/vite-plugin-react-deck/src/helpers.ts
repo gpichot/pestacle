@@ -1,23 +1,23 @@
 import * as themes from "./themes";
 
-export function createTalksIndexFile() {
+export function createDecksIndexFile() {
   return `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Talks</title>
+    <title>Decks</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="__talks.tsx"></script>
+    <script type="module" src="__decks.tsx"></script>
   </body>
 </html>
 `;
 }
 
-export function createTalksPageFile({
+export function createDecksPageFile({
   decks,
   theme,
 }: {
@@ -35,7 +35,7 @@ import * as ReactDOM from "react-dom/client";
 
 const decks = ${JSON.stringify(decks)};
 
-function TalksPage() {
+function DecksPage() {
   const [search, setSearch] = useState("");
   const filtered = decks.filter((d) =>
     d.name.toLowerCase().includes(search.toLowerCase())
@@ -55,15 +55,15 @@ function TalksPage() {
           fontWeight: 700,
           marginBottom: "0.5rem",
           color: "${secondary}",
-        }}>Talks</h1>
+        }}>Decks</h1>
         <p style={{
           fontSize: "1rem",
           opacity: 0.7,
           marginBottom: "2rem",
-        }}>{decks.length} presentation{decks.length !== 1 ? "s" : ""} available</p>
+        }}>{decks.length} deck{decks.length !== 1 ? "s" : ""} available</p>
         <input
           type="text"
-          placeholder="Search talks..."
+          placeholder="Search decks..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           autoFocus
@@ -113,7 +113,7 @@ function TalksPage() {
           ))}
           {filtered.length === 0 && (
             <li style={{ opacity: 0.5, textAlign: "center", padding: "2rem" }}>
-              No talks matching "{search}"
+              No decks matching "{search}"
             </li>
           )}
         </ul>
@@ -127,7 +127,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <StrictMode>
-    <TalksPage />
+    <DecksPage />
   </StrictMode>
 );
 `;

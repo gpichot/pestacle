@@ -6,9 +6,9 @@ import type { PluginOption } from "vite";
 
 import {
   createAppDeckFile,
+  createDecksIndexFile,
+  createDecksPageFile,
   createIndexFile,
-  createTalksIndexFile,
-  createTalksPageFile,
 } from "./helpers";
 import { transformSlidesMdxToReact } from "./slides";
 import type { ReactDeckOptions } from "./types";
@@ -117,7 +117,7 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
     },
 
     resolveId(id) {
-      if (id === "index.html" || id === "__talks.tsx") {
+      if (id === "index.html" || id === "__decks.tsx") {
         return id;
       }
       if (deckConfig.decks.some((deck) => deck.index === id)) {
@@ -136,14 +136,14 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
         showStartupPage !== undefined ? showStartupPage : !isProd;
 
       if (id === "index.html" && shouldShowStartupPage) {
-        return createTalksIndexFile();
+        return createDecksIndexFile();
       }
-      if (id === "__talks.tsx") {
+      if (id === "__decks.tsx") {
         const decks = deckConfig.decks.map((d) => ({
           name: d.name,
           path: `/${d.index.replace("/index.html", "/")}`,
         }));
-        return createTalksPageFile({ decks, theme: options.theme });
+        return createDecksPageFile({ decks, theme: options.theme });
       }
 
       const config = await loadCustomConfig();
@@ -193,12 +193,12 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
       transform: async (html, ctx) => {
         const originalUrl = ctx.originalUrl?.split("?")[0] || "";
 
-        // Root URL → talks page
+        // Root URL → decks page
         if (originalUrl === "/" || originalUrl === "") {
           const shouldShow =
             showStartupPage !== undefined ? showStartupPage : !isProd;
           if (shouldShow) {
-            return html.replace("__SCRIPT__", `__talks.tsx`);
+            return html.replace("__SCRIPT__", `__decks.tsx`);
           }
         }
 
@@ -221,7 +221,7 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
         server.middlewares.use(async (req, res, next) => {
           const url = req.url?.split("?")[0] || "";
           if (url === "/" || url === "/index.html") {
-            const html = createTalksIndexFile();
+            const html = createDecksIndexFile();
             const transformed = await server.transformIndexHtml(
               url,
               html,
@@ -241,7 +241,7 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
 
         if (shouldShow) {
           server.config.logger.info(
-            `\n  Talks available at http://localhost:${port}/\n`,
+            `\n  Decks available at http://localhost:${port}/\n`,
           );
         } else {
           const decks = await findDecks({ port });
