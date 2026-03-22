@@ -1,5 +1,4 @@
 import * as fs from "node:fs/promises";
-import path from "node:path";
 
 import * as glob from "glob";
 import type { PluginOption } from "vite";
@@ -180,11 +179,7 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
         production: isProd,
         ...options,
       });
-      const _dir = path.relative(process.cwd(), id);
-      return data /*.replace(
-        /\.\/assets/gi,
-        `/${dir.replace("deck.mdx", "")}assets`
-      )*/;
+      return data;
     },
 
     transformIndexHtml: {
