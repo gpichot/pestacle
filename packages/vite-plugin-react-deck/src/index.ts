@@ -84,10 +84,10 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
       const startupPageEnabled =
         showStartupPage !== undefined ? showStartupPage : !isProduction;
 
-      const newInputs = decks.reduce((acc, deck) => {
+      const newInputs = decks.map((deck) => {
         const deckPath = deck.replace("/deck.mdx", "");
-        return [...acc, `${deckPath.replace("src/", "")}/index.html`];
-      }, [] as string[]);
+        return `${deckPath.replace("src/", "")}/index.html`;
+      });
 
       if (startupPageEnabled) {
         newInputs.unshift("index.html");
@@ -213,10 +213,7 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
           .join("\n");
 
         return html
-          .replace(
-            '<script type="module" src="__SCRIPT__"></script>',
-            "",
-          )
+          .replace('<script type="module" src="__SCRIPT__"></script>', "")
           .replace(
             '<div id="root"></div>',
             `<div id="root">

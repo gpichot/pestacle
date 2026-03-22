@@ -1,4 +1,6 @@
-import * as themes from "./themes";
+import { green, purple } from "./themes";
+
+const themes = { green, purple } as const;
 
 export function createDecksIndexFile() {
   return `<!DOCTYPE html>

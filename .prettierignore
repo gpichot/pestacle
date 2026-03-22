@@ -9,3 +9,4 @@ node_modules
 *.cjs
 *.json
 pnpm-lock.yaml
+backup

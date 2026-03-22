@@ -10,8 +10,12 @@ export function getHeading(children: React.ReactNode) {
   const allChild = React.Children.toArray(children);
   if (allChild.length === 0) return [null, allChild];
   const [candidate, ...rest] = allChild;
-  if (!React.isValidElement<{ originalType?: string }>(candidate)) return [null, allChild];
-  if (candidate.props.originalType && ["h2", "h3"].includes(candidate.props.originalType)) {
+  if (!React.isValidElement<{ originalType?: string }>(candidate))
+    return [null, allChild];
+  if (
+    candidate.props.originalType &&
+    ["h2", "h3"].includes(candidate.props.originalType)
+  ) {
     return [candidate, rest];
   }
   return [null, allChild];
