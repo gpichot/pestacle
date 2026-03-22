@@ -1,0 +1,13 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "packages": {
+    "packages/spectacle-deck": {
+      "package-name": "@gpichot/spectacle-deck",
+      "release-type": "node"
+    },
+    "packages/vite-plugin-react-deck": {
+      "package-name": "vite-plugin-react-deck",
+      "release-type": "node"
+    }
+  }
+}
