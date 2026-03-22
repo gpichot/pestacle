@@ -1,10 +1,14 @@
 import * as fs from "node:fs/promises";
-import path from "node:path";
 
 import * as glob from "glob";
 import type { PluginOption } from "vite";
 
-import { createAppDeckFile, createIndexFile } from "./helpers";
+import {
+  createAppDeckFile,
+  createDecksIndexFile,
+  createDecksPageFile,
+  createIndexFile,
+} from "./helpers";
 import { transformSlidesMdxToReact } from "./slides";
 import type { ReactDeckOptions } from "./types";
 
@@ -49,28 +53,45 @@ async function loadCustomConfig() {
 
 export default async (options: ReactDeckOptions): Promise<PluginOption> => {
   let isProd = false;
+  const showStartupPage: boolean | undefined = options.startupPage;
   const deckConfig = {
     decks: [] as {
       originalFile: string;
       index: string;
+      name: string;
     }[],
   };
   return {
     name: "react-deck",
 
-    async config(config) {
+    async config(config, env) {
       const decks = await glob.glob("./src/**/deck.mdx");
       const inputs = config.build?.rolldownOptions?.input || {};
 
-      deckConfig.decks = decks.map((deck) => ({
-        originalFile: deck,
-        index: deck.replace("/deck.mdx", "/index.html").replace("src/", ""),
-      }));
+      deckConfig.decks = decks.map((deck) => {
+        const name = deck
+          .replace("./src/", "")
+          .replace("/deck.mdx", "")
+          .replace(/\//g, " / ");
+        return {
+          originalFile: deck,
+          index: deck.replace("/deck.mdx", "/index.html").replace("src/", ""),
+          name,
+        };
+      });
+
+      const isProduction = env.mode === "production";
+      const startupPageEnabled =
+        showStartupPage !== undefined ? showStartupPage : !isProduction;
 
       const newInputs = decks.reduce((acc, deck) => {
         const deckPath = deck.replace("/deck.mdx", "");
         return [...acc, `${deckPath.replace("src/", "")}/index.html`];
       }, [] as string[]);
+
+      if (startupPageEnabled) {
+        newInputs.unshift("index.html");
+      }
 
       const finalInputs =
         typeof inputs === "string"
@@ -92,6 +113,9 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
     },
 
     resolveId(id) {
+      if (id === "index.html" || id === "__decks.tsx") {
+        return id;
+      }
       if (deckConfig.decks.some((deck) => deck.index === id)) {
         return id;
       }
@@ -104,6 +128,20 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
     },
 
     async load(id) {
+      const shouldShowStartupPage =
+        showStartupPage !== undefined ? showStartupPage : !isProd;
+
+      if (id === "index.html" && shouldShowStartupPage) {
+        return createDecksIndexFile();
+      }
+      if (id === "__decks.tsx") {
+        const decks = deckConfig.decks.map((d) => ({
+          name: d.name,
+          path: `/${d.index.replace("/index.html", "/")}`,
+        }));
+        return createDecksPageFile({ decks, theme: options.theme });
+      }
+
       const config = await loadCustomConfig();
       const deck = deckConfig.decks.find((deck) => deck.index === id);
       if (deck) {
@@ -138,17 +176,23 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
         production: isProd,
         ...options,
       });
-      const _dir = path.relative(process.cwd(), id);
-      return data /*.replace(
-        /\.\/assets/gi,
-        `/${dir.replace("deck.mdx", "")}assets`
-      )*/;
+      return data;
     },
 
     transformIndexHtml: {
       order: "pre",
       handler: async (html, ctx) => {
         const originalUrl = ctx.originalUrl?.split("?")[0] || "";
+
+        // Root URL → decks page
+        if (originalUrl === "/" || originalUrl === "") {
+          const shouldShow =
+            showStartupPage !== undefined ? showStartupPage : !isProd;
+          if (shouldShow) {
+            return html.replace("__SCRIPT__", `__decks.tsx`);
+          }
+        }
+
         const deckDir = ctx.path.replace("/index.html", "");
         const dir = originalUrl ? `./src${originalUrl}` : `.${deckDir}`;
 
@@ -183,13 +227,39 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
       },
     },
     configureServer(server) {
+      const shouldShow = showStartupPage !== undefined ? showStartupPage : true;
+
+      if (shouldShow) {
+        server.middlewares.use(async (req, res, next) => {
+          const url = req.url?.split("?")[0] || "";
+          if (url === "/" || url === "/index.html") {
+            const html = createDecksIndexFile();
+            const transformed = await server.transformIndexHtml(
+              url,
+              html,
+              req.originalUrl,
+            );
+            res.setHeader("Content-Type", "text/html");
+            res.statusCode = 200;
+            res.end(transformed);
+            return;
+          }
+          next();
+        });
+      }
+
       server.httpServer?.once("listening", async () => {
         const port = server.config.server.port || 5173;
 
-        const decks = await findDecks({ port });
-
-        for (const deck of decks) {
-          server.config.logger.info(`Deck available at ${deck.deckUrl}`);
+        if (shouldShow) {
+          server.config.logger.info(
+            `\n  Decks available at http://localhost:${port}/\n`,
+          );
+        } else {
+          const decks = await findDecks({ port });
+          for (const deck of decks) {
+            server.config.logger.info(`Deck available at ${deck.deckUrl}`);
+          }
         }
       });
     },
