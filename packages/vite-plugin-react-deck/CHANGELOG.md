@@ -2,10 +2,11 @@
 
 ## [1.5.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.4.0...vite-plugin-react-deck-v1.5.0) (2026-03-22)
 
-
 ### Features
 
-* add animation components and slide transitions ([#21](https://github.com/gpichot/pestacle/issues/21)) ([5202feb](https://github.com/gpichot/pestacle/commit/5202feb6ca08a819b8d2c2ff480b23a7a61df9e1))
+- add animation components and slide transitions
+  ([#21](https://github.com/gpichot/pestacle/issues/21))
+  ([5202feb](https://github.com/gpichot/pestacle/commit/5202feb6ca08a819b8d2c2ff480b23a7a61df9e1))
 
 ## [1.4.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.3.0...vite-plugin-react-deck-v1.4.0) (2026-03-22)
 

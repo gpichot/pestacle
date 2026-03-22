@@ -58,6 +58,11 @@ export const HeadingTwo = styled.h2`
   font-family: Bitter, \"Helvetica Neue\", Helvetica, Arial, sans-serif;
   font-size: 55px;
   font-weight: 400;
+
+  strong {
+    color: var(--color-secondary);
+    font-weight: 500;
+  }
 `;
 
 export const HeadingThree = styled.h3`
