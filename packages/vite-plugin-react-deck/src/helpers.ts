@@ -1,6 +1,10 @@
-import { green, purple } from "./themes";
+import { green, purple, solarizedLight } from "./themes";
 
-const themes = { green, purple } as const;
+const themes = {
+  green,
+  purple,
+  "solarized-light": solarizedLight,
+} as const;
 
 export interface DeckMeta {
   name: string;
