@@ -268,3 +268,187 @@ export default App;
   <DocItem label="React Docs" link="https://react.dev" />
   <DocItem label="MDX Docs" link="https://mdxjs.com" />
 </Doc>
+
+---
+
+layout: section
+
+---
+
+# **Animations & Transitions**
+
+New animation components and slide transitions
+
+---
+
+layout: centered
+transition: fade
+
+---
+
+import { FadeIn } from "@gpichot/spectacle-deck";
+
+### **FadeIn**
+
+<FadeIn>
+
+This content fades in from below.
+
+</FadeIn>
+
+<FadeIn direction="left" delay={300}>
+
+This fades in from the left with a delay.
+
+</FadeIn>
+
+<FadeIn direction="right" delay={600}>
+
+And this from the right.
+
+</FadeIn>
+
+---
+
+layout: centered
+transition: slide
+
+---
+
+import { ScaleIn } from "@gpichot/spectacle-deck";
+
+### **ScaleIn**
+
+<ScaleIn>
+
+This content scales in from zero.
+
+</ScaleIn>
+
+<ScaleIn delay={400} from={0.5}>
+
+This scales from 50% with a delay.
+
+</ScaleIn>
+
+---
+
+layout: centered
+
+---
+
+import { StaggerChildren } from "@gpichot/spectacle-deck";
+
+### **StaggerChildren**
+
+<StaggerChildren stagger={150} direction="up">
+
+**First item** staggered in
+
+**Second item** staggered in
+
+**Third item** staggered in
+
+**Fourth item** staggered in
+
+</StaggerChildren>
+
+---
+
+layout: centered
+
+---
+
+import { TypeWriter } from "@gpichot/spectacle-deck";
+
+### **TypeWriter**
+
+<TypeWriter speed={40}>
+  Hello, I am typing this out character by character!
+</TypeWriter>
+
+---
+
+layout: centered
+
+---
+
+import { AnimatedCounter, ProgressRing } from "@gpichot/spectacle-deck";
+
+### **AnimatedCounter & ProgressRing**
+
+<div style={{ display: "flex", gap: "4rem", alignItems: "center", justifyContent: "center" }}>
+
+<div style={{ textAlign: "center" }}>
+
+<div
+  style={{
+    fontSize: "3rem",
+    fontWeight: "bold",
+    color: "var(--color-secondary)",
+  }}
+>
+  <AnimatedCounter to={42} duration={2000} />
+</div>
+
+Releases
+
+</div>
+
+<ProgressRing value={87} size={140} strokeWidth={10}>
+
+<div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>87%</div>
+
+</ProgressRing>
+
+<div style={{ textAlign: "center" }}>
+
+<div
+  style={{
+    fontSize: "3rem",
+    fontWeight: "bold",
+    color: "var(--color-secondary)",
+  }}
+>
+  <AnimatedCounter to={1500} duration={2000} prefix="+" suffix="ms" />
+</div>
+
+Saved
+
+</div>
+
+</div>
+
+---
+
+layout: centered
+transition: drop
+
+---
+
+### **:::appear Directive**
+
+:::appear
+
+- First point appears on click
+
+- Second point appears on next click
+
+- Third point appears on next click
+
+:::
+
+---
+
+layout: centered
+transition: fade
+
+---
+
+### **Per-slide transitions**
+
+This slide uses `transition: fade`.
+
+The previous one used `transition: drop`.
+
+You can set transitions globally in `pestacle.config.ts` or per-slide via frontmatter.
