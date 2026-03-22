@@ -29,8 +29,16 @@ export type SlideType = {
   slideComponent: React.ElementType<unknown>;
 };
 
+export type DeckThemeOverride = {
+  colors?: Partial<Record<string, string>>;
+  fonts?: {
+    header?: string;
+    text?: string;
+  };
+};
+
 export type DeckType = {
-  metadata: Record<string, unknown>;
+  metadata: Record<string, unknown> & { theme?: DeckThemeOverride };
   slides: SlideType[];
 };
 
@@ -67,27 +75,37 @@ export function Deck({
     document.title = (deck.metadata.title as string) || "Untitled";
   }, [deck.metadata.title]);
 
+  const deckThemeOverride = deck.metadata.theme;
+
   const mergedTheme = React.useMemo(() => {
+    const colors = {
+      ...theme.themeTokens.colors,
+      ...(deckThemeOverride?.colors ?? {}),
+    };
     const fonts = {
       ...baseTheme.fonts,
       ...(theme.themeTokens.fonts ?? {}),
+      ...(deckThemeOverride?.fonts ?? {}),
     };
     return {
       ...baseTheme,
       ...theme.themeTokens,
+      colors,
       fonts,
     };
-  }, [theme]);
+  }, [theme, deckThemeOverride]);
 
   const GlobalStyle = React.useMemo(() => {
-    const cssVariables = createCssVariables(theme.themeTokens.colors);
+    const cssVariables = createCssVariables(
+      mergedTheme.colors as Record<string, string>,
+    );
     return createGlobalStyle`
       :root {
         ${cssVariables}
         --font-family: ${mergedTheme.fonts.text}
       }
     `;
-  }, [theme, mergedTheme]);
+  }, [mergedTheme]);
 
   return (
     <React.StrictMode>
