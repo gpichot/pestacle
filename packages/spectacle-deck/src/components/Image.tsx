@@ -1,4 +1,5 @@
 import type React from "react";
+
 import { SVGObject } from "../layouts/styled";
 
 export interface ImageProps extends React.ComponentProps<"img"> {}

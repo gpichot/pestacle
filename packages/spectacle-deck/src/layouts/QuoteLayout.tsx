@@ -1,5 +1,6 @@
 import type React from "react";
 import styled from "styled-components";
+
 import { getMatchingMdxType } from "./utils";
 
 function invariant(condition: any, message: string) {

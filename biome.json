@@ -7,9 +7,11 @@
           "level": "on",
           "options": {
             "groups": [
-              { "source": "isNodeBuiltin" },
-              { "source": "isLibrary" },
-              { "source": "isRelativePath" }
+              ":NODE:",
+              ":BLANK_LINE:",
+              ":PACKAGE:",
+              ":BLANK_LINE:",
+              ":PATH:"
             ]
           }
         }

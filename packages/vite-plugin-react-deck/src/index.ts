@@ -1,7 +1,9 @@
 import * as fs from "node:fs/promises";
 import path from "node:path";
+
 import * as glob from "glob";
 import type { PluginOption } from "vite";
+
 import { createAppDeckFile, createIndexFile } from "./helpers";
 import { transformSlidesMdxToReact } from "./slides";
 import type { ReactDeckOptions } from "./types";

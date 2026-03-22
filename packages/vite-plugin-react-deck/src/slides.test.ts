@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+
 import { extractInlineModules } from "./slides";
 
 describe("extractInlineModules", () => {

@@ -1,5 +1,6 @@
 import { compile } from "@mdx-js/mdx";
 import { describe, expect, it } from "vitest";
+
 import { extractMainCodeAsChildren } from "./codegen";
 
 describe("extractMainCodeAsChildren", () => {

@@ -1,9 +1,11 @@
 import fs from "node:fs";
+
 import { compile } from "@mdx-js/mdx";
 import matter from "gray-matter";
 import remarkDirective from "remark-directive";
 import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
+
 import { extractMainCodeAsChildren } from "./codegen";
 import type { ReactDeckOptions } from "./types";
 

@@ -2,6 +2,7 @@ import { MDXProvider } from "@mdx-js/react";
 import React from "react";
 import { DeckContext, Slide, Deck as SpectacleDeck } from "spectacle";
 import { createGlobalStyle } from "styled-components";
+
 import { createCssVariables } from "./colors";
 import customComponents from "./components/map";
 import { type LayoutComponent, PestacleProvider } from "./context";
@@ -11,6 +12,7 @@ import { template } from "./template";
 import { default as baseTheme } from "./theme";
 
 export * from "spectacle";
+
 export { Doc, DocItem } from "./components/DocumentationItem";
 export { default as FilePane } from "./components/FilePane";
 export {

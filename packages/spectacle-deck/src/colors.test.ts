@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+
 import { createCssVariables, extractColors } from "./colors";
 
 describe("extractColors", () => {

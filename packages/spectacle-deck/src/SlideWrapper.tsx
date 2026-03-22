@@ -1,4 +1,5 @@
 import type React from "react";
+
 import { usePestacle } from "./context";
 
 export function SlideWrapper({

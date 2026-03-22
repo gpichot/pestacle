@@ -1,5 +1,6 @@
 import React from "react";
 import { mdxComponentMap } from "spectacle";
+
 import CodeStepper from "./CodeStepper/CodeStepper";
 import { QRCode } from "./QRCode";
 import {

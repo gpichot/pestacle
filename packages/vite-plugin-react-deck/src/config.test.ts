@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+
 import { createDefaultConfig, defineConfig } from "./config";
 
 describe("createDefaultConfig", () => {

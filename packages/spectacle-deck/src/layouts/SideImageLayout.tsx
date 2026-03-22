@@ -1,5 +1,6 @@
 import type React from "react";
 import styled from "styled-components";
+
 import { Image } from "../components/Image";
 import { getMatchingMdxType } from "./utils";
 
