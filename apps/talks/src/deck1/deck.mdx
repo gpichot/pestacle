@@ -268,3 +268,47 @@ export default App;
   <DocItem label="React Docs" link="https://react.dev" />
   <DocItem label="MDX Docs" link="https://mdxjs.com" />
 </Doc>
+
+---
+
+layout: fullImage
+image: https://picsum.photos/1920/1080
+dim: 0.5
+position: bottom
+
+---
+
+## **Full Image Layout**
+
+A dramatic full-bleed background image with text overlay.
+Perfect for visual impact slides.
+
+---
+
+layout: bigNumber
+value: "2.4M"
+
+---
+
+## Downloads
+
+Weekly npm downloads across the React ecosystem keep growing every year.
+
+---
+
+layout: centered
+
+---
+
+import { Mermaid } from "@gpichot/spectacle-deck";
+
+### **Mermaid Diagram**
+
+<Mermaid
+  chart={`graph LR
+  A[MDX File] --> B[Vite Plugin]
+  B --> C[Remark/Rehype]
+  C --> D[React Components]
+  D --> E[Spectacle Deck]
+`}
+/>
