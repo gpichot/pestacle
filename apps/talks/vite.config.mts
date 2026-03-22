@@ -1,4 +1,4 @@
-import react from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import { defineConfig, type UserConfig } from "vite";

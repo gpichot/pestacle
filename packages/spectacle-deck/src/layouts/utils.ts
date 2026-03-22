@@ -10,8 +10,12 @@ export function getHeading(children: React.ReactNode) {
   const allChild = React.Children.toArray(children);
   if (allChild.length === 0) return [null, allChild];
   const [candidate, ...rest] = allChild;
-  if (!React.isValidElement(candidate)) return [null, allChild];
-  if (["h2", "h3"].includes(candidate.props.originalType)) {
+  if (!React.isValidElement<{ originalType?: string }>(candidate))
+    return [null, allChild];
+  if (
+    candidate.props.originalType &&
+    ["h2", "h3"].includes(candidate.props.originalType)
+  ) {
     return [candidate, rest];
   }
   return [null, allChild];
@@ -23,7 +27,7 @@ export function getCode(children: React.ReactNode) {
   if (allChild.length === 0) return [null, allChild];
 
   const index = allChild.findIndex((child) => {
-    if (!React.isValidElement(child)) return false;
+    if (!React.isValidElement<{ originalType?: string }>(child)) return false;
     return child.props.originalType === "pre";
   });
 

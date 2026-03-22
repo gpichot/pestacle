@@ -105,7 +105,7 @@ export async function transformSlidesMdxToReact(
       const normalizedCode = code.replace("process.env", "process\u200b.env");
       const result = await compile(normalizedCode, {
         outputFormat: "program",
-        jsx: !isProd,
+        jsx: false,
         providerImportSource: "@mdx-js/react",
         ...options,
         remarkPlugins: [
@@ -116,7 +116,7 @@ export async function transformSlidesMdxToReact(
         ],
       });
       const mainCode = extractMainCodeAsChildren(result.value.toString(), {
-        isJsx: !isProd,
+        isJsx: false,
       });
 
       return {
@@ -129,11 +129,8 @@ export async function transformSlidesMdxToReact(
   const output = addInlineModules(
     `
 import React from 'react';
-${
-  isProd
-    ? 'import {Fragment as _Fragment, jsx as _jsx, jsxs as _jsxs} from "react/jsx-runtime";import {useMDXComponents as _provideComponents} from "@mdx-js/react" '
-    : "import {useMDXComponents as _provideComponents} from '@mdx-js/react';"
-}
+import {Fragment as _Fragment, jsx as _jsx, jsxs as _jsxs} from "react/jsx-runtime";
+import {useMDXComponents as _provideComponents} from "@mdx-js/react";
 
 ${compiledSlides
   .map(

@@ -15,12 +15,16 @@ function range(start: number, end: number) {
  * Function parse ranges list
  */
 function parseRangeList(str: string): number[] {
-  return str.split(",").reduce((acc, line) => {
-    if (!line.includes("-")) return [...acc, parseInt(line, 10)];
-
-    const [start, end] = line.split("-").map(Number);
-    return [...acc, ...range(start, end)];
-  }, [] as number[]);
+  const result: number[] = [];
+  for (const line of str.split(",")) {
+    if (!line.includes("-")) {
+      result.push(parseInt(line, 10));
+    } else {
+      const [start, end] = line.split("-").map(Number);
+      result.push(...range(start, end));
+    }
+  }
+  return result;
 }
 
 /**
@@ -103,11 +107,12 @@ export type Step = {
  * Reduce steps directives
  */
 export function combineStepDirectives(directives: StepDirective[]): Step[] {
-  let hiddenLines = directives.reduce((acc, { showLines }) => {
-    if (!showLines) return acc;
-
-    return [...acc, ...showLines];
-  }, [] as number[]);
+  let hiddenLines: number[] = [];
+  for (const { showLines } of directives) {
+    if (showLines) {
+      hiddenLines.push(...showLines);
+    }
+  }
 
   return directives.map(({ highlight, showLines, name }) => {
     hiddenLines = hiddenLines.filter((line) => !showLines?.includes(line));

@@ -9,6 +9,7 @@ export function Image(props: ImageProps) {
   if (!src?.endsWith(".svg")) {
     return (
       <img
+        alt=""
         src={src}
         {...otherProps}
         style={{
