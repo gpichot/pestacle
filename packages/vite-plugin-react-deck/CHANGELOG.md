@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.4.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.3.0...vite-plugin-react-deck-v1.4.0) (2026-03-22)
+
+### Features
+
+- add per-deck theme override support via frontmatter
+  ([#18](https://github.com/gpichot/pestacle/issues/18))
+  ([28f6cfb](https://github.com/gpichot/pestacle/commit/28f6cfbbead439f596712ae065facdb1132acf9a))
+
+## [1.3.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.2.0...vite-plugin-react-deck-v1.3.0) (2026-03-22)
+
+### Features
+
+- add solarized-light theme and improve theme customization
+  ([#15](https://github.com/gpichot/pestacle/issues/15))
+  ([9a83239](https://github.com/gpichot/pestacle/commit/9a83239512b05bcb83e3f5fb10deb05ee2875fd0))
+
 ## [1.2.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.1.5...vite-plugin-react-deck-v1.2.0) (2026-03-22)
 
 ### Features

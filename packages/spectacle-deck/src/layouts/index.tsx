@@ -1,5 +1,7 @@
+import { BigNumberLayout } from "./BigNumberLayout";
 import { CenteredLayout } from "./CenteredLayout";
 import { Default3Layout } from "./Default3Layout";
+import { FullImageLayout } from "./FullImageLayout";
 import { MainSectionLayout } from "./MainSectionLayout";
 import { QuoteLayout } from "./QuoteLayout";
 import { SectionLayout } from "./SectionLayout";
@@ -16,4 +18,6 @@ export default {
   sidedImage: SidedImageLayout,
   side: SideLayout,
   section: SectionLayout,
+  fullImage: FullImageLayout,
+  bigNumber: BigNumberLayout,
 };
