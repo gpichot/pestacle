@@ -1,6 +1,8 @@
 import { animated, useSpring } from "@react-spring/web";
 import type React from "react";
 
+import { useInView } from "./useInView";
+
 interface ScaleInProps {
   children: React.ReactNode;
   /** Initial scale. Default: 0 */
@@ -17,12 +19,18 @@ export function ScaleIn({
   delay = 0,
   duration = 400,
 }: ScaleInProps) {
+  const [ref, isInView] = useInView();
+
   const styles = useSpring({
-    from: { opacity: 0, transform: `scale(${from})` },
-    to: { opacity: 1, transform: "scale(1)" },
-    delay,
+    opacity: isInView ? 1 : 0,
+    transform: isInView ? "scale(1)" : `scale(${from})`,
+    delay: isInView ? delay : 0,
     config: { duration },
   });
 
-  return <animated.div style={styles}>{children}</animated.div>;
+  return (
+    <animated.div ref={ref} style={styles}>
+      {children}
+    </animated.div>
+  );
 }

@@ -1,6 +1,8 @@
 import { animated, useSpring } from "@react-spring/web";
 import type React from "react";
 
+import { useInView } from "./useInView";
+
 interface FadeInProps {
   children: React.ReactNode;
   /** Direction to fade in from. Default: "up" */
@@ -20,6 +22,8 @@ export function FadeIn({
   delay = 0,
   duration = 400,
 }: FadeInProps) {
+  const [ref, isInView] = useInView();
+
   const translateMap = {
     up: `translateY(${distance}px)`,
     down: `translateY(-${distance}px)`,
@@ -29,11 +33,15 @@ export function FadeIn({
   };
 
   const styles = useSpring({
-    from: { opacity: 0, transform: translateMap[direction] },
-    to: { opacity: 1, transform: "translate(0, 0)" },
-    delay,
+    opacity: isInView ? 1 : 0,
+    transform: isInView ? "translate(0, 0)" : translateMap[direction],
+    delay: isInView ? delay : 0,
     config: { duration },
   });
 
-  return <animated.div style={styles}>{children}</animated.div>;
+  return (
+    <animated.div ref={ref} style={styles}>
+      {children}
+    </animated.div>
+  );
 }

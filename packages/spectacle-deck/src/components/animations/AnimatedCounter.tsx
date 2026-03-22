@@ -1,5 +1,7 @@
 import { animated, useSpring } from "@react-spring/web";
 
+import { useInView } from "./useInView";
+
 interface AnimatedCounterProps {
   /** Target number to count to */
   to: number;
@@ -26,15 +28,16 @@ export function AnimatedCounter({
   prefix = "",
   suffix = "",
 }: AnimatedCounterProps) {
+  const [ref, isInView] = useInView<HTMLSpanElement>();
+
   const { value } = useSpring({
-    from: { value: from },
-    to: { value: to },
-    delay,
+    value: isInView ? to : from,
+    delay: isInView ? delay : 0,
     config: { duration },
   });
 
   return (
-    <animated.span>
+    <animated.span ref={ref}>
       {value.to((v) => `${prefix}${v.toFixed(decimals)}${suffix}`)}
     </animated.span>
   );

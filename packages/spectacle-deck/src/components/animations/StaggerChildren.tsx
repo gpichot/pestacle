@@ -1,6 +1,8 @@
 import { animated, useSprings } from "@react-spring/web";
 import React from "react";
 
+import { useInView } from "./useInView";
+
 interface StaggerChildrenProps {
   children: React.ReactNode;
   /** Delay between each child in milliseconds. Default: 100 */
@@ -23,6 +25,7 @@ export function StaggerChildren({
   direction = "up",
   distance = 20,
 }: StaggerChildrenProps) {
+  const [ref, isInView] = useInView();
   const items = React.Children.toArray(children);
 
   const translateMap = {
@@ -36,20 +39,20 @@ export function StaggerChildren({
   const springs = useSprings(
     items.length,
     items.map((_, i) => ({
-      from: { opacity: 0, transform: translateMap[direction] },
-      to: { opacity: 1, transform: "translate(0, 0)" },
-      delay: delay + i * stagger,
+      opacity: isInView ? 1 : 0,
+      transform: isInView ? "translate(0, 0)" : translateMap[direction],
+      delay: isInView ? delay + i * stagger : 0,
       config: { duration },
     })),
   );
 
   return (
-    <>
+    <div ref={ref}>
       {springs.map((style, i) => (
         <animated.div key={i} style={style}>
           {items[i]}
         </animated.div>
       ))}
-    </>
+    </div>
   );
 }

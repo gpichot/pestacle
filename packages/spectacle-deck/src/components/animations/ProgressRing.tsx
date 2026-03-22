@@ -1,6 +1,8 @@
 import { animated, useSpring } from "@react-spring/web";
 import type React from "react";
 
+import { useInView } from "./useInView";
+
 interface ProgressRingProps {
   /** Progress value from 0 to 100 */
   value: number;
@@ -30,18 +32,20 @@ export function ProgressRing({
   delay = 0,
   children,
 }: ProgressRingProps) {
+  const [ref, isInView] = useInView();
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
+  const targetOffset = circumference - (value / 100) * circumference;
 
   const { offset } = useSpring({
-    from: { offset: circumference },
-    to: { offset: circumference - (value / 100) * circumference },
-    delay,
+    offset: isInView ? targetOffset : circumference,
+    delay: isInView ? delay : 0,
     config: { duration },
   });
 
   return (
     <div
+      ref={ref}
       style={{
         position: "relative",
         width: size,

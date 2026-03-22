@@ -123,9 +123,28 @@ const componentsMap = {
     }
     // @ts-expect-error
     if (props._name === "appear") {
+      const children = React.Children.toArray(props.children);
+      // Unwrap list elements: if children is a single <ul>/<ol>,
+      // wrap each <li> in <Appear> individually
+      if (
+        children.length === 1 &&
+        React.isValidElement(children[0]) &&
+        (children[0].type === "ul" || children[0].type === "ol")
+      ) {
+        const ListTag = children[0].type;
+        const listProps = children[0].props as { children: React.ReactNode };
+        const listItems = React.Children.toArray(listProps.children);
+        return (
+          <ListTag>
+            {listItems.map((item, i) => (
+              <Appear key={i}>{item}</Appear>
+            ))}
+          </ListTag>
+        );
+      }
       return (
         <>
-          {React.Children.toArray(props.children).map((child, i) => (
+          {children.map((child, i) => (
             <Appear key={i}>{child}</Appear>
           ))}
         </>
