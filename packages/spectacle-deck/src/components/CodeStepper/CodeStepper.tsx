@@ -204,7 +204,8 @@ export default function CodeStepper({
                     }),
                     style: {
                       opacity: getOpacity(),
-                      transition: "all 0.3s ease",
+                      transition:
+                        "opacity 0.3s ease, background-color 0.3s ease",
                       display: "block",
                       width: "100%",
                       backgroundColor: isHighlighted

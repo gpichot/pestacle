@@ -107,13 +107,20 @@ export function TimelineItem(
   },
 ) {
   const { children, title, isPhantom, isLast, ...rest } = props;
+  const springConfig = { duration: 300 };
   const guideLineProps = useSpring({
     width: isPhantom || isLast ? "0%" : "100%",
+    config: springConfig,
   });
   const appearStyles = useSpring({
     opacity: getItemOpacity({ isPhantom, isLast }),
+    config: springConfig,
+    immediate: isPhantom,
   });
-  const colorStyles = useSpring({ opacity: isPhantom || isLast ? 1 : 0.15 });
+  const colorStyles = useSpring({
+    opacity: isPhantom || isLast ? 1 : 0.15,
+    config: springConfig,
+  });
   return (
     <TimelineItemStyled
       {...rest}

@@ -51,7 +51,11 @@ function ItemColumnWrapper({
   isVisible,
   ...props
 }: React.ComponentPropsWithRef<"div"> & { isVisible: boolean }) {
-  const styles = useSpring({ opacity: isVisible ? 1 : 0 });
+  const styles = useSpring({
+    opacity: isVisible ? 1 : 0,
+    config: { duration: 300 },
+    immediate: !isVisible,
+  });
   return (
     <ItemColumnWrapperStyled style={styles} {...props}>
       {children}

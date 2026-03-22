@@ -126,6 +126,8 @@ export function HorizontalListItem({
 }) {
   const opacityStyles = useSpring({
     opacity: getItemOpacity({ isVisible, isLast }),
+    config: { duration: 300 },
+    immediate: !isVisible,
   });
   return (
     <Item style={opacityStyles}>
