@@ -1,5 +1,5 @@
 import React from "react";
-import { Appear, mdxComponentMap } from "spectacle";
+import { mdxComponentMap } from "spectacle";
 
 import CodeStepper from "./CodeStepper/CodeStepper";
 import { QRCode } from "./QRCode";
@@ -120,35 +120,6 @@ const componentsMap = {
       // @ts-expect-error
       const url = React.Children.toArray(props.children)[0].props.href;
       return <QRCode url={url} />;
-    }
-    // @ts-expect-error
-    if (props._name === "appear") {
-      const children = React.Children.toArray(props.children);
-      // Unwrap list elements: if children is a single <ul>/<ol>,
-      // wrap each <li> in <Appear> individually
-      if (
-        children.length === 1 &&
-        React.isValidElement(children[0]) &&
-        (children[0].type === "ul" || children[0].type === "ol")
-      ) {
-        const ListTag = children[0].type;
-        const listProps = children[0].props as { children: React.ReactNode };
-        const listItems = React.Children.toArray(listProps.children);
-        return (
-          <ListTag>
-            {listItems.map((item, i) => (
-              <Appear key={i}>{item}</Appear>
-            ))}
-          </ListTag>
-        );
-      }
-      return (
-        <>
-          {children.map((child, i) => (
-            <Appear key={i}>{child}</Appear>
-          ))}
-        </>
-      );
     }
     return <div {...props} />;
   },

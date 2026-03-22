@@ -64,7 +64,7 @@ export function TypeWriter({
   }, [text, speed, delay, isInView]);
 
   return (
-    <span ref={ref}>
+    <span ref={ref} style={{ font: "inherit" }}>
       {displayed}
       {cursor && (
         <span
