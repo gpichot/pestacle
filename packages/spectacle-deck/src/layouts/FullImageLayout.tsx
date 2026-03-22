@@ -1,5 +1,7 @@
-import type React from "react";
+import React from "react";
 import styled from "styled-components";
+
+import { getMatchingMdxType } from "./utils";
 
 const Overlay = styled.div`
   position: absolute;
@@ -27,10 +29,19 @@ export function FullImageLayout({
   dim = 0.4,
 }: {
   children: React.ReactNode;
-  image: string;
+  image?: string;
   position?: "center" | "bottom" | "top";
   dim?: number;
 }) {
+  const [images, rest] = getMatchingMdxType(children, "Image");
+  const firstImage = images[0];
+
+  const backgroundImage =
+    image ||
+    (React.isValidElement<{ src?: string }>(firstImage)
+      ? firstImage.props.src
+      : undefined);
+
   const justifyMap = {
     top: "flex-start",
     center: "center",
@@ -48,7 +59,9 @@ export function FullImageLayout({
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage: `url(${image})`,
+          backgroundImage: backgroundImage
+            ? `url(${backgroundImage})`
+            : undefined,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -61,7 +74,7 @@ export function FullImageLayout({
         }}
       />
       <Overlay style={{ justifyContent: justifyMap[position] }}>
-        {children}
+        {firstImage ? rest : children}
       </Overlay>
     </div>
   );
