@@ -2,56 +2,32 @@ import React from "react";
 import { Stepper } from "spectacle";
 
 /**
- * InlineText renders children as inline segments that appear one by one
- * on each step (arrow key press). All segments stay on the same line.
+ * InlineText displays text that progressively builds up on each step.
+ *
+ * Each value in the array is the full text shown at that step.
  *
  * Usage in MDX:
- *   <InlineText>
- *     <span>Can we do it faster? </span>
- *     <span>(Without bugs?)</span>
- *   </InlineText>
+ *   <InlineText values={['Can we do it faster?', 'Can we do it faster? Without bugs?']} />
  */
 export function InlineText({
-  children,
+  values,
   priority,
 }: {
-  children: React.ReactNode;
+  values: string[];
   priority?: number;
 }) {
-  const segments = React.Children.toArray(children);
+  // Steps after the first value
+  const stepValues = values.slice(1).map((_, i) => i + 1);
 
-  // Create step values: [0, 1, 2, ...] — one per segment after the first
-  // The first segment is always visible, subsequent ones appear on each step
-  const stepValues = segments.slice(1).map((_, i) => i + 1);
-
-  if (segments.length <= 1) {
-    return (
-      <span style={{ display: "inline", whiteSpace: "pre-wrap" }}>
-        {children}
-      </span>
-    );
+  if (values.length <= 1) {
+    return <span>{values[0]}</span>;
   }
 
   return (
     <Stepper values={stepValues} priority={priority}>
       {(currentStep, _, isActive) => {
-        const visibleCount = isActive ? (currentStep as number) + 1 : 1;
-        return (
-          <span style={{ display: "inline", whiteSpace: "pre-wrap" }}>
-            {segments.map((segment, i) => (
-              <span
-                key={i}
-                style={{
-                  opacity: i < visibleCount ? 1 : 0,
-                  transition: "opacity 0.3s ease",
-                  visibility: i < visibleCount ? "visible" : "hidden",
-                }}
-              >
-                {segment}
-              </span>
-            ))}
-          </span>
-        );
+        const index = isActive ? (currentStep as number) : 0;
+        return <span style={{ transition: "all 0.3s ease" }}>{values[index]}</span>;
       }}
     </Stepper>
   );
