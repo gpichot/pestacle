@@ -7,11 +7,7 @@ export function ItemsColumn(divProps: React.ComponentProps<"div">) {
   const { style, children, ...props } = divProps;
   const childrenArray = React.Children.toArray(children);
   return (
-    <Stepper
-      values={childrenArray}
-      activeStyle={{ opacity: "1" }}
-      inactiveStyle={{ opacity: "1" }}
-    >
+    <Stepper values={childrenArray}>
       {(_value, step) => (
         <div
           style={{
@@ -55,11 +51,7 @@ function ItemColumnWrapper({
   isVisible,
   ...props
 }: React.ComponentPropsWithRef<"div"> & { isVisible: boolean }) {
-  const styles = useSpring({
-    opacity: isVisible ? 1 : 0,
-    config: { duration: 300 },
-    immediate: !isVisible,
-  });
+  const styles = useSpring({ opacity: isVisible ? 1 : 0 });
   return (
     <ItemColumnWrapperStyled style={styles} {...props}>
       {children}

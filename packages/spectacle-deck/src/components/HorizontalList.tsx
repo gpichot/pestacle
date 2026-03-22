@@ -17,11 +17,7 @@ export default function HorizontalList({
 }) {
   const items = React.Children.toArray(children);
   return (
-    <Stepper
-      values={items}
-      activeStyle={{ opacity: "1" }}
-      inactiveStyle={{ opacity: "1" }}
-    >
+    <Stepper values={items}>
       {(_, step) => (
         <Container
           style={{
@@ -130,8 +126,6 @@ export function HorizontalListItem({
 }) {
   const opacityStyles = useSpring({
     opacity: getItemOpacity({ isVisible, isLast }),
-    config: { duration: 300 },
-    immediate: !isVisible,
   });
   return (
     <Item style={opacityStyles}>
