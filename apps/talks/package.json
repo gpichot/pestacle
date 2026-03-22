@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "sleep 1 && vite dev",
     "build": "vite build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:e2e": "playwright test",
+    "test:e2e:update": "playwright test --update-snapshots"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +22,7 @@
     "vite-plugin-react-deck": "workspace:*"
   },
   "devDependencies": {
+    "@playwright/test": "^1.51.1",
     "@vitejs/plugin-react-swc": "^3.6.0",
     "vite": "^5.2.11"
   }
