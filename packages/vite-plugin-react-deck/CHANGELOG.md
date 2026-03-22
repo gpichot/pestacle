@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.5.0...vite-plugin-react-deck-v1.5.1) (2026-03-22)
+
+
+### Bug Fixes
+
+* release workflow ([ed3cdc2](https://github.com/gpichot/pestacle/commit/ed3cdc2b7e13c62357fe0c47d788106303f0f6c6))
+
 ## [1.5.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.4.0...vite-plugin-react-deck-v1.5.0) (2026-03-22)
 
 ### Features
