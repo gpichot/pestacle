@@ -2,10 +2,11 @@
 
 ## [1.6.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.5.0...spectacle-deck-v1.6.0) (2026-03-22)
 
-
 ### Features
 
-* allow FullImageLayout to extract Image from children ([#26](https://github.com/gpichot/pestacle/issues/26)) ([256c5a9](https://github.com/gpichot/pestacle/commit/256c5a962b1f359a1240fcf29203df9c1938cb02))
+- allow FullImageLayout to extract Image from children
+  ([#26](https://github.com/gpichot/pestacle/issues/26))
+  ([256c5a9](https://github.com/gpichot/pestacle/commit/256c5a962b1f359a1240fcf29203df9c1938cb02))
 
 ## [1.5.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.4.0...spectacle-deck-v1.5.0) (2026-03-22)
 

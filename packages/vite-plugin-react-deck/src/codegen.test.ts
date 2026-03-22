@@ -100,4 +100,31 @@ content
           return <MDXLayout {...props}> <_components.h1>{"Head 1"}</_components.h1>{"\\n"}<_components.p>{"content"}</_components.p> </MDXLayout>;"
       `);
   });
+
+  it("should preserve the last line of fenced code blocks", async () => {
+    const input = await compile(
+      `
+\`\`\`ts
+const isVisible = el.style.display !== "none";
+const width = el.offsetWidth;
+el.style.width = width + 10 + "px";
+items.forEach((item) => {
+  const h = item.offsetHeight;
+  item.style.height = h + 5 + "px";
+});
+\`\`\`
+`,
+      {
+        outputFormat: "program",
+        jsx: false,
+      },
+    );
+
+    const result = extractMainCodeAsChildren(input.value.toString(), {
+      isJsx: false,
+    });
+
+    // The last line of the code block (});) must be preserved
+    expect(result).toContain('});\\n"');
+  });
 });
