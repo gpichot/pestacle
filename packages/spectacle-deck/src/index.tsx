@@ -1,6 +1,6 @@
 import { MDXProvider } from "@mdx-js/react";
 import React from "react";
-import { DeckContext, Slide, Deck as SpectacleDeck } from "spectacle";
+import { Slide, Deck as SpectacleDeck } from "spectacle";
 import { createGlobalStyle } from "styled-components";
 
 import { createCssVariables } from "./colors";
@@ -46,24 +46,6 @@ interface ThemeOptions {
   };
 }
 
-const KEYS = {
-  NextSlide: ["ArrowDown", "ArrowRight", "PageDown"],
-  PreviousSlide: ["ArrowUp", "ArrowLeft", "PageUp"],
-};
-function DeckKeyEvents() {
-  const { stepForward, regressSlide } = React.useContext(DeckContext);
-
-  React.useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (KEYS.NextSlide.includes(e.key)) stepForward();
-      else if (KEYS.PreviousSlide.includes(e.key)) regressSlide();
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [stepForward, regressSlide]);
-  return null;
-}
-
 const componentsMap = {
   ...customComponents,
   wrapper: SlideWrapper,
@@ -100,7 +82,6 @@ export function Deck({
             theme={{ ...baseTheme, ...theme.themeTokens }}
             template={template}
           >
-            <DeckKeyEvents />
             {deck.slides.map((slide, i) => {
               const Component = slide.slideComponent;
               return (
