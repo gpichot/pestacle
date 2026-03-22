@@ -1,17 +1,20 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
+import { DeckPage } from "./DeckPage";
 
 test.describe("Deck 2 - Hello World", () => {
+  let deck: DeckPage;
+
   test.beforeEach(async ({ page }) => {
-    await page.goto("/deck2/", { waitUntil: "domcontentloaded" });
-    await page.locator(".spectacle-fullscreen-button").waitFor();
+    deck = new DeckPage(page);
+    await deck.goto("/deck2/");
   });
 
-  test("renders the Hello World heading", async ({ page }) => {
-    await expect(page.locator("text=Hello World 2")).toBeVisible();
+  test("renders the Hello World heading", async () => {
+    await deck.expectTextVisible("Hello World 2");
   });
 
-  test("Hello World slide screenshot", async ({ page }) => {
-    await expect(page.locator("text=Hello World 2")).toBeVisible();
-    await expect(page).toHaveScreenshot("deck2-hello-world.png");
+  test("Hello World slide screenshot", async () => {
+    await deck.expectTextVisible("Hello World 2");
+    await deck.expectScreenshot("deck2-hello-world.png");
   });
 });

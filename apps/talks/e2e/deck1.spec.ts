@@ -1,119 +1,95 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
+import { DeckPage } from "./DeckPage";
 
 test.describe("Deck 1 - Crossing the bridge", () => {
+  let deck: DeckPage;
+
   test.beforeEach(async ({ page }) => {
-    await page.goto("/deck1/", { waitUntil: "domcontentloaded" });
-    // Wait for the deck to be fully rendered
-    await page.locator(".spectacle-fullscreen-button").waitFor();
+    deck = new DeckPage(page);
+    await deck.goto("/deck1/");
   });
 
-  test("renders the title slide", async ({ page }) => {
-    await expect(page.locator("text=Crossing the bridge")).toBeVisible();
-    await expect(
-      page.locator(
-        "text=Seamless strategies for updating and migrating libraries"
-      )
-    ).toBeVisible();
+  test("renders the title slide", async () => {
+    await deck.expectTextsVisible([
+      "Crossing the bridge",
+      "Seamless strategies for updating and migrating libraries",
+    ]);
   });
 
-  test("title slide screenshot", async ({ page }) => {
-    await expect(page).toHaveScreenshot("deck1-title-slide.png");
+  test("title slide screenshot", async () => {
+    await deck.expectScreenshot("deck1-title-slide.png");
   });
 
-  test("navigates to the History slide with arrow key", async ({ page }) => {
-    await page.keyboard.press("ArrowRight");
-    await expect(page.locator("text=History")).toBeVisible();
+  test("navigates to the History slide with arrow key", async () => {
+    await deck.nextSlide();
+    await deck.expectTextVisible("History");
   });
 
-  test("History slide contains timeline items", async ({ page }) => {
-    await page.keyboard.press("ArrowRight");
+  test("History slide contains timeline items", async () => {
+    await deck.goToSlide(1);
 
-    await expect(page.locator("text=History")).toBeVisible();
-    await expect(page.locator("text=React")).first().toBeVisible();
-    await expect(page.locator("text=2011")).toBeVisible();
-    await expect(page.locator("text=May 2013")).toBeVisible();
+    await deck.expectTextVisible("History");
+    await deck.expectFirstTextVisible("React");
+    await deck.expectTextsVisible(["2011", "May 2013"]);
   });
 
-  test("History slide screenshot", async ({ page }) => {
-    await page.keyboard.press("ArrowRight");
-    await expect(page.locator("text=History")).toBeVisible();
-    await expect(page).toHaveScreenshot("deck1-history-slide.png");
+  test("History slide screenshot", async () => {
+    await deck.goToSlide(1);
+    await deck.expectTextVisible("History");
+    await deck.expectScreenshot("deck1-history-slide.png");
   });
 
-  test("navigates to code + table slide", async ({ page }) => {
-    // Navigate to 3rd slide (code block + table)
-    await page.keyboard.press("ArrowRight");
-    await page.keyboard.press("ArrowRight");
+  test("navigates to code + table slide", async () => {
+    await deck.goToSlide(2);
 
-    await expect(page.locator("text=Hello, world!")).toBeVisible();
-    await expect(page.locator("text=foo")).toBeVisible();
-    await expect(page.locator("text=bar")).toBeVisible();
-    await expect(page.locator("text=baz")).toBeVisible();
+    await deck.expectTextsVisible(["Hello, world!", "foo", "bar", "baz"]);
   });
 
-  test("code + table slide screenshot", async ({ page }) => {
-    await page.keyboard.press("ArrowRight");
-    await page.keyboard.press("ArrowRight");
-    await expect(page.locator("text=Hello, world!")).toBeVisible();
-    await expect(page).toHaveScreenshot("deck1-code-table-slide.png");
+  test("code + table slide screenshot", async () => {
+    await deck.goToSlide(2);
+    await deck.expectTextVisible("Hello, world!");
+    await deck.expectScreenshot("deck1-code-table-slide.png");
   });
 
-  test("navigates to the quote slide", async ({ page }) => {
-    // Navigate to the 4th slide (quote)
-    for (let i = 0; i < 3; i++) {
-      await page.keyboard.press("ArrowRight");
-    }
+  test("navigates to the quote slide", async () => {
+    await deck.goToSlide(3);
 
-    await expect(
-      page.locator(
-        "text=React is a JavaScript library for building user interfaces"
-      )
-    ).toBeVisible();
+    await deck.expectTextVisible(
+      "React is a JavaScript library for building user interfaces"
+    );
   });
 
-  test("quote slide screenshot", async ({ page }) => {
-    for (let i = 0; i < 3; i++) {
-      await page.keyboard.press("ArrowRight");
-    }
-    await expect(
-      page.locator(
-        "text=React is a JavaScript library for building user interfaces"
-      )
-    ).toBeVisible();
-    await expect(page).toHaveScreenshot("deck1-quote-slide.png");
+  test("quote slide screenshot", async () => {
+    await deck.goToSlide(3);
+    await deck.expectTextVisible(
+      "React is a JavaScript library for building user interfaces"
+    );
+    await deck.expectScreenshot("deck1-quote-slide.png");
   });
 
-  test("navigates to 'Why should you care?' slide", async ({ page }) => {
-    for (let i = 0; i < 4; i++) {
-      await page.keyboard.press("ArrowRight");
-    }
+  test("navigates to 'Why should you care?' slide", async () => {
+    await deck.goToSlide(4);
 
-    await expect(
-      page.locator("text=Why should you care?")
-    ).toBeVisible();
+    await deck.expectTextVisible("Why should you care?");
   });
 
-  test("navigates to feedback slide with QR code", async ({ page }) => {
-    for (let i = 0; i < 5; i++) {
-      await page.keyboard.press("ArrowRight");
-    }
+  test("navigates to feedback slide with QR code", async () => {
+    await deck.goToSlide(5);
 
-    await expect(page.locator("text=Feedback")).toBeVisible();
+    await deck.expectTextVisible("Feedback");
   });
 
-  test("feedback slide screenshot", async ({ page }) => {
-    for (let i = 0; i < 5; i++) {
-      await page.keyboard.press("ArrowRight");
-    }
-    await expect(page.locator("text=Feedback")).toBeVisible();
-    await expect(page).toHaveScreenshot("deck1-feedback-slide.png");
+  test("feedback slide screenshot", async () => {
+    await deck.goToSlide(5);
+    await deck.expectTextVisible("Feedback");
+    await deck.expectScreenshot("deck1-feedback-slide.png");
   });
 
-  test("can navigate back with ArrowLeft", async ({ page }) => {
-    await page.keyboard.press("ArrowRight");
-    await expect(page.locator("text=History")).toBeVisible();
+  test("can navigate back with ArrowLeft", async () => {
+    await deck.nextSlide();
+    await deck.expectTextVisible("History");
 
-    await page.keyboard.press("ArrowLeft");
-    await expect(page.locator("text=Crossing the bridge")).toBeVisible();
+    await deck.previousSlide();
+    await deck.expectTextVisible("Crossing the bridge");
   });
 });
