@@ -31,6 +31,7 @@ export {
 } from "./components/HorizontalList";
 export { IconBox } from "./components/IconBox";
 export { Image } from "./components/Image";
+export { InlineText } from "./components/InlineText";
 export { ItemsColumn } from "./components/ItemsColumn";
 export { Mermaid } from "./components/Mermaid";
 export { default as Timeline, TimelineItem } from "./components/Timeline";
