@@ -18,7 +18,8 @@ function myRemarkPlugin() {
    * @returns {undefined}
    *   Nothing.
    */
-  return (tree) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (tree: any) => {
     visit(tree, (node) => {
       if (
         node.type === "containerDirective" ||
@@ -173,7 +174,6 @@ Deck.slides = [
  * Note that the regex isn't concerned about code blocks (```).
  * Tracking pairs of ` should be sufficient to capture code blocks, too.
  */
-const _EX_REG = /\\`|`(?:\\`|[^`])*`|(^(?:export\sdefault\s)(.*)$)/gm;
 const MOD_REG = /\\`|`(?:\\`|[^`])*`|(^(?:import|export).*$)/gm;
 
 export function extractInlineModules(

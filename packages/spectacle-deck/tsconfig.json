@@ -21,7 +21,7 @@
     "baseUrl": "./src",
     "esModuleInterop": true,
     "declaration": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "types": ["./src/node.d.ts"],
   },
   "include": ["src/**/*"],

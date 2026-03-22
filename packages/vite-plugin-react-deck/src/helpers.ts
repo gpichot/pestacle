@@ -30,7 +30,7 @@ export function createAppDeckFile({
   config,
 }: {
   slidePath: string;
-  theme: string;
+  theme: keyof typeof themes;
   config: { layoutsFile: string | undefined };
 }) {
   if (!themes[theme]) {
