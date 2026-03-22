@@ -158,8 +158,12 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
     },
 
     resolveId(id) {
-      if (id === "index.html" || id === "__decks.tsx") {
-        return id;
+      if (
+        id === "index.html" ||
+        id === "__decks.tsx" ||
+        id === "/__decks.tsx"
+      ) {
+        return id.replace(/^\//, "");
       }
       if (deckConfig.decks.some((deck) => deck.index === id)) {
         return id;
