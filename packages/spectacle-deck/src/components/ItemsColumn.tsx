@@ -38,7 +38,7 @@ export function ItemsColumn(divProps: React.ComponentProps<"div">) {
   );
 }
 
-const ItemColumnWrapperStyled = styled(animated.div)`
+const ItemColumnWrapperStyled = styled(animated.div)<React.PropsWithChildren>`
   display: flex;
   justify-content: center;
   * {

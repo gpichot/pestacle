@@ -65,8 +65,10 @@ function getCodeDetails(children: React.ReactNode) {
   }
 
   const result = {
-    language: (String(child.props.className) || "").replace("language-", ""),
-    code: (child.props.children as string).trim(),
+    language: (
+      String((child.props as { className?: string }).className) || ""
+    ).replace("language-", ""),
+    code: ((child.props as { children?: string }).children as string).trim(),
   };
 
   return result;

@@ -76,7 +76,7 @@ function Pill({ position }: { position: number }) {
   );
 }
 
-const Item = styled(animated.div)`
+const Item = styled(animated.div)<React.PropsWithChildren>`
   display: flex;
   flex-direction: column;
   font-family: Bitter, "Helvetica Neue", Helvetica, Arial, sans-serif;

@@ -10,10 +10,12 @@ import {
   TimelineItemTitle,
 } from "./Timeline.styled";
 
-const TimelineItemStyled = styled(animated.div)<{
-  isOdd?: boolean;
-  isEven?: boolean;
-}>`
+const TimelineItemStyled = styled(animated.div)<
+  React.PropsWithChildren<{
+    isOdd?: boolean;
+    isEven?: boolean;
+  }>
+>`
   flex: 1;
   flex-flow: column nowrap;
   display: inline-flex;
@@ -32,7 +34,7 @@ const TimelineItemStyled = styled(animated.div)<{
   }
 `;
 
-const TimelineItemGuide = styled(animated.div)`
+const TimelineItemGuide = styled(animated.div)<React.PropsWithChildren>`
   width: 100%;
   padding-top: 2px;
   display: flex;
