@@ -37,7 +37,7 @@ export function AnimatedCounter({
   });
 
   return (
-    <animated.span ref={ref}>
+    <animated.span ref={ref} style={{ fontFamily: "var(--font-family)" }}>
       {value.to((v) => `${prefix}${v.toFixed(decimals)}${suffix}`)}
     </animated.span>
   );

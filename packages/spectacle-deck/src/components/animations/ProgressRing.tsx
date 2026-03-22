@@ -81,7 +81,15 @@ export function ProgressRing({
         />
       </svg>
       {children && (
-        <div style={{ position: "relative", zIndex: 1 }}>{children}</div>
+        <div
+          style={{
+            position: "relative",
+            zIndex: 1,
+            fontFamily: "var(--font-family)",
+          }}
+        >
+          {children}
+        </div>
       )}
     </div>
   );
