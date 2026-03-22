@@ -7,7 +7,11 @@ export function ItemsColumn(divProps: React.ComponentProps<"div">) {
   const { style, children, ...props } = divProps;
   const childrenArray = React.Children.toArray(children);
   return (
-    <Stepper values={childrenArray}>
+    <Stepper
+      values={childrenArray}
+      activeStyle={{ opacity: "1" }}
+      inactiveStyle={{ opacity: "1" }}
+    >
       {(_value, step) => (
         <div
           style={{

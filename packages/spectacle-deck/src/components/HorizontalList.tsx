@@ -17,7 +17,11 @@ export default function HorizontalList({
 }) {
   const items = React.Children.toArray(children);
   return (
-    <Stepper values={items}>
+    <Stepper
+      values={items}
+      activeStyle={{ opacity: "1" }}
+      inactiveStyle={{ opacity: "1" }}
+    >
       {(_, step) => (
         <Container
           style={{
