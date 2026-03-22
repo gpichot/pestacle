@@ -60,7 +60,7 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
 
     async config(config) {
       const decks = await glob.glob("./src/**/deck.mdx");
-      const inputs = config.build?.rollupOptions?.input || {};
+      const inputs = config.build?.rolldownOptions?.input || {};
 
       deckConfig.decks = decks.map((deck) => ({
         originalFile: deck,
@@ -80,11 +80,8 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
             : { ...inputs, ...newInputs };
 
       return {
-        ...config,
         build: {
-          ...config.build,
-          rollupOptions: {
-            ...config.build?.rollupOptions,
+          rolldownOptions: {
             input: finalInputs,
           },
         },
@@ -155,13 +152,34 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
         const deckDir = ctx.path.replace("/index.html", "");
         const dir = originalUrl ? `./src${originalUrl}` : `.${deckDir}`;
 
-        const path = `${dir}/deck.mdx`;
-        if (!(await checkIfDirectoryExists(path))) {
-          return html.replace("__SCRIPT__", `./src/main.tsx`);
+        const deckPath = `${dir}/deck.mdx`;
+        if (await checkIfDirectoryExists(deckPath)) {
+          const resolvedDeckPath = dir.startsWith(".") ? dir : `.${dir}`;
+          return html.replace("__SCRIPT__", `${resolvedDeckPath}/__deck.tsx`);
         }
 
-        const deckPath = dir.startsWith(".") ? dir : `.${dir}`;
-        return html.replace("__SCRIPT__", `${deckPath}/__deck.tsx`);
+        // Landing page: list available decks
+        const decks = await glob.glob("./src/**/deck.mdx");
+        const deckLinks = decks
+          .map((d) => {
+            const url = `/${d.replace("src/", "").replace("/deck.mdx", "")}/`;
+            const name = d.replace("src/", "").replace("/deck.mdx", "");
+            return `<li><a href="${url}">${name}</a></li>`;
+          })
+          .join("\n");
+
+        return html
+          .replace(
+            '<script type="module" src="__SCRIPT__"></script>',
+            "",
+          )
+          .replace(
+            '<div id="root"></div>',
+            `<div id="root">
+              <h1>Available Decks</h1>
+              <ul>${deckLinks}</ul>
+            </div>`,
+          );
       },
     },
     configureServer(server) {
