@@ -2,11 +2,14 @@
 
 ## [1.4.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.3.0...spectacle-deck-v1.4.0) (2026-03-22)
 
-
 ### Features
 
-* add Mermaid diagram support and new layout components ([#17](https://github.com/gpichot/pestacle/issues/17)) ([5af728a](https://github.com/gpichot/pestacle/commit/5af728a4c7ddb8998b30d48216fdb0377072cdb9))
-* add solarized-light theme and improve theme customization ([#15](https://github.com/gpichot/pestacle/issues/15)) ([9a83239](https://github.com/gpichot/pestacle/commit/9a83239512b05bcb83e3f5fb10deb05ee2875fd0))
+- add Mermaid diagram support and new layout components
+  ([#17](https://github.com/gpichot/pestacle/issues/17))
+  ([5af728a](https://github.com/gpichot/pestacle/commit/5af728a4c7ddb8998b30d48216fdb0377072cdb9))
+- add solarized-light theme and improve theme customization
+  ([#15](https://github.com/gpichot/pestacle/issues/15))
+  ([9a83239](https://github.com/gpichot/pestacle/commit/9a83239512b05bcb83e3f5fb10deb05ee2875fd0))
 
 ## [1.3.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.2.11...spectacle-deck-v1.3.0) (2026-03-22)
 

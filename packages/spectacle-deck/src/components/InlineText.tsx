@@ -26,7 +26,10 @@ export function InlineText({
   const childArray = React.Children.toArray(children);
 
   for (const child of childArray) {
-    if (React.isValidElement(child) && child.type === "step") {
+    if (
+      React.isValidElement<{ children: React.ReactNode }>(child) &&
+      child.type === "step"
+    ) {
       parts.push(child.props.children);
     } else {
       // Non-step children are part of the initial (always-visible) content
