@@ -2,6 +2,7 @@ import React from "react";
 import { mdxComponentMap } from "spectacle";
 
 import CodeStepper from "./CodeStepper/CodeStepper";
+import { Mermaid } from "./Mermaid";
 import { QRCode } from "./QRCode";
 import {
   CustomHeading,
@@ -120,6 +121,20 @@ const componentsMap = {
       // @ts-expect-error
       const url = React.Children.toArray(props.children)[0].props.href;
       return <QRCode url={url} />;
+    }
+    // @ts-expect-error
+    if (props._name === "mermaid") {
+      const text = React.Children.toArray(props.children)
+        .map((child) => {
+          if (typeof child === "string") return child;
+          if (React.isValidElement(child)) {
+            // @ts-expect-error accessing children
+            return child.props.children;
+          }
+          return "";
+        })
+        .join("");
+      return <Mermaid chart={text} />;
     }
     return <div {...props} />;
   },

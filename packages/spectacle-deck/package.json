@@ -21,11 +21,12 @@
   "dependencies": {
     "@fontsource/bitter": "^5.2.10",
     "@mdx-js/react": "^3.1.1",
+    "@react-spring/web": "^10.0.3",
+    "mermaid": "^11.13.0",
     "qr-creator": "^1.0.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-is": "^19.2.4",
-    "@react-spring/web": "^10.0.3",
     "react-syntax-highlighter": "^16.1.1",
     "spectacle": "^10.2.3",
     "styled-components": "^6.3.12"
