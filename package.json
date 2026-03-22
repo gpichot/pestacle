@@ -6,12 +6,20 @@
   "main": "index.js",
   "scripts": {
     "dev": "turbo dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "turbo test",
+    "type-check": "turbo type-check",
+    "lint": "turbo lint",
+    "format": "turbo format",
+    "format:check": "turbo format:check",
+    "prepare": "husky"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@biomejs/biome": "^2.4.8",
     "@types/node": "^20.12.12",
+    "husky": "^9.1.7",
+    "prettier": "^3.8.1",
     "turbo": "^1.13.3"
   }
 }

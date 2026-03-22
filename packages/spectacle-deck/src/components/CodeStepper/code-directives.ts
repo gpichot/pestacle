@@ -15,10 +15,10 @@ function range(start: number, end: number) {
  * Function parse ranges list
  */
 function parseRangeList(str: string): number[] {
-  return str.split(',').reduce((acc, line) => {
-    if (!line.includes('-')) return [...acc, parseInt(line, 10)];
+  return str.split(",").reduce((acc, line) => {
+    if (!line.includes("-")) return [...acc, parseInt(line, 10)];
 
-    const [start, end] = line.split('-').map(Number);
+    const [start, end] = line.split("-").map(Number);
     return [...acc, ...range(start, end)];
   }, [] as number[]);
 }

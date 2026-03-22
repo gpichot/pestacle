@@ -5,7 +5,7 @@ import { gruvboxDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Stepper } from "spectacle";
 import styled from "styled-components";
 
-import { parseStepDirectives, Step } from "./code-directives";
+import { parseStepDirectives, type Step } from "./code-directives";
 
 const Highlighter = SyntaxHighlighter as unknown as React.ElementType;
 
@@ -164,7 +164,6 @@ export default function CodeStepper({
         priority={priority ? priority + 1 : undefined}
       >
         {(step, _, isActive) => {
-          console.log({ step, isActive });
           return (
             <CodeWrapper
               name={name}

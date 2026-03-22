@@ -1,11 +1,13 @@
-import { parseStepDirectives } from './code-directives';
+import { describe, expect, it } from "vitest";
+
+import { parseStepDirectives } from "./code-directives";
 
 function splitDirectives(str: string): string[] {
-  return str.trim().split('\n');
+  return str.trim().split("\n");
 }
 
-describe('parseStepDirectives', () => {
-  it('should reduce properly with showLines', () => {
+describe("parseStepDirectives", () => {
+  it("should reduce properly with showLines", () => {
     const directives = splitDirectives(`
       // @step showLines(1-3) highlight(1-3)
       // @step showLines(4-6) highlight(4-6)
@@ -16,7 +18,7 @@ describe('parseStepDirectives', () => {
     expect(result[1]).toEqual({ hiddenLines: [], highlight: [4, 5, 6] });
   });
 
-  it('should reduce properly with highlight', () => {
+  it("should reduce properly with highlight", () => {
     const directives = splitDirectives(`
       // @step highlight(3)
       // @step showLines(4) highlight(4)
@@ -28,7 +30,7 @@ describe('parseStepDirectives', () => {
     expect(result[1]).toEqual({ hiddenLines: [], highlight: [4] });
   });
 
-  it('parse only highlights', () => {
+  it("parse only highlights", () => {
     const directives = splitDirectives(`
       // @step highlight(6)
       // @step highlight(7-9)
@@ -42,7 +44,7 @@ describe('parseStepDirectives', () => {
     expect(result[2]).toEqual({ hiddenLines: [], highlight: [10] });
   });
 
-  it('parses typescript lines', () => {
+  it("parses typescript lines", () => {
     const directives = splitDirectives(`
       // @step highlight(3) name("(string|number)[]")
     `);
@@ -52,7 +54,7 @@ describe('parseStepDirectives', () => {
     expect(result[0]).toEqual({
       hiddenLines: [],
       highlight: [3],
-      name: '(string|number)[]',
+      name: "(string|number)[]",
     });
   });
 });

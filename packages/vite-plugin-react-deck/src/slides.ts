@@ -1,12 +1,13 @@
+import fs from "node:fs";
+
+import { compile } from "@mdx-js/mdx";
 import matter from "gray-matter";
 import remarkDirective from "remark-directive";
-import fs from "fs";
-import { compile } from "@mdx-js/mdx";
-
-import { ReactDeckOptions } from "./types";
-import { extractMainCodeAsChildren } from "./codegen";
 import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
+
+import { extractMainCodeAsChildren } from "./codegen";
+import type { ReactDeckOptions } from "./types";
 
 type CompileOptions = Pick<ReactDeckOptions, "rehypePlugins" | "remarkPlugins">;
 
@@ -24,7 +25,10 @@ function myRemarkPlugin() {
         node.type === "leafDirective" ||
         node.type === "textDirective"
       ) {
-        const data = node.data || (node.data = {});
+        if (!node.data) {
+          node.data = {};
+        }
+        const data = node.data;
 
         data.hName = "directive";
         data.hProperties = node.attributes;
@@ -94,7 +98,7 @@ export async function transformSlidesMdxToReact(
   }
 
   const compiledSlides = await Promise.all(
-    enrichedSlides.map(async (slide, index) => {
+    enrichedSlides.map(async (slide, _index) => {
       const code = addInlineModules(slide.content, inlineModules);
       // For vite seee https://vitejs.dev/guide/env-and-mode.html#production-replacement
       const normalizedCode = code.replace("process.env", "process\u200b.env");
@@ -169,7 +173,7 @@ Deck.slides = [
  * Note that the regex isn't concerned about code blocks (```).
  * Tracking pairs of ` should be sufficient to capture code blocks, too.
  */
-const EX_REG = /\\`|`(?:\\`|[^`])*`|(^(?:export\sdefault\s)(.*)$)/gm;
+const _EX_REG = /\\`|`(?:\\`|[^`])*`|(^(?:export\sdefault\s)(.*)$)/gm;
 const MOD_REG = /\\`|`(?:\\`|[^`])*`|(^(?:import|export).*$)/gm;
 
 export function extractInlineModules(

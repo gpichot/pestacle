@@ -40,7 +40,7 @@ export function QRCode({ url, size = "md" }: QRCodeProps) {
     return () => {
       element.replaceChildren();
     };
-  }, [url]);
+  }, [url, backgroundColor, deck.theme?.colors?.secondary, id, width]);
 
   return (
     <div

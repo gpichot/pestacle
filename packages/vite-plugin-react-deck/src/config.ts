@@ -1,5 +1,6 @@
 import _ from "lodash";
-import { PestacleConfig, PestacleConfigSchema } from "./types";
+
+import { type PestacleConfig, PestacleConfigSchema } from "./types";
 
 /**
  * Allow to type the config object (similar to Vite's defineConfig)
@@ -31,26 +32,25 @@ export async function loadConfigFile(): Promise<PestacleConfig> {
 
   for (const candidate of candidates) {
     try {
-      console.log(
-        `Trying to load config from ${candidate}: ${process.cwd()}/${candidate}`,
-      );
       const mod = await import(`${process.cwd()}/${candidate}`);
 
       const config = PestacleConfigSchema.safeParse(mod.default);
 
       if (!config.success) {
-        console.error(`Failed to load config from ${candidate}`);
-        console.error(config.error);
-        process.exit(1);
+        const issues = config.error.issues
+          .map((i) => `  - ${i.path.join(".")}: ${i.message}`)
+          .join("\n");
+        throw new Error(`Invalid config in ${candidate}:\n${issues}`);
       }
-
-      console.log(`Loaded config from ${candidate}`);
 
       return _.merge(defaultConfig, mod.default as PestacleConfig);
     } catch (error) {
-      console.error(`Failed to load config from ${candidate}`);
-      console.error(error);
-      continue;
+      if (
+        error instanceof Error &&
+        error.message.startsWith("Invalid config")
+      ) {
+        throw error;
+      }
     }
   }
 
