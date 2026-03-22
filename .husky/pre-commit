@@ -1,2 +1,2 @@
 npx @biomejs/biome check .
-npx prettier --check "**/*.md"
+npx prettier --check "**/*.md" "**/*.mdx"
