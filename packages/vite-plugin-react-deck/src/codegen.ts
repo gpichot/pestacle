@@ -1,5 +1,5 @@
 const Patterns = {
-  FragmentProd: /^\s*_jsxs\(_Fragment, {\s*children:|\s*\}\);/g,
+  FragmentProd: /^\s*_jsxs\(_Fragment, {\s*children:|\s*\}\);$/g,
   FragmentDev: /^\s*<>\s*|\s*<\/>;\s*$/g,
 };
 /**
