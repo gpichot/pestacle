@@ -56,16 +56,39 @@ const TimelineItemGuideLine = styled(animated.div)`
 
 const style = {
   display: "flex",
-  position: "relative",
+  position: "relative" as const,
   flexFlow: "row nowrap",
   alignItems: "center",
 };
 
-export default function Timeline(props: React.ComponentPropsWithoutRef<"div">) {
-  const children = React.Children.toArray(props.children);
+export default function Timeline(
+  props: React.ComponentPropsWithoutRef<"div"> & {
+    activeIndex?: number;
+  },
+) {
+  const { activeIndex, ...rest } = props;
+  const children = React.Children.toArray(rest.children);
+
+  if (activeIndex != null) {
+    return (
+      <div {...rest} style={{ ...style, ...rest.style }}>
+        {children.map((child, index) => {
+          if (!React.isValidElement(child)) {
+            return child;
+          }
+          return React.cloneElement(child, {
+            // @ts-expect-error cloning
+            isPhantom: activeIndex < index,
+            isLast: activeIndex === index,
+          });
+        })}
+      </div>
+    );
+  }
+
   return (
     <Stepper
-      {...props}
+      {...rest}
       values={children}
       activeStyle={style}
       inactiveStyle={style}
