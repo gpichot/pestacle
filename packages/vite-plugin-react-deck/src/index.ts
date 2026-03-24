@@ -243,12 +243,20 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
         return;
       }
 
+      const absoluteId = id.startsWith("/") ? id : `${process.cwd()}/${id}`;
       const content = await fs.readFile(id, "utf-8");
-      const data = await transformSlidesMdxToReact(content, {
+      const { code, includedFiles } = await transformSlidesMdxToReact(content, {
         production: isProd,
+        filePath: absoluteId,
         ...options,
       });
-      return data;
+
+      // Watch included files so changes trigger HMR
+      for (const file of includedFiles) {
+        this.addWatchFile(file);
+      }
+
+      return code;
     },
 
     transformIndexHtml: {

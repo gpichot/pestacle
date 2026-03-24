@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import path from "node:path";
 
 import { compile } from "@mdx-js/mdx";
 import matter from "gray-matter";
@@ -10,6 +11,60 @@ import { extractMainCodeAsChildren } from "./codegen";
 import type { ReactDeckOptions } from "./types";
 
 type CompileOptions = Pick<ReactDeckOptions, "rehypePlugins" | "remarkPlugins">;
+
+const INCLUDE_RE = /^::include\{file=(.+?)\}\s*$/gm;
+
+/**
+ * Resolve `::include{file=./path/to/file.mdx}` directives by replacing them
+ * with the content of the referenced file (stripping its top-level frontmatter).
+ * Supports nested includes up to a depth limit to prevent infinite recursion.
+ * Returns the resolved content and the set of included file paths (for HMR).
+ */
+export function resolveIncludes(
+  content: string,
+  filePath: string,
+  { maxDepth = 10, _depth = 0 }: { maxDepth?: number; _depth?: number } = {},
+): { content: string; includedFiles: string[] } {
+  const includedFiles: string[] = [];
+  const dir = path.dirname(filePath);
+
+  const resolved = content.replace(
+    INCLUDE_RE,
+    (_match, includePath: string) => {
+      if (_depth >= maxDepth) {
+        throw new Error(
+          `Include depth limit (${maxDepth}) exceeded when including "${includePath}" from "${filePath}". Check for circular includes.`,
+        );
+      }
+
+      const absolutePath = path.resolve(dir, includePath);
+      let fileContent: string;
+      try {
+        fileContent = fs.readFileSync(absolutePath, "utf-8");
+      } catch {
+        throw new Error(
+          `Could not read included file "${includePath}" (resolved to "${absolutePath}") from "${filePath}".`,
+        );
+      }
+
+      includedFiles.push(absolutePath);
+
+      // Strip top-level frontmatter from included file
+      const { content: innerContent } = matter(fileContent);
+
+      // Recursively resolve nested includes
+      const nested = resolveIncludes(innerContent, absolutePath, {
+        maxDepth,
+        _depth: _depth + 1,
+      });
+      includedFiles.push(...nested.includedFiles);
+
+      return nested.content;
+    },
+  );
+
+  return { content: resolved, includedFiles };
+}
 
 function myRemarkPlugin() {
   /**
@@ -67,15 +122,28 @@ export async function transformSlidesMdxToReact(
   sourceContent: string,
   {
     production: isProd,
+    filePath,
     ...options
   }: {
     production: boolean;
+    /** Absolute path to the source MDX file, used to resolve includes. */
+    filePath?: string;
   } & CompileOptions,
-) {
+): Promise<{ code: string; includedFiles: string[] }> {
   const { data: metadata, content } = matter(sourceContent);
-  const { content: finalContent, inlineModules } = extractInlineModules(
-    normalizeNewline(content),
-  );
+  const normalized = normalizeNewline(content);
+
+  // Resolve <!-- include: ./path.mdx --> directives
+  let resolvedContent = normalized;
+  let includedFiles: string[] = [];
+  if (filePath) {
+    const result = resolveIncludes(normalized, filePath);
+    resolvedContent = result.content;
+    includedFiles = result.includedFiles;
+  }
+
+  const { content: finalContent, inlineModules } =
+    extractInlineModules(resolvedContent);
   const slides = finalContent.split("---\n");
 
   const enrichedSlides = [] as {
@@ -160,7 +228,7 @@ Deck.slides = [
 
   fs.writeFileSync("slides.js", output);
 
-  return output;
+  return { code: output, includedFiles };
 }
 
 /*
