@@ -21,6 +21,11 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gpichot/pestacle.git",
+    "directory": "packages/vite-plugin-react-deck"
+  },
   "devDependencies": {
     "@arnaud-barre/tnode": "^0.25.0",
     "@types/lodash": "^4.17.24",

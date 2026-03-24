@@ -21,6 +21,11 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gpichot/pestacle.git",
+    "directory": "packages/spectacle-deck"
+  },
   "dependencies": {
     "@fontsource/bitter": "^5.2.10",
     "@mdx-js/react": "^3.1.1",

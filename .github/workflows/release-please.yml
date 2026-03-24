@@ -35,23 +35,25 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          version: latest
+      - uses: actions/setup-node@v5
+        with:
+          node-version: lts/*
           registry-url: https://registry.npmjs.org
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm turbo build --filter='./packages/*'
-      - name: Publish spectacle-deck
-        if:
-          needs.release-please.outputs.spectacle-deck--release_created == 'true'
-        run: pnpm publish --no-git-checks --provenance
-        working-directory: packages/spectacle-deck/dist
       - name: Publish vite-plugin-react-deck
         if:
           needs.release-please.outputs.vite-plugin-react-deck--release_created
           == 'true'
         run: pnpm publish --no-git-checks --provenance
         working-directory: packages/vite-plugin-react-deck/dist
+      - name: Publish spectacle-deck
+        if:
+          needs.release-please.outputs.spectacle-deck--release_created == 'true'
+        run: pnpm publish --no-git-checks --provenance
+        working-directory: packages/spectacle-deck/dist
