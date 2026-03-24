@@ -2,15 +2,17 @@
 
 ## [1.7.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.6.0...spectacle-deck-v1.7.0) (2026-03-23)
 
-
 ### Features
 
-* add static mode to Timeline component ([#29](https://github.com/gpichot/pestacle/issues/29)) ([a308761](https://github.com/gpichot/pestacle/commit/a308761d35801f7fe816745cf2adb2ea378ad1db))
-
+- add static mode to Timeline component
+  ([#29](https://github.com/gpichot/pestacle/issues/29))
+  ([a308761](https://github.com/gpichot/pestacle/commit/a308761d35801f7fe816745cf2adb2ea378ad1db))
 
 ### Bug Fixes
 
-* add minWidth prop to FilePane component ([#31](https://github.com/gpichot/pestacle/issues/31)) ([94a6f9e](https://github.com/gpichot/pestacle/commit/94a6f9e857d8e6c3928bd98e8866deceb3a2a9a6))
+- add minWidth prop to FilePane component
+  ([#31](https://github.com/gpichot/pestacle/issues/31))
+  ([94a6f9e](https://github.com/gpichot/pestacle/commit/94a6f9e857d8e6c3928bd98e8866deceb3a2a9a6))
 
 ## [1.6.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.5.0...spectacle-deck-v1.6.0) (2026-03-22)
 
