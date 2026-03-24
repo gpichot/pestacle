@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.8.0...spectacle-deck-v1.9.0) (2026-03-24)
+
+
+### Features
+
+* remove backdrop from FullImageLayout and add padding option ([#36](https://github.com/gpichot/pestacle/issues/36)) ([b40ee93](https://github.com/gpichot/pestacle/commit/b40ee93c479bb6af3f48e55877fa5b803ef5a3f3))
+
 ## [1.8.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.7.0...spectacle-deck-v1.8.0) (2026-03-24)
 
 ### Features
