@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.1](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.10.0...spectacle-deck-v1.10.1) (2026-03-24)
+
+
+### Bug Fixes
+
+* include repository URL in dist package.json ([#41](https://github.com/gpichot/pestacle/issues/41)) ([155bcd9](https://github.com/gpichot/pestacle/commit/155bcd9333a41c2bd898a0fd25cf1f6b8267c844))
+
 ## [1.10.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.9.1...spectacle-deck-v1.10.0) (2026-03-24)
 
 
