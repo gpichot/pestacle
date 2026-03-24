@@ -75,6 +75,8 @@ module.exports = mod;
           },
         },
         keywords: ["spectacle"],
+        repository: packageJSON.repository,
+        publishConfig: packageJSON.publishConfig,
         peerDependencies: packageJSON.peerDependencies,
         dependencies: packageJSON.dependencies,
       },
