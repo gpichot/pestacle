@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.1](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.8.0...vite-plugin-react-deck-v1.8.1) (2026-03-24)
+
+
+### Bug Fixes
+
+* include repository URL in dist package.json ([#41](https://github.com/gpichot/pestacle/issues/41)) ([155bcd9](https://github.com/gpichot/pestacle/commit/155bcd9333a41c2bd898a0fd25cf1f6b8267c844))
+
 ## [1.8.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.7.1...vite-plugin-react-deck-v1.8.0) (2026-03-24)
 
 
