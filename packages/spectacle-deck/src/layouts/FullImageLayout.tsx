@@ -27,11 +27,17 @@ export function FullImageLayout({
   image,
   position = "bottom",
   dim = 0.4,
+  fit = "cover",
+  backgroundColor,
+  margin,
 }: {
   children: React.ReactNode;
   image?: string;
   position?: "center" | "bottom" | "top";
   dim?: number;
+  fit?: "cover" | "contain";
+  backgroundColor?: string;
+  margin?: string;
 }) {
   const [images, rest] = getMatchingMdxType(children, "Image");
   const firstImage = images[0];
@@ -62,8 +68,11 @@ export function FullImageLayout({
           backgroundImage: backgroundImage
             ? `url(${backgroundImage})`
             : undefined,
-          backgroundSize: "cover",
+          backgroundSize: fit,
           backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundColor: backgroundColor,
+          margin: margin,
         }}
       />
       <div
