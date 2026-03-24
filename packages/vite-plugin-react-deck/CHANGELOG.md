@@ -2,15 +2,17 @@
 
 ## [1.6.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.5.1...vite-plugin-react-deck-v1.6.0) (2026-03-24)
 
-
 ### Features
 
-* add slide inclusion with ::include{file=...} directive ([#32](https://github.com/gpichot/pestacle/issues/32)) ([d66812f](https://github.com/gpichot/pestacle/commit/d66812f98815449ce194c7b28659bb0dceb28726))
-
+- add slide inclusion with ::include{file=...} directive
+  ([#32](https://github.com/gpichot/pestacle/issues/32))
+  ([d66812f](https://github.com/gpichot/pestacle/commit/d66812f98815449ce194c7b28659bb0dceb28726))
 
 ### Bug Fixes
 
-* configure public access for npm package publishing ([#35](https://github.com/gpichot/pestacle/issues/35)) ([7342764](https://github.com/gpichot/pestacle/commit/7342764633645cd117e271d1c60f556ff6219250))
+- configure public access for npm package publishing
+  ([#35](https://github.com/gpichot/pestacle/issues/35))
+  ([7342764](https://github.com/gpichot/pestacle/commit/7342764633645cd117e271d1c60f556ff6219250))
 
 ## [1.5.1](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.5.0...vite-plugin-react-deck-v1.5.1) (2026-03-22)
 

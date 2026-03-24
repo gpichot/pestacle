@@ -3,13 +3,13 @@ import styled from "styled-components";
 
 import { getMatchingMdxType } from "./utils";
 
-const Overlay = styled.div`
+const Overlay = styled.div<{ $padding?: string }>`
   position: absolute;
   inset: 0;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-end;
-  padding: 4rem 6rem;
+  padding: ${(props) => props.$padding || "4rem 6rem"};
   z-index: 1;
 
   h1,
@@ -26,10 +26,11 @@ export function FullImageLayout({
   children,
   image,
   position = "bottom",
-  dim = 0.4,
+  dim = 0,
   fit = "cover",
   backgroundColor,
   margin,
+  padding,
 }: {
   children: React.ReactNode;
   image?: string;
@@ -38,6 +39,7 @@ export function FullImageLayout({
   fit?: "cover" | "contain";
   backgroundColor?: string;
   margin?: string;
+  padding?: string;
 }) {
   const [images, rest] = getMatchingMdxType(children, "Image");
   const firstImage = images[0];
@@ -75,14 +77,19 @@ export function FullImageLayout({
           margin: margin,
         }}
       />
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundColor: `rgba(0, 0, 0, ${dim})`,
-        }}
-      />
-      <Overlay style={{ justifyContent: justifyMap[position] }}>
+      {dim > 0 && (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundColor: `rgba(0, 0, 0, ${dim})`,
+          }}
+        />
+      )}
+      <Overlay
+        $padding={padding}
+        style={{ justifyContent: justifyMap[position] }}
+      >
         {firstImage ? rest : children}
       </Overlay>
     </div>
