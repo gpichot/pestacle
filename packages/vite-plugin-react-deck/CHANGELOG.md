@@ -2,10 +2,9 @@
 
 ## [1.7.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.6.0...vite-plugin-react-deck-v1.7.0) (2026-03-24)
 
-
 ### Features
 
-* remove backdrop from FullImageLayout and add padding option ([#36](https://github.com/gpichot/pestacle/issues/36)) ([b40ee93](https://github.com/gpichot/pestacle/commit/b40ee93c479bb6af3f48e55877fa5b803ef5a3f3))
+- remove backdrop from FullImageLayout and add padding option ([#36](https://github.com/gpichot/pestacle/issues/36)) ([b40ee93](https://github.com/gpichot/pestacle/commit/b40ee93c479bb6af3f48e55877fa5b803ef5a3f3))
 
 ## [1.6.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.5.1...vite-plugin-react-deck-v1.6.0) (2026-03-24)
 
