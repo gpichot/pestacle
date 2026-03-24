@@ -1,25 +1,6 @@
-import React from "react";
+import type React from "react";
 
-import { getHeading, Margins } from "./utils";
-
-function splitAtSeparator(children: React.ReactNode) {
-  const allChildren = React.Children.toArray(children);
-
-  const separatorIndex = allChildren.findIndex((child) => {
-    if (!React.isValidElement<{ originalType?: string }>(child)) return false;
-    return child.props.originalType === "hr";
-  });
-
-  if (separatorIndex === -1) {
-    const mid = Math.ceil(allChildren.length / 2);
-    return [allChildren.slice(0, mid), allChildren.slice(mid)];
-  }
-
-  return [
-    allChildren.slice(0, separatorIndex),
-    allChildren.slice(separatorIndex + 1),
-  ];
-}
+import { getHeading, getMatchingMdxType, Margins } from "./utils";
 
 export function TwoColumnLayout({
   children,
@@ -27,7 +8,7 @@ export function TwoColumnLayout({
   children: React.ReactNode;
 }) {
   const [heading, rest] = getHeading(children);
-  const [left, right] = splitAtSeparator(rest);
+  const [columnContent, leftContent] = getMatchingMdxType(rest, "Column");
 
   return (
     <div
@@ -63,8 +44,8 @@ export function TwoColumnLayout({
           alignItems: "center",
         }}
       >
-        <div style={{ flex: 1 }}>{left}</div>
-        <div style={{ flex: 1 }}>{right}</div>
+        <div style={{ flex: 1 }}>{leftContent}</div>
+        <div style={{ flex: 1 }}>{columnContent}</div>
       </div>
     </div>
   );
