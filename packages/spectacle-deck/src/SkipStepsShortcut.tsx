@@ -21,7 +21,12 @@ export function SkipStepsShortcut() {
       },
       "shift+left": () => {
         if (slideIndex > 0) {
-          skipTo({ slideIndex: slideIndex - 1, stepIndex: 0 });
+          // stepIndex: null is Spectacle's GOTO_FINAL_STEP sentinel,
+          // which resolves to the last step of the target slide.
+          skipTo({
+            slideIndex: slideIndex - 1,
+            stepIndex: null as unknown as number,
+          });
         }
       },
     },
