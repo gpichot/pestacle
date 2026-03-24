@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.9.1...spectacle-deck-v1.10.0) (2026-03-24)
+
+
+### Features
+
+* add Shift+Arrow shortcut to skip all slide steps ([#37](https://github.com/gpichot/pestacle/issues/37)) ([2ec52d9](https://github.com/gpichot/pestacle/commit/2ec52d93b15572aa8a04a11d2027ba1eb17cba64))
+
 ## [1.9.1](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.9.0...spectacle-deck-v1.9.1) (2026-03-24)
 
 
