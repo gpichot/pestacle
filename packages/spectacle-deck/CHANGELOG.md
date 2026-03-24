@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.8.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.7.0...spectacle-deck-v1.8.0) (2026-03-24)
+
+
+### Features
+
+* add slide inclusion with ::include{file=...} directive ([#32](https://github.com/gpichot/pestacle/issues/32)) ([d66812f](https://github.com/gpichot/pestacle/commit/d66812f98815449ce194c7b28659bb0dceb28726))
+* **layout:** fit, backgroundColor, and margin props to FullImageLayout ([#33](https://github.com/gpichot/pestacle/issues/33)) ([0d85722](https://github.com/gpichot/pestacle/commit/0d857228d75a1f03dc3406d53381fe513f710dde))
+
+
+### Bug Fixes
+
+* configure public access for npm package publishing ([#35](https://github.com/gpichot/pestacle/issues/35)) ([7342764](https://github.com/gpichot/pestacle/commit/7342764633645cd117e271d1c60f556ff6219250))
+
 ## [1.7.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.6.0...spectacle-deck-v1.7.0) (2026-03-23)
 
 ### Features
