@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.1](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.7.0...vite-plugin-react-deck-v1.7.1) (2026-03-24)
+
+
+### Bug Fixes
+
+* update package.json ([665d771](https://github.com/gpichot/pestacle/commit/665d7710dbceafa6010e1752c35a22a92428fe1c))
+
 ## [1.7.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.6.0...vite-plugin-react-deck-v1.7.0) (2026-03-24)
 
 
