@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.1](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.12.0...spectacle-deck-v1.12.1) (2026-03-25)
+
+
+### Bug Fixes
+
+* PageUp/PageDown slide navigation ([#49](https://github.com/gpichot/pestacle/issues/49)) ([da86d15](https://github.com/gpichot/pestacle/commit/da86d1501953c60387b1419cf4141f6bc89b7e03))
+
 ## [1.12.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.11.0...spectacle-deck-v1.12.0) (2026-03-25)
 
 ### Features
