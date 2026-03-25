@@ -2,11 +2,14 @@
 
 ## [1.12.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.11.0...spectacle-deck-v1.12.0) (2026-03-25)
 
-
 ### Features
 
-* add dark theme with modern aesthetic ([#46](https://github.com/gpichot/pestacle/issues/46)) ([15ed79a](https://github.com/gpichot/pestacle/commit/15ed79aae1e1d1badab465b805c5ffd5e88f12dc))
-* add remote controller keyboard shortcuts support ([#47](https://github.com/gpichot/pestacle/issues/47)) ([4a7ea24](https://github.com/gpichot/pestacle/commit/4a7ea24e0533d36dc5545a30a33daecf2ff0db12))
+- add dark theme with modern aesthetic
+  ([#46](https://github.com/gpichot/pestacle/issues/46))
+  ([15ed79a](https://github.com/gpichot/pestacle/commit/15ed79aae1e1d1badab465b805c5ffd5e88f12dc))
+- add remote controller keyboard shortcuts support
+  ([#47](https://github.com/gpichot/pestacle/issues/47))
+  ([4a7ea24](https://github.com/gpichot/pestacle/commit/4a7ea24e0533d36dc5545a30a33daecf2ff0db12))
 
 ## [1.11.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.10.1...spectacle-deck-v1.11.0) (2026-03-25)
 
