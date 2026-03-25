@@ -73,8 +73,10 @@ export function FullImageLayout({
           backgroundSize: fit,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
+          backgroundOrigin: padding ? "content-box" : undefined,
           backgroundColor: backgroundColor,
           margin: margin,
+          padding: padding,
         }}
       />
       {dim > 0 && (
