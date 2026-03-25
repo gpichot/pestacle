@@ -1,6 +1,7 @@
-import { green, purple, solarizedLight } from "./themes";
+import { dark, green, purple, solarizedLight } from "./themes";
 
 const themes = {
+  dark,
   green,
   purple,
   "solarized-light": solarizedLight,
