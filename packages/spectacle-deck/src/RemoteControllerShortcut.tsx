@@ -9,6 +9,8 @@ import { DeckContext, useMousetrap } from "spectacle";
 export function RemoteControllerShortcut() {
   const {
     skipTo,
+    stepForward,
+    stepBackward,
     activeView: { slideIndex },
     slideCount,
   } = useContext(DeckContext);
@@ -17,19 +19,13 @@ export function RemoteControllerShortcut() {
   useMousetrap(
     {
       pagedown: () => {
-        // Spectacle handles step progression internally via arrow keys.
-        // Simulate ArrowRight to reuse the built-in next behavior.
-        document.dispatchEvent(
-          new KeyboardEvent("keydown", { key: "ArrowRight", bubbles: true }),
-        );
+        stepForward();
       },
       pageup: () => {
-        document.dispatchEvent(
-          new KeyboardEvent("keydown", { key: "ArrowLeft", bubbles: true }),
-        );
+        stepBackward();
       },
     },
-    [slideIndex, slideCount],
+    [stepForward, stepBackward],
   );
 
   // VolumeUp / VolumeDown → skip steps navigation
