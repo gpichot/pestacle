@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.2](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.8.1...vite-plugin-react-deck-v1.8.2) (2026-03-25)
+
+
+### Bug Fixes
+
+* padding not applying to background image in FullImageLayout ([#44](https://github.com/gpichot/pestacle/issues/44)) ([7c8b92d](https://github.com/gpichot/pestacle/commit/7c8b92db799a21df9396238d9333c8f966e0b91c))
+
 ## [1.8.1](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.8.0...vite-plugin-react-deck-v1.8.1) (2026-03-24)
 
 ### Bug Fixes

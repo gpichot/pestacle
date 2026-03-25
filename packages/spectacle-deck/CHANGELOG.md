@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.11.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.10.1...spectacle-deck-v1.11.0) (2026-03-25)
+
+
+### Features
+
+* add two-column layout ([#43](https://github.com/gpichot/pestacle/issues/43)) ([afdfd9b](https://github.com/gpichot/pestacle/commit/afdfd9b29629a6d1fb93e547aed64cb3c677c862))
+
+
+### Bug Fixes
+
+* padding not applying to background image in FullImageLayout ([#44](https://github.com/gpichot/pestacle/issues/44)) ([7c8b92d](https://github.com/gpichot/pestacle/commit/7c8b92db799a21df9396238d9333c8f966e0b91c))
+
 ## [1.10.1](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.10.0...spectacle-deck-v1.10.1) (2026-03-24)
 
 ### Bug Fixes
