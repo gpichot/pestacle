@@ -2,11 +2,7 @@ import type React from "react";
 
 import { getHeading, getMatchingMdxType, Margins } from "./utils";
 
-export function TwoColumnLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function TwoColumnLayout({ children }: { children: React.ReactNode }) {
   const [heading, rest] = getHeading(children);
   const [columnContent, leftContent] = getMatchingMdxType(rest, "Column");
 
