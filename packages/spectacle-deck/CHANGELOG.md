@@ -2,30 +2,34 @@
 
 ## [1.10.1](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.10.0...spectacle-deck-v1.10.1) (2026-03-24)
 
-
 ### Bug Fixes
 
-* include repository URL in dist package.json ([#41](https://github.com/gpichot/pestacle/issues/41)) ([155bcd9](https://github.com/gpichot/pestacle/commit/155bcd9333a41c2bd898a0fd25cf1f6b8267c844))
+- include repository URL in dist package.json
+  ([#41](https://github.com/gpichot/pestacle/issues/41))
+  ([155bcd9](https://github.com/gpichot/pestacle/commit/155bcd9333a41c2bd898a0fd25cf1f6b8267c844))
 
 ## [1.10.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.9.1...spectacle-deck-v1.10.0) (2026-03-24)
 
-
 ### Features
 
-* add Shift+Arrow shortcut to skip all slide steps ([#37](https://github.com/gpichot/pestacle/issues/37)) ([2ec52d9](https://github.com/gpichot/pestacle/commit/2ec52d93b15572aa8a04a11d2027ba1eb17cba64))
+- add Shift+Arrow shortcut to skip all slide steps
+  ([#37](https://github.com/gpichot/pestacle/issues/37))
+  ([2ec52d9](https://github.com/gpichot/pestacle/commit/2ec52d93b15572aa8a04a11d2027ba1eb17cba64))
 
 ## [1.9.1](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.9.0...spectacle-deck-v1.9.1) (2026-03-24)
 
-
 ### Bug Fixes
 
-* update package.json ([665d771](https://github.com/gpichot/pestacle/commit/665d7710dbceafa6010e1752c35a22a92428fe1c))
+- update package.json
+  ([665d771](https://github.com/gpichot/pestacle/commit/665d7710dbceafa6010e1752c35a22a92428fe1c))
 
 ## [1.9.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.8.0...spectacle-deck-v1.9.0) (2026-03-24)
 
 ### Features
 
-- remove backdrop from FullImageLayout and add padding option ([#36](https://github.com/gpichot/pestacle/issues/36)) ([b40ee93](https://github.com/gpichot/pestacle/commit/b40ee93c479bb6af3f48e55877fa5b803ef5a3f3))
+- remove backdrop from FullImageLayout and add padding option
+  ([#36](https://github.com/gpichot/pestacle/issues/36))
+  ([b40ee93](https://github.com/gpichot/pestacle/commit/b40ee93c479bb6af3f48e55877fa5b803ef5a3f3))
 
 ## [1.8.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.7.0...spectacle-deck-v1.8.0) (2026-03-24)
 
