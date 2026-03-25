@@ -8,6 +8,7 @@ import { SectionLayout } from "./SectionLayout";
 import { SidedCodeLayout } from "./SideCodeLayout";
 import { SidedImageLayout } from "./SideImageLayout";
 import { SideLayout } from "./SideLayout";
+import { TwoColumnLayout } from "./TwoColumnLayout";
 
 export default {
   mainSection: MainSectionLayout,
@@ -20,4 +21,5 @@ export default {
   section: SectionLayout,
   fullImage: FullImageLayout,
   bigNumber: BigNumberLayout,
+  twoColumn: TwoColumnLayout,
 };

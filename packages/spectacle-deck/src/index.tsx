@@ -160,6 +160,12 @@ export function Side({ children }: { children: React.ReactNode }) {
 
 Side.mdxType = "Side";
 
+export function Column({ children }: { children: React.ReactNode }) {
+  return <div>{children}</div>;
+}
+
+Column.mdxType = "Column";
+
 export function Documentation({ children }: { children: React.ReactNode }) {
   return <div>{children}</div>;
 }
