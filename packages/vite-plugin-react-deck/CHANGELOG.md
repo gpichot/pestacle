@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.8.2...vite-plugin-react-deck-v1.9.0) (2026-03-25)
+
+
+### Features
+
+* add dark theme with modern aesthetic ([#46](https://github.com/gpichot/pestacle/issues/46)) ([15ed79a](https://github.com/gpichot/pestacle/commit/15ed79aae1e1d1badab465b805c5ffd5e88f12dc))
+
 ## [1.8.2](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.8.1...vite-plugin-react-deck-v1.8.2) (2026-03-25)
 
 ### Bug Fixes
