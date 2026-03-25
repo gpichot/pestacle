@@ -7,6 +7,7 @@ import { createCssVariables } from "./colors";
 import customComponents from "./components/map";
 import { type LayoutComponent, PestacleProvider } from "./context";
 import Layouts from "./layouts";
+import { RemoteControllerShortcut } from "./RemoteControllerShortcut";
 import { SkipStepsShortcut } from "./SkipStepsShortcut";
 import { SlideWrapper } from "./SlideWrapper";
 import { template } from "./template";
@@ -120,6 +121,7 @@ export function Deck({
             transition={resolveTransition(transition)}
           >
             <SkipStepsShortcut />
+            <RemoteControllerShortcut />
             {deck.slides.map((slide, i) => {
               const Component = slide.slideComponent;
               const slideTransitionName = slide.metadata?.transition as
