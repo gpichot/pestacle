@@ -15,13 +15,13 @@ export function RemoteControllerShortcut() {
     slideCount,
   } = useContext(DeckContext);
 
-  // PageDown → next, PageUp → previous (step-by-step, same as arrow keys)
+  // PageUp → next, PageDown → previous (step-by-step, same as arrow keys)
   useMousetrap(
     {
-      pagedown: () => {
+      pageup: () => {
         stepForward();
       },
-      pageup: () => {
+      pagedown: () => {
         stepBackward();
       },
     },
