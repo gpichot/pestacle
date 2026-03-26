@@ -1,4 +1,4 @@
 {
-  "packages/spectacle-deck": "1.12.1",
-  "packages/vite-plugin-react-deck": "1.9.1"
+  "packages/spectacle-deck": "1.13.0",
+  "packages/vite-plugin-react-deck": "1.10.0"
 }

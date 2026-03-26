@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.13.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.12.1...spectacle-deck-v1.13.0) (2026-03-26)
+
+
+### Features
+
+* add light theme to vite-plugin-react-deck ([#51](https://github.com/gpichot/pestacle/issues/51)) ([8c20f49](https://github.com/gpichot/pestacle/commit/8c20f4965916817b0b094a0ce8597099f77036ef))
+
 ## [1.12.1](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.12.0...spectacle-deck-v1.12.1) (2026-03-25)
 
 ### Bug Fixes
