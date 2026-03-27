@@ -1,7 +1,8 @@
 import { animated, useSpring } from "@react-spring/web";
 import React from "react";
-import { Stepper } from "spectacle";
 import styled from "styled-components";
+
+import { Stepper } from "../engine/Stepper";
 
 export function ItemsColumn(divProps: React.ComponentProps<"div">) {
   const { style, children, ...props } = divProps;

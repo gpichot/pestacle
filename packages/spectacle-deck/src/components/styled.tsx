@@ -1,31 +1,39 @@
 import type React from "react";
-import {
-  FlexBox,
-  Heading,
-  Image as SpectacleImage,
-  Link as SpectacleLink,
-} from "spectacle";
 import styled from "styled-components";
 
 export const Link = (props: { href: string; children: React.ReactNode }) => (
-  <SpectacleLink href={props.href} target="_blank" rel="noopener noreferrer">
+  <a
+    href={props.href}
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ color: "var(--color-secondary)", textDecoration: "none" }}
+  >
     {props.children} [{props.href}]
-  </SpectacleLink>
+  </a>
 );
 
-const StyledImage = styled(SpectacleImage)`
-  object-fit: contain;
-  max-height: 30vh;
-  max-width: 70vw;
-`;
-
-export const Image = (props: React.ComponentProps<typeof SpectacleImage>) => (
-  <FlexBox margin="0 0" padding="0 0">
-    <StyledImage {...props} />
-  </FlexBox>
+export const Image = (props: React.ComponentProps<"img">) => (
+  <div
+    style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+  >
+    <img
+      alt=""
+      {...props}
+      style={{
+        objectFit: "contain",
+        maxHeight: "30vh",
+        maxWidth: "70vw",
+        ...props.style,
+      }}
+    />
+  </div>
 );
 
-export const CustomHeading = styled(Heading)`
+export const CustomHeading = styled.h1`
+  font-family: Bitter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 67px;
+  font-weight: 500;
+
   strong {
     color: var(--color-secondary);
     font-weight: 500;

@@ -1,7 +1,8 @@
 import { animated, useSpring } from "@react-spring/web";
 import React from "react";
-import { Stepper } from "spectacle";
 import styled from "styled-components";
+
+import { Stepper } from "../engine/Stepper";
 
 const Container = styled.div`
   display: grid;

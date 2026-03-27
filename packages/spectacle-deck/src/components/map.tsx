@@ -1,5 +1,4 @@
 import React from "react";
-import { mdxComponentMap } from "spectacle";
 
 import CodeStepper from "./CodeStepper/CodeStepper";
 import { Mermaid } from "./Mermaid";
@@ -13,8 +12,7 @@ import {
   InlineCode,
 } from "./styled";
 
-const componentsMap = {
-  ...mdxComponentMap,
+const componentsMap: Record<string, React.ComponentType<any>> = {
   inlineCode: (props: React.ComponentPropsWithoutRef<"code">) => (
     <InlineCode
       {...props}
@@ -59,15 +57,13 @@ const componentsMap = {
   ),
   h1: (props: React.ComponentProps<"h1">) => (
     <CustomHeading
-      fontSize="h1"
-      color="white"
       style={{
         fontWeight: 500,
-        fontFamily: 'Bitter,"Helvetica Neue",Helvetica,Arial,sans-serif',
         fontSize: 67,
         flex: "0 1 auto",
         maxWidth: "65%",
         textAlign: "left",
+        color: "white",
       }}
     >
       {props.children}
@@ -85,15 +81,12 @@ const componentsMap = {
     <li {...props} style={{ margin: "24px 0" }} />
   ),
   Side: (props: React.ComponentProps<"div">) => <div {...props} />,
-  p: (props: React.ComponentProps<"p">) => {
-    const Text = mdxComponentMap.p!;
-    return (
-      <Text
-        style={{ margin: "8px 0", padding: "8px 0", lineHeight: "2rem" }}
-        {...props}
-      />
-    );
-  },
+  p: (props: React.ComponentProps<"p">) => (
+    <p
+      style={{ margin: "8px 0", padding: "8px 0", lineHeight: "2rem" }}
+      {...props}
+    />
+  ),
   blockquote: (props: React.ComponentProps<"blockquote">) => (
     <CustomQuote {...props} />
   ),

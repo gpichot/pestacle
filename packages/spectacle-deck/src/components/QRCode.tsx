@@ -1,6 +1,7 @@
 import QrCreator from "qr-creator";
 import React, { useContext } from "react";
-import { DeckContext } from "spectacle";
+
+import { DeckContext } from "../engine/DeckContext";
 
 export interface QRCodeProps {
   url: string;
