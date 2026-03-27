@@ -8,6 +8,7 @@ import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
 
 import { extractMainCodeAsChildren } from "./codegen";
+import { remarkMorph } from "./remark-morph";
 import type { ReactDeckOptions } from "./types";
 
 type CompileOptions = Pick<ReactDeckOptions, "rehypePlugins" | "remarkPlugins">;
@@ -178,6 +179,7 @@ export async function transformSlidesMdxToReact(
           remarkGfm,
           remarkDirective,
           myRemarkPlugin,
+          remarkMorph,
           ...options.remarkPlugins,
         ],
       });
