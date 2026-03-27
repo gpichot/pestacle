@@ -1,6 +1,6 @@
 import type React from "react";
-import styled from "styled-components";
 
+import styles from "./layouts.module.css";
 import { Margins } from "./utils";
 
 function MultipleHexagons({ position }: { position: "left" | "right" }) {
@@ -96,26 +96,6 @@ function MultipleHexagons({ position }: { position: "left" | "right" }) {
   );
 }
 
-const Default3SideContainer = styled.div`
-  svg {
-    height: 100%;
-    width: auto;
-    path {
-      fill: #ffffff22;
-      transition: fill 3s;
-      &:hover {
-        fill: #ffffffbb;
-      }
-    }
-  }
-`;
-const Default2LayoutContainer = styled.div`
-  h2,
-  h3 {
-    text-align: left;
-    color: white;
-  }
-`;
 export const Default3Layout = ({
   children,
   position = "right",
@@ -125,7 +105,8 @@ export const Default3Layout = ({
 }) => {
   const isReversed = position === "left";
   return (
-    <Default2LayoutContainer
+    <div
+      className={styles.default2Container}
       style={{
         display: "flex",
         position: "absolute",
@@ -134,7 +115,8 @@ export const Default3Layout = ({
         alignItems: "center",
       }}
     >
-      <Default3SideContainer
+      <div
+        className={styles.default3Side}
         style={{
           flex: 1,
           height: "100%",
@@ -145,7 +127,7 @@ export const Default3Layout = ({
         }}
       >
         <MultipleHexagons position={position} />
-      </Default3SideContainer>
+      </div>
       <div
         style={{
           flex: 4,
@@ -155,6 +137,6 @@ export const Default3Layout = ({
       >
         {children}
       </div>
-    </Default2LayoutContainer>
+    </div>
   );
 };

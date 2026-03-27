@@ -1,0 +1,62 @@
+.item {
+  flex: 1;
+  flex-flow: column nowrap;
+  display: inline-flex;
+
+  &:nth-child(odd),
+  &:nth-child(odd) .itemContent {
+    flex-direction: column;
+  }
+
+  &:nth-child(even),
+  &:nth-child(even) .itemContent {
+    flex-direction: column-reverse;
+  }
+}
+
+.itemContent {
+  display: flex;
+  padding: 0.7rem 0 1rem 12px;
+}
+
+.itemContentPhantom {
+  composes: itemContent;
+  opacity: 0;
+}
+
+.itemBody,
+.itemBody > * {
+  font-size: 1.3rem !important;
+  color: #ffffff !important;
+}
+
+.itemTitle {
+  font-family: Bitter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffffbb;
+}
+
+.guide {
+  width: 100%;
+  padding-top: 2px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+
+  & svg {
+    height: 28px;
+    width: 28px;
+
+    & path {
+      fill: #ffffff;
+    }
+
+    margin-right: 4px;
+  }
+}
+
+.guideLine {
+  border-top: 4px solid #ffffff;
+  margin-right: 4px;
+}

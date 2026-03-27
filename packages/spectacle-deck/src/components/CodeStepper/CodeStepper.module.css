@@ -1,0 +1,22 @@
+.container {
+  & pre {
+    padding: 1rem 0rem !important;
+    background-color: transparent !important;
+  }
+
+  & .linenumber {
+    min-width: 2rem !important;
+  }
+
+  & [data-highlight-line="true"] {
+    &::before {
+      content: " ";
+      position: absolute;
+      background-color: rgba(var(--color-primary-rgb), 0.5);
+    }
+
+    &[data-step-active="true"]::before {
+      background-color: var(--color-secondary);
+    }
+  }
+}

@@ -1,0 +1,30 @@
+.container {
+  display: grid;
+  grid-gap: 2rem;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  font-family: Bitter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.itemHead {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.3rem;
+  margin-bottom: 0.4rem;
+
+  & p {
+    margin: 0;
+  }
+}
+
+.itemContent {
+  & > * {
+    font-size: 1rem;
+    padding: 4px !important;
+    line-height: 1.5rem !important;
+    margin-top: 0;
+  }
+}

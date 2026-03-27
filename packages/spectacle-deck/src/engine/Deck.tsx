@@ -1,6 +1,5 @@
 import { MDXProvider } from "@mdx-js/react";
 import React from "react";
-import { createGlobalStyle } from "styled-components";
 
 import { createCssVariables } from "../colors";
 import customComponents from "../components/map";
@@ -9,6 +8,7 @@ import Layouts from "../layouts";
 import { SlideWrapper } from "../SlideWrapper";
 import baseTheme from "../theme";
 import { DeckContext } from "./DeckContext";
+import { injectGlobalStyles } from "./global.css";
 import { Template } from "./Template";
 import {
   fadeTransition,
@@ -101,30 +101,14 @@ export function Deck({
     };
   }, [theme]);
 
-  // CSS variables
-  const GlobalStyle = React.useMemo(() => {
-    const cssVariables = createCssVariables(theme.themeTokens.colors);
-    return createGlobalStyle`
-      :root {
-        ${cssVariables}
-        --font-family: ${mergedTheme.fonts.text};
-      }
-
-      /* Base slide styles */
-      html, body, #root {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-      }
-
-      body {
-        background: ${theme.themeTokens.colors.tertiary ?? "#1a1a2e"};
-        color: ${theme.themeTokens.colors.primary ?? "#ffffff"};
-        font-family: ${mergedTheme.fonts.text};
-      }
-    `;
+  // Inject global CSS variables and base styles
+  React.useEffect(() => {
+    injectGlobalStyles({
+      cssVariables: createCssVariables(theme.themeTokens.colors),
+      fontFamily: mergedTheme.fonts.text ?? "",
+      backgroundColor: theme.themeTokens.colors.tertiary ?? "#1a1a2e",
+      color: theme.themeTokens.colors.primary ?? "#ffffff",
+    });
   }, [theme, mergedTheme]);
 
   // Keyboard navigation
@@ -207,7 +191,6 @@ export function Deck({
       <DeckContext.Provider value={contextValue}>
         <PestacleProvider layouts={layouts}>
           <MDXProvider components={componentsMap}>
-            <GlobalStyle />
             <div
               style={{
                 width: "100vw",

@@ -1,13 +1,8 @@
 import { animated, useSpring } from "@react-spring/web";
 import React from "react";
-import styled from "styled-components";
 
 import { Stepper } from "../engine/Stepper";
-
-const Container = styled.div`
-  display: grid;
-  grid-gap: 2rem;
-`;
+import styles from "./HorizontalList.module.css";
 
 export default function HorizontalList({
   children,
@@ -20,7 +15,8 @@ export default function HorizontalList({
   return (
     <Stepper values={items}>
       {(_, step) => (
-        <Container
+        <div
+          className={styles.container}
           style={{
             gridTemplateColumns: `repeat(${columns}, 1fr)`,
           }}
@@ -36,7 +32,7 @@ export default function HorizontalList({
               isLast: k === step,
             });
           })}
-        </Container>
+        </div>
       )}
     </Stepper>
   );
@@ -57,12 +53,12 @@ function Pill({ position }: { position: number }) {
         <path
           d="M8.64717 20L0 15.0094V5.00134L8.64717 0L17.289 5.00134V15.0094L8.64717 20ZM1.48222 14.141L8.64717 18.2846L15.8068 14.141V5.85902L8.64717 1.71536L1.48222 5.85902V14.141Z"
           fill="#ffffff"
-        ></path>
+        />
         <text
           x="9"
           y="11"
-          text-anchor="middle"
-          dominant-baseline="middle"
+          textAnchor="middle"
+          dominantBaseline="middle"
           fill="#f49676"
           style={{ fontSize: "50%" }}
         >
@@ -71,35 +67,11 @@ function Pill({ position }: { position: number }) {
         <path
           d="M 8.758 16.01 L 3.549 13.004 L 3.549 6.975 L 8.758 3.963 L 13.964 6.975 L 13.964 13.004 L 8.758 16.01 Z"
           fill="transparent"
-        ></path>
+        />
       </svg>
     </div>
   );
 }
-
-const Item = styled(animated.div)`
-  display: flex;
-  flex-direction: column;
-  font-family: Bitter, "Helvetica Neue", Helvetica, Arial, sans-serif;
-`;
-const ItemHead = styled.div`
-  display: flex;
-  flex-direction: row;
-  font-size: 1.3rem;
-  margin-bottom: 0.4rem;
-
-  p {
-    margin: 0;
-  }
-`;
-const ItemContent = styled.div`
-  > * {
-    font-size: 1rem;
-    padding: 4px !important;
-    line-height: 1.5rem !important;
-    margin-top: 0;
-  }
-`;
 
 function getItemOpacity({
   isLast,
@@ -129,13 +101,13 @@ export function HorizontalListItem({
     opacity: getItemOpacity({ isVisible, isLast }),
   });
   return (
-    <Item style={opacityStyles}>
-      <ItemHead>
+    <animated.div className={styles.item} style={opacityStyles}>
+      <div className={styles.itemHead}>
         <Pill position={position} />
         <p>{title}</p>
-      </ItemHead>
+      </div>
 
-      <ItemContent>{children}</ItemContent>
-    </Item>
+      <div className={styles.itemContent}>{children}</div>
+    </animated.div>
   );
 }

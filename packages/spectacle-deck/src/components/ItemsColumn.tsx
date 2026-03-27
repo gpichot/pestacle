@@ -1,8 +1,8 @@
 import { animated, useSpring } from "@react-spring/web";
 import React from "react";
-import styled from "styled-components";
 
 import { Stepper } from "../engine/Stepper";
+import styles from "./ItemsColumn.module.css";
 
 export function ItemsColumn(divProps: React.ComponentProps<"div">) {
   const { style, children, ...props } = divProps;
@@ -39,23 +39,15 @@ export function ItemsColumn(divProps: React.ComponentProps<"div">) {
   );
 }
 
-const ItemColumnWrapperStyled = styled(animated.div)`
-  display: flex;
-  justify-content: center;
-  * {
-    text-align: center !important;
-  }
-`;
-
 function ItemColumnWrapper({
   children,
   isVisible,
   ...props
 }: React.ComponentPropsWithRef<"div"> & { isVisible: boolean }) {
-  const styles = useSpring({ opacity: isVisible ? 1 : 0 });
+  const springStyles = useSpring({ opacity: isVisible ? 1 : 0 });
   return (
-    <ItemColumnWrapperStyled style={styles} {...props}>
+    <animated.div className={styles.wrapper} style={springStyles} {...props}>
       {children}
-    </ItemColumnWrapperStyled>
+    </animated.div>
   );
 }

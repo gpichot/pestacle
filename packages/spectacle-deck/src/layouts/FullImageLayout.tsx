@@ -1,26 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 
+import styles from "./layouts.module.css";
 import { getMatchingMdxType } from "./utils";
-
-const Overlay = styled.div<{ $padding?: string }>`
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-end;
-  padding: ${(props) => props.$padding || "4rem 6rem"};
-  z-index: 1;
-
-  h1,
-  h2,
-  h3 {
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
-  }
-  p {
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
-  }
-`;
 
 export function FullImageLayout({
   children,
@@ -88,12 +69,15 @@ export function FullImageLayout({
           }}
         />
       )}
-      <Overlay
-        $padding={padding}
-        style={{ justifyContent: justifyMap[position] }}
+      <div
+        className={styles.fullImageOverlay}
+        style={{
+          justifyContent: justifyMap[position],
+          ...(padding ? { padding } : {}),
+        }}
       >
         {firstImage ? rest : children}
-      </Overlay>
+      </div>
     </div>
   );
 }

@@ -2,33 +2,12 @@ import React from "react";
 import ReactIs from "react-is";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { gruvboxDark } from "react-syntax-highlighter/dist/esm/styles/prism";
-import styled from "styled-components";
 
 import { Stepper } from "../../engine/Stepper";
+import styles from "./CodeStepper.module.css";
 import { parseStepDirectives, type Step } from "./code-directives";
 
 const Highlighter = SyntaxHighlighter as unknown as React.ElementType;
-
-const CodeContainer = styled.div`
-  pre {
-    padding: 1rem 0rem !important;
-    background-color: transparent !important;
-  }
-  .linenumber {
-    min-width: 2rem !important;
-  }
-  [data-highlight-line="true"] {
-    &:before {
-      content: " ";
-      position: absolute;
-      background-color: rgba(var(--color-primary-rgb), 0.5);
-    }
-
-    &[data-step-active="true"]:before {
-      background-color: var(--color-secondary);
-    }
-  }
-`;
 
 function useCodeSteps(code: string) {
   return React.useMemo(() => {
@@ -150,7 +129,7 @@ export default function CodeStepper({
     hasName,
   } = useCodeSteps(code);
   return (
-    <CodeContainer>
+    <div className={styles.container}>
       {import.meta.env.DEV && false && Boolean(prefixes?.length) && (
         <div style={{ position: "absolute", top: 0, opacity: 0.5, left: 0 }}>
           <Highlighter language={language} style={gruvboxDark}>
@@ -220,7 +199,7 @@ export default function CodeStepper({
           );
         }}
       </Stepper>
-    </CodeContainer>
+    </div>
   );
 }
 

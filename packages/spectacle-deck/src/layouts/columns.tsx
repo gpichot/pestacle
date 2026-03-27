@@ -1,26 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 
-const DivWithHeading = styled.div`
-  h2 {
-    margin-top: 0;
-  }
-  h2 strong {
-    color: var(--color-secondary);
-    font-weight: 400;
-  }
-`;
-
-const ColumnsContainer = styled(DivWithHeading)`
-  display: flex;
-  flex-direction: row;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  alignitems: center;
-`;
+import styles from "./layouts.module.css";
 
 export function ColumnsLayout({
   children,
@@ -31,7 +11,8 @@ export function ColumnsLayout({
 }) {
   const childrenArray = React.Children.toArray(children);
   return (
-    <ColumnsContainer
+    <div
+      className={styles.columnsContainer}
       style={{
         flexDirection: reverse ? "row-reverse" : "row",
       }}
@@ -51,6 +32,6 @@ export function ColumnsLayout({
           {child}
         </div>
       ))}
-    </ColumnsContainer>
+    </div>
   );
 }
