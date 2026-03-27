@@ -1,5 +1,7 @@
 import React from "react";
 
+import { toggleFullscreen } from "./dom-helpers";
+
 /**
  * Slide template overlay: progress bar + fullscreen button.
  * Pure HTML/CSS — no Spectacle dependency.
@@ -29,13 +31,7 @@ export function Template({
       <div style={{ padding: "0 0 0.5em 0.7em" }}>
         <button
           type="button"
-          onClick={() => {
-            if (document.fullscreenElement) {
-              document.exitFullscreen();
-            } else {
-              document.documentElement.requestFullscreen();
-            }
-          }}
+          onClick={toggleFullscreen}
           style={{
             background: "none",
             border: "none",

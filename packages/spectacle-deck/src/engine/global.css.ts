@@ -1,3 +1,5 @@
+import { getOrCreateStyleElement } from "./dom-helpers";
+
 /**
  * Injects global CSS (theme variables, base styles) into the document.
  * Replaces styled-components' createGlobalStyle.
@@ -8,13 +10,7 @@ export function injectGlobalStyles(options: {
   backgroundColor: string;
   color: string;
 }) {
-  const styleId = "pestacle-global-styles";
-  let el = document.getElementById(styleId) as HTMLStyleElement | null;
-  if (!el) {
-    el = document.createElement("style");
-    el.id = styleId;
-    document.head.appendChild(el);
-  }
+  const el = getOrCreateStyleElement("pestacle-global-styles");
   el.textContent = `
     :root {
       ${options.cssVariables}

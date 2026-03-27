@@ -2,8 +2,6 @@ import React from "react";
 
 import { useDeck } from "./DeckContext";
 
-let stepperId = 0;
-
 export interface StepperProps<T = unknown> {
   /** Array of values to step through */
   values: T[];
@@ -46,16 +44,13 @@ export function Stepper<T>({
 }: StepperProps<T>) {
   const { stepIndex, registerStepper, unregisterStepper } = useDeck();
 
-  const idRef = React.useRef<string>("");
-  if (!idRef.current) {
-    idRef.current = `stepper-${++stepperId}`;
-  }
+  const id = React.useId();
 
   // Register this stepper's step count (number of values = number of steps)
   React.useEffect(() => {
-    registerStepper(idRef.current, values.length);
-    return () => unregisterStepper(idRef.current);
-  }, [values.length, registerStepper, unregisterStepper]);
+    registerStepper(id, values.length);
+    return () => unregisterStepper(id);
+  }, [id, values.length, registerStepper, unregisterStepper]);
 
   // stepIndex 0 = initial state (no step active)
   // stepIndex 1 = values[0], stepIndex 2 = values[1], etc.

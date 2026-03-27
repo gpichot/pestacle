@@ -8,6 +8,7 @@ import Layouts from "../layouts";
 import { SlideWrapper } from "../SlideWrapper";
 import baseTheme from "../theme";
 import { DeckContext } from "./DeckContext";
+import { toggleFullscreen } from "./dom-helpers";
 import { injectGlobalStyles } from "./global.css";
 import { Template } from "./Template";
 import {
@@ -60,13 +61,24 @@ export function Deck({
   // Resolve the default transition
   const defaultTransition = resolveTransition(transition) ?? fadeTransition;
 
-  const nav = useNavigation({
-    slideCount,
-    onSlideChange: (_index, direction) => {
-      // Get per-slide transition or use default
-      const slideT = currentSlideTransition ?? defaultTransition;
+  // Current slide transition is needed by onSlideChange, so we track it via ref
+  const currentSlideTransitionRef = React.useRef(
+    deck.slides[0]?.metadata?.transition
+      ? resolveTransition(deck.slides[0].metadata.transition as string)
+      : undefined,
+  );
+
+  const onSlideChange = React.useCallback(
+    (_index: number, direction: "forward" | "backward") => {
+      const slideT = currentSlideTransitionRef.current ?? defaultTransition;
       injectTransitionStyles(slideT, direction);
     },
+    [defaultTransition],
+  );
+
+  const nav = useNavigation({
+    slideCount,
+    onSlideChange,
   });
 
   // Current slide's per-slide transition override
@@ -74,6 +86,7 @@ export function Deck({
   const currentSlideTransition = currentSlide?.metadata?.transition
     ? resolveTransition(currentSlide.metadata.transition as string)
     : undefined;
+  currentSlideTransitionRef.current = currentSlideTransition;
 
   // Inject initial transition styles
   React.useEffect(() => {
@@ -135,33 +148,19 @@ export function Deck({
     Home: () => nav.skipTo({ slideIndex: 0 }),
     End: () => nav.skipTo({ slideIndex: slideCount - 1 }),
     // Fullscreen
-    f: () => {
-      if (document.fullscreenElement) {
-        document.exitFullscreen();
-      } else {
-        document.documentElement.requestFullscreen();
+    f: toggleFullscreen,
+    // Volume keys for remote controllers
+    AudioVolumeUp: () => {
+      if (nav.slideIndex < slideCount - 1) {
+        nav.skipTo({ slideIndex: nav.slideIndex + 1, stepIndex: 0 });
+      }
+    },
+    AudioVolumeDown: () => {
+      if (nav.slideIndex > 0) {
+        nav.skipTo({ slideIndex: nav.slideIndex - 1 });
       }
     },
   });
-
-  // Volume keys for remote controllers
-  React.useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "AudioVolumeUp") {
-        e.preventDefault();
-        if (nav.slideIndex < slideCount - 1) {
-          nav.skipTo({ slideIndex: nav.slideIndex + 1, stepIndex: 0 });
-        }
-      } else if (e.key === "AudioVolumeDown") {
-        e.preventDefault();
-        if (nav.slideIndex > 0) {
-          nav.skipTo({ slideIndex: nav.slideIndex - 1 });
-        }
-      }
-    }
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [nav.slideIndex, nav.skipTo, slideCount]);
 
   // Build context value
   const contextValue = React.useMemo(

@@ -1,5 +1,7 @@
 import React from "react";
 
+import { startViewTransition } from "./dom-helpers";
+
 interface NavigationOptions {
   slideCount: number;
   onSlideChange?: (index: number, direction: "forward" | "backward") => void;
@@ -67,19 +69,10 @@ export function useNavigation({
       setDirection(dir);
       onSlideChange?.(newIndex, dir);
 
-      // Use View Transitions API if available
-      if (
-        typeof document !== "undefined" &&
-        "startViewTransition" in document
-      ) {
-        (document as any).startViewTransition(() => {
-          setSlideIndex(newIndex);
-          setStepIndex(0);
-        });
-      } else {
+      startViewTransition(() => {
         setSlideIndex(newIndex);
         setStepIndex(0);
-      }
+      });
     },
     [slideCount, onSlideChange],
   );
@@ -112,18 +105,10 @@ export function useNavigation({
       setDirection(dir);
 
       if (target.slideIndex !== slideIndex) {
-        if (
-          typeof document !== "undefined" &&
-          "startViewTransition" in document
-        ) {
-          (document as any).startViewTransition(() => {
-            setSlideIndex(target.slideIndex);
-            setStepIndex(target.stepIndex ?? 0);
-          });
-        } else {
+        startViewTransition(() => {
           setSlideIndex(target.slideIndex);
           setStepIndex(target.stepIndex ?? 0);
-        }
+        });
       } else {
         setStepIndex(target.stepIndex ?? 0);
       }

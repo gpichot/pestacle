@@ -8,6 +8,8 @@
  * the DOM, then animates from old to new using these keyframes.
  */
 
+import { getOrCreateStyleElement } from "./dom-helpers";
+
 export interface SlideTransition {
   /** A unique name for this transition */
   name: string;
@@ -45,7 +47,7 @@ export const slideTransition: SlideTransition = {
   ],
 };
 
-export const slideBackwardTransition: SlideTransition = {
+const slideBackwardTransition: SlideTransition = {
   name: "slide-backward",
   duration: 400,
   easing: "ease-in-out",
@@ -123,13 +125,7 @@ export function injectTransitionStyles(
       ? slideBackwardTransition
       : transition;
 
-  const styleId = "pestacle-view-transition-styles";
-  let style = document.getElementById(styleId) as HTMLStyleElement | null;
-  if (!style) {
-    style = document.createElement("style");
-    style.id = styleId;
-    document.head.appendChild(style);
-  }
+  const style = getOrCreateStyleElement("pestacle-view-transition-styles");
 
   style.textContent = `
     ::view-transition-old(slide-content) {
