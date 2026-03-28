@@ -1,4 +1,4 @@
-import type React from "react";
+import React from "react";
 
 export interface MorphProps {
   /**
@@ -6,7 +6,8 @@ export interface MorphProps {
    * on different slides will morph (animate position, size, shape) during
    * view transitions.
    *
-   * This maps directly to the CSS `view-transition-name` property.
+   * Uses React's <React.ViewTransition> component which coordinates with the
+   * browser's View Transitions API automatically via startTransition.
    * Names must be unique within a single slide.
    */
   name: string;
@@ -20,7 +21,7 @@ export interface MorphProps {
 }
 
 /**
- * Morph — marks an element for cross-slide morphing via View Transitions API.
+ * Morph — marks an element for cross-slide morphing via React ViewTransition.
  *
  * Usage in MDX:
  * ```mdx
@@ -47,15 +48,11 @@ export function Morph({
   children,
 }: MorphProps) {
   return (
-    <Tag
-      className={className}
-      style={{
-        viewTransitionName: name,
-        ...style,
-      }}
-    >
-      {children}
-    </Tag>
+    <React.ViewTransition name={name}>
+      <Tag className={className} style={style}>
+        {children}
+      </Tag>
+    </React.ViewTransition>
   );
 }
 
@@ -76,14 +73,8 @@ export function MorphImage({
   className?: string;
 }) {
   return (
-    <img
-      src={src}
-      alt={alt}
-      className={className}
-      style={{
-        viewTransitionName: name,
-        ...style,
-      }}
-    />
+    <React.ViewTransition name={name}>
+      <img src={src} alt={alt} className={className} style={style} />
+    </React.ViewTransition>
   );
 }

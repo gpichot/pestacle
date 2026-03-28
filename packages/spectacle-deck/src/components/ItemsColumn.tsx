@@ -1,4 +1,3 @@
-import { animated, useSpring } from "@react-spring/web";
 import React from "react";
 
 import { Stepper } from "../engine/Stepper";
@@ -8,7 +7,7 @@ export function ItemsColumn(divProps: React.ComponentProps<"div">) {
   const { style, children, ...props } = divProps;
   const childrenArray = React.Children.toArray(children);
   return (
-    <Stepper values={childrenArray}>
+    <Stepper values={childrenArray} alwaysVisible>
       {(_value, step) => (
         <div
           style={{
@@ -28,26 +27,18 @@ export function ItemsColumn(divProps: React.ComponentProps<"div">) {
               return child;
             }
             return (
-              <ItemColumnWrapper key={index} isVisible={isVisible}>
-                {child}
-              </ItemColumnWrapper>
+              <React.ViewTransition key={index} name={`items-column-${index}`}>
+                <div
+                  className={styles.wrapper}
+                  style={{ opacity: isVisible ? 1 : 0 }}
+                >
+                  {child}
+                </div>
+              </React.ViewTransition>
             );
           })}
         </div>
       )}
     </Stepper>
-  );
-}
-
-function ItemColumnWrapper({
-  children,
-  isVisible,
-  ...props
-}: React.ComponentPropsWithRef<"div"> & { isVisible: boolean }) {
-  const springStyles = useSpring({ opacity: isVisible ? 1 : 0 });
-  return (
-    <animated.div className={styles.wrapper} style={springStyles} {...props}>
-      {children}
-    </animated.div>
   );
 }

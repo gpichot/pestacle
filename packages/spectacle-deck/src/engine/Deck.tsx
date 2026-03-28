@@ -119,6 +119,7 @@ export function Deck({
     injectGlobalStyles({
       cssVariables: createCssVariables(theme.themeTokens.colors),
       fontFamily: mergedTheme.fonts.text ?? "",
+      fontSize: mergedTheme.fontSizes?.text ?? "24px",
       backgroundColor: theme.themeTokens.colors.tertiary ?? "#1a1a2e",
       color: theme.themeTokens.colors.primary ?? "#ffffff",
     });
@@ -202,23 +203,23 @@ export function Deck({
                 overflow: "hidden",
               }}
             >
-              {/* Slide content — this element has a view-transition-name so
-                  the View Transitions API can capture and animate it */}
-              <div
-                style={{
-                  viewTransitionName: "slide-content",
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "2rem 3rem",
-                  boxSizing: "border-box",
-                }}
-              >
-                {Component && <Component />}
-              </div>
+              {/* Slide content wrapped in ViewTransition for cross-slide morphing */}
+              <React.ViewTransition name="slide-content">
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "2rem 3rem",
+                    boxSizing: "border-box",
+                  }}
+                >
+                  {Component && <Component />}
+                </div>
+              </React.ViewTransition>
 
               {/* Template overlay (progress bar, fullscreen) */}
               <Template

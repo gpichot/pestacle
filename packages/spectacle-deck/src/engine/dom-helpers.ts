@@ -21,15 +21,3 @@ export function toggleFullscreen() {
     document.documentElement.requestFullscreen();
   }
 }
-
-/**
- * Run a callback inside a View Transition if the API is available,
- * otherwise just run the callback directly.
- */
-export function startViewTransition(callback: () => void) {
-  if (typeof document !== "undefined" && "startViewTransition" in document) {
-    (document as any).startViewTransition(callback);
-  } else {
-    callback();
-  }
-}

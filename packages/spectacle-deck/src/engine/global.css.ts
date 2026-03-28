@@ -7,6 +7,7 @@ import { getOrCreateStyleElement } from "./dom-helpers";
 export function injectGlobalStyles(options: {
   cssVariables: string;
   fontFamily: string;
+  fontSize: string;
   backgroundColor: string;
   color: string;
 }) {
@@ -27,6 +28,7 @@ export function injectGlobalStyles(options: {
       background: ${options.backgroundColor};
       color: ${options.color};
       font-family: ${options.fontFamily};
+      font-size: ${options.fontSize};
     }
   `;
 }

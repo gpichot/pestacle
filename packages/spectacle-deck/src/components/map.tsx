@@ -13,126 +13,137 @@ import {
 } from "./styled";
 
 /**
- * Merge a `morph` prop into a style object as `viewTransitionName`.
+ * Wrap content in a <ViewTransition> if a morph name is provided.
  */
-function morphStyle(
-  morph: string | undefined,
-  style?: React.CSSProperties,
-): React.CSSProperties | undefined {
-  if (!morph) return style;
-  return { ...style, viewTransitionName: morph };
+function MorphWrap({
+  morph,
+  children,
+}: {
+  morph?: string;
+  children: React.ReactNode;
+}) {
+  if (!morph) return children;
+  return <React.ViewTransition name={morph}>{children}</React.ViewTransition>;
 }
 
 const componentsMap: Record<string, React.ComponentType<any>> = {
   inlineCode: ({ morph, style, ...props }: any) => (
-    <InlineCode
-      {...props}
-      style={morphStyle(morph, {
-        fontWeight: 500,
-        display: "inline-block",
-        ...style,
-      })}
-    />
+    <MorphWrap morph={morph}>
+      <InlineCode
+        {...props}
+        style={{
+          fontWeight: 500,
+          display: "inline-block",
+          ...style,
+        }}
+      />
+    </MorphWrap>
   ),
   table: ({ morph, style, ...props }: any) => (
-    <table
-      {...props}
-      style={morphStyle(morph, {
-        borderCollapse: "collapse",
-        width: "100%",
-        textAlign: "center",
-        ...style,
-      })}
-    />
+    <MorphWrap morph={morph}>
+      <table
+        {...props}
+        style={{
+          borderCollapse: "collapse",
+          width: "100%",
+          textAlign: "center",
+          ...style,
+        }}
+      />
+    </MorphWrap>
   ),
   tr: ({ morph, style, ...props }: any) => (
-    <tr
-      {...props}
-      style={morphStyle(morph, {
-        textAlign: "center",
-        color: "white",
-        fontFamily: 'Bitter,"Helvetica Neue",Helvetica,Arial,sans-serif',
-        fontSize: 24,
-        ...style,
-      })}
-    />
+    <MorphWrap morph={morph}>
+      <tr {...props} style={{ textAlign: "center", ...style }} />
+    </MorphWrap>
   ),
   td: ({ morph, style, ...props }: any) => (
-    <td
-      {...props}
-      style={morphStyle(morph, {
-        textAlign: "center",
-        padding: "0.3rem 0",
-        color: "white",
-        fontFamily: 'Bitter,"Helvetica Neue",Helvetica,Arial,sans-serif',
-        fontSize: 24,
-        ...style,
-      })}
-    />
+    <MorphWrap morph={morph}>
+      <td
+        {...props}
+        style={{ textAlign: "center", padding: "0.3rem 0", ...style }}
+      />
+    </MorphWrap>
   ),
   h1: ({ morph, style, ...props }: any) => (
-    <CustomHeading
-      style={morphStyle(morph, {
-        fontWeight: 500,
-        fontSize: 67,
-        flex: "0 1 auto",
-        maxWidth: "65%",
-        textAlign: "left",
-        color: "white",
-        ...style,
-      })}
-    >
-      {props.children}
-    </CustomHeading>
+    <MorphWrap morph={morph}>
+      <CustomHeading
+        style={{
+          fontWeight: 500,
+          fontSize: 67,
+          flex: "0 1 auto",
+          maxWidth: "65%",
+          textAlign: "left",
+          color: "white",
+          ...style,
+        }}
+      >
+        {props.children}
+      </CustomHeading>
+    </MorphWrap>
   ),
   h2: ({ morph, style, ...props }: any) => (
-    <HeadingTwo style={morphStyle(morph, style)}>{props.children}</HeadingTwo>
+    <MorphWrap morph={morph}>
+      <HeadingTwo style={style}>{props.children}</HeadingTwo>
+    </MorphWrap>
   ),
   h3: ({ morph, style, ...props }: any) => (
-    <HeadingThree {...props} style={morphStyle(morph, style)} />
+    <MorphWrap morph={morph}>
+      <HeadingThree {...props} style={style} />
+    </MorphWrap>
   ),
   img: ({ morph, style, ...props }: any) => (
-    <Image {...props} style={morphStyle(morph, style)} />
+    <MorphWrap morph={morph}>
+      <Image {...props} style={style} />
+    </MorphWrap>
   ),
   pre: CodeStepper,
   li: ({ morph, style, ...props }: any) => (
-    <li {...props} style={morphStyle(morph, { margin: "24px 0", ...style })} />
+    <MorphWrap morph={morph}>
+      <li {...props} style={{ margin: "24px 0", ...style }} />
+    </MorphWrap>
   ),
   Side: (props: React.ComponentProps<"div">) => <div {...props} />,
   p: ({ morph, style, ...props }: any) => (
-    <p
-      {...props}
-      style={morphStyle(morph, {
-        margin: "8px 0",
-        padding: "8px 0",
-        lineHeight: "2rem",
-        ...style,
-      })}
-    />
+    <MorphWrap morph={morph}>
+      <p
+        {...props}
+        style={{
+          margin: "8px 0",
+          padding: "8px 0",
+          lineHeight: "1.6",
+          ...style,
+        }}
+      />
+    </MorphWrap>
   ),
   blockquote: ({ morph, style, ...props }: any) => (
-    <CustomQuote {...props} style={morphStyle(morph, style)} />
+    <MorphWrap morph={morph}>
+      <CustomQuote {...props} style={style} />
+    </MorphWrap>
   ),
   a: ({ children, morph, style, ...props }: any) => {
     const domain = new URL(props.href || "").hostname;
     return (
-      <a
-        {...props}
-        style={morphStyle(morph, {
-          color: "var(--color-secondary)",
-          textDecoration: "none",
-          ...style,
-        })}
-      >
-        {children}{" "}
-        <small
+      <MorphWrap morph={morph}>
+        <a
+          {...props}
           style={{
-            color: "#ffffff44",
+            color: "var(--color-secondary)",
+            textDecoration: "none",
+            ...style,
           }}
         >
-          ({domain})
-        </small>
-      </a>
+          {children}{" "}
+          <small
+            style={{
+              color: "#ffffff44",
+            }}
+          >
+            ({domain})
+          </small>
+        </a>
+      </MorphWrap>
     );
   },
   directive: (props: React.ComponentProps<"div">) => {

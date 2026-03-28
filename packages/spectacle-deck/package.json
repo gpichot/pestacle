@@ -32,9 +32,9 @@
     "@react-spring/web": "^10.0.3",
     "mermaid": "^11.13.0",
     "qr-creator": "^1.0.0",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-is": "^19.2.4",
+    "react": "0.0.0-experimental-9627b5a1-20260327",
+    "react-dom": "0.0.0-experimental-9627b5a1-20260327",
+    "react-is": "0.0.0-experimental-9627b5a1-20260327",
     "react-syntax-highlighter": "^16.1.1"
   },
   "devDependencies": {

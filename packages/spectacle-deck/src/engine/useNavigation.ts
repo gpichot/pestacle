@@ -1,7 +1,5 @@
 import React from "react";
 
-import { startViewTransition } from "./dom-helpers";
-
 interface NavigationOptions {
   slideCount: number;
   onSlideChange?: (index: number, direction: "forward" | "backward") => void;
@@ -10,7 +8,8 @@ interface NavigationOptions {
 /**
  * Core navigation state machine for the deck.
  * Manages slide index, step index, and step registration.
- * Integrates with the View Transitions API for animated slide changes.
+ * Uses React.startTransition so that <ViewTransition> components
+ * automatically animate during slide and step changes.
  */
 export function useNavigation({
   slideCount,
@@ -66,10 +65,12 @@ export function useNavigation({
     (newIndex: number, dir: "forward" | "backward") => {
       if (newIndex < 0 || newIndex >= slideCount) return;
 
-      setDirection(dir);
       onSlideChange?.(newIndex, dir);
 
-      startViewTransition(() => {
+      // Wrap in startTransition so React's <ViewTransition> components
+      // automatically trigger the browser View Transitions API
+      React.startTransition(() => {
+        setDirection(dir);
         setSlideIndex(newIndex);
         setStepIndex(0);
       });
@@ -79,9 +80,12 @@ export function useNavigation({
 
   const stepForward = React.useCallback(() => {
     if (stepIndex < stepCount) {
-      // Advance within current slide's steps
-      setStepIndex((s) => s + 1);
-      setDirection("forward");
+      // Advance within current slide's steps — also use startTransition
+      // so that appearing elements wrapped in <ViewTransition> animate
+      React.startTransition(() => {
+        setStepIndex((s) => s + 1);
+        setDirection("forward");
+      });
     } else {
       // Move to next slide
       navigateToSlide(slideIndex + 1, "forward");
@@ -91,8 +95,10 @@ export function useNavigation({
   const stepBackward = React.useCallback(() => {
     if (stepIndex > 0) {
       // Go back within current slide's steps
-      setStepIndex((s) => s - 1);
-      setDirection("backward");
+      React.startTransition(() => {
+        setStepIndex((s) => s - 1);
+        setDirection("backward");
+      });
     } else {
       // Move to previous slide
       navigateToSlide(slideIndex - 1, "backward");
@@ -102,18 +108,20 @@ export function useNavigation({
   const skipTo = React.useCallback(
     (target: { slideIndex: number; stepIndex?: number }) => {
       const dir = target.slideIndex >= slideIndex ? "forward" : "backward";
-      setDirection(dir);
 
       if (target.slideIndex !== slideIndex) {
-        startViewTransition(() => {
-          setSlideIndex(target.slideIndex);
-          setStepIndex(target.stepIndex ?? 0);
-        });
-      } else {
-        setStepIndex(target.stepIndex ?? 0);
+        onSlideChange?.(target.slideIndex, dir);
       }
+
+      React.startTransition(() => {
+        setDirection(dir);
+        if (target.slideIndex !== slideIndex) {
+          setSlideIndex(target.slideIndex);
+        }
+        setStepIndex(target.stepIndex ?? 0);
+      });
     },
-    [slideIndex],
+    [slideIndex, onSlideChange],
   );
 
   return {
