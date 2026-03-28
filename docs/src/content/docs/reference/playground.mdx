@@ -1,0 +1,105 @@
+---
+title: Playground
+description: Interactive editor to experiment with Pestacle slides.
+---
+
+import SlidePreview from "../../../components/SlidePreview.tsx";
+
+Try editing the code below to build slides interactively. Use **arrow keys** inside the preview to navigate between slides.
+
+:::note
+This playground uses `@gpichot/spectacle-deck` directly with JSX — not the MDX syntax you'd use in a real deck. The component API is the same, but slides are defined as React components instead of MDX blocks.
+:::
+
+## Basic Slides
+
+<SlidePreview client:load title="Edit slides — use arrow keys to navigate" />
+
+## With Components
+
+<SlidePreview
+  client:load
+  title="Timeline component example"
+  code={`import React from "react";
+import { Timeline, TimelineItem } from "@gpichot/spectacle-deck";
+
+function TitleSlide() {
+return (
+
+<>
+<h1>React History</h1>
+<p>A timeline of key React milestones.</p>
+</>
+);
+}
+
+function TimelineSlide() {
+return (
+
+<Timeline activeIndex={2}>
+<TimelineItem title="2013">React open sourced by Facebook.</TimelineItem>
+<TimelineItem title="2019">React Hooks released (v16.8).</TimelineItem>
+<TimelineItem title="2022">React 18 with Concurrent features.</TimelineItem>
+</Timeline>
+);
+}
+
+function EndSlide() {
+return (
+
+<>
+<h2>Thanks!</h2>
+<p>Try editing the timeline above.</p>
+</>
+);
+}
+
+export const metadata = { title: "React History" };
+export const slides = [
+  { metadata: { layout: "centered" }, slideComponent: TitleSlide },
+  { metadata: { layout: "centered" }, slideComponent: TimelineSlide },
+  { metadata: { layout: "centered" }, slideComponent: EndSlide },
+];
+`}
+/>
+
+## Quote Layout
+
+<SlidePreview
+  client:load
+  title="Quote layout example"
+  code={`import React from "react";
+
+function QuoteSlide() {
+return (
+
+<blockquote>
+<p>The best way to predict the future is to invent it.</p>
+</blockquote>
+);
+}
+
+function ContentSlide() {
+return (
+
+<>
+<h2>Key Takeaway</h2>
+<p>Build tools that empower creativity.</p>
+</>
+);
+}
+
+export const metadata = { title: "Inspiration" };
+export const slides = [
+  {
+    metadata: {
+      layout: "quote",
+      author: "Alan Kay",
+      sourceUrl: "https://en.wikipedia.org/wiki/Alan_Kay",
+    },
+    slideComponent: QuoteSlide,
+  },
+  { metadata: { layout: "centered" }, slideComponent: ContentSlide },
+];
+`}
+/>

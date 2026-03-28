@@ -1,0 +1,36 @@
+---
+title: Pestacle
+description: Build presentation slide decks from MDX files with React and Vite.
+template: splash
+hero:
+  tagline: Write slides in MDX. Get a full-featured presentation with layouts, animations, morph transitions, and keyboard navigation — powered by React and Vite.
+  actions:
+    - text: Get Started
+      link: /guides/getting-started/
+      icon: right-arrow
+    - text: View on GitHub
+      link: https://github.com/gpichot/pestacle
+      variant: minimal
+      icon: external
+---
+
+import { Card, CardGrid } from "@astrojs/starlight/components";
+
+<CardGrid>
+  <Card title="MDX Authoring" icon="pencil">
+    Write slides in Markdown with JSX components. Separate slides with `---`,
+    add layouts via frontmatter, import any React component.
+  </Card>
+  <Card title="11 Built-in Layouts" icon="setting">
+    Centered, quote, side-by-side code, full-bleed images, big numbers, two
+    columns, and more — all selectable via a single frontmatter field.
+  </Card>
+  <Card title="Morph Transitions" icon="rocket">
+    Animate elements across slides with the View Transitions API. Add `
+    {(morph = "name")}` to any element for smooth cross-slide animations.
+  </Card>
+  <Card title="Animation Components" icon="star">
+    FadeIn, ScaleIn, StaggerChildren, TypeWriter, AnimatedCounter, ProgressRing
+    — all trigger automatically when the slide appears.
+  </Card>
+</CardGrid>

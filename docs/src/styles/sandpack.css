@@ -1,0 +1,25 @@
+.sandpack-container {
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--sl-color-gray-5);
+}
+
+.sandpack-title {
+  padding: 0.5rem 1rem;
+  background: var(--sl-color-gray-6);
+  color: var(--sl-color-white);
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-bottom: 1px solid var(--sl-color-gray-5);
+}
+
+/* Override Sandpack's default sizing to fit Starlight layout */
+.sandpack-container .sp-layout {
+  border: none;
+  border-radius: 0;
+}
+
+.sandpack-container .sp-preview-iframe {
+  background: #2b135a;
+}
