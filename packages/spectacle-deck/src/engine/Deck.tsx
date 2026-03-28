@@ -193,7 +193,7 @@ export function Deck({
       {
         id: "overview",
         label: "Toggle Overview",
-        shortcut: isMac ? "⌘⇧O" : "Ctrl+Shift+O",
+        shortcut: "O",
         action: toggleOverview,
       },
       {
@@ -243,9 +243,8 @@ export function Deck({
     End: () => nav.skipTo({ slideIndex: slideCount - 1 }),
     // Fullscreen
     f: toggleFullscreen,
-    // Overview mode: Cmd+Shift+O (Mac) / Ctrl+Shift+O (other)
-    "Shift+Meta+O": toggleOverview,
-    "Shift+Ctrl+O": toggleOverview,
+    // Overview mode
+    o: toggleOverview,
     // Export mode: Cmd+Shift+E (Mac) / Ctrl+Shift+E (other)
     "Shift+Meta+E": openExportMode,
     "Shift+Ctrl+E": openExportMode,
@@ -301,30 +300,46 @@ export function Deck({
                 width: "100vw",
                 height: "100vh",
                 display: "flex",
-                flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
                 position: "relative",
                 overflow: "hidden",
+                background: "#000",
               }}
             >
-              {/* Slide content wrapped in ViewTransition for cross-slide morphing */}
-              <ViewTransition name="slide-content">
-                <div
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    padding: "2rem 3rem",
-                    boxSizing: "border-box",
-                  }}
-                >
-                  {Component && <Component />}
-                </div>
-              </ViewTransition>
+              {/* 16:9 constrained slide area */}
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  maxWidth: "calc(100vh * 16 / 9)",
+                  maxHeight: "calc(100vw * 9 / 16)",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  position: "relative",
+                  overflow: "hidden",
+                  background: theme.themeTokens.colors.tertiary ?? "#1a1a2e",
+                }}
+              >
+                {/* Slide content wrapped in ViewTransition for cross-slide morphing */}
+                <ViewTransition name="slide-content">
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: "2rem 3rem",
+                      boxSizing: "border-box",
+                    }}
+                  >
+                    {Component && <Component />}
+                  </div>
+                </ViewTransition>
 
               {/* Section title overlay */}
               <SectionTitle
@@ -347,24 +362,33 @@ export function Deck({
                   onSelectSlide={handleSelectSlide}
                   onClose={toggleOverview}
                 />
-              )}
 
-              {/* Export / Print mode */}
-              {exportMode && (
-                <ExportMode
-                  slides={deck.slides}
-                  variant={exportMode}
-                  onClose={closeExportMode}
-                />
-              )}
+                {/* Overview mode */}
+                {overviewMode && (
+                  <OverviewMode
+                    slides={deck.slides}
+                    onSelectSlide={handleSelectSlide}
+                    onClose={toggleOverview}
+                  />
+                )}
 
-              {/* Command palette */}
-              {commandPaletteOpen && (
-                <CommandPalette
-                  commands={commands}
-                  onClose={closeCommandPalette}
-                />
-              )}
+                {/* Export / Print mode */}
+                {exportMode && (
+                  <ExportMode
+                    slides={deck.slides}
+                    variant={exportMode}
+                    onClose={closeExportMode}
+                  />
+                )}
+
+                {/* Command palette */}
+                {commandPaletteOpen && (
+                  <CommandPalette
+                    commands={commands}
+                    onClose={closeCommandPalette}
+                  />
+                )}
+              </div>
             </div>
           </MDXProvider>
         </PestacleProvider>

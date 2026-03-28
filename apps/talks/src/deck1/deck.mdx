@@ -1,14 +1,15 @@
 ---
 author: Gabriel
+title: Boring Slides
 ---
 
 layout: mainSection
 
 ---
 
-# **Crossing the bridge** {morph="title"}
+# **Boring Slides** {morph="title"}
 
-_Seamless strategies for updating and migrating libraries_ {morph="subtitle"}
+_Write presentations in MDX. No fuss._ {morph="subtitle"}
 
 ---
 
@@ -17,89 +18,29 @@ section: "Introduction"
 
 ---
 
-import { Timeline, TimelineItem } from "@gpichot/spectacle-deck";
+import { ItemsColumn } from "@gpichot/spectacle-deck";
 
-### **History** {morph="subtitle"}
+## **What is Pestacle?** {morph="section-title"}
 
-<Timeline>
- <TimelineItem title="2011">
+<ItemsColumn>
 
-Created by Jordan Walke, a software engineer at Facebook.
+A presentation tool built on **MDX** and **Vite**
 
-  </TimelineItem>
-  <TimelineItem title="May 2013">
+Write slides in Markdown, use React components when you need them
 
-⚛️ **React** is open sourced.
+Themes, layouts, animations — all batteries included
 
-  </TimelineItem>
-  <TimelineItem title="March 2015">
-
-📱 React Native
-
-  </TimelineItem>
-  <TimelineItem title="Feb 2019">
-
-**v16.8:** React Hooks 🤘
-
-  </TimelineItem>
-  <TimelineItem title="Oct 2020">
-
-**v17**: 🤷‍♂️
-
-  </TimelineItem>
-  <TimelineItem title="March 2022">
-
-**v18:** Concurrent React
-
-  </TimelineItem>
-</Timeline>
-
----
-
-```jsx
-export default () => <div>Hello, world!</div>;
-```
-
-| foo  | bar   |
-| ---- | ----- |
-| baz  | qux   |
-| quux | corge |
+</ItemsColumn>
 
 ---
 
 layout: quote
-author: React
-sourceUrl: https://reactjs.org/
+author: Every developer
+sourceUrl: https://pestacle.dev
 
 ---
 
-> React is a JavaScript library for building user interfaces.
-
----
-
-layout: centered
-
----
-
-# **Why should you care?** {morph="heading"}
-
-$$ E = mc^2 $$
-
-:::notes{size=0.8em}
-
-Test
-
-:::
-
----
-
-layout: centered
-
----
-
-:qrcode[https://www.com/feedback]
-
-### **Feedback** {morph="heading"}
+> I just want to write slides in Markdown and have them look good.
 
 ---
 
@@ -108,460 +49,9 @@ section: "Layouts & Components"
 
 ---
 
-# **Section Layout** {morph="section-title"}
+# **How it works** {morph="section-title"}
 
-Showcase of remaining layouts and components {morph="section-desc"}
-
----
-
-layout: default3
-position: right
-
----
-
-# **Default3 Layout** {morph="section-title"}
-
-This layout features decorative hexagon patterns on one side and content on the other.
-
-It supports a `position` prop to place the hexagons on the left or right.
-
----
-
-layout: sidedCode
-
----
-
-## **Sided Code Layout** {morph="section-title"}
-
-Code is displayed on one side with text content on the other.
-
-```jsx
-function Greeting({ name }) {
-  return (
-    <div>
-      <h1>Hello, {name}!</h1>
-      <p>Welcome to Pestacle.</p>
-    </div>
-  );
-}
-```
-
----
-
-layout: sidedImage
-image: https://picsum.photos/800/600
-
----
-
-## **Sided Image Layout** {morph="section-title"}
-
-This layout places an image on one side and text content on the other.
-
-It supports custom aspect ratios and image positioning.
-
----
-
-layout: side
-
----
-
-import { Side } from "@gpichot/spectacle-deck";
-
-## **Side Layout** {morph="section-title"}
-
-Main content goes here on the primary column.
-
-You can add any markdown or components.
-
-<Side>
-
-### Sidebar
-
-Extra context or supplementary info goes in the side panel.
-
-</Side>
-
----
-
-layout: centered
-
----
-
-import { HorizontalList, HorizontalListItem } from "@gpichot/spectacle-deck";
-
-### **HorizontalList** {morph="section-title"}
-
-<HorizontalList columns={3}>
-  <HorizontalListItem title="Step 1">
-
-Define your slides in MDX format.
-
-  </HorizontalListItem>
-  <HorizontalListItem title="Step 2">
-
-Add layouts and components via frontmatter.
-
-  </HorizontalListItem>
-  <HorizontalListItem title="Step 3">
-
-Present with keyboard navigation.
-
-  </HorizontalListItem>
-</HorizontalList>
-
----
-
-layout: centered
-
----
-
-import { ItemsColumn } from "@gpichot/spectacle-deck";
-
-### **ItemsColumn** {morph="section-title"}
-
-<ItemsColumn>
-
-**First item** - appears on first step
-
-**Second item** - appears on second step
-
-**Third item** - appears on third step
-
-</ItemsColumn>
-
----
-
-layout: centered
-
----
-
-import { IconBox } from "@gpichot/spectacle-deck";
-
-### **IconBox** {morph="section-title"}
-
-<IconBox icon="📦">
-
-#### Package
-
-A box with an icon above text content.
-
-</IconBox>
-
----
-
-layout: centered
-
----
-
-import { Doc, DocItem, FilePane } from "@gpichot/spectacle-deck";
-
-### **Doc & FilePane** {morph="section-title"}
-
-<FilePane name="example.tsx">
-
-```tsx
-const App = () => <h1>Hello</h1>;
-export default App;
-```
-
-</FilePane>
-
-<Doc label="Documentation" link="https://example.com">
-  <DocItem label="React Docs" link="https://react.dev" />
-  <DocItem label="MDX Docs" link="https://mdxjs.com" />
-</Doc>
-
----
-
-layout: fullImage
-image: https://picsum.photos/1920/1080
-dim: 0.5
-position: bottom
-
----
-
-## **Full Image Layout** {morph="section-title"}
-
-A dramatic full-bleed background image with text overlay.
-Perfect for visual impact slides.
-
----
-
-layout: bigNumber
-value: "2.4M"
-
----
-
-## Downloads
-
-Weekly npm downloads across the React ecosystem keep growing every year.
-
----
-
-layout: section
-section: "Morph Showcase"
-
----
-
-# **Morph Showcase** {morph="section-title"}
-
-Elements that seamlessly animate between slides {morph="section-desc"}
-
----
-
-layout: centered
-
----
-
-import { Morph, MorphImage } from "@gpichot/spectacle-deck";
-
-### **Morph: Shape Shifting** {morph="section-title"}
-
-<Morph
-  name="demo-box"
-  style={{
-    width: 200,
-    height: 200,
-    borderRadius: 16,
-    background: "#F530EC",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "#fff",
-    fontSize: "1.5rem",
-    fontWeight: "bold",
-  }}
->
-  Hello
-</Morph>
-
-Navigate forward to see this box morph...
-
----
-
-layout: centered
-
----
-
-### **Morph: Repositioned & Reshaped** {morph="section-title"}
-
-<div style={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
-  <Morph
-    name="demo-box"
-    style={{
-      width: 200,
-      height: 200,
-      borderRadius: 100,
-      background: "#22d3ee",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      color: "#000",
-      fontSize: "2rem",
-      fontWeight: "bold",
-    }}
-  >
-    Hello
-  </Morph>
-</div>
-
-Same size, but now a circle — moved to the right with a new color!
-
----
-
-layout: centered
-
----
-
-### **Morph: Final Form** {morph="section-title"}
-
-<Morph
-  name="demo-box"
-  style={{
-    width: 200,
-    height: 200,
-    borderRadius: 16,
-    background: "linear-gradient(135deg, #F530EC, #6366f1)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "#fff",
-    fontSize: "1.2rem",
-    fontWeight: 500,
-    textAlign: "center",
-  }}
->
-  Gradient!
-</Morph>
-
----
-
-layout: centered
-
----
-
-### **Morph: Card Layout Shift** {morph="section-title"}
-
-<div style={{ display: "flex", gap: "2rem", justifyContent: "center" }}>
-
-<Morph name="card-a" style={{ width: 200, height: 120, borderRadius: 16, background: "#F530EC", padding: "1.5rem", display: "flex", flexDirection: "column", justifyContent: "flex-end", color: "#fff" }}>
-
-**React** {morph="card-a-title"}
-
-UI Library
-
-</Morph>
-
-<Morph name="card-b" style={{ width: 200, height: 120, borderRadius: 16, background: "#22d3ee", padding: "1.5rem", display: "flex", flexDirection: "column", justifyContent: "flex-end", color: "#000" }}>
-
-**Vite** {morph="card-b-title"}
-
-Build Tool
-
-</Morph>
-
-<Morph name="card-c" style={{ width: 200, height: 120, borderRadius: 16, background: "#6366f1", padding: "1.5rem", display: "flex", flexDirection: "column", justifyContent: "flex-end", color: "#fff" }}>
-
-**MDX** {morph="card-c-title"}
-
-Authoring
-
-</Morph>
-
-</div>
-
----
-
-layout: centered
-
----
-
-### **Morph: Cards Rearranged** {morph="section-title"}
-
-<Morph name="card-b" style={{ width: "70%", height: 120, borderRadius: 12, background: "#22d3ee", padding: "0 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", color: "#000", marginBottom: "1rem" }}>
-
-**Vite** {morph="card-b-title"}
-
-Lightning-fast HMR and build pipeline
-
-</Morph>
-
-<Morph name="card-a" style={{ width: "70%", height: 120, borderRadius: 12, background: "#F530EC", padding: "0 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", color: "#fff", marginBottom: "1rem" }}>
-
-**React** {morph="card-a-title"}
-
-The UI layer — components, hooks, and rendering
-
-</Morph>
-
-<Morph name="card-c" style={{ width: "70%", height: 120, borderRadius: 12, background: "#6366f1", padding: "0 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", color: "#fff" }}>
-
-**MDX** {morph="card-c-title"}
-
-Write slides in Markdown + JSX
-
-</Morph>
-
----
-
-layout: centered
-
----
-
-### **Morph Directive: Heading Styles** {morph="section-title"}
-
-# **Small to Big** {morph="morph-heading-demo"}
-
-This heading will change style on the next slide.
-
----
-
-layout: centered
-
----
-
-## **Small to Big** {morph="morph-heading-demo"}
-
-The heading morphed from `h1` to `h2` — the browser animates the size change.
-
-And here's a paragraph that morphs too: {morph="morph-paragraph"}
-
----
-
-layout: centered
-
----
-
-### **Small to Big** {morph="morph-heading-demo"}
-
-Now it's an `h3` — each navigation step smoothly interpolates.
-
-And here's a paragraph that morphs too: {morph="morph-paragraph"}
-
-It kept its position while the heading shrank above it.
-
----
-
-layout: centered
-
----
-
-### **MorphImage: Moving Photos** {morph="section-title"}
-
-<div style={{ display: "flex", gap: "2rem", justifyContent: "center" }}>
-
-<MorphImage
-  name="photo-1"
-  src="https://picsum.photos/seed/morph1/300/200"
-  style={{ borderRadius: 12, width: 280, height: 187 }}
-/>
-
-<MorphImage
-  name="photo-2"
-  src="https://picsum.photos/seed/morph2/300/200"
-  style={{ borderRadius: 12, width: 280, height: 187 }}
-/>
-
-</div>
-
-Two images side by side — watch them swap...
-
----
-
-layout: centered
-
----
-
-### **MorphImage: Swapped** {morph="section-title"}
-
-<div style={{ display: "flex", gap: "2rem", justifyContent: "center" }}>
-
-<MorphImage
-  name="photo-2"
-  src="https://picsum.photos/seed/morph2/300/200"
-  style={{ borderRadius: 50, width: 280, height: 187 }}
-/>
-
-<MorphImage
-  name="photo-1"
-  src="https://picsum.photos/seed/morph1/300/200"
-  style={{ borderRadius: 50, width: 280, height: 187 }}
-/>
-
-</div>
-
-The images swapped positions and changed border radius!
-
----
-
-layout: section
-section: "Animations & Transitions"
-
----
-
-# **Animations & Transitions** {morph="section-title"}
-
-New animation components and slide transitions {morph="section-desc"}
+From MDX to rendered slides {morph="section-desc"}
 
 ---
 
@@ -571,89 +61,222 @@ layout: centered
 
 import { Mermaid } from "@gpichot/spectacle-deck";
 
-### **Mermaid Diagram** {morph="section-title"}
+### **The Pipeline** {morph="section-title"}
 
 <Mermaid
   chart={`graph LR
-  A[MDX File] --> B[Vite Plugin]
-  B --> C[Remark/Rehype]
+  A[deck.mdx] --> B[Vite Plugin]
+  B --> C[Remark / Rehype]
   C --> D[React Components]
-  D --> E[Spectacle Deck]
+  D --> E[Presentation]
 `}
 />
 
 ---
 
+layout: sidedCode
+
+---
+
+## **Just MDX** {morph="section-title"}
+
+Slides are separated by `---`. Add a layout via frontmatter. Drop in components when Markdown isn't enough.
+
+```mdx
+---
+layout: centered
+---
+
+# Hello
+
+<MyComponent />
+```
+
+---
+
+layout: centered
+
+---
+
+import { HorizontalList, HorizontalListItem } from "@gpichot/spectacle-deck";
+
+### **Three steps** {morph="section-title"}
+
+<HorizontalList columns={3}>
+  <HorizontalListItem title="1. Write">
+
+Author your slides in `.mdx` files with familiar Markdown syntax.
+
+  </HorizontalListItem>
+  <HorizontalListItem title="2. Configure">
+
+Pick a theme and layouts in `pestacle.config.ts`.
+
+  </HorizontalListItem>
+  <HorizontalListItem title="3. Present">
+
+`pnpm dev` — navigate with arrow keys, present in fullscreen.
+
+  </HorizontalListItem>
+</HorizontalList>
+
+---
+
+layout: section
+
+---
+
+# **Layouts** {morph="section-title"}
+
+Pick a layout per slide via frontmatter {morph="section-desc"}
+
+---
+
+layout: sidedImage
+image: https://picsum.photos/800/600
+
+---
+
+## **sidedImage** {morph="section-title"}
+
+An image on one side, text on the other. Great for visual storytelling.
+
+Just set `layout: sidedImage` and an `image` URL in the frontmatter.
+
+---
+
+layout: side
+
+---
+
+import { Side } from "@gpichot/spectacle-deck";
+
+## **side** {morph="section-title"}
+
+A two-column layout with a main area and a sidebar.
+
+<Side>
+
+### Sidebar
+
+Useful for supplementary context, links, or notes alongside the main content.
+
+</Side>
+
+---
+
+layout: fullImage
+image: https://picsum.photos/1920/1080
+dim: 0.5
+
+---
+
+## **fullImage** {morph="section-title"}
+
+Full-bleed background with a dim overlay for readable text on top.
+
+---
+
+layout: bigNumber
+value: "0"
+
+---
+
+## Config files to write
+
+Pestacle generates `index.html` and the app entrypoint for you. Just write slides.
+
+---
+
+layout: section
+section: "Morph Showcase"
+
+---
+
+# **Animations** {morph="section-title"}
+
+Smooth transitions between slides {morph="section-desc"}
+
+---
+
+layout: centered
+
+---
+
+import { Morph } from "@gpichot/spectacle-deck";
+
+### **Morph** {morph="section-title"}
+
+<Morph
+  name="demo-box"
+  style={{
+    width: 200,
+    height: 200,
+    borderRadius: 16,
+    background: "var(--color-secondary)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+    fontSize: "1.5rem",
+    fontWeight: "bold",
+  }}
+>
+  Pestacle
+</Morph>
+
+Elements with the same morph name animate between slides.
+
+---
+
+layout: centered
+
+---
+
+### **Morph** {morph="section-title"}
+
+<div style={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
+  <Morph
+    name="demo-box"
+    style={{
+      width: 300,
+      height: 120,
+      borderRadius: 60,
+      background: "var(--color-primary)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "#fff",
+      fontSize: "2rem",
+      fontWeight: "bold",
+    }}
+  >
+    Pestacle
+  </Morph>
+</div>
+
+Shape, position, and color — all interpolated by the browser.
+
+---
+
 layout: centered
 transition: none
 
 ---
 
-import { FadeIn } from "@gpichot/spectacle-deck";
+import { FadeIn, StaggerChildren } from "@gpichot/spectacle-deck";
 
-### **FadeIn** {morph="section-title"}
-
-<FadeIn>
-
-This content fades in from below.
-
-</FadeIn>
-
-<FadeIn direction="left" delay={300}>
-
-This fades in from the left with a delay.
-
-</FadeIn>
-
-<FadeIn direction="right" delay={600}>
-
-And this from the right.
-
-</FadeIn>
-
----
-
-layout: centered
-transition: none
-
----
-
-import { ScaleIn } from "@gpichot/spectacle-deck";
-
-### **ScaleIn** {morph="section-title"}
-
-<ScaleIn>
-
-This content scales in from zero.
-
-</ScaleIn>
-
-<ScaleIn delay={400} from={0.5}>
-
-This scales from 50% with a delay.
-
-</ScaleIn>
-
----
-
-layout: centered
-transition: none
-
----
-
-import { StaggerChildren } from "@gpichot/spectacle-deck";
-
-### **StaggerChildren** {morph="section-title"}
+### **Stagger & Fade** {morph="section-title"}
 
 <StaggerChildren stagger={150} direction="up">
 
-**First item** staggered in
+**FadeIn** — reveal content from any direction
 
-**Second item** staggered in
+**StaggerChildren** — items appear one by one
 
-**Third item** staggered in
+**ScaleIn** — pop elements into view
 
-**Fourth item** staggered in
+**TypeWriter** — type out text character by character
 
 </StaggerChildren>
 
@@ -664,24 +287,9 @@ transition: none
 
 ---
 
-import { TypeWriter } from "@gpichot/spectacle-deck";
-
-### **TypeWriter** {morph="section-title"}
-
-<TypeWriter speed={40}>
-  Hello, I am typing this out character by character!
-</TypeWriter>
-
----
-
-layout: centered
-transition: none
-
----
-
 import { AnimatedCounter, ProgressRing } from "@gpichot/spectacle-deck";
 
-### **AnimatedCounter & ProgressRing** {morph="section-title"}
+### **Counters & Progress** {morph="section-title"}
 
 <div style={{ display: "flex", gap: "4rem", alignItems: "center", justifyContent: "center" }}>
 
@@ -694,16 +302,16 @@ import { AnimatedCounter, ProgressRing } from "@gpichot/spectacle-deck";
     color: "var(--color-secondary)",
   }}
 >
-  <AnimatedCounter to={42} duration={2000} />
+  <AnimatedCounter to={5} duration={2000} />
 </div>
 
-Releases
+Built-in themes
 
 </div>
 
-<ProgressRing value={87} size={140} strokeWidth={10}>
+<ProgressRing value={100} size={140} strokeWidth={10}>
 
-<div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>87%</div>
+<div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>MDX</div>
 
 </ProgressRing>
 
@@ -716,11 +324,54 @@ Releases
     color: "var(--color-secondary)",
   }}
 >
-  <AnimatedCounter to={1500} duration={2000} prefix="+" suffix="ms" />
+  <AnimatedCounter to={9} duration={2000} />
 </div>
 
-Saved
+Layouts
 
 </div>
 
 </div>
+
+---
+
+layout: centered
+
+---
+
+import { Timeline, TimelineItem } from "@gpichot/spectacle-deck";
+
+### **Timeline** {morph="section-title"}
+
+<Timeline>
+  <TimelineItem title="Write">
+
+Author slides in MDX — Markdown you already know.
+
+  </TimelineItem>
+  <TimelineItem title="Style">
+
+Pick a theme, choose layouts, add components.
+
+  </TimelineItem>
+  <TimelineItem title="Present">
+
+Keyboard navigation, fullscreen, overview mode.
+
+  </TimelineItem>
+  <TimelineItem title="Ship">
+
+Static build with `pnpm build`. Host anywhere.
+
+  </TimelineItem>
+</Timeline>
+
+---
+
+layout: centered
+
+---
+
+:qrcode[https://github.com/gpichot/pestacle]
+
+### **github.com/gpichot/pestacle** {morph="heading"}
