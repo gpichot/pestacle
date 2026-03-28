@@ -1,5 +1,7 @@
 // Core engine
 
+export type { AppearProps } from "./Appear";
+export { Appear } from "./Appear";
 export type { Command } from "./CommandPalette";
 export { CommandPalette } from "./CommandPalette";
 export type { DeckType, SlideType } from "./Deck";

@@ -23,6 +23,7 @@ export { ItemsColumn } from "./components/ItemsColumn";
 export { Mermaid } from "./components/Mermaid";
 export { default as Timeline, TimelineItem } from "./components/Timeline";
 export type {
+  AppearProps,
   DeckState,
   DeckType,
   MorphProps,
@@ -36,6 +37,7 @@ export type {
 // Transitions
 // Navigation hooks
 export {
+  Appear,
   Deck,
   DeckContext,
   dropTransition,
