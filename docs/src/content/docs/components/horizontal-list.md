@@ -4,7 +4,18 @@ description: A grid of items revealed step by step.
 ---
 
 `HorizontalList` displays items in a responsive grid, revealing them one at a
-time as you step through the slide.
+time.
+
+```
+ Step 1:                     Step 2:                     Step 3:
+ ┌────────┐                  ┌────────┐ ┌────────┐      ┌────────┐ ┌────────┐ ┌────────┐
+ │  ⬡ 1   │                  │  ⬡ 1   │ │  ⬡ 2   │      │  ⬡ 1   │ │  ⬡ 2   │ │  ⬡ 3   │
+ │ Step 1  │                  │ Step 1  │ │ Step 2  │      │ Step 1  │ │ Step 2  │ │ Step 3  │
+ │ Define  │                  │ Define  │ │ Add     │      │ Define  │ │ Add     │ │Present │
+ │ slides  │                  │ slides  │ │ layouts │      │ slides  │ │ layouts │ │  it!   │
+ └────────┘                  └────────┘ └────────┘      └────────┘ └────────┘ └────────┘
+                              (faded)                     (faded)    (faded)
+```
 
 ## Usage
 
@@ -26,21 +37,14 @@ import { HorizontalList, HorizontalListItem } from "@gpichot/spectacle-deck";
 
 ## Props
 
-### `HorizontalList`
+### HorizontalList
 
 | Prop      | Type     | Default | Description            |
 | --------- | -------- | ------- | ---------------------- |
 | `columns` | `number` | `3`     | Number of grid columns |
 
-### `HorizontalListItem`
+### HorizontalListItem
 
-| Prop       | Type        | Required | Description                            |
-| ---------- | ----------- | -------- | -------------------------------------- |
-| `title`    | `string`    | Yes      | Title displayed at the top of the item |
-| `children` | `ReactNode` | Yes      | Content of the item                    |
-
-## Behavior
-
-- Items appear one by one using the built-in `Stepper`
-- The current item has full opacity; previously revealed items fade to 0.7
-- Each item shows a numbered hexagon badge
+| Prop    | Type     | Description                            |
+| ------- | -------- | -------------------------------------- |
+| `title` | `string` | Title displayed at the top of the item |

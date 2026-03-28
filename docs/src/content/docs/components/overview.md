@@ -52,7 +52,7 @@ import {
 
 These components are used inside specific layouts to mark content regions:
 
-| Component | Used With                                  |
-| --------- | ------------------------------------------ |
-| `Side`    | [`side` layout](/layouts/side/)            |
-| `Column`  | [`twoColumn` layout](/layouts/two-column/) |
+| Component | Used With                                           |
+| --------- | --------------------------------------------------- |
+| `Side`    | [`side` layout](/reference/layouts/#side)           |
+| `Column`  | [`twoColumn` layout](/reference/layouts/#twocolumn) |

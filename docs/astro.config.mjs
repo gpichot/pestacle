@@ -29,7 +29,7 @@ export default defineConfig({
         },
         {
           label: "Layouts",
-          autogenerate: { directory: "layouts" },
+          items: [{ label: "Built-in Layouts", slug: "reference/layouts" }],
         },
         {
           label: "Components",

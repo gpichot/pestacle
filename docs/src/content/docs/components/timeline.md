@@ -3,8 +3,31 @@ title: Timeline
 description: A stepped horizontal timeline component.
 ---
 
-`Timeline` displays a horizontal sequence of events that are revealed one at a
-time as you step through the slide.
+`Timeline` displays a horizontal sequence of events revealed one at a time as
+you step through the slide.
+
+```
+ Step 1:
+ ┌─────────┐
+ │  2019   │
+ │ ⬡───────┤ (line animating...)
+ │ Hooks!  │
+ └─────────┘
+
+ Step 2:
+ ┌─────────┐         ┌─────────┐
+ │  2019   │ (faded) │  2022   │
+ │ ⬡───────┼─────────┤ ⬡       │
+ │ Hooks!  │         │ React18 │
+ └─────────┘         └─────────┘
+
+ Step 3: (all visible, past items faded)
+ ┌─────────┐         ┌─────────┐         ┌─────────┐
+ │  2019   │ (faded) │  2022   │ (faded) │  2024   │
+ │ ⬡───────┼─────────┤ ⬡───────┼─────────┤ ⬡       │
+ │ Hooks!  │         │ React18 │         │  RSC    │
+ └─────────┘         └─────────┘         └─────────┘
+```
 
 ## Usage
 
@@ -18,28 +41,18 @@ import { Timeline, TimelineItem } from "@gpichot/spectacle-deck";
 </Timeline>
 ```
 
-## How It Works
-
-- Each `TimelineItem` is revealed one step at a time using the built-in
-  `Stepper`
-- Past items are shown at reduced opacity (0.5)
-- The current item is fully opaque
-- Future items are hidden
-- A connecting line animates between items
-
-Press the **right arrow** to advance through items, then to the next slide.
+Press **right arrow** to reveal each item, then to advance to the next slide.
 
 ## Props
 
-### `Timeline`
+### Timeline
 
 | Prop          | Type     | Default | Description                                              |
 | ------------- | -------- | ------- | -------------------------------------------------------- |
 | `activeIndex` | `number` | —       | Manually control which item is active (bypasses stepper) |
 
-### `TimelineItem`
+### TimelineItem
 
-| Prop       | Type        | Required | Description                                        |
-| ---------- | ----------- | -------- | -------------------------------------------------- |
-| `title`    | `string`    | Yes      | Label shown above the timeline node (e.g., a year) |
-| `children` | `ReactNode` | Yes      | Content shown below the timeline node              |
+| Prop    | Type     | Description                                        |
+| ------- | -------- | -------------------------------------------------- |
+| `title` | `string` | Label shown above the timeline node (e.g., a year) |

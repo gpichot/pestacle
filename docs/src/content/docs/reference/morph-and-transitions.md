@@ -123,13 +123,10 @@ The element smoothly morphs its shape, color, and position.
 
 ### Morph Props
 
-| Prop        | Type                          | Default | Description                                  |
-| ----------- | ----------------------------- | ------- | -------------------------------------------- |
-| `name`      | `string`                      | —       | Unique identifier (must match across slides) |
-| `as`        | `keyof JSX.IntrinsicElements` | `"div"` | HTML tag to render                           |
-| `style`     | `CSSProperties`               | —       | Inline styles                                |
-| `className` | `string`                      | —       | CSS class                                    |
-| `children`  | `ReactNode`                   | —       | Content                                      |
+| Prop   | Type                          | Default | Description                                  |
+| ------ | ----------------------------- | ------- | -------------------------------------------- |
+| `name` | `string`                      | —       | Unique identifier (must match across slides) |
+| `as`   | `keyof JSX.IntrinsicElements` | `"div"` | HTML tag to render                           |
 
 ---
 
@@ -149,13 +146,11 @@ import { MorphImage } from "@gpichot/spectacle-deck";
 
 ### MorphImage Props
 
-| Prop        | Type            | Default | Description       |
-| ----------- | --------------- | ------- | ----------------- |
-| `name`      | `string`        | —       | Unique identifier |
-| `src`       | `string`        | —       | Image URL         |
-| `alt`       | `string`        | `""`    | Alt text          |
-| `style`     | `CSSProperties` | —       | Inline styles     |
-| `className` | `string`        | —       | CSS class         |
+| Prop   | Type     | Default | Description       |
+| ------ | -------- | ------- | ----------------- |
+| `name` | `string` | —       | Unique identifier |
+| `src`  | `string` | —       | Image URL         |
+| `alt`  | `string` | `""`    | Alt text          |
 
 ---
 

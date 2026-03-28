@@ -3,8 +3,8 @@ title: Animations
 description: Built-in animation components for slide content.
 ---
 
-Pestacle includes animation components powered by `react-spring`. All animations
-trigger when the element enters the viewport (i.e., when the slide is shown).
+Animation components powered by `react-spring`. All trigger when the element
+enters the viewport (when the slide is shown).
 
 :::tip Set `transition: none` in the slide frontmatter when using animations to
 avoid competing with slide-level transitions. :::
@@ -12,6 +12,16 @@ avoid competing with slide-level transitions. :::
 ## FadeIn
 
 Fades content in from a direction.
+
+```
+ Before:              After:
+ ┌──────────┐         ┌──────────┐
+ │           │   →     │  Hello!  │
+ │    ↑      │         │          │
+ │  (below)  │         │          │
+ └──────────┘         └──────────┘
+   opacity: 0           opacity: 1
+```
 
 ```mdx
 import { FadeIn } from "@gpichot/spectacle-deck";
@@ -23,18 +33,28 @@ import { FadeIn } from "@gpichot/spectacle-deck";
 </FadeIn>
 ```
 
-| Prop        | Type                                                    | Default | Description                  |
-| ----------- | ------------------------------------------------------- | ------- | ---------------------------- |
-| `direction` | `"up"` \| `"down"` \| `"left"` \| `"right"` \| `"none"` | `"up"`  | Direction to fade in from    |
-| `distance`  | `number`                                                | `20`    | Translate distance in pixels |
-| `delay`     | `number`                                                | `0`     | Delay in ms                  |
-| `duration`  | `number`                                                | `400`   | Animation duration in ms     |
+| Prop        | Type                                                    | Default | Description              |
+| ----------- | ------------------------------------------------------- | ------- | ------------------------ |
+| `direction` | `"up"` \| `"down"` \| `"left"` \| `"right"` \| `"none"` | `"up"`  | Direction to fade from   |
+| `distance`  | `number`                                                | `20`    | Translate distance in px |
+| `delay`     | `number`                                                | `0`     | Delay in ms              |
+| `duration`  | `number`                                                | `400`   | Duration in ms           |
 
 ---
 
 ## ScaleIn
 
 Scales content in from a starting scale value.
+
+```
+ Before:              After:
+ ┌──────────┐         ┌──────────┐
+ │           │   →     │ ┌──────┐ │
+ │    · ·    │         │ │ Hello│ │
+ │           │         │ └──────┘ │
+ └──────────┘         └──────────┘
+   scale: 0             scale: 1
+```
 
 ```mdx
 import { ScaleIn } from "@gpichot/spectacle-deck";
@@ -46,17 +66,27 @@ import { ScaleIn } from "@gpichot/spectacle-deck";
 </ScaleIn>
 ```
 
-| Prop       | Type     | Default | Description                                    |
-| ---------- | -------- | ------- | ---------------------------------------------- |
-| `from`     | `number` | `0`     | Initial scale (0 = invisible, 0.5 = half size) |
-| `delay`    | `number` | `0`     | Delay in ms                                    |
-| `duration` | `number` | `400`   | Animation duration in ms                       |
+| Prop       | Type     | Default | Description                               |
+| ---------- | -------- | ------- | ----------------------------------------- |
+| `from`     | `number` | `0`     | Initial scale (0 = invisible, 0.5 = half) |
+| `delay`    | `number` | `0`     | Delay in ms                               |
+| `duration` | `number` | `400`   | Duration in ms                            |
 
 ---
 
 ## StaggerChildren
 
 Animates each direct child sequentially with a stagger delay.
+
+```
+ t=0ms    t=150ms   t=300ms   t=450ms
+ ┌─────┐  ┌─────┐  ┌─────┐  ┌─────┐
+ │ A   │  │ A   │  │ A   │  │ A   │
+ │     │  │ B   │  │ B   │  │ B   │
+ │     │  │     │  │ C   │  │ C   │
+ │     │  │     │  │     │  │ D   │
+ └─────┘  └─────┘  └─────┘  └─────┘
+```
 
 ```mdx
 import { StaggerChildren } from "@gpichot/spectacle-deck";
@@ -72,19 +102,26 @@ import { StaggerChildren } from "@gpichot/spectacle-deck";
 </StaggerChildren>
 ```
 
-| Prop        | Type                                                    | Default | Description                      |
-| ----------- | ------------------------------------------------------- | ------- | -------------------------------- |
-| `stagger`   | `number`                                                | `100`   | Delay between each child in ms   |
-| `delay`     | `number`                                                | `0`     | Initial delay before first child |
-| `duration`  | `number`                                                | `400`   | Duration per child in ms         |
-| `direction` | `"up"` \| `"down"` \| `"left"` \| `"right"` \| `"none"` | `"up"`  | Direction to fade from           |
-| `distance`  | `number`                                                | `20`    | Translate distance in pixels     |
+| Prop        | Type                                                    | Default | Description                  |
+| ----------- | ------------------------------------------------------- | ------- | ---------------------------- |
+| `stagger`   | `number`                                                | `100`   | Delay between children in ms |
+| `delay`     | `number`                                                | `0`     | Initial delay before first   |
+| `duration`  | `number`                                                | `400`   | Duration per child in ms     |
+| `direction` | `"up"` \| `"down"` \| `"left"` \| `"right"` \| `"none"` | `"up"`  | Direction to fade from       |
+| `distance`  | `number`                                                | `20`    | Translate distance in px     |
 
 ---
 
 ## TypeWriter
 
-Types out text character by character.
+Types out text character by character with a blinking cursor.
+
+```
+ t=0ms:    |
+ t=200ms:  Hell|
+ t=400ms:  Hello, wo|
+ t=600ms:  Hello, world!█  (cursor blinks)
+```
 
 ```mdx
 import { TypeWriter } from "@gpichot/spectacle-deck";
@@ -94,17 +131,24 @@ import { TypeWriter } from "@gpichot/spectacle-deck";
 </TypeWriter>
 ```
 
-| Prop     | Type      | Default | Description                      |
-| -------- | --------- | ------- | -------------------------------- |
-| `speed`  | `number`  | `50`    | Milliseconds per character       |
-| `delay`  | `number`  | `0`     | Delay before typing starts in ms |
-| `cursor` | `boolean` | `true`  | Show a blinking cursor           |
+| Prop     | Type      | Default | Description                |
+| -------- | --------- | ------- | -------------------------- |
+| `speed`  | `number`  | `50`    | Milliseconds per character |
+| `delay`  | `number`  | `0`     | Delay before typing starts |
+| `cursor` | `boolean` | `true`  | Show a blinking cursor     |
 
 ---
 
 ## AnimatedCounter
 
 Animates a number from one value to another.
+
+```
+ t=0ms:     0        t=500ms:   21        t=1500ms:  42
+ ┌───────┐           ┌───────┐            ┌───────┐
+ │   0   │    →      │  21   │    →       │  42   │
+ └───────┘           └───────┘            └───────┘
+```
 
 ```mdx
 import { AnimatedCounter } from "@gpichot/spectacle-deck";
@@ -114,21 +158,29 @@ import { AnimatedCounter } from "@gpichot/spectacle-deck";
 <AnimatedCounter to={1500} prefix="+" suffix="ms" />
 ```
 
-| Prop       | Type     | Default | Description                          |
-| ---------- | -------- | ------- | ------------------------------------ |
-| `to`       | `number` | —       | Target number                        |
-| `from`     | `number` | `0`     | Starting number                      |
-| `duration` | `number` | `1500`  | Animation duration in ms             |
-| `delay`    | `number` | `0`     | Delay in ms                          |
-| `decimals` | `number` | `0`     | Decimal places                       |
-| `prefix`   | `string` | `""`    | Text before the number (e.g., `"$"`) |
-| `suffix`   | `string` | `""`    | Text after the number (e.g., `"%"`)  |
+| Prop       | Type     | Default | Description               |
+| ---------- | -------- | ------- | ------------------------- |
+| `to`       | `number` | —       | Target number             |
+| `from`     | `number` | `0`     | Starting number           |
+| `duration` | `number` | `1500`  | Duration in ms            |
+| `delay`    | `number` | `0`     | Delay in ms               |
+| `decimals` | `number` | `0`     | Decimal places            |
+| `prefix`   | `string` | `""`    | Text before (e.g., `"$"`) |
+| `suffix`   | `string` | `""`    | Text after (e.g., `"%"`)  |
 
 ---
 
 ## ProgressRing
 
-An animated circular progress indicator.
+An animated circular progress indicator with optional center content.
+
+```
+       ╭───╮
+      ╱ 87% ╲
+     │       │  ← animated stroke
+      ╲     ╱
+       ╰───╯
+```
 
 ```mdx
 import { ProgressRing } from "@gpichot/spectacle-deck";
@@ -138,30 +190,40 @@ import { ProgressRing } from "@gpichot/spectacle-deck";
 </ProgressRing>
 ```
 
-| Prop          | Type        | Default                    | Description                       |
-| ------------- | ----------- | -------------------------- | --------------------------------- |
-| `value`       | `number`    | —                          | Progress from 0 to 100            |
-| `size`        | `number`    | `120`                      | Ring size in pixels               |
-| `strokeWidth` | `number`    | `8`                        | Stroke width in pixels            |
-| `color`       | `string`    | `"var(--color-secondary)"` | Ring color                        |
-| `trackColor`  | `string`    | `"rgba(255,255,255,0.1)"`  | Background track color            |
-| `duration`    | `number`    | `1000`                     | Animation duration in ms          |
-| `delay`       | `number`    | `0`                        | Delay in ms                       |
-| `children`    | `ReactNode` | —                          | Content in the center of the ring |
+| Prop          | Type     | Default                    | Description            |
+| ------------- | -------- | -------------------------- | ---------------------- |
+| `value`       | `number` | —                          | Progress from 0 to 100 |
+| `size`        | `number` | `120`                      | Ring size in pixels    |
+| `strokeWidth` | `number` | `8`                        | Stroke width in pixels |
+| `color`       | `string` | `"var(--color-secondary)"` | Ring color             |
+| `trackColor`  | `string` | `"rgba(255,255,255,0.1)"`  | Background track color |
+| `duration`    | `number` | `1000`                     | Duration in ms         |
+| `delay`       | `number` | `0`                        | Delay in ms            |
 
 ---
 
 ## Spotlight
 
-Dims the entire slide except for the wrapped content. Useful for drawing
-attention to a specific element.
+Dims the entire slide except for the wrapped content. Draws attention to a
+specific element.
+
+```
+ ┌──────────────────────────────────┐
+ │ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+ │ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+ │ ▒▒▒▒▒ ┌─────────────┐ ▒▒▒▒▒▒▒▒ │
+ │ ▒▒▒▒▒ │  SPOTLIGHT   │ ▒▒▒▒▒▒▒▒ │
+ │ ▒▒▒▒▒ │  content     │ ▒▒▒▒▒▒▒▒ │
+ │ ▒▒▒▒▒ └─────────────┘ ▒▒▒▒▒▒▒▒ │
+ │ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+ └──────────────────────────────────┘
+   dimmed overlay (opacity: 0.7)
+```
 
 ```mdx
 import { Spotlight } from "@gpichot/spectacle-deck";
 
-<Spotlight>
-  This content is highlighted while the rest of the slide is dimmed.
-</Spotlight>
+<Spotlight>This content is highlighted while the rest is dimmed.</Spotlight>
 ```
 
 | Prop         | Type      | Default | Description                          |

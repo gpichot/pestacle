@@ -6,6 +6,15 @@ description: Display documentation links in a styled block.
 `Doc` and `DocItem` create a styled documentation links block — useful for
 pointing audiences to resources.
 
+```
+ ┌──────────────────────────────┐
+ │  ▸ React Docs                │
+ │  ▸ MDX Docs                  │
+ │                              │
+ │  📄 Documentation ↗          │
+ └──────────────────────────────┘
+```
+
 ## Usage
 
 ```mdx
@@ -17,21 +26,20 @@ import { Doc, DocItem } from "@gpichot/spectacle-deck";
 </Doc>
 ```
 
+All links open in a new tab.
+
 ## Props
 
-### `Doc`
+### Doc
 
-| Prop       | Type        | Required | Description        |
-| ---------- | ----------- | -------- | ------------------ |
-| `label`    | `string`    | Yes      | Main link label    |
-| `link`     | `string`    | Yes      | Main link URL      |
-| `children` | `ReactNode` | No       | `DocItem` children |
+| Prop    | Type     | Description     |
+| ------- | -------- | --------------- |
+| `label` | `string` | Main link label |
+| `link`  | `string` | Main link URL   |
 
-### `DocItem`
+### DocItem
 
-| Prop    | Type     | Required | Description |
-| ------- | -------- | -------- | ----------- |
-| `label` | `string` | Yes      | Link text   |
-| `link`  | `string` | Yes      | Link URL    |
-
-All links open in a new tab.
+| Prop    | Type     | Description |
+| ------- | -------- | ----------- |
+| `label` | `string` | Link text   |
+| `link`  | `string` | Link URL    |
