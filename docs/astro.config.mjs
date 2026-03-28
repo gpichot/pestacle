@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import react from "@astrojs/react";
 
 export default defineConfig({
   integrations: [
@@ -43,9 +44,15 @@ export default defineConfig({
               label: "Morph & Transitions",
               slug: "reference/morph-and-transitions",
             },
+            {
+              label: "Playground",
+              slug: "reference/playground",
+            },
           ],
         },
       ],
+      customCss: ["./src/styles/sandpack.css"],
     }),
+    react(),
   ],
 });
