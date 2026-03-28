@@ -300,6 +300,202 @@ layout: section
 
 ---
 
+# **Morph Showcase** {morph="section-title"}
+
+Elements that seamlessly animate between slides {morph="section-desc"}
+
+---
+
+layout: centered
+
+---
+
+import { Morph, MorphImage } from "@gpichot/spectacle-deck";
+
+### **Morph: Shape Shifting** {morph="section-title"}
+
+<Morph name="demo-box" style={{ width: 200, height: 200, borderRadius: 16, background: "#F530EC", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: "1.5rem", fontWeight: "bold" }}>
+  Hello
+</Morph>
+
+Navigate forward to see this box morph...
+
+---
+
+layout: centered
+
+---
+
+### **Morph: Repositioned & Reshaped** {morph="section-title"}
+
+<div style={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
+<Morph name="demo-box" style={{ width: 200, height: 200, borderRadius: 100, background: "#22d3ee", display: "flex", alignItems: "center", justifyContent: "center", color: "#000", fontSize: "2rem", fontWeight: "bold" }}>
+  Hello
+</Morph>
+</div>
+
+Same size, but now a circle — moved to the right with a new color!
+
+---
+
+layout: centered
+
+---
+
+### **Morph: Final Form** {morph="section-title"}
+
+<Morph name="demo-box" style={{ width: 200, height: 200, borderRadius: 16, background: "linear-gradient(135deg, #F530EC, #6366f1)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: "1.2rem", fontWeight: 500, textAlign: "center" }}>
+  Gradient!
+</Morph>
+
+---
+
+layout: centered
+
+---
+
+### **Morph: Card Layout Shift** {morph="section-title"}
+
+<div style={{ display: "flex", gap: "2rem", justifyContent: "center" }}>
+
+<Morph name="card-a" style={{ width: 200, height: 120, borderRadius: 16, background: "#F530EC", padding: "1.5rem", display: "flex", flexDirection: "column", justifyContent: "flex-end", color: "#fff" }}>
+
+**React** {morph="card-a-title"}
+
+UI Library
+
+</Morph>
+
+<Morph name="card-b" style={{ width: 200, height: 120, borderRadius: 16, background: "#22d3ee", padding: "1.5rem", display: "flex", flexDirection: "column", justifyContent: "flex-end", color: "#000" }}>
+
+**Vite** {morph="card-b-title"}
+
+Build Tool
+
+</Morph>
+
+<Morph name="card-c" style={{ width: 200, height: 120, borderRadius: 16, background: "#6366f1", padding: "1.5rem", display: "flex", flexDirection: "column", justifyContent: "flex-end", color: "#fff" }}>
+
+**MDX** {morph="card-c-title"}
+
+Authoring
+
+</Morph>
+
+</div>
+
+---
+
+layout: centered
+
+---
+
+### **Morph: Cards Rearranged** {morph="section-title"}
+
+<Morph name="card-b" style={{ width: "70%", height: 120, borderRadius: 12, background: "#22d3ee", padding: "0 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", color: "#000", marginBottom: "1rem" }}>
+
+**Vite** {morph="card-b-title"}
+
+Lightning-fast HMR and build pipeline
+
+</Morph>
+
+<Morph name="card-a" style={{ width: "70%", height: 120, borderRadius: 12, background: "#F530EC", padding: "0 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", color: "#fff", marginBottom: "1rem" }}>
+
+**React** {morph="card-a-title"}
+
+The UI layer — components, hooks, and rendering
+
+</Morph>
+
+<Morph name="card-c" style={{ width: "70%", height: 120, borderRadius: 12, background: "#6366f1", padding: "0 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", color: "#fff" }}>
+
+**MDX** {morph="card-c-title"}
+
+Write slides in Markdown + JSX
+
+</Morph>
+
+---
+
+layout: centered
+
+---
+
+### **Morph Directive: Heading Styles** {morph="section-title"}
+
+# **Small to Big** {morph="morph-heading-demo"}
+
+This heading will change style on the next slide.
+
+---
+
+layout: centered
+
+---
+
+## **Small to Big** {morph="morph-heading-demo"}
+
+The heading morphed from `h1` to `h2` — the browser animates the size change.
+
+And here's a paragraph that morphs too: {morph="morph-paragraph"}
+
+---
+
+layout: centered
+
+---
+
+### **Small to Big** {morph="morph-heading-demo"}
+
+Now it's an `h3` — each navigation step smoothly interpolates.
+
+And here's a paragraph that morphs too: {morph="morph-paragraph"}
+
+It kept its position while the heading shrank above it.
+
+---
+
+layout: centered
+
+---
+
+### **MorphImage: Moving Photos** {morph="section-title"}
+
+<div style={{ display: "flex", gap: "2rem", justifyContent: "center" }}>
+
+<MorphImage name="photo-1" src="https://picsum.photos/seed/morph1/300/200" style={{ borderRadius: 12, width: 280, height: 187 }} />
+
+<MorphImage name="photo-2" src="https://picsum.photos/seed/morph2/300/200" style={{ borderRadius: 12, width: 280, height: 187 }} />
+
+</div>
+
+Two images side by side — watch them swap...
+
+---
+
+layout: centered
+
+---
+
+### **MorphImage: Swapped** {morph="section-title"}
+
+<div style={{ display: "flex", gap: "2rem", justifyContent: "center" }}>
+
+<MorphImage name="photo-2" src="https://picsum.photos/seed/morph2/300/200" style={{ borderRadius: 50, width: 280, height: 187 }} />
+
+<MorphImage name="photo-1" src="https://picsum.photos/seed/morph1/300/200" style={{ borderRadius: 50, width: 280, height: 187 }} />
+
+</div>
+
+The images swapped positions and changed border radius!
+
+---
+
+layout: section
+
+---
+
 # **Animations & Transitions** {morph="section-title"}
 
 New animation components and slide transitions {morph="section-desc"}
