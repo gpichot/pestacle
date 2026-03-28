@@ -7,6 +7,7 @@ export { DeckContext, useDeck } from "./DeckContext";
 export type { MorphProps } from "./Morph";
 // View Transitions
 export { Morph, MorphImage } from "./Morph";
+export { OverviewMode } from "./OverviewMode";
 export type { StepperProps } from "./Stepper";
 // Stepper
 export { Stepper } from "./Stepper";
