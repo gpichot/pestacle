@@ -12,6 +12,7 @@ export type { MorphProps } from "./Morph";
 // View Transitions
 export { Morph, MorphImage } from "./Morph";
 export { OverviewMode } from "./OverviewMode";
+export { getCurrentSection, SectionTitle } from "./SectionTitle";
 export type { StepperProps } from "./Stepper";
 // Stepper
 export { Stepper } from "./Stepper";
