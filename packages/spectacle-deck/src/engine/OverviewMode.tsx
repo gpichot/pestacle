@@ -79,7 +79,7 @@ function SlideThumbnail({
       <div
         style={{
           width: "100vw",
-          height: "100vh",
+          height: "calc(100vw * 9 / 16)",
           transform: "scale(var(--thumbnail-scale, 0.2))",
           transformOrigin: "top left",
           pointerEvents: "none",
