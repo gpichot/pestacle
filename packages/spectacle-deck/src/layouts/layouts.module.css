@@ -43,7 +43,7 @@
   }
 
   & h2 strong {
-    color: var(--color-secondary);
+    color: var(--color-primary);
     font-weight: 400;
   }
 }
