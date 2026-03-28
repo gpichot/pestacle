@@ -16,17 +16,36 @@ export function SectionTitle({ title }: { title: string }) {
         left: 0,
         right: 0,
         zIndex: 5,
-        padding: "0.6em 1.2em",
-        fontSize: "0.85rem",
-        color: "var(--color-primary, #ffffff)",
-        opacity: 0.7,
-        fontFamily: "var(--font-header, inherit)",
-        letterSpacing: "0.05em",
-        textTransform: "uppercase",
+        padding: "0.7em 1.4em",
+        display: "flex",
+        alignItems: "center",
+        gap: "0.6em",
         pointerEvents: "none",
       }}
     >
-      {title}
+      <div
+        style={{
+          width: 3,
+          height: "1.2em",
+          borderRadius: 2,
+          background: "var(--color-secondary, #ffffff)",
+          opacity: 0.4,
+          flexShrink: 0,
+        }}
+      />
+      <span
+        style={{
+          fontSize: "1.3rem",
+          fontWeight: 500,
+          color: "var(--color-primary, #ffffff)",
+          opacity: 0.45,
+          fontFamily: "var(--font-header, inherit)",
+          letterSpacing: "0.04em",
+          textTransform: "uppercase",
+        }}
+      >
+        {title}
+      </span>
     </div>
   );
 }
