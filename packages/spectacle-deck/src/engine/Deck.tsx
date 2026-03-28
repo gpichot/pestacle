@@ -1,5 +1,5 @@
 import { MDXProvider } from "@mdx-js/react";
-import React from "react";
+import React, { ViewTransition } from "react";
 
 import { createCssVariables } from "../colors";
 import customComponents from "../components/map";
@@ -204,7 +204,7 @@ export function Deck({
               }}
             >
               {/* Slide content wrapped in ViewTransition for cross-slide morphing */}
-              <React.ViewTransition name="slide-content">
+              <ViewTransition name="slide-content">
                 <div
                   style={{
                     width: "100%",
@@ -219,7 +219,7 @@ export function Deck({
                 >
                   {Component && <Component />}
                 </div>
-              </React.ViewTransition>
+              </ViewTransition>
 
               {/* Template overlay (progress bar, fullscreen) */}
               <Template

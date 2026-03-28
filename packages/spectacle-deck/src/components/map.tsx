@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ViewTransition } from "react";
 
 import CodeStepper from "./CodeStepper/CodeStepper";
 import { Mermaid } from "./Mermaid";
@@ -23,7 +23,7 @@ function MorphWrap({
   children: React.ReactNode;
 }) {
   if (!morph) return children;
-  return <React.ViewTransition name={morph}>{children}</React.ViewTransition>;
+  return <ViewTransition name={morph}>{children}</ViewTransition>;
 }
 
 const componentsMap: Record<string, React.ComponentType<any>> = {

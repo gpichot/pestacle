@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ViewTransition } from "react";
 
 import { Stepper } from "../engine/Stepper";
 import styles from "./ItemsColumn.module.css";
@@ -27,14 +27,14 @@ export function ItemsColumn(divProps: React.ComponentProps<"div">) {
               return child;
             }
             return (
-              <React.ViewTransition key={index} name={`items-column-${index}`}>
+              <ViewTransition key={index} name={`items-column-${index}`}>
                 <div
                   className={styles.wrapper}
                   style={{ opacity: isVisible ? 1 : 0 }}
                 >
                   {child}
                 </div>
-              </React.ViewTransition>
+              </ViewTransition>
             );
           })}
         </div>

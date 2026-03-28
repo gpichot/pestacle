@@ -1,4 +1,5 @@
-import React from "react";
+import type React from "react";
+import { ViewTransition } from "react";
 
 export interface MorphProps {
   /**
@@ -6,7 +7,7 @@ export interface MorphProps {
    * on different slides will morph (animate position, size, shape) during
    * view transitions.
    *
-   * Uses React's <React.ViewTransition> component which coordinates with the
+   * Uses React's <ViewTransition> component which coordinates with the
    * browser's View Transitions API automatically via startTransition.
    * Names must be unique within a single slide.
    */
@@ -48,11 +49,11 @@ export function Morph({
   children,
 }: MorphProps) {
   return (
-    <React.ViewTransition name={name}>
+    <ViewTransition name={name}>
       <Tag className={className} style={style}>
         {children}
       </Tag>
-    </React.ViewTransition>
+    </ViewTransition>
   );
 }
 
@@ -73,8 +74,8 @@ export function MorphImage({
   className?: string;
 }) {
   return (
-    <React.ViewTransition name={name}>
+    <ViewTransition name={name}>
       <img src={src} alt={alt} className={className} style={style} />
-    </React.ViewTransition>
+    </ViewTransition>
   );
 }
