@@ -41,6 +41,7 @@ export function FadeIn({
 
   return (
     <animated.div ref={ref} style={styles}>
+      {/* @ts-expect-error react-spring types lag behind React 19 ReactNode */}
       {children}
     </animated.div>
   );

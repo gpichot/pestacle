@@ -89,7 +89,7 @@ export function TimelineItem(
   const colorStyles = useSpring({ opacity: isPhantom || isLast ? 1 : 0.15 });
   return (
     <animated.div
-      {...rest}
+      {...(rest as React.ComponentProps<typeof animated.div>)}
       className={styles.item}
       style={{
         ...appearStyles,

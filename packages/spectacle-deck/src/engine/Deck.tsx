@@ -7,8 +7,10 @@ import { type LayoutComponent, PestacleProvider } from "../context";
 import Layouts from "../layouts";
 import { SlideWrapper } from "../SlideWrapper";
 import baseTheme from "../theme";
+import { type Command, CommandPalette } from "./CommandPalette";
 import { DeckContext } from "./DeckContext";
 import { toggleFullscreen } from "./dom-helpers";
+import { ExportMode, type ExportModeVariant } from "./ExportMode";
 import { injectGlobalStyles } from "./global.css";
 import { OverviewMode } from "./OverviewMode";
 import { Template } from "./Template";
@@ -140,6 +142,81 @@ export function Deck({
     [nav],
   );
 
+  // Export / Print mode
+  const [exportMode, setExportMode] = React.useState<ExportModeVariant | null>(
+    null,
+  );
+  const openExportMode = React.useCallback(() => setExportMode("export"), []);
+  const openPrintMode = React.useCallback(() => setExportMode("print"), []);
+  const closeExportMode = React.useCallback(() => setExportMode(null), []);
+
+  // Command palette
+  const [commandPaletteOpen, setCommandPaletteOpen] = React.useState(false);
+  const toggleCommandPalette = React.useCallback(() => {
+    setCommandPaletteOpen((v) => !v);
+  }, []);
+  const closeCommandPalette = React.useCallback(() => {
+    setCommandPaletteOpen(false);
+  }, []);
+
+  const isMac =
+    typeof navigator !== "undefined" &&
+    /Mac|iPhone|iPad/.test(navigator.userAgent);
+
+  const commands: Command[] = React.useMemo(
+    () => [
+      {
+        id: "next-slide",
+        label: "Next Slide",
+        shortcut: "→",
+        action: nav.stepForward,
+      },
+      {
+        id: "prev-slide",
+        label: "Previous Slide",
+        shortcut: "←",
+        action: nav.stepBackward,
+      },
+      {
+        id: "first-slide",
+        label: "Go to First Slide",
+        shortcut: "Home",
+        action: () => nav.skipTo({ slideIndex: 0 }),
+      },
+      {
+        id: "last-slide",
+        label: "Go to Last Slide",
+        shortcut: "End",
+        action: () => nav.skipTo({ slideIndex: slideCount - 1 }),
+      },
+      {
+        id: "overview",
+        label: "Toggle Overview",
+        shortcut: isMac ? "⌘⇧O" : "Ctrl+Shift+O",
+        action: toggleOverview,
+      },
+      {
+        id: "fullscreen",
+        label: "Toggle Fullscreen",
+        shortcut: "F",
+        action: toggleFullscreen,
+      },
+      {
+        id: "export",
+        label: "Export as PDF",
+        shortcut: isMac ? "⌘⇧E" : "Ctrl+Shift+E",
+        action: openExportMode,
+      },
+      {
+        id: "print",
+        label: "Print Slides",
+        shortcut: isMac ? "⌘⇧P" : "Ctrl+Shift+P",
+        action: openPrintMode,
+      },
+    ],
+    [nav, slideCount, toggleOverview, openExportMode, openPrintMode, isMac],
+  );
+
   // Keyboard navigation
   useKeyboard({
     ArrowRight: nav.stepForward,
@@ -168,6 +245,15 @@ export function Deck({
     // Overview mode: Cmd+Shift+O (Mac) / Ctrl+Shift+O (other)
     "Shift+Meta+O": toggleOverview,
     "Shift+Ctrl+O": toggleOverview,
+    // Export mode: Cmd+Shift+E (Mac) / Ctrl+Shift+E (other)
+    "Shift+Meta+E": openExportMode,
+    "Shift+Ctrl+E": openExportMode,
+    // Print mode: Cmd+Shift+P (Mac) / Ctrl+Shift+P (other)
+    "Shift+Meta+P": openPrintMode,
+    "Shift+Ctrl+P": openPrintMode,
+    // Command palette: Cmd+K (Mac) / Ctrl+K (other)
+    "Meta+k": toggleCommandPalette,
+    "Ctrl+k": toggleCommandPalette,
     // Volume keys for remote controllers
     AudioVolumeUp: () => {
       if (nav.slideIndex < slideCount - 1) {
@@ -243,6 +329,9 @@ export function Deck({
               <Template
                 slideNumber={nav.slideIndex + 1}
                 numberOfSlides={slideCount}
+                onToggleExport={openExportMode}
+                onTogglePrint={openPrintMode}
+                onToggleCommandPalette={toggleCommandPalette}
               />
 
               {/* Overview mode */}
@@ -251,6 +340,23 @@ export function Deck({
                   slides={deck.slides}
                   onSelectSlide={handleSelectSlide}
                   onClose={toggleOverview}
+                />
+              )}
+
+              {/* Export / Print mode */}
+              {exportMode && (
+                <ExportMode
+                  slides={deck.slides}
+                  variant={exportMode}
+                  onClose={closeExportMode}
+                />
+              )}
+
+              {/* Command palette */}
+              {commandPaletteOpen && (
+                <CommandPalette
+                  commands={commands}
+                  onClose={closeCommandPalette}
                 />
               )}
             </div>

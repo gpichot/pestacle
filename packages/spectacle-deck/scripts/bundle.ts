@@ -52,7 +52,7 @@ module.exports = mod;
   // copyFileSync("README.md", "dist/README.md");
 
   execSync(
-    "tsc src/index.tsx --declaration --jsx react-jsx --emitDeclarationOnly --outDir dist --module preserve --target es2020 --allowSyntheticDefaultImports --skipLibCheck --moduleResolution bundler --types ./src/node.d.ts,./src/style.d.ts",
+    "tsc src/index.tsx --declaration --jsx react-jsx --emitDeclarationOnly --outDir dist --module preserve --target es2020 --allowSyntheticDefaultImports --skipLibCheck --moduleResolution bundler --types ./src/node.d.ts,./src/style.d.ts,./src/react-experimental.d.ts",
     { stdio: "inherit" },
   );
 
