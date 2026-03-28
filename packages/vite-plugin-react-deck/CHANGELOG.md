@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.13.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.12.0...vite-plugin-react-deck-v1.13.0) (2026-03-28)
+
+
+### Features
+
+* add Notes component for speaker notes support ([#63](https://github.com/gpichot/pestacle/issues/63)) ([eafd559](https://github.com/gpichot/pestacle/commit/eafd559895fae4fbee241565331a765bc60c7367))
+
 ## [1.12.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.11.0...vite-plugin-react-deck-v1.12.0) (2026-03-28)
 
 ### Features
