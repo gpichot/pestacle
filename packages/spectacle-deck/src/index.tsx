@@ -79,6 +79,11 @@ export function Warning({ children }: { children: React.ReactNode }) {
   return <div style={{ color: "yellow" }}>{children}</div>;
 }
 
+export function Notes({ children }: { children: React.ReactNode }) {
+  return <div style={{ display: "none" }}>{children}</div>;
+}
+Notes.mdxType = "Notes";
+
 export function Side({ children }: { children: React.ReactNode }) {
   return <div>{children}</div>;
 }
