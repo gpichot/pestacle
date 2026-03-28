@@ -165,9 +165,9 @@ export function Deck({
     End: () => nav.skipTo({ slideIndex: slideCount - 1 }),
     // Fullscreen
     f: toggleFullscreen,
-    // Overview mode: Cmd+K (Mac) / Ctrl+K (other)
-    "Meta+k": toggleOverview,
-    "Ctrl+k": toggleOverview,
+    // Overview mode: Cmd+Shift+O (Mac) / Ctrl+Shift+O (other)
+    "Shift+Meta+O": toggleOverview,
+    "Shift+Ctrl+O": toggleOverview,
     // Volume keys for remote controllers
     AudioVolumeUp: () => {
       if (nav.slideIndex < slideCount - 1) {

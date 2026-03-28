@@ -192,7 +192,7 @@ export function OverviewMode({
             fontFamily: "system-ui, sans-serif",
           }}
         >
-          Overview — {slides.length} slides (press Esc or {"\u2318"}K to close)
+          Overview — {slides.length} slides (press Esc or {"\u2318"}⇧O to close)
         </span>
         <button
           type="button"
