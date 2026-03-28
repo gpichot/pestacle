@@ -187,6 +187,8 @@ export function OverviewMode({
           top: 0,
           zIndex: 1,
           padding: "0.5rem 0",
+          background: "rgba(0, 0, 0, 0.92)",
+          backdropFilter: "blur(8px)",
         }}
       >
         <span
@@ -196,7 +198,7 @@ export function OverviewMode({
             fontFamily: "system-ui, sans-serif",
           }}
         >
-          Overview — {slides.length} slides (press Esc or {"\u2318"}⇧O to close)
+          Overview — {slides.length} slides (press Esc or O to close)
         </span>
         <button
           type="button"

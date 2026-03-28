@@ -30,5 +30,20 @@ export function injectGlobalStyles(options: {
       font-family: ${options.fontFamily};
       font-size: ${options.fontSize};
     }
+    @media print {
+      html, body, #root {
+        overflow: visible;
+        width: auto;
+        height: auto;
+      }
+      body {
+        background: #fff !important;
+        color: #000 !important;
+      }
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
   `;
 }
