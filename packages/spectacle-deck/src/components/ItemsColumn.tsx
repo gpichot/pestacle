@@ -13,7 +13,7 @@ export function ItemsColumn(divProps: React.ComponentProps<"div">) {
           style={{
             display: "flex",
             flexDirection: "column",
-            justifyItems: "center",
+            justifyContent: "center",
             alignItems: "stretch",
             height: "100%",
             rowGap: "2rem",

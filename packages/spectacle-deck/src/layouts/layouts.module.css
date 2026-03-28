@@ -168,11 +168,10 @@
 /* SectionLayout */
 .sectionLayout {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   height: 100%;
-  padding-left: 9rem;
 
   & h2 {
     color: white;
