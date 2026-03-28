@@ -13,6 +13,7 @@ import { toggleFullscreen } from "./dom-helpers";
 import { ExportMode, type ExportModeVariant } from "./ExportMode";
 import { injectGlobalStyles } from "./global.css";
 import { OverviewMode } from "./OverviewMode";
+import { getCurrentSection, SectionTitle } from "./SectionTitle";
 import { Template } from "./Template";
 import {
   fadeTransition,
@@ -340,13 +341,26 @@ export function Deck({
                   </div>
                 </ViewTransition>
 
-                {/* Template overlay (progress bar, fullscreen) */}
-                <Template
-                  slideNumber={nav.slideIndex + 1}
-                  numberOfSlides={slideCount}
-                  onToggleExport={openExportMode}
-                  onTogglePrint={openPrintMode}
-                  onToggleCommandPalette={toggleCommandPalette}
+              {/* Section title overlay */}
+              <SectionTitle
+                title={getCurrentSection(deck.slides, nav.slideIndex)}
+              />
+
+              {/* Template overlay (progress bar, fullscreen) */}
+              <Template
+                slideNumber={nav.slideIndex + 1}
+                numberOfSlides={slideCount}
+                onToggleExport={openExportMode}
+                onTogglePrint={openPrintMode}
+                onToggleCommandPalette={toggleCommandPalette}
+              />
+
+              {/* Overview mode */}
+              {overviewMode && (
+                <OverviewMode
+                  slides={deck.slides}
+                  onSelectSlide={handleSelectSlide}
+                  onClose={toggleOverview}
                 />
 
                 {/* Overview mode */}
