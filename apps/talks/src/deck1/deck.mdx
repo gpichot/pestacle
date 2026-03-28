@@ -314,7 +314,21 @@ import { Morph, MorphImage } from "@gpichot/spectacle-deck";
 
 ### **Morph: Shape Shifting** {morph="section-title"}
 
-<Morph name="demo-box" style={{ width: 200, height: 200, borderRadius: 16, background: "#F530EC", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: "1.5rem", fontWeight: "bold" }}>
+<Morph
+  name="demo-box"
+  style={{
+    width: 200,
+    height: 200,
+    borderRadius: 16,
+    background: "#F530EC",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+    fontSize: "1.5rem",
+    fontWeight: "bold",
+  }}
+>
   Hello
 </Morph>
 
@@ -329,9 +343,23 @@ layout: centered
 ### **Morph: Repositioned & Reshaped** {morph="section-title"}
 
 <div style={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
-<Morph name="demo-box" style={{ width: 200, height: 200, borderRadius: 100, background: "#22d3ee", display: "flex", alignItems: "center", justifyContent: "center", color: "#000", fontSize: "2rem", fontWeight: "bold" }}>
-  Hello
-</Morph>
+  <Morph
+    name="demo-box"
+    style={{
+      width: 200,
+      height: 200,
+      borderRadius: 100,
+      background: "#22d3ee",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "#000",
+      fontSize: "2rem",
+      fontWeight: "bold",
+    }}
+  >
+    Hello
+  </Morph>
 </div>
 
 Same size, but now a circle — moved to the right with a new color!
@@ -344,7 +372,22 @@ layout: centered
 
 ### **Morph: Final Form** {morph="section-title"}
 
-<Morph name="demo-box" style={{ width: 200, height: 200, borderRadius: 16, background: "linear-gradient(135deg, #F530EC, #6366f1)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: "1.2rem", fontWeight: 500, textAlign: "center" }}>
+<Morph
+  name="demo-box"
+  style={{
+    width: 200,
+    height: 200,
+    borderRadius: 16,
+    background: "linear-gradient(135deg, #F530EC, #6366f1)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+    fontSize: "1.2rem",
+    fontWeight: 500,
+    textAlign: "center",
+  }}
+>
   Gradient!
 </Morph>
 
@@ -464,9 +507,17 @@ layout: centered
 
 <div style={{ display: "flex", gap: "2rem", justifyContent: "center" }}>
 
-<MorphImage name="photo-1" src="https://picsum.photos/seed/morph1/300/200" style={{ borderRadius: 12, width: 280, height: 187 }} />
+<MorphImage
+  name="photo-1"
+  src="https://picsum.photos/seed/morph1/300/200"
+  style={{ borderRadius: 12, width: 280, height: 187 }}
+/>
 
-<MorphImage name="photo-2" src="https://picsum.photos/seed/morph2/300/200" style={{ borderRadius: 12, width: 280, height: 187 }} />
+<MorphImage
+  name="photo-2"
+  src="https://picsum.photos/seed/morph2/300/200"
+  style={{ borderRadius: 12, width: 280, height: 187 }}
+/>
 
 </div>
 
@@ -482,9 +533,17 @@ layout: centered
 
 <div style={{ display: "flex", gap: "2rem", justifyContent: "center" }}>
 
-<MorphImage name="photo-2" src="https://picsum.photos/seed/morph2/300/200" style={{ borderRadius: 50, width: 280, height: 187 }} />
+<MorphImage
+  name="photo-2"
+  src="https://picsum.photos/seed/morph2/300/200"
+  style={{ borderRadius: 50, width: 280, height: 187 }}
+/>
 
-<MorphImage name="photo-1" src="https://picsum.photos/seed/morph1/300/200" style={{ borderRadius: 50, width: 280, height: 187 }} />
+<MorphImage
+  name="photo-1"
+  src="https://picsum.photos/seed/morph1/300/200"
+  style={{ borderRadius: 50, width: 280, height: 187 }}
+/>
 
 </div>
 

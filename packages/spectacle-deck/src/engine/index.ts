@@ -1,9 +1,13 @@
 // Core engine
 
+export type { Command } from "./CommandPalette";
+export { CommandPalette } from "./CommandPalette";
 export type { DeckType, SlideType } from "./Deck";
 export { Deck } from "./Deck";
 export type { DeckState } from "./DeckContext";
 export { DeckContext, useDeck } from "./DeckContext";
+export type { ExportModeVariant } from "./ExportMode";
+export { ExportMode } from "./ExportMode";
 export type { MorphProps } from "./Morph";
 // View Transitions
 export { Morph, MorphImage } from "./Morph";

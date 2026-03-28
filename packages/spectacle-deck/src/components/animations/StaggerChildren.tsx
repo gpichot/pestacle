@@ -50,6 +50,7 @@ export function StaggerChildren({
     <div ref={ref}>
       {springs.map((style, i) => (
         <animated.div key={i} style={style}>
+          {/* @ts-expect-error react-spring types lag behind React 19 ReactNode */}
           {items[i]}
         </animated.div>
       ))}
