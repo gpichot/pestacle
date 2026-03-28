@@ -31,21 +31,38 @@ export function useNavigation({
   const steppersRef = React.useRef<Map<string, number>>(new Map());
   const [stepCount, setStepCount] = React.useState(0);
 
-  const registerStepper = React.useCallback((id: string, count: number) => {
-    steppersRef.current.set(id, count);
-    // Total step count = max across all steppers (they advance in parallel)
-    const max = Math.max(0, ...steppersRef.current.values());
-    setStepCount(max);
-  }, []);
+  // Cache step counts per slide so we can restore position when navigating back
+  const slideStepCountsRef = React.useRef<Map<number, number>>(new Map());
 
-  const unregisterStepper = React.useCallback((id: string) => {
-    steppersRef.current.delete(id);
-    const max =
-      steppersRef.current.size > 0
-        ? Math.max(0, ...steppersRef.current.values())
-        : 0;
-    setStepCount(max);
-  }, []);
+  const updateStepCount = React.useCallback(
+    (newCount: number) => {
+      setStepCount(newCount);
+      slideStepCountsRef.current.set(slideIndex, newCount);
+    },
+    [slideIndex],
+  );
+
+  const registerStepper = React.useCallback(
+    (id: string, count: number) => {
+      steppersRef.current.set(id, count);
+      // Total step count = max across all steppers (they advance in parallel)
+      const max = Math.max(0, ...steppersRef.current.values());
+      updateStepCount(max);
+    },
+    [updateStepCount],
+  );
+
+  const unregisterStepper = React.useCallback(
+    (id: string) => {
+      steppersRef.current.delete(id);
+      const max =
+        steppersRef.current.size > 0
+          ? Math.max(0, ...steppersRef.current.values())
+          : 0;
+      updateStepCount(max);
+    },
+    [updateStepCount],
+  );
 
   // Reset steps when slide changes
   // biome-ignore lint/correctness/useExhaustiveDependencies: intentionally re-run on slideIndex change
@@ -69,10 +86,17 @@ export function useNavigation({
 
       // Wrap in startTransition so React's <ViewTransition> components
       // automatically trigger the browser View Transitions API
+      // When going backward, restore to the slide's final step so the user
+      // sees the fully-revealed state instead of the initial one.
+      const cachedSteps =
+        dir === "backward"
+          ? (slideStepCountsRef.current.get(newIndex) ?? 0)
+          : 0;
+
       React.startTransition(() => {
         setDirection(dir);
         setSlideIndex(newIndex);
-        setStepIndex(0);
+        setStepIndex(cachedSteps);
       });
     },
     [slideCount, onSlideChange],
