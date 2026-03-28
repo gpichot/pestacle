@@ -341,26 +341,18 @@ export function Deck({
                   </div>
                 </ViewTransition>
 
-              {/* Section title overlay */}
-              <SectionTitle
-                title={getCurrentSection(deck.slides, nav.slideIndex)}
-              />
+                {/* Section title overlay */}
+                <SectionTitle
+                  title={getCurrentSection(deck.slides, nav.slideIndex)}
+                />
 
-              {/* Template overlay (progress bar, fullscreen) */}
-              <Template
-                slideNumber={nav.slideIndex + 1}
-                numberOfSlides={slideCount}
-                onToggleExport={openExportMode}
-                onTogglePrint={openPrintMode}
-                onToggleCommandPalette={toggleCommandPalette}
-              />
-
-              {/* Overview mode */}
-              {overviewMode && (
-                <OverviewMode
-                  slides={deck.slides}
-                  onSelectSlide={handleSelectSlide}
-                  onClose={toggleOverview}
+                {/* Template overlay (progress bar, fullscreen) */}
+                <Template
+                  slideNumber={nav.slideIndex + 1}
+                  numberOfSlides={slideCount}
+                  onToggleExport={openExportMode}
+                  onTogglePrint={openPrintMode}
+                  onToggleCommandPalette={toggleCommandPalette}
                 />
 
                 {/* Overview mode */}
