@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.11.0...vite-plugin-react-deck-v1.12.0) (2026-03-28)
+
+
+### Features
+
+* add Appear component for step-based content visibility ([#61](https://github.com/gpichot/pestacle/issues/61)) ([ac2e46d](https://github.com/gpichot/pestacle/commit/ac2e46d4b924d7bf61fb94a141224ac027af61dc))
+
 ## [1.11.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.10.0...vite-plugin-react-deck-v1.11.0) (2026-03-28)
 
 ### Features
