@@ -10,6 +10,7 @@ import baseTheme from "../theme";
 import { DeckContext } from "./DeckContext";
 import { toggleFullscreen } from "./dom-helpers";
 import { injectGlobalStyles } from "./global.css";
+import { OverviewMode } from "./OverviewMode";
 import { Template } from "./Template";
 import {
   fadeTransition,
@@ -125,6 +126,20 @@ export function Deck({
     });
   }, [theme, mergedTheme]);
 
+  // Overview mode
+  const [overviewMode, setOverviewMode] = React.useState(false);
+  const toggleOverview = React.useCallback(() => {
+    setOverviewMode((v) => !v);
+  }, []);
+
+  const handleSelectSlide = React.useCallback(
+    (index: number) => {
+      nav.skipTo({ slideIndex: index, stepIndex: 0 });
+      setOverviewMode(false);
+    },
+    [nav],
+  );
+
   // Keyboard navigation
   useKeyboard({
     ArrowRight: nav.stepForward,
@@ -150,6 +165,9 @@ export function Deck({
     End: () => nav.skipTo({ slideIndex: slideCount - 1 }),
     // Fullscreen
     f: toggleFullscreen,
+    // Overview mode: Cmd+K (Mac) / Ctrl+K (other)
+    "Meta+k": toggleOverview,
+    "Ctrl+k": toggleOverview,
     // Volume keys for remote controllers
     AudioVolumeUp: () => {
       if (nav.slideIndex < slideCount - 1) {
@@ -226,6 +244,15 @@ export function Deck({
                 slideNumber={nav.slideIndex + 1}
                 numberOfSlides={slideCount}
               />
+
+              {/* Overview mode */}
+              {overviewMode && (
+                <OverviewMode
+                  slides={deck.slides}
+                  onSelectSlide={handleSelectSlide}
+                  onClose={toggleOverview}
+                />
+              )}
             </div>
           </MDXProvider>
         </PestacleProvider>
