@@ -1,0 +1,47 @@
+.docWrapper {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 10000;
+
+  &:hover .docContent {
+    display: flex;
+  }
+}
+
+.docContainer {
+  margin: 2rem 1rem;
+  background-color: #333;
+  border: 1px solid #333;
+  padding: 0.5rem 1rem;
+  border-radius: 1.5rem;
+}
+
+.docLink {
+  text-decoration: none;
+  font-weight: normal;
+  font-family: var(--font-family);
+  color: var(--color-secondary);
+}
+
+.docLinkItem {
+  composes: docLink;
+  width: fit-content;
+  display: inline-block;
+  background-color: #333;
+  border: 1px solid #333;
+  padding: 0.5rem 1rem;
+  border-radius: 1.5rem;
+  margin: 0.25rem 0;
+}
+
+.docContent {
+  display: none;
+  flex-flow: column-reverse nowrap;
+  position: absolute;
+  right: 1rem;
+  bottom: 4.5rem;
+  text-align: right;
+  border-radius: 0.5rem;
+  align-items: flex-end;
+}

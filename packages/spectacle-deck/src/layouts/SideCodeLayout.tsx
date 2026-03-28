@@ -1,14 +1,8 @@
 import type React from "react";
-import styled from "styled-components";
 
 import { ColumnsLayout } from "./columns";
+import styles from "./layouts.module.css";
 import { getCodeChildren, Margins } from "./utils";
-
-const CodeSide = styled.div`
-  pre {
-    font-size: 0.9rem;
-  }
-`;
 
 export function SidedCodeLayout({
   children,
@@ -29,7 +23,8 @@ export function SidedCodeLayout({
       >
         {rest}
       </div>
-      <CodeSide
+      <div
+        className={styles.codeSide}
         style={{
           backgroundColor: "#1d2021",
           height: "100%",
@@ -39,7 +34,7 @@ export function SidedCodeLayout({
         }}
       >
         {code}
-      </CodeSide>
+      </div>
     </ColumnsLayout>
   );
 }

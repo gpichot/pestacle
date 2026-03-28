@@ -1,17 +1,8 @@
 import type React from "react";
-import styled from "styled-components";
 
+import styles from "./layouts.module.css";
 import { getHeading, Margins } from "./utils";
 
-const CenteredLayoutContent = styled.div`
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    flex: 0 1 auto;
-  }
-`;
 export const CenteredLayout = (
   props: React.ComponentPropsWithoutRef<"div">,
 ) => {
@@ -29,7 +20,8 @@ export const CenteredLayout = (
       }}
     >
       {rest}
-      <CenteredLayoutContent
+      <div
+        className={styles.centeredContent}
         style={{
           position: "absolute",
           opacity: 0.8,
@@ -39,7 +31,7 @@ export const CenteredLayout = (
         }}
       >
         {heading}
-      </CenteredLayoutContent>
+      </div>
     </div>
   );
 };

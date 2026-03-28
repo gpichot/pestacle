@@ -1,12 +1,6 @@
 import type React from "react";
-import styled from "styled-components";
 
-const IconBoxContent = styled.div`
-  * {
-    margin: 0.2rem !important;
-    padding: 0 !important;
-  }
-`;
+import styles from "./IconBox.module.css";
 
 export function IconBox({
   children,
@@ -25,7 +19,7 @@ export function IconBox({
       }}
     >
       <div style={{ fontSize: 60 }}>{icon}</div>
-      <IconBoxContent>{children}</IconBoxContent>
+      <div className={styles.content}>{children}</div>
     </div>
   );
 }

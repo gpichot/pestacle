@@ -1,14 +1,7 @@
-import styled from "styled-components";
+import type React from "react";
 
-export const SectionLayout = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  padding-left: 9rem;
+import styles from "./layouts.module.css";
 
-  h2 {
-    color: white;
-  }
-`;
+export const SectionLayout = ({ children }: { children: React.ReactNode }) => (
+  <div className={styles.sectionLayout}>{children}</div>
+);

@@ -1,7 +1,2 @@
-import styled from "styled-components";
-
-export const SVGObject = styled.object`
-  padding: 3rem 2rem;
-  box-sizing: border-box;
-  background-color: white;
-`;
+// Re-export CSS module class names for use in Image component
+export { default as layoutStyles } from "./layouts.module.css";

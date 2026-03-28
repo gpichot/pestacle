@@ -1,5 +1,4 @@
 import type React from "react";
-import styled from "styled-components";
 
 interface SpotlightProps {
   children: React.ReactNode;
@@ -9,20 +8,6 @@ interface SpotlightProps {
   dimOpacity?: number;
 }
 
-const Overlay = styled.div<{ $active: boolean; $dimOpacity: number }>`
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, ${(p) => (p.$active ? p.$dimOpacity : 0)});
-  pointer-events: ${(p) => (p.$active ? "auto" : "none")};
-  transition: background 0.4s ease;
-  z-index: 99;
-`;
-
-const Content = styled.div<{ $active: boolean }>`
-  position: relative;
-  z-index: ${(p) => (p.$active ? 100 : "auto")};
-`;
-
 export function Spotlight({
   children,
   active = true,
@@ -30,8 +15,24 @@ export function Spotlight({
 }: SpotlightProps) {
   return (
     <>
-      <Overlay $active={active} $dimOpacity={dimOpacity} />
-      <Content $active={active}>{children}</Content>
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          background: `rgba(0, 0, 0, ${active ? dimOpacity : 0})`,
+          pointerEvents: active ? "auto" : "none",
+          transition: "background 0.4s ease",
+          zIndex: 99,
+        }}
+      />
+      <div
+        style={{
+          position: "relative",
+          zIndex: active ? 100 : "auto",
+        }}
+      >
+        {children}
+      </div>
     </>
   );
 }

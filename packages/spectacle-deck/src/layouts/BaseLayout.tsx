@@ -1,15 +1,6 @@
 import type React from "react";
-import styled from "styled-components";
 
-const DefaultLayoutHeading = styled.div`
-  background-color: #ffffff11;
-  padding: 2rem 5rem;
-  margin-bottom: 1rem;
-
-  h2 {
-    margin: 0;
-  }
-`;
+import styles from "./layouts.module.css";
 
 export const BaseLayout = ({
   children,
@@ -33,7 +24,7 @@ export const BaseLayout = ({
         marginBottom: "5rem",
       }}
     >
-      {title && <DefaultLayoutHeading>{title}</DefaultLayoutHeading>}
+      {title && <div className={styles.defaultLayoutHeading}>{title}</div>}
       <div
         style={{
           display: "flex",

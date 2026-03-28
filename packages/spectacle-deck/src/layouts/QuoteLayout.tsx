@@ -1,6 +1,6 @@
 import type React from "react";
-import styled from "styled-components";
 
+import styles from "./layouts.module.css";
 import { getMatchingMdxType } from "./utils";
 
 function invariant(condition: any, message: string) {
@@ -9,58 +9,6 @@ function invariant(condition: any, message: string) {
   }
 }
 
-const QuoteBaseLayout = styled.div`
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  .blockquote > * {
-    border-left: 0;
-  }
-  .blockquote {
-  text-align: justify;
-    position: relative;
-  }
-  .blockquote > :first-child {
-    &:before {
-      content: "“";
-      position: absolute;
-      font-size: 16rem;
-      left: -5rem;
-      font-family: serif;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #ffffff22;
-    }
-    &:after {
-      content: "”";
-      position: absolute;
-      font-size: 16rem;
-      right: 3rem;
-      bottom: -5rem;
-      font-family: serif;
-      color: #ffffff22;
-      pointer-events: none;
-    }
-  }
-  .blockquote * {
-    line-height: 3.5rem !important;
-    font-size: 2.5rem;
-  }
-  .source {
-    font-family: Bitter, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    box-sizing: border-box;
-    width: 100%;
-    margin-top: 4rem;
-    text-align: right;
-    font-size: 2rem;
-    a {
-      text-decoration: none;
-      color: #ffffff77;
-    }
-  }
-`;
 export function QuoteLayout({
   children,
   author,
@@ -73,7 +21,7 @@ export function QuoteLayout({
   const [blockquote, rest] = getMatchingMdxType(children, "blockquote");
   invariant(rest, "QuoteLayout can only have one blockquote");
   return (
-    <QuoteBaseLayout>
+    <div className={styles.quoteBase}>
       <div
         style={{
           display: "flex",
@@ -102,6 +50,6 @@ export function QuoteLayout({
           }
         </div>
       </div>
-    </QuoteBaseLayout>
+    </div>
   );
 }

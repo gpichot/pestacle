@@ -1,13 +1,13 @@
-import { animated, useSpring } from "@react-spring/web";
-import React from "react";
-import { Stepper } from "spectacle";
-import styled from "styled-components";
+import React, { ViewTransition } from "react";
+
+import { Stepper } from "../engine/Stepper";
+import styles from "./ItemsColumn.module.css";
 
 export function ItemsColumn(divProps: React.ComponentProps<"div">) {
   const { style, children, ...props } = divProps;
   const childrenArray = React.Children.toArray(children);
   return (
-    <Stepper values={childrenArray}>
+    <Stepper values={childrenArray} alwaysVisible>
       {(_value, step) => (
         <div
           style={{
@@ -27,34 +27,18 @@ export function ItemsColumn(divProps: React.ComponentProps<"div">) {
               return child;
             }
             return (
-              <ItemColumnWrapper key={index} isVisible={isVisible}>
-                {child}
-              </ItemColumnWrapper>
+              <ViewTransition key={index} name={`items-column-${index}`}>
+                <div
+                  className={styles.wrapper}
+                  style={{ opacity: isVisible ? 1 : 0 }}
+                >
+                  {child}
+                </div>
+              </ViewTransition>
             );
           })}
         </div>
       )}
     </Stepper>
-  );
-}
-
-const ItemColumnWrapperStyled = styled(animated.div)`
-  display: flex;
-  justify-content: center;
-  * {
-    text-align: center !important;
-  }
-`;
-
-function ItemColumnWrapper({
-  children,
-  isVisible,
-  ...props
-}: React.ComponentPropsWithRef<"div"> & { isVisible: boolean }) {
-  const styles = useSpring({ opacity: isVisible ? 1 : 0 });
-  return (
-    <ItemColumnWrapperStyled style={styles} {...props}>
-      {children}
-    </ItemColumnWrapperStyled>
   );
 }

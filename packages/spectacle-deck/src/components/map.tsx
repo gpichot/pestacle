@@ -1,5 +1,4 @@
-import React from "react";
-import { mdxComponentMap } from "spectacle";
+import React, { ViewTransition } from "react";
 
 import CodeStepper from "./CodeStepper/CodeStepper";
 import { Mermaid } from "./Mermaid";
@@ -13,106 +12,138 @@ import {
   InlineCode,
 } from "./styled";
 
-const componentsMap = {
-  ...mdxComponentMap,
-  inlineCode: (props: React.ComponentPropsWithoutRef<"code">) => (
-    <InlineCode
-      {...props}
-      style={{
-        fontWeight: 500,
-        display: "inline-block",
-      }}
-    />
+/**
+ * Wrap content in a <ViewTransition> if a morph name is provided.
+ */
+function MorphWrap({
+  morph,
+  children,
+}: {
+  morph?: string;
+  children: React.ReactNode;
+}) {
+  if (!morph) return children;
+  return <ViewTransition name={morph}>{children}</ViewTransition>;
+}
+
+const componentsMap: Record<string, React.ComponentType<any>> = {
+  inlineCode: ({ morph, style, ...props }: any) => (
+    <MorphWrap morph={morph}>
+      <InlineCode
+        {...props}
+        style={{
+          fontWeight: 500,
+          display: "inline-block",
+          ...style,
+        }}
+      />
+    </MorphWrap>
   ),
-  table: (props: React.ComponentPropsWithoutRef<"table">) => (
-    <table
-      {...props}
-      style={{
-        borderCollapse: "collapse",
-        width: "100%",
-        textAlign: "center",
-      }}
-    />
+  table: ({ morph, style, ...props }: any) => (
+    <MorphWrap morph={morph}>
+      <table
+        {...props}
+        style={{
+          borderCollapse: "collapse",
+          width: "100%",
+          textAlign: "center",
+          ...style,
+        }}
+      />
+    </MorphWrap>
   ),
-  tr: (props: React.ComponentPropsWithoutRef<"tr">) => (
-    <tr
-      {...props}
-      style={{
-        textAlign: "center",
-        color: "white",
-        fontFamily: 'Bitter,"Helvetica Neue",Helvetica,Arial,sans-serif',
-        fontSize: 24,
-      }}
-    />
+  tr: ({ morph, style, ...props }: any) => (
+    <MorphWrap morph={morph}>
+      <tr {...props} style={{ textAlign: "center", ...style }} />
+    </MorphWrap>
   ),
-  td: (props: React.ComponentPropsWithoutRef<"td">) => (
-    <td
-      {...props}
-      style={{
-        textAlign: "center",
-        padding: "0.3rem 0",
-        color: "white",
-        fontFamily: 'Bitter,"Helvetica Neue",Helvetica,Arial,sans-serif',
-        fontSize: 24,
-      }}
-    />
+  td: ({ morph, style, ...props }: any) => (
+    <MorphWrap morph={morph}>
+      <td
+        {...props}
+        style={{ textAlign: "center", padding: "0.3rem 0", ...style }}
+      />
+    </MorphWrap>
   ),
-  h1: (props: React.ComponentProps<"h1">) => (
-    <CustomHeading
-      fontSize="h1"
-      color="white"
-      style={{
-        fontWeight: 500,
-        fontFamily: 'Bitter,"Helvetica Neue",Helvetica,Arial,sans-serif',
-        fontSize: 67,
-        flex: "0 1 auto",
-        maxWidth: "65%",
-        textAlign: "left",
-      }}
-    >
-      {props.children}
-    </CustomHeading>
+  h1: ({ morph, style, ...props }: any) => (
+    <MorphWrap morph={morph}>
+      <CustomHeading
+        style={{
+          fontWeight: 500,
+          fontSize: 67,
+          flex: "0 1 auto",
+          maxWidth: "65%",
+          textAlign: "left",
+          color: "white",
+          ...style,
+        }}
+      >
+        {props.children}
+      </CustomHeading>
+    </MorphWrap>
   ),
-  h2: (props: React.ComponentProps<"h2">) => (
-    <HeadingTwo>{props.children}</HeadingTwo>
+  h2: ({ morph, style, ...props }: any) => (
+    <MorphWrap morph={morph}>
+      <HeadingTwo style={style}>{props.children}</HeadingTwo>
+    </MorphWrap>
   ),
-  h3: (props: React.ComponentPropsWithoutRef<"h3">) => (
-    <HeadingThree {...props} />
+  h3: ({ morph, style, ...props }: any) => (
+    <MorphWrap morph={morph}>
+      <HeadingThree {...props} style={style} />
+    </MorphWrap>
   ),
-  img: (props: React.ComponentProps<typeof Image>) => <Image {...props} />,
+  img: ({ morph, style, ...props }: any) => (
+    <MorphWrap morph={morph}>
+      <Image {...props} style={style} />
+    </MorphWrap>
+  ),
   pre: CodeStepper,
-  li: (props: React.ComponentProps<"li">) => (
-    <li {...props} style={{ margin: "24px 0" }} />
+  li: ({ morph, style, ...props }: any) => (
+    <MorphWrap morph={morph}>
+      <li {...props} style={{ margin: "24px 0", ...style }} />
+    </MorphWrap>
   ),
   Side: (props: React.ComponentProps<"div">) => <div {...props} />,
-  p: (props: React.ComponentProps<"p">) => {
-    const Text = mdxComponentMap.p!;
-    return (
-      <Text
-        style={{ margin: "8px 0", padding: "8px 0", lineHeight: "2rem" }}
+  p: ({ morph, style, ...props }: any) => (
+    <MorphWrap morph={morph}>
+      <p
         {...props}
+        style={{
+          margin: "8px 0",
+          padding: "8px 0",
+          lineHeight: "1.6",
+          ...style,
+        }}
       />
-    );
-  },
-  blockquote: (props: React.ComponentProps<"blockquote">) => (
-    <CustomQuote {...props} />
+    </MorphWrap>
   ),
-  a: ({ children, ...props }: React.ComponentProps<"a">) => {
+  blockquote: ({ morph, style, ...props }: any) => (
+    <MorphWrap morph={morph}>
+      <CustomQuote {...props} style={style} />
+    </MorphWrap>
+  ),
+  a: ({ children, morph, style, ...props }: any) => {
     const domain = new URL(props.href || "").hostname;
     return (
-      <a
-        {...props}
-        style={{ color: "var(--color-secondary)", textDecoration: "none" }}
-      >
-        {children}{" "}
-        <small
+      <MorphWrap morph={morph}>
+        <a
+          {...props}
           style={{
-            color: "#ffffff44",
+            color: "var(--color-secondary)",
+            textDecoration: "none",
+            ...style,
           }}
         >
-          ({domain})
-        </small>
-      </a>
+          {children}{" "}
+          <small
+            style={{
+              color: "#ffffff44",
+            }}
+          >
+            ({domain})
+          </small>
+        </a>
+      </MorphWrap>
     );
   },
   directive: (props: React.ComponentProps<"div">) => {

@@ -1,78 +1,51 @@
 import type React from "react";
-import {
-  FlexBox,
-  Heading,
-  Image as SpectacleImage,
-  Link as SpectacleLink,
-} from "spectacle";
-import styled from "styled-components";
+
+import styles from "./styled.module.css";
 
 export const Link = (props: { href: string; children: React.ReactNode }) => (
-  <SpectacleLink href={props.href} target="_blank" rel="noopener noreferrer">
+  <a
+    href={props.href}
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ color: "var(--color-secondary)", textDecoration: "none" }}
+  >
     {props.children} [{props.href}]
-  </SpectacleLink>
+  </a>
 );
 
-const StyledImage = styled(SpectacleImage)`
-  object-fit: contain;
-  max-height: 30vh;
-  max-width: 70vw;
-`;
-
-export const Image = (props: React.ComponentProps<typeof SpectacleImage>) => (
-  <FlexBox margin="0 0" padding="0 0">
-    <StyledImage {...props} />
-  </FlexBox>
+export const Image = (props: React.ComponentProps<"img">) => (
+  <div
+    style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+  >
+    <img
+      alt=""
+      {...props}
+      style={{
+        objectFit: "contain",
+        maxHeight: "30vh",
+        maxWidth: "70vw",
+        ...props.style,
+      }}
+    />
+  </div>
 );
 
-export const CustomHeading = styled(Heading)`
-  strong {
-    color: var(--color-secondary);
-    font-weight: 500;
-  }
-`;
+export const CustomHeading = (props: React.ComponentProps<"h1">) => (
+  <h1 {...props} className={styles.heading} />
+);
 
-export const CustomQuote = styled.blockquote`
-  margin: 1rem 0;
-  padding-left: 1.5rem;
-  padding-top: 0;
-  padding-bottom: 0;
-  opacity: 0.8;
+export const HeadingTwo = (props: React.ComponentProps<"h2">) => (
+  <h2 {...props} className={styles.headingTwo} />
+);
 
-  > * {
-    padding: 0 !important;
-  }
-`;
+export const HeadingThree = (props: React.ComponentProps<"h3">) => (
+  <h3 {...props} className={styles.headingThree} />
+);
 
-export const InlineCode = styled.code`
-  filter: brightness(1.05);
-  zoom: 1.1;
-  &:before,
-  &:after {
-    content: "\`";
-    font-size: 0.8em;
-  }
-`;
+export const CustomQuote = (props: React.ComponentProps<"blockquote">) => (
+  <blockquote {...props} className={styles.quote} />
+);
 
-export const HeadingTwo = styled.h2`
-  font-family: Bitter, \"Helvetica Neue\", Helvetica, Arial, sans-serif;
-  font-size: 55px;
-  font-weight: 400;
-
-  strong {
-    color: var(--color-secondary);
-    font-weight: 500;
-  }
-`;
-
-export const HeadingThree = styled.h3`
-  font-family: Bitter, \"Helvetica Neue\", Helvetica, Arial, sans-serif;
-  font-size: 40px;
-  font-weight: 400;
-  margin-top: 0;
-
-  strong {
-    color: var(--color-secondary);
-    font-weight: 500;
-  }
-`;
+export const InlineCode = (props: React.ComponentProps<"code">) => (
+  <code {...props} className={styles.inlineCode} />
+);

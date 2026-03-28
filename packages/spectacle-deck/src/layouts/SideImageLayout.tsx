@@ -1,18 +1,8 @@
 import type React from "react";
-import styled from "styled-components";
 
 import { Image } from "../components/Image";
+import styles from "./layouts.module.css";
 import { getMatchingMdxType } from "./utils";
-
-const DivWithHeading = styled.div`
-  h2 {
-    margin-top: 0;
-  }
-  h2 strong {
-    color: var(--color-secondary);
-    font-weight: 400;
-  }
-`;
 
 /**
  * Parse a ratio like 6/5
@@ -44,7 +34,8 @@ export const SidedImageLayout = ({
     return null;
   }
   return (
-    <DivWithHeading
+    <div
+      className={styles.divWithHeading}
       style={{
         display: "flex",
         flexDirection: isReversed ? "row-reverse" : "row",
@@ -77,6 +68,6 @@ export const SidedImageLayout = ({
       >
         {component || <Image src={image} />}
       </div>
-    </DivWithHeading>
+    </div>
   );
 };

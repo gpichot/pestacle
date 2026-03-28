@@ -1,6 +1,6 @@
 import type React from "react";
 
-import { SVGObject } from "../layouts/styled";
+import { layoutStyles } from "../layouts/styled";
 
 export interface ImageProps extends React.ComponentProps<"img"> {}
 
@@ -23,7 +23,8 @@ export function Image(props: ImageProps) {
     );
   }
   return (
-    <SVGObject
+    <object
+      className={layoutStyles.svgObject}
       type="image/svg+xml"
       data={src}
       style={{
@@ -32,7 +33,9 @@ export function Image(props: ImageProps) {
         width: width || "100%",
         ...style,
       }}
-    />
+    >
+      SVG
+    </object>
   );
 }
 

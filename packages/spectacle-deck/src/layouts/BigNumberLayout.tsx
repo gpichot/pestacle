@@ -1,26 +1,7 @@
 import type React from "react";
-import styled from "styled-components";
 
+import styles from "./layouts.module.css";
 import { getHeading, Margins } from "./utils";
-
-const BigValue = styled.div`
-  font-family: Bitter, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 10rem;
-  font-weight: 700;
-  line-height: 1;
-  color: var(--color-secondary);
-  text-align: center;
-`;
-
-const Caption = styled.div`
-  font-family: Bitter, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 2rem;
-  font-weight: 400;
-  color: #ffffffcc;
-  text-align: center;
-  margin-top: 2rem;
-  max-width: 70%;
-`;
 
 export function BigNumberLayout({
   children,
@@ -52,8 +33,8 @@ export function BigNumberLayout({
           {heading}
         </div>
       )}
-      <BigValue>{value}</BigValue>
-      <Caption>{rest}</Caption>
+      <div className={styles.bigValue}>{value}</div>
+      <div className={styles.bigCaption}>{rest}</div>
     </div>
   );
 }
