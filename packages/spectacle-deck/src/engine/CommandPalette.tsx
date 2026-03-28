@@ -44,29 +44,52 @@ export function CommandPalette({
     item?.scrollIntoView({ block: "nearest" });
   }, [selectedIndex]);
 
-  function handleKeyDown(e: React.KeyboardEvent) {
-    switch (e.key) {
-      case "ArrowDown":
-        e.preventDefault();
-        setSelectedIndex((i) => Math.min(i + 1, filtered.length - 1));
-        break;
-      case "ArrowUp":
-        e.preventDefault();
-        setSelectedIndex((i) => Math.max(i - 1, 0));
-        break;
-      case "Enter":
-        e.preventDefault();
-        if (filtered[selectedIndex]) {
-          filtered[selectedIndex].action();
-          onClose();
+  // Use refs so the capture listener always sees latest state
+  const filteredRef = React.useRef(filtered);
+  filteredRef.current = filtered;
+  const selectedIndexRef = React.useRef(selectedIndex);
+  selectedIndexRef.current = selectedIndex;
+
+  // Capture-phase listener: intercept ALL keydown events while the palette
+  // is open so they never reach the deck navigation handler.
+  React.useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      // Stop the event from propagating to any other listeners (deck nav)
+      e.stopPropagation();
+
+      switch (e.key) {
+        case "ArrowDown":
+          e.preventDefault();
+          setSelectedIndex((i) =>
+            Math.min(i + 1, filteredRef.current.length - 1),
+          );
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          setSelectedIndex((i) => Math.max(i - 1, 0));
+          break;
+        case "Enter": {
+          e.preventDefault();
+          const cmd = filteredRef.current[selectedIndexRef.current];
+          if (cmd) {
+            cmd.action();
+            onClose();
+          }
+          break;
         }
-        break;
-      case "Escape":
-        e.preventDefault();
-        onClose();
-        break;
+        case "Escape":
+          e.preventDefault();
+          onClose();
+          break;
+      }
     }
-  }
+
+    document.addEventListener("keydown", handleKeyDown, { capture: true });
+    return () =>
+      document.removeEventListener("keydown", handleKeyDown, {
+        capture: true,
+      });
+  }, [onClose]);
 
   return (
     <div
@@ -87,15 +110,11 @@ export function CommandPalette({
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
-      onKeyDown={(e) => {
-        if (e.key === "Escape") onClose();
+      onKeyDown={() => {
+        /* handled by capture-phase listener */
       }}
     >
       <div
-        role="combobox"
-        tabIndex={-1}
-        aria-expanded="true"
-        aria-haspopup="listbox"
         style={{
           width: "min(500px, 90vw)",
           background: "#1e1e2e",
@@ -105,7 +124,6 @@ export function CommandPalette({
           overflow: "hidden",
           fontFamily: "system-ui, -apple-system, sans-serif",
         }}
-        onKeyDown={handleKeyDown}
       >
         {/* Search input */}
         <div
