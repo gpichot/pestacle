@@ -1,14 +1,15 @@
 ---
 author: Gabriel
+title: Boring Slides
 ---
 
 layout: mainSection
 
 ---
 
-# **Crossing the bridge** {morph="title"}
+# **Boring Slides** {morph="title"}
 
-_Seamless strategies for updating and migrating libraries_ {morph="subtitle"}
+_Write presentations in MDX. No fuss._ {morph="subtitle"}
 
 ---
 
@@ -16,42 +17,106 @@ layout: centered
 
 ---
 
-import { Timeline, TimelineItem } from "@gpichot/spectacle-deck";
+import { ItemsColumn } from "@gpichot/spectacle-deck";
 
-### **History** {morph="subtitle"}
+## **What is Pestacle?** {morph="section-title"}
 
-<Timeline>
- <TimelineItem title="2011">
+<ItemsColumn>
 
-Created by Jordan Walke, a software engineer at Facebook.
+A presentation tool built on **MDX** and **Vite**
 
-  </TimelineItem>
-  <TimelineItem title="May 2013">
+Write slides in Markdown, use React components when you need them
 
-⚛️ **React** is open sourced.
+Themes, layouts, animations — all batteries included
 
-  </TimelineItem>
-  <TimelineItem title="Feb 2019">
-
-**v16.8:** React Hooks 🤘
-
-  </TimelineItem>
-  <TimelineItem title="March 2022">
-
-**v18:** Concurrent React
-
-  </TimelineItem>
-</Timeline>
+</ItemsColumn>
 
 ---
 
 layout: quote
-author: React
-sourceUrl: https://reactjs.org/
+author: Every developer
+sourceUrl: https://pestacle.dev
 
 ---
 
-> React is a JavaScript library for building user interfaces.
+> I just want to write slides in Markdown and have them look good.
+
+---
+
+layout: section
+
+---
+
+# **How it works** {morph="section-title"}
+
+From MDX to rendered slides {morph="section-desc"}
+
+---
+
+layout: centered
+
+---
+
+import { Mermaid } from "@gpichot/spectacle-deck";
+
+### **The Pipeline** {morph="section-title"}
+
+<Mermaid
+  chart={`graph LR
+  A[deck.mdx] --> B[Vite Plugin]
+  B --> C[Remark / Rehype]
+  C --> D[React Components]
+  D --> E[Presentation]
+`}
+/>
+
+---
+
+layout: sidedCode
+
+---
+
+## **Just MDX** {morph="section-title"}
+
+Slides are separated by `---`. Add a layout via frontmatter. Drop in components when Markdown isn't enough.
+
+```mdx
+---
+layout: centered
+---
+
+# Hello
+
+<MyComponent />
+```
+
+---
+
+layout: centered
+
+---
+
+import { HorizontalList, HorizontalListItem } from "@gpichot/spectacle-deck";
+
+### **Three steps** {morph="section-title"}
+
+<HorizontalList columns={3}>
+  <HorizontalListItem title="1. Write">
+
+Author your slides in `.mdx` files with familiar Markdown syntax.
+
+  </HorizontalListItem>
+  <HorizontalListItem title="2. Configure">
+
+Pick a theme and layouts in `pestacle.config.ts`.
+
+  </HorizontalListItem>
+  <HorizontalListItem title="3. Present">
+
+`pnpm dev` — navigate with arrow keys, present in fullscreen.
+
+  </HorizontalListItem>
+</HorizontalList>
 
 ---
 
@@ -61,28 +126,7 @@ layout: section
 
 # **Layouts** {morph="section-title"}
 
-A tour of built-in slide layouts {morph="section-desc"}
-
----
-
-layout: sidedCode
-
----
-
-## **Sided Code** {morph="section-title"}
-
-Code on one side, text on the other.
-
-```jsx
-function Greeting({ name }) {
-  return (
-    <div>
-      <h1>Hello, {name}!</h1>
-      <p>Welcome to Pestacle.</p>
-    </div>
-  );
-}
-```
+Pick a layout per slide via frontmatter {morph="section-desc"}
 
 ---
 
@@ -91,9 +135,11 @@ image: https://picsum.photos/800/600
 
 ---
 
-## **Sided Image** {morph="section-title"}
+## **sidedImage** {morph="section-title"}
 
-An image on one side and text content on the other.
+An image on one side, text on the other. Great for visual storytelling.
+
+Just set `layout: sidedImage` and an `image` URL in the frontmatter.
 
 ---
 
@@ -103,15 +149,15 @@ layout: side
 
 import { Side } from "@gpichot/spectacle-deck";
 
-## **Side Layout** {morph="section-title"}
+## **side** {morph="section-title"}
 
-Main content goes here on the primary column.
+A two-column layout with a main area and a sidebar.
 
 <Side>
 
 ### Sidebar
 
-Supplementary info in the side panel.
+Useful for supplementary context, links, or notes alongside the main content.
 
 </Side>
 
@@ -123,97 +169,20 @@ dim: 0.5
 
 ---
 
-## **Full Image** {morph="section-title"}
+## **fullImage** {morph="section-title"}
 
-A dramatic full-bleed background image with text overlay.
+Full-bleed background with a dim overlay for readable text on top.
 
 ---
 
 layout: bigNumber
-value: "2.4M"
+value: "0"
 
 ---
 
-## Downloads
+## Config files to write
 
-Weekly npm downloads across the React ecosystem.
-
----
-
-layout: section
-
----
-
-# **Components** {morph="section-title"}
-
-Reusable building blocks {morph="section-desc"}
-
----
-
-layout: centered
-
----
-
-import { HorizontalList, HorizontalListItem } from "@gpichot/spectacle-deck";
-
-### **HorizontalList** {morph="section-title"}
-
-<HorizontalList columns={3}>
-  <HorizontalListItem title="Step 1">
-
-Define your slides in MDX format.
-
-  </HorizontalListItem>
-  <HorizontalListItem title="Step 2">
-
-Add layouts and components via frontmatter.
-
-  </HorizontalListItem>
-  <HorizontalListItem title="Step 3">
-
-Present with keyboard navigation.
-
-  </HorizontalListItem>
-</HorizontalList>
-
----
-
-layout: centered
-
----
-
-import { ItemsColumn } from "@gpichot/spectacle-deck";
-
-### **ItemsColumn** {morph="section-title"}
-
-<ItemsColumn>
-
-**First item** — appears on first step
-
-**Second item** — appears on second step
-
-**Third item** — appears on third step
-
-</ItemsColumn>
-
----
-
-layout: centered
-
----
-
-import { Mermaid } from "@gpichot/spectacle-deck";
-
-### **Mermaid Diagram** {morph="section-title"}
-
-<Mermaid
-  chart={`graph LR
-  A[MDX File] --> B[Vite Plugin]
-  B --> C[Remark/Rehype]
-  C --> D[React Components]
-  D --> E[Spectacle Deck]
-`}
-/>
+Pestacle generates `index.html` and the app entrypoint for you. Just write slides.
 
 ---
 
@@ -221,7 +190,7 @@ layout: section
 
 ---
 
-# **Morph & Animations** {morph="section-title"}
+# **Animations** {morph="section-title"}
 
 Smooth transitions between slides {morph="section-desc"}
 
@@ -233,7 +202,7 @@ layout: centered
 
 import { Morph } from "@gpichot/spectacle-deck";
 
-### **Morph Demo** {morph="section-title"}
+### **Morph** {morph="section-title"}
 
 <Morph
   name="demo-box"
@@ -241,7 +210,7 @@ import { Morph } from "@gpichot/spectacle-deck";
     width: 200,
     height: 200,
     borderRadius: 16,
-    background: "#F530EC",
+    background: "var(--color-secondary)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -250,10 +219,10 @@ import { Morph } from "@gpichot/spectacle-deck";
     fontWeight: "bold",
   }}
 >
-  Hello
+  Pestacle
 </Morph>
 
-Navigate forward to see this box morph...
+Elements with the same morph name animate between slides.
 
 ---
 
@@ -261,29 +230,29 @@ layout: centered
 
 ---
 
-### **Morphed** {morph="section-title"}
+### **Morph** {morph="section-title"}
 
 <div style={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
   <Morph
     name="demo-box"
     style={{
-      width: 200,
-      height: 200,
-      borderRadius: 100,
-      background: "#22d3ee",
+      width: 300,
+      height: 120,
+      borderRadius: 60,
+      background: "var(--color-primary)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "#000",
+      color: "#fff",
       fontSize: "2rem",
       fontWeight: "bold",
     }}
   >
-    Hello
+    Pestacle
   </Morph>
 </div>
 
-Circle, repositioned, new color — all animated by the browser.
+Shape, position, and color — all interpolated by the browser.
 
 ---
 
@@ -292,19 +261,19 @@ transition: none
 
 ---
 
-import { FadeIn, ScaleIn, StaggerChildren } from "@gpichot/spectacle-deck";
+import { FadeIn, StaggerChildren } from "@gpichot/spectacle-deck";
 
-### **Animations** {morph="section-title"}
+### **Stagger & Fade** {morph="section-title"}
 
 <StaggerChildren stagger={150} direction="up">
 
-**FadeIn** — content reveals from a direction
+**FadeIn** — reveal content from any direction
 
-**ScaleIn** — scales up from zero
+**StaggerChildren** — items appear one by one
 
-**StaggerChildren** — children appear one by one
+**ScaleIn** — pop elements into view
 
-**TypeWriter** — types character by character
+**TypeWriter** — type out text character by character
 
 </StaggerChildren>
 
@@ -330,18 +299,34 @@ import { AnimatedCounter, ProgressRing } from "@gpichot/spectacle-deck";
     color: "var(--color-secondary)",
   }}
 >
-  <AnimatedCounter to={42} duration={2000} />
+  <AnimatedCounter to={5} duration={2000} />
 </div>
 
-Releases
+Built-in themes
 
 </div>
 
-<ProgressRing value={87} size={140} strokeWidth={10}>
+<ProgressRing value={100} size={140} strokeWidth={10}>
 
-<div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>87%</div>
+<div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>MDX</div>
 
 </ProgressRing>
+
+<div style={{ textAlign: "center" }}>
+
+<div
+  style={{
+    fontSize: "3rem",
+    fontWeight: "bold",
+    color: "var(--color-secondary)",
+  }}
+>
+  <AnimatedCounter to={9} duration={2000} />
+</div>
+
+Layouts
+
+</div>
 
 </div>
 
@@ -351,6 +336,39 @@ layout: centered
 
 ---
 
-:qrcode[https://www.com/feedback]
+import { Timeline, TimelineItem } from "@gpichot/spectacle-deck";
 
-### **Thank you!** {morph="heading"}
+### **Timeline** {morph="section-title"}
+
+<Timeline>
+  <TimelineItem title="Write">
+
+Author slides in MDX — Markdown you already know.
+
+  </TimelineItem>
+  <TimelineItem title="Style">
+
+Pick a theme, choose layouts, add components.
+
+  </TimelineItem>
+  <TimelineItem title="Present">
+
+Keyboard navigation, fullscreen, overview mode.
+
+  </TimelineItem>
+  <TimelineItem title="Ship">
+
+Static build with `pnpm build`. Host anywhere.
+
+  </TimelineItem>
+</Timeline>
+
+---
+
+layout: centered
+
+---
+
+:qrcode[https://github.com/gpichot/pestacle]
+
+### **github.com/gpichot/pestacle** {morph="heading"}
