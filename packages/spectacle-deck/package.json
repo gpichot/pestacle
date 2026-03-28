@@ -1,6 +1,6 @@
 {
   "name": "@gpichot/spectacle-deck",
-  "version": "1.14.0",
+  "version": "1.15.0",
   "description": "",
   "module": "src/index.tsx",
   "types": "src/index.d.ts",
