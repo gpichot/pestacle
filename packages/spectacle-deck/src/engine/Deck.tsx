@@ -13,6 +13,7 @@ import { toggleFullscreen } from "./dom-helpers";
 import { ExportMode, type ExportModeVariant } from "./ExportMode";
 import { injectGlobalStyles } from "./global.css";
 import { OverviewMode } from "./OverviewMode";
+import { getCurrentSection, SectionTitle } from "./SectionTitle";
 import { Template } from "./Template";
 import {
   fadeTransition,
@@ -324,6 +325,11 @@ export function Deck({
                   {Component && <Component />}
                 </div>
               </ViewTransition>
+
+              {/* Section title overlay */}
+              <SectionTitle
+                title={getCurrentSection(deck.slides, nav.slideIndex)}
+              />
 
               {/* Template overlay (progress bar, fullscreen) */}
               <Template
