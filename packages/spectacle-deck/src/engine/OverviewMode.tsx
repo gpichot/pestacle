@@ -25,13 +25,15 @@ function SlideThumbnail({
   const deck = useDeck();
   const Component = slide.slideComponent;
 
-  // Create a mock context for the thumbnail so steppers don't interfere
+  // Create a mock context for the thumbnail:
+  // - stepIndex set high so all Stepper content is fully revealed
+  // - registerStepper/unregisterStepper are no-ops to avoid interfering with the real deck
   const thumbnailContext = React.useMemo(
     () => ({
       ...deck,
       slideIndex: index,
-      stepIndex: 0,
-      stepCount: 0,
+      stepIndex: Number.MAX_SAFE_INTEGER,
+      stepCount: Number.MAX_SAFE_INTEGER,
       registerStepper: () => {},
       unregisterStepper: () => {},
     }),
@@ -73,7 +75,7 @@ function SlideThumbnail({
         }
       }}
     >
-      {/* Scaled-down slide content */}
+      {/* Scaled-down slide content — inherits theme colors via CSS variables */}
       <div
         style={{
           width: "100vw",
@@ -91,6 +93,8 @@ function SlideThumbnail({
           padding: "2rem 3rem",
           boxSizing: "border-box",
           overflow: "hidden",
+          background: "var(--color-tertiary, #1a1a2e)",
+          color: "var(--color-primary, #fff)",
         }}
       >
         <DeckContext.Provider value={thumbnailContext}>
