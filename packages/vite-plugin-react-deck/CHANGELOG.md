@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.10.0...vite-plugin-react-deck-v1.11.0) (2026-03-28)
+
+
+### Features
+
+* decouple from Spectacle: implement custom deck engine with View Transitions ([#53](https://github.com/gpichot/pestacle/issues/53)) ([b729e2b](https://github.com/gpichot/pestacle/commit/b729e2be8c3927e0ed7d458e048a2be209002841))
+
 ## [1.10.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.9.1...vite-plugin-react-deck-v1.10.0) (2026-03-26)
 
 ### Features

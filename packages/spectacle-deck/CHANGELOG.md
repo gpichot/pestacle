@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.14.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.13.0...spectacle-deck-v1.14.0) (2026-03-28)
+
+
+### Features
+
+* add export/print modes and command palette to deck ([#57](https://github.com/gpichot/pestacle/issues/57)) ([1c21a2c](https://github.com/gpichot/pestacle/commit/1c21a2c00ee7273bb2d1c26e96cdac2f0ebb92e4))
+* add overview mode  ([#55](https://github.com/gpichot/pestacle/issues/55)) ([241009f](https://github.com/gpichot/pestacle/commit/241009f0e6e8305329292e54eec78481d6f4af8e))
+* add sticky section title header to slides ([#59](https://github.com/gpichot/pestacle/issues/59)) ([9b6adbd](https://github.com/gpichot/pestacle/commit/9b6adbd9cc4d7f4d92b58d69cf892e4cb11473e9))
+* decouple from Spectacle: implement custom deck engine with View Transitions ([#53](https://github.com/gpichot/pestacle/issues/53)) ([b729e2b](https://github.com/gpichot/pestacle/commit/b729e2be8c3927e0ed7d458e048a2be209002841))
+* navigate back to slide's final step instead of first step ([#56](https://github.com/gpichot/pestacle/issues/56)) ([937119a](https://github.com/gpichot/pestacle/commit/937119aefaf2b4390c65826a5741cafe6a5200d6))
+
+
+### Bug Fixes
+
+* deck and example ([ffe9f2d](https://github.com/gpichot/pestacle/commit/ffe9f2d99ce9ae11f62565968a6165ababe78ae9))
+
 ## [1.13.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.12.1...spectacle-deck-v1.13.0) (2026-03-26)
 
 ### Features
