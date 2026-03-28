@@ -6,8 +6,6 @@
  * explicitly cleared (by setting `section: ""` or `section: false`).
  */
 export function SectionTitle({ title }: { title: string }) {
-  if (!title) return null;
-
   return (
     <div
       style={{
@@ -21,6 +19,8 @@ export function SectionTitle({ title }: { title: string }) {
         alignItems: "center",
         gap: "0.6em",
         pointerEvents: "none",
+        opacity: title ? 1 : 0,
+        transition: "opacity 0.3s ease",
       }}
     >
       <div
