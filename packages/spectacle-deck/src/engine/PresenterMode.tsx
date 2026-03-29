@@ -104,9 +104,12 @@ function SlidePreview({
           borderRadius: "8px",
           overflow: "hidden",
           border: "2px solid rgba(255,255,255,0.15)",
-          background: "var(--bg-base, #1a1a2e)",
+          background: "#000",
           minHeight: 0,
           aspectRatio: "16 / 9",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         {/* Scaled-down slide */}
@@ -115,11 +118,8 @@ function SlidePreview({
             width: `${SLIDE_W}px`,
             height: `${SLIDE_H}px`,
             transform: `scale(${scale})`,
-            transformOrigin: "top left",
+            flexShrink: 0,
             pointerEvents: "none",
-            position: "absolute",
-            top: 0,
-            left: 0,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -127,6 +127,7 @@ function SlidePreview({
             padding: "2rem 3rem",
             boxSizing: "border-box",
             overflow: "hidden",
+            background: "var(--bg-base, #1a1a2e)",
             color: "var(--text-base, #fff)",
           }}
         >
