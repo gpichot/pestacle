@@ -282,25 +282,10 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
           return html.replace("__SCRIPT__", `${resolvedDeckPath}/__deck.tsx`);
         }
 
-        // Landing page: list available decks
-        const decks = await glob.glob("./src/**/deck.mdx");
-        const deckLinks = decks
-          .map((d) => {
-            const url = `/${d.replace("src/", "").replace("/deck.mdx", "")}/`;
-            const name = d.replace("src/", "").replace("/deck.mdx", "");
-            return `<li><a href="${url}">${name}</a></li>`;
-          })
-          .join("\n");
-
-        return html
-          .replace('<script type="module" src="__SCRIPT__"></script>', "")
-          .replace(
-            '<div id="root"></div>',
-            `<div id="root">
-              <h1>Available Decks</h1>
-              <ul>${deckLinks}</ul>
-            </div>`,
-          );
+        return html.replace(
+          '<script type="module" src="__SCRIPT__"></script>',
+          "",
+        );
       },
     },
     configureServer(server) {
