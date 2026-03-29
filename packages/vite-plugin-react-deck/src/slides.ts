@@ -74,7 +74,6 @@ function myRemarkPlugin() {
    * @returns {undefined}
    *   Nothing.
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (tree: any) => {
     visit(tree, (node) => {
       if (

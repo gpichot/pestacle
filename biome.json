@@ -19,29 +19,7 @@
     }
   },
   "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true,
-      "correctness": {
-        "noUnusedImports": "warn",
-        "noUnusedVariables": "warn",
-        "noUnusedFunctionParameters": "off"
-      },
-      "suspicious": {
-        "noExplicitAny": "off",
-        "noArrayIndexKey": "off"
-      },
-      "a11y": {
-        "noSvgWithoutTitle": "off",
-        "useAltText": "warn"
-      },
-      "performance": {
-        "noAccumulatingSpread": "warn"
-      },
-      "style": {
-        "noNonNullAssertion": "off"
-      }
-    }
+    "enabled": false
   },
   "formatter": {
     "enabled": true,

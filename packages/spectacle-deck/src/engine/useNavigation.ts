@@ -65,7 +65,7 @@ export function useNavigation({
   );
 
   // Reset steps when slide changes
-  // biome-ignore lint/correctness/useExhaustiveDependencies: intentionally re-run on slideIndex change
+  // oxlint-disable-next-line react-hooks/exhaustive-deps -- intentionally re-run on slideIndex change
   React.useEffect(() => {
     steppersRef.current.clear();
     setStepCount(0);

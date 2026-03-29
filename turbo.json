@@ -9,8 +9,6 @@
     },
     "type-check": {},
     "test": {},
-    "lint": {},
-    "lint:fix": {},
     "format": {},
     "format:check": {}
   }
