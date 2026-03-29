@@ -2,10 +2,11 @@
 
 ## [1.15.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.14.0...vite-plugin-react-deck-v1.15.0) (2026-03-29)
 
-
 ### Features
 
-* add Text component export to spectacle-deck ([#68](https://github.com/gpichot/pestacle/issues/68)) ([ec33f9b](https://github.com/gpichot/pestacle/commit/ec33f9bba51ff9f95571f379a5edc7c863d22644))
+- add Text component export to spectacle-deck
+  ([#68](https://github.com/gpichot/pestacle/issues/68))
+  ([ec33f9b](https://github.com/gpichot/pestacle/commit/ec33f9bba51ff9f95571f379a5edc7c863d22644))
 
 ## [1.14.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.13.0...vite-plugin-react-deck-v1.14.0) (2026-03-29)
 
