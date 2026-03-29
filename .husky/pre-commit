@@ -1,3 +1,2 @@
 npx oxlint .
-npx @biomejs/biome check --linter-enabled=false .
-npx prettier --check "**/*.md" "**/*.mdx"
+npx prettier --check .

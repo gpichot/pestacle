@@ -9,8 +9,8 @@
     "dev": "tnode scripts/bundle.ts",
     "build": "tnode scripts/bundle.ts",
     "publish": "./publish.sh",
-    "format": "biome format --write ./src",
-    "format:check": "biome format ./src",
+    "format": "prettier --write ./src",
+    "format:check": "prettier --check ./src",
     "type-check": "tsc --noEmit"
   },
   "keywords": [],

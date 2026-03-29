@@ -1,12 +1,4 @@
 dist
 node_modules
-*.ts
-*.tsx
-*.js
-*.jsx
-*.mts
-*.mjs
-*.cjs
-*.json
 pnpm-lock.yaml
 backup

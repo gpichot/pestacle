@@ -65,9 +65,8 @@ content
   it("should extract the main code from a function in dev mode with one child", async () => {
     const input = await compile(`# Head 1`, { jsx: true });
 
-    expect(
-      extractMainCodeAsChildren(input.value.toString(), { isJsx: true }),
-    ).toMatchInlineSnapshot(`
+    expect(extractMainCodeAsChildren(input.value.toString(), { isJsx: true }))
+      .toMatchInlineSnapshot(`
         "const _components = {
             h1: "h1",
             ...props.components
