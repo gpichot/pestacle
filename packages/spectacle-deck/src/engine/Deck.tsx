@@ -396,37 +396,42 @@ export function Deck({
                   containerName: "slide",
                 }}
               >
-                {/* Slide content wrapped in ViewTransition for cross-slide morphing */}
-                <ViewTransition name="slide-content">
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      padding: "2cqh 3cqw",
-                      boxSizing: "border-box",
-                    }}
-                  >
-                    {Component && <Component />}
-                  </div>
-                </ViewTransition>
+                {/* Hide main slide content in presenter mode to prevent
+                    ViewTransition animations from showing through */}
+                {!presenterMode && (
+                  <>
+                    <ViewTransition name="slide-content">
+                      <div
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          padding: "2cqh 3cqw",
+                          boxSizing: "border-box",
+                        }}
+                      >
+                        {Component && <Component />}
+                      </div>
+                    </ViewTransition>
 
-                {/* Section title overlay */}
-                <SectionTitle
-                  title={getCurrentSection(deck.slides, nav.slideIndex)}
-                />
+                    {/* Section title overlay */}
+                    <SectionTitle
+                      title={getCurrentSection(deck.slides, nav.slideIndex)}
+                    />
 
-                {/* Template overlay (progress bar, fullscreen) */}
-                <Template
-                  slideNumber={nav.slideIndex + 1}
-                  numberOfSlides={slideCount}
-                  onToggleExport={openExportMode}
-                  onTogglePrint={openPrintMode}
-                  onToggleCommandPalette={toggleCommandPalette}
-                />
+                    {/* Template overlay (progress bar, fullscreen) */}
+                    <Template
+                      slideNumber={nav.slideIndex + 1}
+                      numberOfSlides={slideCount}
+                      onToggleExport={openExportMode}
+                      onTogglePrint={openPrintMode}
+                      onToggleCommandPalette={toggleCommandPalette}
+                    />
+                  </>
+                )}
 
                 {/* Overview mode */}
                 {overviewMode && (
