@@ -12,6 +12,15 @@ const componentsMap = {
   wrapper: SlideWrapper,
 };
 
+const noAnimationClass = "presenter-no-animation";
+const noAnimationStyle = `
+.${noAnimationClass} * {
+  animation: none !important;
+  transition: none !important;
+  opacity: 1 !important;
+}
+`;
+
 /**
  * Renders a slide thumbnail for the presenter view.
  * Uses a mock DeckContext so Stepper components render correctly.
@@ -112,8 +121,10 @@ function SlidePreview({
           justifyContent: "center",
         }}
       >
-        {/* Scaled-down slide */}
+        {/* Scaled-down slide — animations disabled */}
+        <style>{noAnimationStyle}</style>
         <div
+          className={noAnimationClass}
           style={{
             width: `${SLIDE_W}px`,
             height: `${SLIDE_H}px`,
