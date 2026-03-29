@@ -88,6 +88,29 @@ async function fileExists(_name: string, path: string) {
   }
 }
 
+async function findCssFiles(deckDir: string): Promise<string[]> {
+  const cssFiles: string[] = [];
+
+  // 1. Project-level CSS: pestacle/styles.css
+  try {
+    await fs.access("./pestacle/styles.css");
+    cssFiles.push("/pestacle/styles.css");
+  } catch {}
+
+  // 2. Deck-level CSS files next to deck.mdx
+  try {
+    const dir = deckDir.startsWith(".") ? deckDir : `./${deckDir}`;
+    const entries = await fs.readdir(dir);
+    for (const entry of entries) {
+      if (entry.endsWith(".css")) {
+        cssFiles.push(`${dir}/${entry}`);
+      }
+    }
+  } catch {}
+
+  return cssFiles;
+}
+
 async function loadCustomConfig() {
   const layoutsFile = await fileExists("layouts", "./pestacle/layouts");
 
@@ -231,11 +254,14 @@ export default async (options: ReactDeckOptions): Promise<PluginOption> => {
           // Ignore read errors, fall back to config theme
         }
 
+        const cssFiles = await findCssFiles(dir);
+
         const contentIndex = createAppDeckFile({
           slidePath: `${directory}/deck.mdx`,
           theme: options.theme,
           deckTheme,
           config: { ...config, transition: options.transition },
+          cssFiles,
         });
         return contentIndex;
       }
