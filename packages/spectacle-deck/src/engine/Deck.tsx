@@ -391,15 +391,16 @@ export function Deck({
                   justifyContent: "center",
                   position: "relative",
                   overflow: "hidden",
-                  background: theme.themeTokens.bg.base,
+                  background: presenterMode
+                    ? "#000"
+                    : theme.themeTokens.bg.base,
                   containerType: "size",
                   containerName: "slide",
                 }}
               >
-                {/* Hide main slide content in presenter mode to prevent
-                    ViewTransition animations from showing through */}
                 {!presenterMode && (
                   <>
+                    {/* Slide content wrapped in ViewTransition for cross-slide morphing */}
                     <ViewTransition name="slide-content">
                       <div
                         style={{
@@ -430,33 +431,33 @@ export function Deck({
                       onTogglePrint={openPrintMode}
                       onToggleCommandPalette={toggleCommandPalette}
                     />
+
+                    {/* Overview mode */}
+                    {overviewMode && (
+                      <OverviewMode
+                        slides={deck.slides}
+                        onSelectSlide={handleSelectSlide}
+                        onClose={toggleOverview}
+                      />
+                    )}
+
+                    {/* Export / Print mode */}
+                    {exportMode && (
+                      <ExportMode
+                        slides={deck.slides}
+                        variant={exportMode}
+                        onClose={closeExportMode}
+                      />
+                    )}
+
+                    {/* Command palette */}
+                    {commandPaletteOpen && (
+                      <CommandPalette
+                        commands={commands}
+                        onClose={closeCommandPalette}
+                      />
+                    )}
                   </>
-                )}
-
-                {/* Overview mode */}
-                {overviewMode && (
-                  <OverviewMode
-                    slides={deck.slides}
-                    onSelectSlide={handleSelectSlide}
-                    onClose={toggleOverview}
-                  />
-                )}
-
-                {/* Export / Print mode */}
-                {exportMode && (
-                  <ExportMode
-                    slides={deck.slides}
-                    variant={exportMode}
-                    onClose={closeExportMode}
-                  />
-                )}
-
-                {/* Command palette */}
-                {commandPaletteOpen && (
-                  <CommandPalette
-                    commands={commands}
-                    onClose={closeCommandPalette}
-                  />
                 )}
               </div>
             </div>
