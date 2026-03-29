@@ -1,2 +1,3 @@
 npx oxlint .
-npx oxfmt --check .
+npx oxfmt --ignore-path .gitignore --check .
+npx prettier --check .

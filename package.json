@@ -11,8 +11,8 @@
     "test": "turbo test",
     "type-check": "turbo type-check",
     "lint": "oxlint .",
-    "format": "oxfmt .",
-    "format:check": "oxfmt --check .",
+    "format": "oxfmt --ignore-path .gitignore . && prettier --write .",
+    "format:check": "oxfmt --ignore-path .gitignore --check . && prettier --check .",
     "prepare": "husky"
   },
   "author": "",
@@ -24,6 +24,7 @@
     "husky": "^9.1.7",
     "oxfmt": "^0.42.0",
     "oxlint": "^1.57.0",
+    "prettier": "^3.8.1",
     "turbo": "^2.8.20"
   },
   "dependencies": {

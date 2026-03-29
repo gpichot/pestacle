@@ -3,5 +3,12 @@
   "proseWrap": "always",
   "printWidth": 80,
   "sortPackageJson": false,
-  "ignorePatterns": ["dist", "node_modules", "pnpm-lock.yaml", "backup"]
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    "pnpm-lock.yaml",
+    "backup",
+    "*.md",
+    "*.mdx"
+  ]
 }
