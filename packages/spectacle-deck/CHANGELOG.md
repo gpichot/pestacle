@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.1](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.18.0...spectacle-deck-v1.18.1) (2026-03-29)
+
+
+### Bug Fixes
+
+* remove landing page deck listing from root path ([#71](https://github.com/gpichot/pestacle/issues/71)) ([c11986e](https://github.com/gpichot/pestacle/commit/c11986e1b844b9df86666121bb6beff71e6c0d7b))
+
 ## [1.18.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.17.0...spectacle-deck-v1.18.0) (2026-03-29)
 
 ### Features
