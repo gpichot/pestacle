@@ -16,6 +16,9 @@ const componentsMap = {
  * Renders a slide thumbnail for the presenter view.
  * Uses a mock DeckContext so Stepper components render correctly.
  */
+const SLIDE_W = 1920;
+const SLIDE_H = 1080;
+
 function SlidePreview({
   slide,
   slideIndex,
@@ -33,6 +36,24 @@ function SlidePreview({
 }) {
   const deck = useDeck();
   const Component = slide.slideComponent;
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [scale, setScale] = React.useState(0.3);
+
+  // Dynamically compute scale so the 1920×1080 slide fits the container
+  React.useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width, height } = entry.contentRect;
+        if (width > 0 && height > 0) {
+          setScale(Math.min(width / SLIDE_W, height / SLIDE_H));
+        }
+      }
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const previewContext = React.useMemo(
     () => ({
@@ -76,6 +97,7 @@ function SlidePreview({
         {label}
       </div>
       <div
+        ref={containerRef}
         style={{
           flex: 1,
           position: "relative",
@@ -84,14 +106,15 @@ function SlidePreview({
           border: "2px solid rgba(255,255,255,0.15)",
           background: "var(--bg-base, #1a1a2e)",
           minHeight: 0,
+          aspectRatio: "16 / 9",
         }}
       >
         {/* Scaled-down slide */}
         <div
           style={{
-            width: "1920px",
-            height: "1080px",
-            transform: "scale(var(--presenter-slide-scale, 0.3))",
+            width: `${SLIDE_W}px`,
+            height: `${SLIDE_H}px`,
+            transform: `scale(${scale})`,
             transformOrigin: "top left",
             pointerEvents: "none",
             position: "absolute",
@@ -332,16 +355,13 @@ export function PresenterMode({
 
       {/* Main content */}
       <div
-        style={
-          {
-            flex: 1,
-            display: "flex",
-            gap: "1rem",
-            padding: "1rem",
-            minHeight: 0,
-            "--presenter-slide-scale": "0.35",
-          } as React.CSSProperties
-        }
+        style={{
+          flex: 1,
+          display: "flex",
+          gap: "1rem",
+          padding: "1rem",
+          minHeight: 0,
+        }}
       >
         {/* Left: slides */}
         <div

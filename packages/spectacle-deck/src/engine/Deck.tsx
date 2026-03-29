@@ -446,14 +446,6 @@ export function Deck({
                   />
                 )}
 
-                {/* Presenter mode */}
-                {presenterMode && (
-                  <PresenterMode
-                    slides={deck.slides}
-                    onClose={closePresenter}
-                  />
-                )}
-
                 {/* Command palette */}
                 {commandPaletteOpen && (
                   <CommandPalette
@@ -463,6 +455,13 @@ export function Deck({
                 )}
               </div>
             </div>
+
+            {/* Presenter mode — rendered outside the slide container so
+                position:fixed is relative to the viewport, not the container
+                (containerType:"size" creates a new containing block). */}
+            {presenterMode && (
+              <PresenterMode slides={deck.slides} onClose={closePresenter} />
+            )}
           </MDXProvider>
         </PestacleProvider>
       </DeckContext.Provider>
