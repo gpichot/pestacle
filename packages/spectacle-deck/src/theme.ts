@@ -21,8 +21,8 @@ export default {
     h1: "2.5cqw",
     h2: "1.667cqw",
     h3: "1.25cqw",
-    text: "1.25cqw",
-    monospace: "0.833cqw",
+    text: "1.5cqw",
+    monospace: "1cqw",
   },
   space: [8, 16, 24],
 };
