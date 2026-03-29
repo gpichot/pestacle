@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.17.0...spectacle-deck-v1.18.0) (2026-03-29)
+
+
+### Features
+
+* add Text component export to spectacle-deck ([#68](https://github.com/gpichot/pestacle/issues/68)) ([ec33f9b](https://github.com/gpichot/pestacle/commit/ec33f9bba51ff9f95571f379a5edc7c863d22644))
+
 ## [1.17.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.16.0...spectacle-deck-v1.17.0) (2026-03-29)
 
 ### Features
