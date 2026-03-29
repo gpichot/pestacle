@@ -17,9 +17,10 @@ export interface DeckState {
   skipTo: (target: { slideIndex: number; stepIndex?: number }) => void;
   /** Direction of the last navigation ("forward" | "backward") */
   direction: "forward" | "backward";
-  /** Theme colors and fonts */
+  /** Theme colors, backgrounds, and fonts */
   theme: {
     colors: Record<string, string>;
+    backgrounds: Record<string, string>;
     fonts?: { header?: string; text?: string };
   };
   /** Register steps for a Stepper component within the current slide */
@@ -37,7 +38,7 @@ export const DeckContext = React.createContext<DeckState>({
   stepBackward: () => {},
   skipTo: () => {},
   direction: "forward",
-  theme: { colors: {} },
+  theme: { colors: {}, backgrounds: {} },
   registerStepper: () => {},
   unregisterStepper: () => {},
 });

@@ -25,20 +25,44 @@ export function extractColors(color: string): {
 }
 
 /**
- * Create vars for css colors
+ * Generate CSS custom properties for a set of colors under a given prefix.
+ * For each entry, produces `--{prefix}-{key}: value;` and, when parseable,
+ * `--{prefix}-{key}-rgb: r, g, b;` for use with rgba().
  */
-export function createCssVariables(colors: { [key: string]: string }) {
-  const base = Object.entries(colors)
-    .map(([key, value]) => `--color-${key}: ${value};`)
+function cssVarsForGroup(
+  prefix: string,
+  entries: { [key: string]: string },
+): string {
+  const base = Object.entries(entries)
+    .map(([key, value]) => `--${prefix}-${key}: ${value};`)
     .join("\n");
-  const rgbs = Object.entries(colors)
+  const rgbs = Object.entries(entries)
     .map(([key, value]) => {
       const color = extractColors(value);
       if (!color) return "";
       const { r, g, b } = color;
-      return `--color-${key}-rgb: ${r}, ${g}, ${b};`;
+      return `--${prefix}-${key}-rgb: ${r}, ${g}, ${b};`;
     })
+    .filter(Boolean)
     .join("\n");
 
   return `${base}\n${rgbs}`;
+}
+
+/**
+ * Create CSS custom properties for theme colors and backgrounds.
+ *
+ * Accepts either the legacy flat format `{ primary, secondary, tertiary }`
+ * (produces `--color-*` variables only) or the new split format with separate
+ * `colors` and `backgrounds` objects (produces `--color-*` and `--bg-*`).
+ */
+export function createCssVariables(
+  colors: { [key: string]: string },
+  backgrounds?: { [key: string]: string },
+): string {
+  const parts = [cssVarsForGroup("color", colors)];
+  if (backgrounds) {
+    parts.push(cssVarsForGroup("bg", backgrounds));
+  }
+  return parts.join("\n");
 }

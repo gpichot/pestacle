@@ -38,6 +38,7 @@ export type DeckType = {
 interface ThemeOptions {
   themeTokens: {
     colors: Record<string, string>;
+    backgrounds: Record<string, string>;
     fonts?: {
       header?: string;
       text?: string;
@@ -123,10 +124,13 @@ export function Deck({
   // Inject global CSS variables and base styles
   React.useEffect(() => {
     injectGlobalStyles({
-      cssVariables: createCssVariables(theme.themeTokens.colors),
+      cssVariables: createCssVariables(
+        theme.themeTokens.colors,
+        theme.themeTokens.backgrounds,
+      ),
       fontFamily: mergedTheme.fonts.text ?? "",
       fontSize: mergedTheme.fontSizes?.text ?? "24px",
-      backgroundColor: theme.themeTokens.colors.tertiary ?? "#1a1a2e",
+      backgroundColor: theme.themeTokens.backgrounds.primary ?? "#1a1a2e",
       color: theme.themeTokens.colors.primary ?? "#ffffff",
     });
   }, [theme, mergedTheme]);
@@ -356,12 +360,19 @@ export function Deck({
       direction: nav.direction,
       theme: {
         colors: theme.themeTokens.colors,
+        backgrounds: theme.themeTokens.backgrounds,
         fonts: mergedTheme.fonts,
       },
       registerStepper: nav.registerStepper,
       unregisterStepper: nav.unregisterStepper,
     }),
-    [nav, slideCount, theme.themeTokens.colors, mergedTheme.fonts],
+    [
+      nav,
+      slideCount,
+      theme.themeTokens.colors,
+      theme.themeTokens.backgrounds,
+      mergedTheme.fonts,
+    ],
   );
 
   const Component = currentSlide?.slideComponent;
@@ -397,7 +408,8 @@ export function Deck({
                   justifyContent: "center",
                   position: "relative",
                   overflow: "hidden",
-                  background: theme.themeTokens.colors.tertiary ?? "#1a1a2e",
+                  background:
+                    theme.themeTokens.backgrounds.primary ?? "#1a1a2e",
                   containerType: "size",
                   containerName: "slide",
                 }}

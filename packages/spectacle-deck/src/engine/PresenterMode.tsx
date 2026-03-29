@@ -82,7 +82,7 @@ function SlidePreview({
           borderRadius: "8px",
           overflow: "hidden",
           border: "2px solid rgba(255,255,255,0.15)",
-          background: "var(--color-tertiary, #1a1a2e)",
+          background: "var(--bg-primary, #1a1a2e)",
           minHeight: 0,
         }}
       >

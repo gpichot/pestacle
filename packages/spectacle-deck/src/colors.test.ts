@@ -29,7 +29,7 @@ describe("extractColors", () => {
 });
 
 describe("createCssVariables", () => {
-  it("should create CSS variables from color map", () => {
+  it("should create --color-* variables from color map", () => {
     const result = createCssVariables({
       primary: "rgb(43,19,90)",
       secondary: "#56d4f8",
@@ -48,5 +48,18 @@ describe("createCssVariables", () => {
 
     expect(result).toContain("--color-primary: hsl(200, 50%, 50%);");
     expect(result).not.toContain("--color-primary-rgb");
+  });
+
+  it("should create --bg-* variables when backgrounds are provided", () => {
+    const result = createCssVariables(
+      { primary: "#ffffff" },
+      { primary: "#111113", secondary: "#1C1C1F" },
+    );
+
+    expect(result).toContain("--color-primary: #ffffff;");
+    expect(result).toContain("--bg-primary: #111113;");
+    expect(result).toContain("--bg-secondary: #1C1C1F;");
+    expect(result).toContain("--bg-primary-rgb: 17, 17, 19;");
+    expect(result).toContain("--bg-secondary-rgb: 28, 28, 31;");
   });
 });

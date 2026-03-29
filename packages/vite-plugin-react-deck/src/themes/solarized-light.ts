@@ -3,9 +3,15 @@
 // https://ethanschoonover.com/solarized/
 
 const colors = {
-  primary: "#073642", // base02 - dark text on light background
-  secondary: "#268bd2", // blue accent
-  tertiary: "#fdf6e3", // base3 - light background
+  primary: "#073642", // base02 — main text / headings
+  secondary: "#268bd2", // blue — accent / highlights
+  tertiary: "#586e75", // base01 — subtle / secondary text
+};
+
+const backgrounds = {
+  primary: "#fdf6e3", // base3 — main background
+  secondary: "#eee8d5", // base2 — cards / surfaces
+  tertiary: "#ddd6c1", // slightly darker — alternate sections
 };
 
 const fonts = {
@@ -15,5 +21,6 @@ const fonts = {
 
 export const themeTokens = {
   colors,
+  backgrounds,
   fonts,
 };
