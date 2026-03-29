@@ -15,10 +15,10 @@ export function IconBox({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        padding: "1rem 0",
+        padding: "1cqh 0",
       }}
     >
-      <div style={{ fontSize: 60 }}>{icon}</div>
+      <div style={{ fontSize: "3.125cqw" }}>{icon}</div>
       <div className={styles.content}>{children}</div>
     </div>
   );

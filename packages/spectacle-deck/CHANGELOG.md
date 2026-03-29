@@ -2,10 +2,11 @@
 
 ## [1.16.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.15.0...spectacle-deck-v1.16.0) (2026-03-28)
 
-
 ### Features
 
-* add Notes component for speaker notes support ([#63](https://github.com/gpichot/pestacle/issues/63)) ([eafd559](https://github.com/gpichot/pestacle/commit/eafd559895fae4fbee241565331a765bc60c7367))
+- add Notes component for speaker notes support
+  ([#63](https://github.com/gpichot/pestacle/issues/63))
+  ([eafd559](https://github.com/gpichot/pestacle/commit/eafd559895fae4fbee241565331a765bc60c7367))
 
 ## [1.15.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.14.0...spectacle-deck-v1.15.0) (2026-03-28)
 

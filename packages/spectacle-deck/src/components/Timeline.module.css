@@ -16,7 +16,7 @@
 
 .itemContent {
   display: flex;
-  padding: 0.7rem 0 1rem 12px;
+  padding: 0.7cqh 0 1cqh 12px;
 }
 
 .itemContentPhantom {
@@ -26,13 +26,13 @@
 
 .itemBody,
 .itemBody > * {
-  font-size: 1.3rem !important;
+  font-size: 1.3cqw !important;
   color: #ffffff !important;
 }
 
 .itemTitle {
   font-family: Bitter, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1rem;
+  font-size: 1cqw;
   font-weight: bold;
   color: #ffffffbb;
 }

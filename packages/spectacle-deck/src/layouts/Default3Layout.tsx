@@ -120,7 +120,7 @@ export const Default3Layout = ({
         style={{
           flex: 1,
           height: "100%",
-          padding: "2rem",
+          padding: "2cqw",
           transform: isReversed
             ? "scale(2) translate(25%, 4%)"
             : "scale(2) translate(-25%, 15%)",
@@ -131,8 +131,8 @@ export const Default3Layout = ({
       <div
         style={{
           flex: 4,
-          marginLeft: isReversed ? Margins.horizontal : "2rem",
-          marginRight: isReversed ? "2rem" : Margins.horizontal,
+          marginLeft: isReversed ? Margins.horizontal : "2cqw",
+          marginRight: isReversed ? "2cqw" : Margins.horizontal,
         }}
       >
         {children}

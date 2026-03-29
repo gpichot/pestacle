@@ -1,6 +1,6 @@
 .content {
   & * {
-    margin: 0.2rem !important;
+    margin: 0.2cqw !important;
     padding: 0 !important;
   }
 }

@@ -28,6 +28,9 @@ export function injectGlobalStyles(options: {
       background: ${options.backgroundColor};
       color: ${options.color};
       font-family: ${options.fontFamily};
+      font-size: 24px;
+    }
+    .pestacle-slide-container {
       font-size: ${options.fontSize};
     }
     @media print {

@@ -47,8 +47,8 @@ export function QRCode({ url, size = "md" }: QRCodeProps) {
     <div
       id={id}
       style={{
-        padding: "1rem 1rem 0.6rem 1rem",
-        borderRadius: "1rem",
+        padding: "1cqw 1cqw 0.6cqw 1cqw",
+        borderRadius: "1cqw",
         backgroundColor,
         maxWidth: width,
       }}

@@ -29,7 +29,7 @@ export function Image(props: ImageProps) {
       data={src}
       style={{
         height: height || "100%",
-        minWidth: "30vw",
+        minWidth: "30cqw",
         width: width || "100%",
         ...style,
       }}

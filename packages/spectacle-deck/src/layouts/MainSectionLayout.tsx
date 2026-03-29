@@ -20,8 +20,8 @@ export const MainSectionLayout = ({
         bottom: 0,
       }}
     >
-      <div style={{ paddingLeft: "8rem", flex: 1 }}>{children}</div>
-      <div style={{ flex: "0 0", height: "100%", paddingLeft: "5rem" }}>
+      <div style={{ paddingLeft: "8cqw", flex: 1 }}>{children}</div>
+      <div style={{ flex: "0 0", height: "100%", paddingLeft: "5cqw" }}>
         <img src={frontImage} alt="Front" style={{ height: "100%" }} />
       </div>
     </div>

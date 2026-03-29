@@ -77,6 +77,7 @@ function SlideThumbnail({
     >
       {/* Scaled-down slide content — inherits theme colors via CSS variables */}
       <div
+        className="pestacle-slide-container"
         style={{
           width: "100vw",
           height: "calc(100vw * 9 / 16)",
@@ -90,11 +91,13 @@ function SlideThumbnail({
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          padding: "2rem 3rem",
+          padding: "2cqh 3cqw",
           boxSizing: "border-box",
           overflow: "hidden",
           background: "var(--color-tertiary, #1a1a2e)",
           color: "var(--color-primary, #fff)",
+          containerType: "size",
+          containerName: "slide",
         }}
       >
         <DeckContext.Provider value={thumbnailContext}>

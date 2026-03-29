@@ -26,7 +26,7 @@ export function BigNumberLayout({
         <div
           style={{
             position: "absolute",
-            top: "3rem",
+            top: "3cqh",
             opacity: 0.6,
           }}
         >

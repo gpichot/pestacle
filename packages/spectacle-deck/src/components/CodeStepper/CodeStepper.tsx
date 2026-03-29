@@ -66,7 +66,7 @@ function CodeWrapper({
     <div
       style={{
         boxSizing: "border-box",
-        margin: "0.5rem 1rem",
+        margin: "0.5cqh 1cqw",
         backgroundColor: "rgb(38,39,40)",
         borderRadius: "4px",
       }}
@@ -75,7 +75,7 @@ function CodeWrapper({
         <span
           style={{
             fontFamily: 'Consolas, Monaco, "Andale Mono", monospace',
-            fontSize: "1rem",
+            fontSize: "1cqw",
             color: "#ffffffbb",
             backgroundColor: "#33333388",
             display: "inline-block",
@@ -92,7 +92,7 @@ function CodeWrapper({
         <span
           style={{
             fontFamily: 'Consolas, Monaco, "Andale Mono", monospace',
-            fontSize: "0.8rem",
+            fontSize: "0.8cqw",
             color: "#ffffffaa",
             backgroundColor: "#33333388",
             display: "inline-block",

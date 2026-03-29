@@ -307,8 +307,9 @@ export function Deck({
                 background: "#000",
               }}
             >
-              {/* 16:9 constrained slide area */}
+              {/* 16:9 constrained slide area — container query anchor */}
               <div
+                className="pestacle-slide-container"
                 style={{
                   width: "100%",
                   height: "100%",
@@ -321,6 +322,8 @@ export function Deck({
                   position: "relative",
                   overflow: "hidden",
                   background: theme.themeTokens.colors.tertiary ?? "#1a1a2e",
+                  containerType: "size",
+                  containerName: "slide",
                 }}
               >
                 {/* Slide content wrapped in ViewTransition for cross-slide morphing */}
@@ -333,7 +336,7 @@ export function Deck({
                       flexDirection: "column",
                       alignItems: "center",
                       justifyContent: "center",
-                      padding: "2rem 3rem",
+                      padding: "2cqh 3cqw",
                       boxSizing: "border-box",
                     }}
                   >

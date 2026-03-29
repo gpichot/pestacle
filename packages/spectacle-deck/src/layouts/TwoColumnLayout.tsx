@@ -16,15 +16,15 @@ export function TwoColumnLayout({ children }: { children: React.ReactNode }) {
         left: 0,
         display: "flex",
         flexDirection: "column",
-        marginBottom: "5rem",
+        marginBottom: "5cqh",
       }}
     >
       {heading && (
         <div
           style={{
             backgroundColor: "#ffffff11",
-            padding: "2rem 5rem",
-            marginBottom: "1rem",
+            padding: "2cqh 5cqw",
+            marginBottom: "1cqh",
           }}
         >
           {heading}
@@ -35,7 +35,7 @@ export function TwoColumnLayout({ children }: { children: React.ReactNode }) {
           display: "flex",
           flexDirection: "row",
           flex: 1,
-          gap: "2rem",
+          gap: "2cqw",
           padding: `0 ${Margins.horizontal}`,
           alignItems: "center",
         }}

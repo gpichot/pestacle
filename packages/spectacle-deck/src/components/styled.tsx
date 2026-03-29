@@ -22,8 +22,8 @@ export const Image = (props: React.ComponentProps<"img">) => (
       {...props}
       style={{
         objectFit: "contain",
-        maxHeight: "30vh",
-        maxWidth: "70vw",
+        maxHeight: "30cqh",
+        maxWidth: "70cqw",
         ...props.style,
       }}
     />

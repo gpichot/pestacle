@@ -61,7 +61,7 @@ const componentsMap: Record<string, React.ComponentType<any>> = {
     <MorphWrap morph={morph}>
       <td
         {...props}
-        style={{ textAlign: "center", padding: "0.3rem 0", ...style }}
+        style={{ textAlign: "center", padding: "0.3cqh 0", ...style }}
       />
     </MorphWrap>
   ),
@@ -70,7 +70,7 @@ const componentsMap: Record<string, React.ComponentType<any>> = {
       <CustomHeading
         style={{
           fontWeight: 500,
-          fontSize: 67,
+          fontSize: "3.49cqw",
           flex: "0 1 auto",
           maxWidth: "65%",
           textAlign: "left",
@@ -100,7 +100,7 @@ const componentsMap: Record<string, React.ComponentType<any>> = {
   pre: CodeStepper,
   li: ({ morph, style, ...props }: any) => (
     <MorphWrap morph={morph}>
-      <li {...props} style={{ margin: "24px 0", ...style }} />
+      <li {...props} style={{ margin: "1.25cqw 0", ...style }} />
     </MorphWrap>
   ),
   Side: (props: React.ComponentProps<"div">) => <div {...props} />,
@@ -109,8 +109,8 @@ const componentsMap: Record<string, React.ComponentType<any>> = {
       <p
         {...props}
         style={{
-          margin: "8px 0",
-          padding: "8px 0",
+          margin: "0.417cqw 0",
+          padding: "0.417cqw 0",
           lineHeight: "1.6",
           ...style,
         }}
