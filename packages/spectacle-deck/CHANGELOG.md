@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.18.1](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.18.0...spectacle-deck-v1.18.1) (2026-03-29)
+
+### Bug Fixes
+
+- remove landing page deck listing from root path
+  ([#71](https://github.com/gpichot/pestacle/issues/71))
+  ([c11986e](https://github.com/gpichot/pestacle/commit/c11986e1b844b9df86666121bb6beff71e6c0d7b))
+
+## [1.18.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.17.0...spectacle-deck-v1.18.0) (2026-03-29)
+
+### Features
+
+- add Text component export to spectacle-deck
+  ([#68](https://github.com/gpichot/pestacle/issues/68))
+  ([ec33f9b](https://github.com/gpichot/pestacle/commit/ec33f9bba51ff9f95571f379a5edc7c863d22644))
+
+## [1.17.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.16.0...spectacle-deck-v1.17.0) (2026-03-29)
+
+### Features
+
+- add index.css automatically to slides
+  ([#65](https://github.com/gpichot/pestacle/issues/65))
+  ([cf3bc5d](https://github.com/gpichot/pestacle/commit/cf3bc5de9651460c84127f264caf93a1697288ff))
+
 ## [1.16.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.15.0...spectacle-deck-v1.16.0) (2026-03-28)
 
 ### Features

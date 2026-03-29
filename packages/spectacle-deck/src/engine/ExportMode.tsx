@@ -20,6 +20,9 @@ function injectPrintStyles() {
     @media print {
       body { margin: 0; padding: 0; background: white !important; }
       .pestacle-export-slide {
+        width: 100vw !important;
+        height: 100vh !important;
+        max-height: none !important;
         break-inside: avoid;
         page-break-inside: avoid;
         break-after: page;
@@ -43,9 +46,18 @@ function removePrintStyles() {
   document.getElementById(PRINT_STYLES_ID)?.remove();
 }
 
-function ExportSlide({ slide, index }: { slide: SlideType; index: number }) {
+function ExportSlide({
+  slide,
+  index,
+  variant,
+}: {
+  slide: SlideType;
+  index: number;
+  variant: ExportModeVariant;
+}) {
   const deck = useDeck();
   const Component = slide.slideComponent;
+  const isPrint = variant === "print";
 
   const thumbnailContext = React.useMemo(
     () => ({
@@ -68,8 +80,8 @@ function ExportSlide({ slide, index }: { slide: SlideType; index: number }) {
         maxHeight: "100vh",
         position: "relative",
         overflow: "hidden",
-        background: "var(--color-tertiary, #1a1a2e)",
-        color: "var(--color-primary, #fff)",
+        background: isPrint ? "#fff" : "var(--color-tertiary, #1a1a2e)",
+        color: isPrint ? "#222" : "var(--color-primary, #fff)",
         flexShrink: 0,
         containerType: "size",
         containerName: "slide",
@@ -100,7 +112,7 @@ function ExportSlide({ slide, index }: { slide: SlideType; index: number }) {
           position: "absolute",
           bottom: "8px",
           right: "16px",
-          color: "rgba(255,255,255,0.4)",
+          color: isPrint ? "rgba(0,0,0,0.3)" : "rgba(255,255,255,0.4)",
           fontSize: "0.85rem",
           fontFamily: "system-ui, sans-serif",
         }}
@@ -248,7 +260,12 @@ export function ExportMode({
         }}
       >
         {slides.map((slide, index) => (
-          <ExportSlide key={index} slide={slide} index={index} />
+          <ExportSlide
+            key={index}
+            slide={slide}
+            index={index}
+            variant={variant}
+          />
         ))}
       </div>
     </div>

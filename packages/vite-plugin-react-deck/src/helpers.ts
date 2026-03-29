@@ -358,6 +358,7 @@ export function createAppDeckFile({
   return `import React, { StrictMode } from "react";
 import * as ReactDOM from "react-dom/client";
 import { Deck } from '@gpichot/spectacle-deck';
+import '@gpichot/spectacle-deck/index.css';
 ${layoutImport};
 
 import deck from "${slidePath}";
