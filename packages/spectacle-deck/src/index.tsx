@@ -101,3 +101,7 @@ export function Documentation({ children }: { children: React.ReactNode }) {
 export function Box({ children }: { children: React.ReactNode }) {
   return <div>{children}</div>;
 }
+
+export function Text({ children }: { children: React.ReactNode }) {
+  return <p>{children}</p>;
+}

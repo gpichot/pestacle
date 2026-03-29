@@ -2,10 +2,11 @@
 
 ## [1.17.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.16.0...spectacle-deck-v1.17.0) (2026-03-29)
 
-
 ### Features
 
-* add index.css automatically to slides ([#65](https://github.com/gpichot/pestacle/issues/65)) ([cf3bc5d](https://github.com/gpichot/pestacle/commit/cf3bc5de9651460c84127f264caf93a1697288ff))
+- add index.css automatically to slides
+  ([#65](https://github.com/gpichot/pestacle/issues/65))
+  ([cf3bc5d](https://github.com/gpichot/pestacle/commit/cf3bc5de9651460c84127f264caf93a1697288ff))
 
 ## [1.16.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.15.0...spectacle-deck-v1.16.0) (2026-03-28)
 
