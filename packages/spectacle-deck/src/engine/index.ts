@@ -13,7 +13,9 @@ export { ExportMode } from "./ExportMode";
 export type { MorphProps } from "./Morph";
 // View Transitions
 export { Morph, MorphImage } from "./Morph";
+export { NotesContext } from "./NotesContext";
 export { OverviewMode } from "./OverviewMode";
+export { PresenterMode } from "./PresenterMode";
 export { getCurrentSection, SectionTitle } from "./SectionTitle";
 export type { StepperProps } from "./Stepper";
 // Stepper
@@ -29,6 +31,8 @@ export {
   resolveTransition,
   slideTransition,
 } from "./transitions";
+export type { SyncMessage } from "./useBroadcastSync";
+export { useBroadcastSync } from "./useBroadcastSync";
 export { useKeyboard } from "./useKeyboard";
 // Navigation
 export { useNavigation } from "./useNavigation";

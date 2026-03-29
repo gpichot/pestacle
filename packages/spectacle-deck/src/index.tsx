@@ -1,4 +1,6 @@
-import type React from "react";
+import React from "react";
+
+import { NotesContext } from "./engine/NotesContext";
 
 // Animations (react-spring based, independent of Spectacle)
 export {
@@ -80,6 +82,12 @@ export function Warning({ children }: { children: React.ReactNode }) {
 }
 
 export function Notes({ children }: { children: React.ReactNode }) {
+  const collector = React.useContext(NotesContext);
+  React.useEffect(() => {
+    if (collector) {
+      collector(children);
+    }
+  }, [collector, children]);
   return <div style={{ display: "none" }}>{children}</div>;
 }
 Notes.mdxType = "Notes";
