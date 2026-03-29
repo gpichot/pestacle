@@ -12,7 +12,6 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     outputs:
-      pr: ${{ steps.release.outputs.pr }}
       spectacle-deck--release_created:
         ${{ steps.release.outputs['packages/spectacle-deck--release_created'] }}
       vite-plugin-react-deck--release_created:
@@ -24,26 +23,23 @@ jobs:
         id: release
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-
-  format-changelog:
-    needs: release-please
-    if: ${{ needs.release-please.outputs.pr }}
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-    steps:
       - uses: actions/checkout@v5
+        if: ${{ steps.release.outputs.pr }}
         with:
-          ref: ${{ fromJSON(needs.release-please.outputs.pr).headBranchName }}
+          ref: ${{ fromJSON(steps.release.outputs.pr).headBranchName }}
       - uses: pnpm/action-setup@v4
+        if: ${{ steps.release.outputs.pr }}
       - uses: actions/setup-node@v5
+        if: ${{ steps.release.outputs.pr }}
         with:
           node-version: lts/*
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm prettier --write '**/CHANGELOG.md'
+      - if: ${{ steps.release.outputs.pr }}
+        run: pnpm install --frozen-lockfile
+      - if: ${{ steps.release.outputs.pr }}
+        run: pnpm prettier --write '**/CHANGELOG.md'
       - name: Commit formatted changelogs
+        if: ${{ steps.release.outputs.pr }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
