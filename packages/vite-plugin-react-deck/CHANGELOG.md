@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.13.0...vite-plugin-react-deck-v1.14.0) (2026-03-29)
+
+
+### Features
+
+* add index.css automatically to slides ([#65](https://github.com/gpichot/pestacle/issues/65)) ([cf3bc5d](https://github.com/gpichot/pestacle/commit/cf3bc5de9651460c84127f264caf93a1697288ff))
+
 ## [1.13.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.12.0...vite-plugin-react-deck-v1.13.0) (2026-03-28)
 
 ### Features
