@@ -1,0 +1,1703 @@
+---
+author: Pestacle
+title: Metamorphosis
+description: Level 20 morph animations — pushing the boundaries of what slides can do
+---
+
+layout: mainSection
+transition: morph
+
+---
+
+import {
+  Morph,
+  FadeIn,
+  ScaleIn,
+  StaggerChildren,
+  TypeWriter,
+  AnimatedCounter,
+  ProgressRing,
+} from "@gpichot/spectacle-deck";
+
+{/_ ═══════════════════════════════════════════════════════════
+SCENE 1: THE DOT — A single pixel becomes the universe
+═══════════════════════════════════════════════════════════ _/}
+
+<div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%" }}>
+
+<Morph
+  name="dot-1"
+  style={{
+    width: 12,
+    height: 12,
+    borderRadius: "50%",
+    background: "#fff",
+  }}
+/>
+
+</div>
+
+---
+
+transition: morph
+
+---
+
+{/* The dot splits into 9 */}
+
+<div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%" }}>
+<div style={{ display: "grid", gridTemplateColumns: "repeat(3, 24px)", gap: 8 }}>
+
+<Morph
+  name="dot-1"
+  style={{ width: 24, height: 24, borderRadius: "50%", background: "#fff" }}
+/>
+<Morph
+  name="dot-2"
+  style={{
+    width: 24,
+    height: 24,
+    borderRadius: "50%",
+    background: "#fff",
+    opacity: 0.8,
+  }}
+/>
+<Morph
+  name="dot-3"
+  style={{
+    width: 24,
+    height: 24,
+    borderRadius: "50%",
+    background: "#fff",
+    opacity: 0.6,
+  }}
+/>
+<Morph
+  name="dot-4"
+  style={{
+    width: 24,
+    height: 24,
+    borderRadius: "50%",
+    background: "#fff",
+    opacity: 0.8,
+  }}
+/>
+<Morph
+  name="dot-5"
+  style={{ width: 24, height: 24, borderRadius: "50%", background: "#fff" }}
+/>
+<Morph
+  name="dot-6"
+  style={{
+    width: 24,
+    height: 24,
+    borderRadius: "50%",
+    background: "#fff",
+    opacity: 0.8,
+  }}
+/>
+<Morph
+  name="dot-7"
+  style={{
+    width: 24,
+    height: 24,
+    borderRadius: "50%",
+    background: "#fff",
+    opacity: 0.6,
+  }}
+/>
+<Morph
+  name="dot-8"
+  style={{
+    width: 24,
+    height: 24,
+    borderRadius: "50%",
+    background: "#fff",
+    opacity: 0.8,
+  }}
+/>
+<Morph
+  name="dot-9"
+  style={{ width: 24, height: 24, borderRadius: "50%", background: "#fff" }}
+/>
+
+</div>
+</div>
+
+---
+
+transition: morph
+
+---
+
+{/* The 9 dots explode outward into a constellation and gain color */}
+
+<div style={{ position: "relative", width: "100%", height: "100%" }}>
+
+<Morph
+  name="dot-1"
+  style={{
+    position: "absolute",
+    top: "8%",
+    left: "12%",
+    width: 60,
+    height: 60,
+    borderRadius: "50%",
+    background: "var(--color-primary)",
+  }}
+/>
+<Morph
+  name="dot-2"
+  style={{
+    position: "absolute",
+    top: "5%",
+    left: "50%",
+    width: 40,
+    height: 40,
+    borderRadius: "50%",
+    background: "var(--color-secondary)",
+    transform: "translateX(-50%)",
+  }}
+/>
+<Morph
+  name="dot-3"
+  style={{
+    position: "absolute",
+    top: "12%",
+    right: "15%",
+    width: 50,
+    height: 50,
+    borderRadius: "50%",
+    background: "var(--color-primary)",
+    opacity: 0.7,
+  }}
+/>
+<Morph
+  name="dot-4"
+  style={{
+    position: "absolute",
+    top: "45%",
+    left: "5%",
+    width: 35,
+    height: 35,
+    borderRadius: "50%",
+    background: "var(--color-secondary)",
+    opacity: 0.5,
+  }}
+/>
+<Morph
+  name="dot-5"
+  style={{
+    position: "absolute",
+    top: "40%",
+    left: "50%",
+    width: 100,
+    height: 100,
+    borderRadius: "50%",
+    background:
+      "linear-gradient(135deg, var(--color-primary), var(--color-secondary))",
+    transform: "translateX(-50%)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+    fontSize: "1.2rem",
+    fontWeight: 800,
+  }}
+>
+  *
+</Morph>
+<Morph
+  name="dot-6"
+  style={{
+    position: "absolute",
+    top: "42%",
+    right: "8%",
+    width: 45,
+    height: 45,
+    borderRadius: "50%",
+    background: "var(--color-primary)",
+    opacity: 0.6,
+  }}
+/>
+<Morph
+  name="dot-7"
+  style={{
+    position: "absolute",
+    bottom: "15%",
+    left: "18%",
+    width: 55,
+    height: 55,
+    borderRadius: "50%",
+    background: "var(--color-secondary)",
+    opacity: 0.4,
+  }}
+/>
+<Morph
+  name="dot-8"
+  style={{
+    position: "absolute",
+    bottom: "20%",
+    left: "50%",
+    width: 30,
+    height: 30,
+    borderRadius: "50%",
+    background: "var(--color-primary)",
+    opacity: 0.8,
+  }}
+/>
+<Morph
+  name="dot-9"
+  style={{
+    position: "absolute",
+    bottom: "10%",
+    right: "12%",
+    width: 65,
+    height: 65,
+    borderRadius: "50%",
+    background: "var(--color-secondary)",
+    opacity: 0.7,
+  }}
+/>
+
+</div>
+
+---
+
+transition: morph
+
+---
+
+{/* The constellation collapses into letters spelling "HELLO" */}
+
+<div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", gap: "0.5rem" }}>
+
+<Morph
+  name="dot-1"
+  style={{
+    width: 120,
+    height: 120,
+    borderRadius: 24,
+    background: "var(--color-primary)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+    fontSize: "4rem",
+    fontWeight: 900,
+  }}
+>
+  H
+</Morph>
+<Morph
+  name="dot-3"
+  style={{
+    width: 120,
+    height: 120,
+    borderRadius: 24,
+    background: "var(--color-secondary)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+    fontSize: "4rem",
+    fontWeight: 900,
+  }}
+>
+  E
+</Morph>
+<Morph
+  name="dot-5"
+  style={{
+    width: 120,
+    height: 120,
+    borderRadius: 24,
+    background:
+      "linear-gradient(135deg, var(--color-primary), var(--color-secondary))",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+    fontSize: "4rem",
+    fontWeight: 900,
+  }}
+>
+  L
+</Morph>
+<Morph
+  name="dot-7"
+  style={{
+    width: 120,
+    height: 120,
+    borderRadius: 24,
+    background: "var(--color-secondary)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+    fontSize: "4rem",
+    fontWeight: 900,
+  }}
+>
+  L
+</Morph>
+<Morph
+  name="dot-9"
+  style={{
+    width: 120,
+    height: 120,
+    borderRadius: 24,
+    background: "var(--color-primary)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+    fontSize: "4rem",
+    fontWeight: 900,
+  }}
+>
+  O
+</Morph>
+
+{/* Remaining dots shrink to decorative accents */}
+
+<Morph
+  name="dot-2"
+  style={{
+    position: "absolute",
+    top: "15%",
+    right: "20%",
+    width: 12,
+    height: 12,
+    borderRadius: "50%",
+    background: "var(--color-secondary)",
+    opacity: 0.3,
+  }}
+/>
+<Morph
+  name="dot-4"
+  style={{
+    position: "absolute",
+    bottom: "20%",
+    left: "15%",
+    width: 8,
+    height: 8,
+    borderRadius: "50%",
+    background: "var(--color-primary)",
+    opacity: 0.2,
+  }}
+/>
+<Morph
+  name="dot-6"
+  style={{
+    position: "absolute",
+    top: "25%",
+    left: "10%",
+    width: 10,
+    height: 10,
+    borderRadius: "50%",
+    background: "var(--color-primary)",
+    opacity: 0.2,
+  }}
+/>
+<Morph
+  name="dot-8"
+  style={{
+    position: "absolute",
+    bottom: "15%",
+    right: "25%",
+    width: 14,
+    height: 14,
+    borderRadius: "50%",
+    background: "var(--color-secondary)",
+    opacity: 0.3,
+  }}
+/>
+
+</div>
+
+---
+
+transition: morph
+
+---
+
+{/_ ═══════════════════════════════════════════════════════════
+SCENE 2: THE SWAP — Elements trade places in a ballet
+═══════════════════════════════════════════════════════════ _/}
+
+{/* Letters rearrange + reshape into a dashboard-like layout */}
+
+<div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gridTemplateRows: "1fr 1fr", gap: "1.5rem", padding: "2rem 4rem", height: "80%" }}>
+
+<Morph
+  name="dot-1"
+  style={{
+    gridRow: "1 / 3",
+    borderRadius: 32,
+    background: "var(--color-primary)",
+    padding: "3rem",
+    color: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+  }}
+>
+  <div
+    style={{
+      fontSize: "1rem",
+      opacity: 0.6,
+      letterSpacing: "0.2em",
+      textTransform: "uppercase",
+    }}
+  >
+    Featured
+  </div>
+  <div style={{ fontSize: "3rem", fontWeight: 800, lineHeight: 1.2 }}>
+    Elements can become anything
+  </div>
+  <div style={{ fontSize: "1.1rem", opacity: 0.7 }}>
+    A dot became a letter, and now it's a hero card.
+  </div>
+</Morph>
+
+<Morph
+  name="dot-3"
+  style={{
+    borderRadius: 24,
+    background: "var(--color-secondary)",
+    padding: "2rem",
+    color: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "0.5rem",
+  }}
+>
+  <div style={{ fontSize: "3.5rem", fontWeight: 900 }}>9</div>
+  <div style={{ fontSize: "0.9rem", opacity: 0.7 }}>morphing elements</div>
+</Morph>
+
+<Morph
+  name="dot-9"
+  style={{
+    borderRadius: 24,
+    background:
+      "linear-gradient(135deg, var(--color-primary), var(--color-secondary))",
+    padding: "2rem",
+    color: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "0.5rem",
+  }}
+>
+  <div style={{ fontSize: "3.5rem", fontWeight: 900 }}>0</div>
+  <div style={{ fontSize: "0.9rem", opacity: 0.7 }}>lines of JS animation</div>
+</Morph>
+
+{/* Park the rest invisibly */}
+
+<Morph
+  name="dot-2"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="dot-4"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="dot-5"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="dot-6"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="dot-7"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="dot-8"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+
+</div>
+
+---
+
+transition: morph
+
+---
+
+{/_ ═══════════════════════════════════════════════════════════
+SCENE 3: THE ZIPPER — Two columns interleave
+═══════════════════════════════════════════════════════════ _/}
+
+{/* Start: two separate columns */}
+
+<div style={{ display: "flex", gap: "6rem", padding: "0 6rem", height: "100%", alignItems: "center" }}>
+
+<div style={{ display: "flex", flexDirection: "column", gap: "1rem", flex: 1 }}>
+  <Morph
+    name="zip-a1"
+    style={{
+      padding: "1.2rem 1.5rem",
+      borderRadius: 12,
+      background: "var(--color-primary)",
+      color: "#fff",
+      fontSize: "1.3rem",
+      fontWeight: 700,
+    }}
+  >
+    Why
+  </Morph>
+  <Morph
+    name="zip-a2"
+    style={{
+      padding: "1.2rem 1.5rem",
+      borderRadius: 12,
+      background: "var(--color-primary)",
+      color: "#fff",
+      fontSize: "1.3rem",
+      fontWeight: 700,
+    }}
+  >
+    What
+  </Morph>
+  <Morph
+    name="zip-a3"
+    style={{
+      padding: "1.2rem 1.5rem",
+      borderRadius: 12,
+      background: "var(--color-primary)",
+      color: "#fff",
+      fontSize: "1.3rem",
+      fontWeight: 700,
+    }}
+  >
+    How
+  </Morph>
+</div>
+
+<div style={{ display: "flex", flexDirection: "column", gap: "1rem", flex: 1 }}>
+  <Morph
+    name="zip-b1"
+    style={{
+      padding: "1.2rem 1.5rem",
+      borderRadius: 12,
+      background: "var(--color-secondary)",
+      color: "#fff",
+      fontSize: "1.1rem",
+      opacity: 0.9,
+    }}
+  >
+    Presentations should feel alive
+  </Morph>
+  <Morph
+    name="zip-b2"
+    style={{
+      padding: "1.2rem 1.5rem",
+      borderRadius: 12,
+      background: "var(--color-secondary)",
+      color: "#fff",
+      fontSize: "1.1rem",
+      opacity: 0.9,
+    }}
+  >
+    The View Transitions API
+  </Morph>
+  <Morph
+    name="zip-b3"
+    style={{
+      padding: "1.2rem 1.5rem",
+      borderRadius: 12,
+      background: "var(--color-secondary)",
+      color: "#fff",
+      fontSize: "1.1rem",
+      opacity: 0.9,
+    }}
+  >
+    Name your elements, and go
+  </Morph>
+</div>
+
+</div>
+
+{/* Park remaining dots from scene 1 */}
+
+<Morph
+  name="dot-1"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="dot-2"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="dot-3"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="dot-4"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="dot-5"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="dot-6"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="dot-7"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="dot-8"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="dot-9"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+
+---
+
+transition: morph
+
+---
+
+{/* The two columns zipper-merge into alternating rows */}
+
+<div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", padding: "2rem 4rem", justifyContent: "center", height: "100%" }}>
+
+<div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+  <Morph
+    name="zip-a1"
+    style={{
+      padding: "1.2rem 2rem",
+      borderRadius: 16,
+      background: "var(--color-primary)",
+      color: "#fff",
+      fontSize: "1.8rem",
+      fontWeight: 800,
+      flexShrink: 0,
+    }}
+  >
+    Why
+  </Morph>
+  <Morph
+    name="zip-b1"
+    style={{
+      padding: "1.2rem 2rem",
+      borderRadius: 16,
+      background: "var(--color-secondary)",
+      color: "#fff",
+      fontSize: "1.1rem",
+      flex: 1,
+      opacity: 0.9,
+    }}
+  >
+    Presentations should feel alive — not like a PDF someone is clicking through
+  </Morph>
+</div>
+
+<div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+  <Morph
+    name="zip-a2"
+    style={{
+      padding: "1.2rem 2rem",
+      borderRadius: 16,
+      background: "var(--color-primary)",
+      color: "#fff",
+      fontSize: "1.8rem",
+      fontWeight: 800,
+      flexShrink: 0,
+    }}
+  >
+    What
+  </Morph>
+  <Morph
+    name="zip-b2"
+    style={{
+      padding: "1.2rem 2rem",
+      borderRadius: 16,
+      background: "var(--color-secondary)",
+      color: "#fff",
+      fontSize: "1.1rem",
+      flex: 1,
+      opacity: 0.9,
+    }}
+  >
+    The View Transitions API morphs any element between states automatically
+  </Morph>
+</div>
+
+<div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+  <Morph
+    name="zip-a3"
+    style={{
+      padding: "1.2rem 2rem",
+      borderRadius: 16,
+      background: "var(--color-primary)",
+      color: "#fff",
+      fontSize: "1.8rem",
+      fontWeight: 800,
+      flexShrink: 0,
+    }}
+  >
+    How
+  </Morph>
+  <Morph
+    name="zip-b3"
+    style={{
+      padding: "1.2rem 2rem",
+      borderRadius: 16,
+      background: "var(--color-secondary)",
+      color: "#fff",
+      fontSize: "1.1rem",
+      flex: 1,
+      opacity: 0.9,
+    }}
+  >
+    Name your elements with morph="...", change their styles, done
+  </Morph>
+</div>
+
+</div>
+
+---
+
+transition: morph
+
+---
+
+{/_ ═══════════════════════════════════════════════════════════
+SCENE 4: THE TOWER — Stack that unstacks into a timeline
+═══════════════════════════════════════════════════════════ _/}
+
+{/* Compressed tower of colored blocks */}
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", gap: 0 }}>
+
+<Morph
+  name="tower-1"
+  style={{
+    width: 300,
+    height: 70,
+    background: "var(--color-primary)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+    fontWeight: 800,
+    fontSize: "1.4rem",
+    borderRadius: "20px 20px 0 0",
+  }}
+>
+  2020
+</Morph>
+<Morph
+  name="tower-2"
+  style={{
+    width: 300,
+    height: 70,
+    background: "var(--color-secondary)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+    fontWeight: 800,
+    fontSize: "1.4rem",
+  }}
+>
+  2022
+</Morph>
+<Morph
+  name="tower-3"
+  style={{
+    width: 300,
+    height: 70,
+    background: "var(--color-primary)",
+    opacity: 0.8,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+    fontWeight: 800,
+    fontSize: "1.4rem",
+  }}
+>
+  2024
+</Morph>
+<Morph
+  name="tower-4"
+  style={{
+    width: 300,
+    height: 70,
+    background: "var(--color-secondary)",
+    opacity: 0.8,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+    fontWeight: 800,
+    fontSize: "1.4rem",
+    borderRadius: "0 0 20px 20px",
+  }}
+>
+  2026
+</Morph>
+
+<Morph
+  name="tower-label"
+  style={{ marginTop: "2rem", fontSize: "1.2rem", opacity: 0.5 }}
+>
+  A compressed history
+</Morph>
+
+</div>
+
+---
+
+transition: morph
+
+---
+
+{/* Tower unstacks into a horizontal timeline */}
+
+<div style={{ display: "flex", flexDirection: "column", justifyContent: "center", height: "100%", padding: "0 3rem", gap: "2rem" }}>
+
+<div style={{ display: "flex", gap: "1.5rem", alignItems: "stretch" }}>
+
+<Morph
+  name="tower-1"
+  style={{
+    flex: 1,
+    background: "var(--color-primary)",
+    borderRadius: 20,
+    padding: "2rem",
+    color: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.5rem",
+  }}
+>
+  <div style={{ fontSize: "2rem", fontWeight: 900 }}>2020</div>
+  <div style={{ fontSize: "0.95rem", opacity: 0.8, lineHeight: 1.5 }}>
+    The idea: what if slides were just React components?
+  </div>
+</Morph>
+
+<Morph
+  name="tower-2"
+  style={{
+    flex: 1,
+    background: "var(--color-secondary)",
+    borderRadius: 20,
+    padding: "2rem",
+    color: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.5rem",
+  }}
+>
+  <div style={{ fontSize: "2rem", fontWeight: 900 }}>2022</div>
+  <div style={{ fontSize: "0.95rem", opacity: 0.8, lineHeight: 1.5 }}>
+    MDX enters the picture. Write in Markdown, render in React.
+  </div>
+</Morph>
+
+<Morph
+  name="tower-3"
+  style={{
+    flex: 1,
+    background: "var(--color-primary)",
+    opacity: 0.9,
+    borderRadius: 20,
+    padding: "2rem",
+    color: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.5rem",
+  }}
+>
+  <div style={{ fontSize: "2rem", fontWeight: 900 }}>2024</div>
+  <div style={{ fontSize: "0.95rem", opacity: 0.8, lineHeight: 1.5 }}>
+    View Transitions land in browsers. Morph becomes native.
+  </div>
+</Morph>
+
+<Morph
+  name="tower-4"
+  style={{
+    flex: 1,
+    background: "var(--color-secondary)",
+    opacity: 0.9,
+    borderRadius: 20,
+    padding: "2rem",
+    color: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.5rem",
+  }}
+>
+  <div style={{ fontSize: "2rem", fontWeight: 900 }}>2026</div>
+  <div style={{ fontSize: "0.95rem", opacity: 0.8, lineHeight: 1.5 }}>
+    You're watching it right now.
+  </div>
+</Morph>
+
+</div>
+
+<Morph
+  name="tower-label"
+  style={{ textAlign: "center", fontSize: "1.2rem", opacity: 0.5 }}
+>
+  Same four elements. New story.
+</Morph>
+
+</div>
+
+---
+
+transition: morph
+
+---
+
+{/_ ═══════════════════════════════════════════════════════════
+SCENE 5: THE MASK — A circle reveals content behind it
+═══════════════════════════════════════════════════════════ _/}
+
+<div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%" }}>
+
+<Morph
+  name="mask"
+  style={{
+    width: 300,
+    height: 300,
+    borderRadius: "50%",
+    background:
+      "linear-gradient(135deg, var(--color-primary), var(--color-secondary))",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    boxShadow: "0 0 80px rgba(var(--color-primary-rgb, 100, 100, 255), 0.4)",
+  }}
+>
+  <Morph
+    name="mask-text"
+    style={{
+      color: "#fff",
+      fontSize: "2rem",
+      fontWeight: 800,
+      textAlign: "center",
+    }}
+  >
+    Look closer
+  </Morph>
+</Morph>
+
+</div>
+
+{/* Park tower elements */}
+
+<Morph
+  name="tower-1"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="tower-2"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="tower-3"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="tower-4"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="tower-label"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+
+---
+
+transition: morph
+
+---
+
+{/* The circle expands to fill the entire viewport, text moves to top */}
+
+<div style={{ position: "relative", width: "100%", height: "100%" }}>
+
+<Morph
+  name="mask"
+  style={{
+    position: "absolute",
+    inset: 0,
+    borderRadius: 0,
+    background:
+      "linear-gradient(135deg, var(--color-primary), var(--color-secondary))",
+  }}
+/>
+
+<div style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", gap: "2rem", padding: "0 4rem" }}>
+
+<Morph
+  name="mask-text"
+  style={{
+    color: "#fff",
+    fontSize: "1rem",
+    fontWeight: 700,
+    letterSpacing: "0.3em",
+    textTransform: "uppercase",
+    opacity: 0.6,
+  }}
+>
+  Look closer
+</Morph>
+
+<div style={{ color: "#fff", fontSize: "3.5rem", fontWeight: 800, textAlign: "center", lineHeight: 1.2 }}>
+
+The background **is** the element.
+
+It grew from a circle to fill every pixel.
+
+</div>
+
+<FadeIn delay={500} direction="up">
+  <div
+    style={{
+      color: "#fff",
+      fontSize: "1.2rem",
+      opacity: 0.7,
+      textAlign: "center",
+    }}
+  >
+    No clip-path. No overflow tricks. Just a borderRadius going from 50% to 0.
+  </div>
+</FadeIn>
+
+</div>
+
+</div>
+
+---
+
+transition: morph
+
+---
+
+{/_ ═══════════════════════════════════════════════════════════
+SCENE 6: THE SWAP TRICK — Two elements trade positions
+═══════════════════════════════════════════════════════════ _/}
+
+<div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8rem", height: "100%", padding: "0 6rem" }}>
+
+<Morph
+  name="swap-left"
+  style={{
+    width: 280,
+    height: 350,
+    borderRadius: 32,
+    background: "var(--color-primary)",
+    padding: "2.5rem",
+    color: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-end",
+    gap: "0.5rem",
+  }}
+>
+  <div style={{ fontSize: "3rem", fontWeight: 900 }}>A</div>
+  <div style={{ fontSize: "1rem", opacity: 0.7 }}>I'm on the left</div>
+</Morph>
+
+<Morph
+  name="swap-right"
+  style={{
+    width: 280,
+    height: 350,
+    borderRadius: 32,
+    background: "var(--color-secondary)",
+    padding: "2.5rem",
+    color: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-end",
+    gap: "0.5rem",
+  }}
+>
+  <div style={{ fontSize: "3rem", fontWeight: 900 }}>B</div>
+  <div style={{ fontSize: "1rem", opacity: 0.7 }}>I'm on the right</div>
+</Morph>
+
+</div>
+
+<Morph
+  name="mask"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="mask-text"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+
+---
+
+transition: morph
+
+---
+
+{/* They swap! */}
+
+<div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8rem", height: "100%", padding: "0 6rem" }}>
+
+<Morph
+  name="swap-right"
+  style={{
+    width: 280,
+    height: 350,
+    borderRadius: 32,
+    background: "var(--color-secondary)",
+    padding: "2.5rem",
+    color: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-end",
+    gap: "0.5rem",
+  }}
+>
+  <div style={{ fontSize: "3rem", fontWeight: 900 }}>B</div>
+  <div style={{ fontSize: "1rem", opacity: 0.7 }}>Now I'm on the left!</div>
+</Morph>
+
+<Morph
+  name="swap-left"
+  style={{
+    width: 280,
+    height: 350,
+    borderRadius: 32,
+    background: "var(--color-primary)",
+    padding: "2.5rem",
+    color: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-end",
+    gap: "0.5rem",
+  }}
+>
+  <div style={{ fontSize: "3rem", fontWeight: 900 }}>A</div>
+  <div style={{ fontSize: "1rem", opacity: 0.7 }}>And I'm on the right!</div>
+</Morph>
+
+</div>
+
+---
+
+transition: morph
+
+---
+
+{/* They swap back AND change shape */}
+
+<div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "2rem", height: "100%", padding: "0 4rem" }}>
+
+<Morph
+  name="swap-left"
+  style={{
+    flex: 1,
+    height: 180,
+    borderRadius: 90,
+    background: "var(--color-primary)",
+    padding: "2rem 3rem",
+    color: "#fff",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "1rem",
+  }}
+>
+  <div style={{ fontSize: "2.5rem", fontWeight: 900 }}>A</div>
+  <div style={{ fontSize: "1rem", opacity: 0.7, flex: 1 }}>
+    Back on the left, but now I'm a pill — and we're friends
+  </div>
+</Morph>
+
+<Morph
+  name="swap-right"
+  style={{
+    flex: 1,
+    height: 180,
+    borderRadius: 90,
+    background: "var(--color-secondary)",
+    padding: "2rem 3rem",
+    color: "#fff",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "1rem",
+  }}
+>
+  <div style={{ fontSize: "2.5rem", fontWeight: 900 }}>B</div>
+  <div style={{ fontSize: "1rem", opacity: 0.7, flex: 1 }}>
+    Back on the right, reshaped. Three morphs, one pair of elements.
+  </div>
+</Morph>
+
+</div>
+
+---
+
+transition: morph
+
+---
+
+{/_ ═══════════════════════════════════════════════════════════
+SCENE 7: THE CASCADE — Staircase that flattens
+═══════════════════════════════════════════════════════════ _/}
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", height: "100%", padding: "0 6rem", gap: "0.5rem" }}>
+
+<Morph
+  name="step-1"
+  style={{
+    width: "20%",
+    padding: "1rem 1.5rem",
+    borderRadius: 12,
+    background: "var(--color-primary)",
+    color: "#fff",
+    fontWeight: 700,
+    fontSize: "1.1rem",
+  }}
+>
+  Concept
+</Morph>
+<Morph
+  name="step-2"
+  style={{
+    width: "35%",
+    padding: "1rem 1.5rem",
+    borderRadius: 12,
+    background: "var(--color-primary)",
+    opacity: 0.85,
+    color: "#fff",
+    fontWeight: 700,
+    fontSize: "1.1rem",
+    marginLeft: "5%",
+  }}
+>
+  Prototype
+</Morph>
+<Morph
+  name="step-3"
+  style={{
+    width: "50%",
+    padding: "1rem 1.5rem",
+    borderRadius: 12,
+    background: "var(--color-secondary)",
+    color: "#fff",
+    fontWeight: 700,
+    fontSize: "1.1rem",
+    marginLeft: "10%",
+  }}
+>
+  Build
+</Morph>
+<Morph
+  name="step-4"
+  style={{
+    width: "65%",
+    padding: "1rem 1.5rem",
+    borderRadius: 12,
+    background: "var(--color-secondary)",
+    opacity: 0.85,
+    color: "#fff",
+    fontWeight: 700,
+    fontSize: "1.1rem",
+    marginLeft: "15%",
+  }}
+>
+  Test
+</Morph>
+<Morph
+  name="step-5"
+  style={{
+    width: "80%",
+    padding: "1rem 1.5rem",
+    borderRadius: 12,
+    background: "var(--color-primary)",
+    opacity: 0.7,
+    color: "#fff",
+    fontWeight: 700,
+    fontSize: "1.1rem",
+    marginLeft: "20%",
+  }}
+>
+  Launch
+</Morph>
+
+</div>
+
+<Morph
+  name="swap-left"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+<Morph
+  name="swap-right"
+  style={{ position: "absolute", width: 0, height: 0, opacity: 0 }}
+/>
+
+---
+
+transition: morph
+
+---
+
+{/* Staircase flattens into equal progress bar segments */}
+
+<div style={{ display: "flex", flexDirection: "column", justifyContent: "center", height: "100%", padding: "0 4rem", gap: "3rem" }}>
+
+<div style={{ display: "flex", gap: 4 }}>
+  <Morph
+    name="step-1"
+    style={{
+      flex: 1,
+      padding: "1.5rem",
+      borderRadius: "16px 0 0 16px",
+      background: "var(--color-primary)",
+      color: "#fff",
+      fontWeight: 800,
+      fontSize: "1rem",
+      textAlign: "center",
+    }}
+  >
+    Concept
+  </Morph>
+  <Morph
+    name="step-2"
+    style={{
+      flex: 1,
+      padding: "1.5rem",
+      borderRadius: 0,
+      background: "var(--color-primary)",
+      opacity: 0.85,
+      color: "#fff",
+      fontWeight: 800,
+      fontSize: "1rem",
+      textAlign: "center",
+    }}
+  >
+    Prototype
+  </Morph>
+  <Morph
+    name="step-3"
+    style={{
+      flex: 1,
+      padding: "1.5rem",
+      borderRadius: 0,
+      background: "var(--color-secondary)",
+      color: "#fff",
+      fontWeight: 800,
+      fontSize: "1rem",
+      textAlign: "center",
+    }}
+  >
+    Build
+  </Morph>
+  <Morph
+    name="step-4"
+    style={{
+      flex: 1,
+      padding: "1.5rem",
+      borderRadius: 0,
+      background: "var(--color-secondary)",
+      opacity: 0.85,
+      color: "#fff",
+      fontWeight: 800,
+      fontSize: "1rem",
+      textAlign: "center",
+    }}
+  >
+    Test
+  </Morph>
+  <Morph
+    name="step-5"
+    style={{
+      flex: 1,
+      padding: "1.5rem",
+      borderRadius: "0 16px 16px 0",
+      background: "var(--color-primary)",
+      opacity: 0.7,
+      color: "#fff",
+      fontWeight: 800,
+      fontSize: "1rem",
+      textAlign: "center",
+    }}
+  >
+    Launch
+  </Morph>
+</div>
+
+<FadeIn delay={300} direction="up">
+  <div style={{ textAlign: "center", fontSize: "1.4rem", opacity: 0.6 }}>
+    A staircase became a progress bar. Five elements, zero new code.
+  </div>
+</FadeIn>
+
+</div>
+
+---
+
+transition: morph
+
+---
+
+{/_ ═══════════════════════════════════════════════════════════
+SCENE 8: THE GALAXY — Everything converges to a finale
+═══════════════════════════════════════════════════════════ _/}
+
+{/* The progress bar segments scatter into orbiting positions */}
+
+<div style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden" }}>
+
+<Morph
+  name="step-1"
+  style={{
+    position: "absolute",
+    top: "10%",
+    left: "8%",
+    width: 90,
+    height: 90,
+    borderRadius: "50%",
+    background: "var(--color-primary)",
+    opacity: 0.6,
+  }}
+/>
+<Morph
+  name="step-2"
+  style={{
+    position: "absolute",
+    top: "6%",
+    right: "20%",
+    width: 60,
+    height: 60,
+    borderRadius: "50%",
+    background: "var(--color-primary)",
+    opacity: 0.4,
+  }}
+/>
+<Morph
+  name="step-3"
+  style={{
+    position: "absolute",
+    bottom: "25%",
+    left: "15%",
+    width: 70,
+    height: 70,
+    borderRadius: "50%",
+    background: "var(--color-secondary)",
+    opacity: 0.5,
+  }}
+/>
+<Morph
+  name="step-4"
+  style={{
+    position: "absolute",
+    bottom: "10%",
+    right: "10%",
+    width: 80,
+    height: 80,
+    borderRadius: "50%",
+    background: "var(--color-secondary)",
+    opacity: 0.3,
+  }}
+/>
+<Morph
+  name="step-5"
+  style={{
+    position: "absolute",
+    top: "50%",
+    right: "5%",
+    width: 50,
+    height: 50,
+    borderRadius: "50%",
+    background: "var(--color-primary)",
+    opacity: 0.4,
+  }}
+/>
+
+<div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1rem" }}>
+
+<Morph
+  name="finale"
+  style={{
+    fontSize: "7rem",
+    fontWeight: 900,
+    lineHeight: 1,
+    background:
+      "linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 40%, #fff 60%, var(--color-primary) 100%)",
+    backgroundSize: "300% 300%",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    textAlign: "center",
+  }}
+>
+  One element.
+</Morph>
+
+<Morph
+  name="finale-sub"
+  style={{ fontSize: "1.5rem", opacity: 0.5, textAlign: "center" }}
+>
+  That's all it takes.
+</Morph>
+
+</div>
+
+</div>
+
+---
+
+transition: morph
+
+---
+
+{/* Final: everything converges to center, minimal */}
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", gap: "2rem" }}>
+
+{/* Scatter dots shrink to tiny accents around the text */}
+
+<Morph
+  name="step-1"
+  style={{
+    position: "absolute",
+    top: "42%",
+    left: "15%",
+    width: 8,
+    height: 8,
+    borderRadius: "50%",
+    background: "var(--color-primary)",
+    opacity: 0.3,
+  }}
+/>
+<Morph
+  name="step-2"
+  style={{
+    position: "absolute",
+    top: "38%",
+    right: "18%",
+    width: 6,
+    height: 6,
+    borderRadius: "50%",
+    background: "var(--color-primary)",
+    opacity: 0.2,
+  }}
+/>
+<Morph
+  name="step-3"
+  style={{
+    position: "absolute",
+    top: "55%",
+    left: "20%",
+    width: 10,
+    height: 10,
+    borderRadius: "50%",
+    background: "var(--color-secondary)",
+    opacity: 0.2,
+  }}
+/>
+<Morph
+  name="step-4"
+  style={{
+    position: "absolute",
+    top: "60%",
+    right: "22%",
+    width: 7,
+    height: 7,
+    borderRadius: "50%",
+    background: "var(--color-secondary)",
+    opacity: 0.15,
+  }}
+/>
+<Morph
+  name="step-5"
+  style={{
+    position: "absolute",
+    top: "45%",
+    right: "12%",
+    width: 5,
+    height: 5,
+    borderRadius: "50%",
+    background: "var(--color-primary)",
+    opacity: 0.2,
+  }}
+/>
+
+<Morph
+  name="finale"
+  style={{
+    fontSize: "4rem",
+    fontWeight: 900,
+    lineHeight: 1.2,
+    textAlign: "center",
+    background:
+      "linear-gradient(135deg, var(--color-primary), var(--color-secondary))",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+  }}
+>
+  Give it a name. Change a style. Watch it fly.
+</Morph>
+
+<Morph
+  name="finale-sub"
+  style={{
+    fontSize: "1.3rem",
+    opacity: 0.4,
+    textAlign: "center",
+    maxWidth: 500,
+    lineHeight: 1.6,
+  }}
+>
+  Every transition in this deck used the same technique. No libraries. No
+  keyframes. No JavaScript animation code. Just the browser.
+</Morph>
+
+<FadeIn delay={600} direction="up">
+  <div style={{ display: "flex", gap: "2rem", marginTop: "1rem" }}>
+    <div
+      style={{
+        padding: "0.8rem 1.5rem",
+        borderRadius: 12,
+        border: "1px solid var(--color-primary)",
+        fontSize: "1rem",
+        opacity: 0.6,
+      }}
+    >
+      {'<Morph name="x">'}
+    </div>
+    <div
+      style={{
+        padding: "0.8rem 1.5rem",
+        borderRadius: 12,
+        border: "1px solid var(--color-secondary)",
+        fontSize: "1rem",
+        opacity: 0.6,
+      }}
+    >
+      transition: morph
+    </div>
+  </div>
+</FadeIn>
+
+</div>
