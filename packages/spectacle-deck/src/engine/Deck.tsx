@@ -13,6 +13,7 @@ import { toggleFullscreen } from "./dom-helpers";
 import { ExportMode, type ExportModeVariant } from "./ExportMode";
 import { injectGlobalStyles } from "./global.css";
 import { OverviewMode } from "./OverviewMode";
+import { PresenterMode } from "./PresenterMode";
 import { getCurrentSection, SectionTitle } from "./SectionTitle";
 import { Template } from "./Template";
 import {
@@ -20,6 +21,7 @@ import {
   injectTransitionStyles,
   resolveTransition,
 } from "./transitions";
+import { type SyncMessage, useBroadcastSync } from "./useBroadcastSync";
 import { useKeyboard } from "./useKeyboard";
 import { useNavigation } from "./useNavigation";
 
@@ -160,6 +162,64 @@ export function Deck({
     setCommandPaletteOpen(false);
   }, []);
 
+  // Presenter mode
+  const [presenterMode, setPresenterMode] = React.useState(false);
+  const togglePresenter = React.useCallback(() => {
+    setPresenterMode((v) => !v);
+  }, []);
+  const closePresenter = React.useCallback(() => {
+    setPresenterMode(false);
+  }, []);
+
+  // BroadcastChannel sync — active when presenter mode is on
+  // Also listen for sync messages when NOT in presenter mode (audience tab)
+  const syncEnabledRef = React.useRef(false);
+  // We always keep sync enabled so audience tabs can receive navigation
+  const { broadcast } = useBroadcastSync({
+    enabled: true,
+    onReceive: React.useCallback(
+      (msg: SyncMessage) => {
+        if (msg.type === "navigate") {
+          nav.skipTo({ slideIndex: msg.slideIndex, stepIndex: msg.stepIndex });
+        }
+      },
+      [nav],
+    ),
+  });
+
+  // Broadcast navigation changes when in presenter mode
+  const prevNavRef = React.useRef({
+    slideIndex: nav.slideIndex,
+    stepIndex: nav.stepIndex,
+  });
+  React.useEffect(() => {
+    const prev = prevNavRef.current;
+    if (
+      presenterMode &&
+      (prev.slideIndex !== nav.slideIndex || prev.stepIndex !== nav.stepIndex)
+    ) {
+      broadcast({
+        type: "navigate",
+        slideIndex: nav.slideIndex,
+        stepIndex: nav.stepIndex,
+      });
+    }
+    prevNavRef.current = {
+      slideIndex: nav.slideIndex,
+      stepIndex: nav.stepIndex,
+    };
+  }, [presenterMode, nav.slideIndex, nav.stepIndex, broadcast]);
+
+  // Broadcast presenter open/close
+  React.useEffect(() => {
+    if (presenterMode) {
+      broadcast({ type: "presenter-opened" });
+    } else if (syncEnabledRef.current) {
+      broadcast({ type: "presenter-closed" });
+    }
+    syncEnabledRef.current = presenterMode;
+  }, [presenterMode, broadcast]);
+
   const isMac =
     typeof navigator !== "undefined" &&
     /Mac|iPhone|iPad/.test(navigator.userAgent);
@@ -214,8 +274,22 @@ export function Deck({
         shortcut: isMac ? "⌘⇧P" : "Ctrl+Shift+P",
         action: openPrintMode,
       },
+      {
+        id: "presenter",
+        label: "Toggle Presenter Mode",
+        shortcut: "P",
+        action: togglePresenter,
+      },
     ],
-    [nav, slideCount, toggleOverview, openExportMode, openPrintMode, isMac],
+    [
+      nav,
+      slideCount,
+      toggleOverview,
+      openExportMode,
+      openPrintMode,
+      togglePresenter,
+      isMac,
+    ],
   );
 
   // Keyboard navigation
@@ -245,6 +319,8 @@ export function Deck({
     f: toggleFullscreen,
     // Overview mode
     o: toggleOverview,
+    // Presenter mode
+    p: togglePresenter,
     // Export mode: Cmd+Shift+E (Mac) / Ctrl+Shift+E (other)
     "Shift+Meta+E": openExportMode,
     "Shift+Ctrl+E": openExportMode,
@@ -370,6 +446,14 @@ export function Deck({
                     slides={deck.slides}
                     variant={exportMode}
                     onClose={closeExportMode}
+                  />
+                )}
+
+                {/* Presenter mode */}
+                {presenterMode && (
+                  <PresenterMode
+                    slides={deck.slides}
+                    onClose={closePresenter}
                   />
                 )}
 
