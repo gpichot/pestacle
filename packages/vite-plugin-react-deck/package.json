@@ -10,8 +10,6 @@
     "dev": "tnode scripts/bundle.ts --dev",
     "build": "tnode scripts/bundle.ts",
     "test": "vitest run",
-    "format": "prettier --write ./src",
-    "format:check": "prettier --check ./src",
     "type-check": "tsc --noEmit"
   },
   "author": "",

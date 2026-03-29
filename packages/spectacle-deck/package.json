@@ -9,8 +9,6 @@
     "dev": "tnode scripts/bundle.ts",
     "build": "tnode scripts/bundle.ts",
     "publish": "./publish.sh",
-    "format": "prettier --write ./src",
-    "format:check": "prettier --check ./src",
     "type-check": "tsc --noEmit"
   },
   "keywords": [],

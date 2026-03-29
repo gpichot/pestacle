@@ -8,8 +8,6 @@
       "dependsOn": ["^build"]
     },
     "type-check": {},
-    "test": {},
-    "format": {},
-    "format:check": {}
+    "test": {}
   }
 }

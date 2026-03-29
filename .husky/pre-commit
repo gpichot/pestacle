@@ -1,2 +1,2 @@
 npx oxlint .
-npx prettier --check .
+npx oxfmt --check .
