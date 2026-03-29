@@ -254,22 +254,18 @@ export function PresenterMode({
   const nextSlide = slides[deck.slideIndex + 1];
   const [notes, setNotes] = React.useState<React.ReactNode>(null);
 
-  // Reset notes on slide change, then let the NotesContext collector repopulate
+  // Clear notes synchronously when the slide changes so the child
+  // Notes useEffect can repopulate them without racing against a
+  // parent useEffect that would fire after the child's.
   const notesSlideRef = React.useRef(deck.slideIndex);
   if (notesSlideRef.current !== deck.slideIndex) {
     notesSlideRef.current = deck.slideIndex;
-    // Will be set by the SlidePreview's onNotesCollected callback
+    setNotes(null);
   }
 
   const handleNotesCollected = React.useCallback((n: React.ReactNode) => {
     setNotes(n);
   }, []);
-
-  // Clear notes when slide changes
-  // biome-ignore lint/correctness/useExhaustiveDependencies: intentionally re-run on slideIndex change
-  React.useEffect(() => {
-    setNotes(null);
-  }, [deck.slideIndex]);
 
   // Close on Escape
   React.useEffect(() => {
