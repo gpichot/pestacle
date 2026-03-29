@@ -14,10 +14,10 @@ export function SectionTitle({ title }: { title: string }) {
         left: 0,
         right: 0,
         zIndex: 5,
-        padding: "0.7em 1.4em",
+        padding: "0.7cqh 1.4cqw",
         display: "flex",
         alignItems: "center",
-        gap: "0.6em",
+        gap: "0.6cqw",
         pointerEvents: "none",
         opacity: title ? 1 : 0,
         transition: "opacity 0.3s ease",
@@ -26,7 +26,7 @@ export function SectionTitle({ title }: { title: string }) {
       <div
         style={{
           width: 3,
-          height: "1.2em",
+          height: "1.2cqw",
           borderRadius: 2,
           background: "var(--color-secondary, #ffffff)",
           opacity: 0.4,
@@ -35,12 +35,12 @@ export function SectionTitle({ title }: { title: string }) {
       />
       <span
         style={{
-          fontSize: "1.3rem",
+          fontSize: "1.3cqw",
           fontWeight: 500,
           color: "var(--color-primary, #ffffff)",
           opacity: 0.45,
           fontFamily: "var(--font-header, inherit)",
-          letterSpacing: "0.04em",
+          letterSpacing: "0.04cqw",
           textTransform: "uppercase",
         }}
       >

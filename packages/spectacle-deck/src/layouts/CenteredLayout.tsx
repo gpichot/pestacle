@@ -25,8 +25,8 @@ export const CenteredLayout = (
         style={{
           position: "absolute",
           opacity: 0.8,
-          marginBottom: "2rem",
-          marginTop: "2rem",
+          marginBottom: "2cqh",
+          marginTop: "2cqh",
           bottom: 0,
         }}
       >

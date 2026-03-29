@@ -73,7 +73,7 @@ function ExportSlide({
 
   return (
     <div
-      className="pestacle-export-slide"
+      className="pestacle-export-slide pestacle-slide-container"
       style={{
         width: "100vw",
         height: "56.25vw", // 16:9 aspect ratio
@@ -83,6 +83,8 @@ function ExportSlide({
         background: isPrint ? "#fff" : "var(--color-tertiary, #1a1a2e)",
         color: isPrint ? "#222" : "var(--color-primary, #fff)",
         flexShrink: 0,
+        containerType: "size",
+        containerName: "slide",
       }}
     >
       <div
@@ -93,7 +95,7 @@ function ExportSlide({
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          padding: "2rem 3rem",
+          padding: "2cqh 3cqw",
           boxSizing: "border-box",
         }}
       >

@@ -61,10 +61,10 @@ export function Mermaid({ chart, width = "100%" }: MermaidProps) {
         style={{
           color: "#ff6b6b",
           fontFamily: "monospace",
-          fontSize: "1rem",
-          padding: "1rem",
+          fontSize: "1cqw",
+          padding: "1cqw",
           border: "1px solid #ff6b6b33",
-          borderRadius: "0.5rem",
+          borderRadius: "0.5cqw",
         }}
       >
         Mermaid error: {error}

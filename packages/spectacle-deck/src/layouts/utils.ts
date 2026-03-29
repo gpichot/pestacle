@@ -1,9 +1,9 @@
 import React from "react";
 
 export const Margins = {
-  vertical: "4rem",
-  horizontal: "7rem",
-  horizontalInternal: "2rem",
+  vertical: "4cqw",
+  horizontal: "7cqw",
+  horizontalInternal: "2cqw",
 };
 
 export function getHeading(children: React.ReactNode) {

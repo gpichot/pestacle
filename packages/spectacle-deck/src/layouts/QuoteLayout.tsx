@@ -29,20 +29,20 @@ export function QuoteLayout({
           alignItems: "flex-start",
           justifyContent: "center",
           textAlign: "center",
-          margin: "0 4rem 0 12rem",
+          margin: "0 4cqw 0 12cqw",
         }}
       >
         <div
           style={{
             flex: 1,
-            padding: "0 12rem 0 2rem",
+            padding: "0 12cqw 0 2cqw",
             boxSizing: "border-box",
           }}
           className="blockquote"
         >
           {blockquote}
         </div>
-        <div className="source" style={{ flex: 1, padding: "0 4rem" }}>
+        <div className="source" style={{ flex: 1, padding: "0 4cqw" }}>
           {
             <a href={sourceUrl} target="_blank" rel="noopener noreferrer">
               {author}

@@ -18,11 +18,11 @@ export default {
     text: 'Bitter, "Helvetica Neue", Helvetica, Arial, sans-serif',
   },
   fontSizes: {
-    h1: "48px",
-    h2: "32px",
-    h3: "24px",
-    text: "24px",
-    monospace: "16px",
+    h1: "2.5cqw",
+    h2: "1.667cqw",
+    h3: "1.25cqw",
+    text: "1.5cqw",
+    monospace: "1cqw",
   },
   space: [8, 16, 24],
 };

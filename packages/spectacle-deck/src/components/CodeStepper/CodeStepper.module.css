@@ -1,11 +1,11 @@
 .container {
   & pre {
-    padding: 1rem 0rem !important;
+    padding: 1cqh 0 !important;
     background-color: transparent !important;
   }
 
   & .linenumber {
-    min-width: 2rem !important;
+    min-width: 2cqw !important;
   }
 
   & [data-highlight-line="true"] {

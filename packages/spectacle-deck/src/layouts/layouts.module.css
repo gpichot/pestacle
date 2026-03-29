@@ -1,6 +1,6 @@
 /* SVGObject (used in Image component) */
 .svgObject {
-  padding: 3rem 2rem;
+  padding: 3cqh 2cqw;
   box-sizing: border-box;
   background-color: white;
 }
@@ -8,7 +8,7 @@
 /* BigNumberLayout */
 .bigValue {
   font-family: Bitter, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 10rem;
+  font-size: 10cqw;
   font-weight: 700;
   line-height: 1;
   color: var(--color-secondary);
@@ -17,11 +17,11 @@
 
 .bigCaption {
   font-family: Bitter, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 2rem;
+  font-size: 2cqw;
   font-weight: 400;
   color: #ffffffcc;
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 2cqh;
   max-width: 70%;
 }
 
@@ -92,7 +92,7 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-end;
-  padding: 4rem 6rem;
+  padding: 4cqh 6cqw;
   z-index: 1;
 
   & h1,
@@ -126,8 +126,8 @@
   & .blockquote > :first-child::before {
     content: "\201C";
     position: absolute;
-    font-size: 16rem;
-    left: -5rem;
+    font-size: 16cqw;
+    left: -5cqw;
     font-family: serif;
     top: 50%;
     transform: translateY(-50%);
@@ -137,26 +137,26 @@
   & .blockquote > :first-child::after {
     content: "\201D";
     position: absolute;
-    font-size: 16rem;
-    right: 3rem;
-    bottom: -5rem;
+    font-size: 16cqw;
+    right: 3cqw;
+    bottom: -5cqh;
     font-family: serif;
     color: #ffffff22;
     pointer-events: none;
   }
 
   & .blockquote * {
-    line-height: 3.5rem !important;
-    font-size: 2.5rem;
+    line-height: 3.5cqw !important;
+    font-size: 2.5cqw;
   }
 
   & .source {
     font-family: Bitter, "Helvetica Neue", Helvetica, Arial, sans-serif;
     box-sizing: border-box;
     width: 100%;
-    margin-top: 4rem;
+    margin-top: 4cqh;
     text-align: right;
-    font-size: 2rem;
+    font-size: 2cqw;
 
     & a {
       text-decoration: none;
@@ -181,15 +181,15 @@
 /* SideCodeLayout */
 .codeSide {
   & pre {
-    font-size: 0.9rem;
+    font-size: 0.9cqw;
   }
 }
 
 /* BaseLayout */
 .defaultLayoutHeading {
   background-color: #ffffff11;
-  padding: 2rem 5rem;
-  margin-bottom: 1rem;
+  padding: 2cqh 5cqw;
+  margin-bottom: 1cqh;
 
   & h2 {
     margin: 0;

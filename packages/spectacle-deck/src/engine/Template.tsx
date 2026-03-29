@@ -35,8 +35,8 @@ export function Template({
     border: "none",
     color: "#ffffff77",
     cursor: "pointer",
-    fontSize: "1.2rem",
-    padding: "0.25em",
+    fontSize: "1.2cqw",
+    padding: "0.25cqw",
     lineHeight: 1,
   };
 
@@ -46,10 +46,10 @@ export function Template({
     >
       <div
         style={{
-          padding: "0 0 0.5em 0.7em",
+          padding: "0 0 0.5cqh 0.7cqw",
           display: "flex",
           alignItems: "center",
-          gap: "0.3em",
+          gap: "0.3cqw",
         }}
       >
         <button

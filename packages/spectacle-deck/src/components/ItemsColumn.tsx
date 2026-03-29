@@ -16,7 +16,7 @@ export function ItemsColumn(divProps: React.ComponentProps<"div">) {
             justifyContent: "center",
             alignItems: "stretch",
             height: "100%",
-            rowGap: "2rem",
+            rowGap: "2cqh",
             ...style,
           }}
           {...props}

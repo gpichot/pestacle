@@ -21,7 +21,7 @@ export const BaseLayout = ({
         left: 0,
         display: "flex",
         flexDirection: "column",
-        marginBottom: "5rem",
+        marginBottom: "5cqh",
       }}
     >
       {title && <div className={styles.defaultLayoutHeading}>{title}</div>}
@@ -31,7 +31,7 @@ export const BaseLayout = ({
           flexDirection: "column",
           justifyContent: "center",
           height: "100%",
-          padding: "0 4rem",
+          padding: "0 4cqw",
           flex: 1,
         }}
       >

@@ -1,6 +1,6 @@
 .container {
   display: grid;
-  grid-gap: 2rem;
+  grid-gap: 2cqw;
 }
 
 .item {
@@ -12,8 +12,8 @@
 .itemHead {
   display: flex;
   flex-direction: row;
-  font-size: 1.3rem;
-  margin-bottom: 0.4rem;
+  font-size: 1.3cqw;
+  margin-bottom: 0.4cqh;
 
   & p {
     margin: 0;
@@ -22,9 +22,9 @@
 
 .itemContent {
   & > * {
-    font-size: 1rem;
+    font-size: 1cqw;
     padding: 4px !important;
-    line-height: 1.5rem !important;
+    line-height: 1.5cqw !important;
     margin-top: 0;
   }
 }

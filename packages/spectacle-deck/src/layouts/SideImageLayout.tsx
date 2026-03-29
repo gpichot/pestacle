@@ -52,7 +52,7 @@ export const SidedImageLayout = ({
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding: isReversed ? "0 7rem 0 4rem" : "0 4rem 0 7rem",
+          padding: isReversed ? "0 7cqw 0 4cqw" : "0 4cqw 0 7cqw",
         }}
       >
         {rest}
