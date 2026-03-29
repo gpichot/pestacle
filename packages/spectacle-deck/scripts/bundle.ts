@@ -73,6 +73,7 @@ module.exports = mod;
             require: "./index.cjs",
             import: "./index.mjs",
           },
+          "./index.css": "./index.css",
         },
         keywords: ["spectacle"],
         repository: packageJSON.repository,
