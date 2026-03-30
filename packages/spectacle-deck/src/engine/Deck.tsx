@@ -1,7 +1,7 @@
 import { MDXProvider } from "@mdx-js/react";
 import React, { ViewTransition } from "react";
 
-import { createCssVariables } from "../colors";
+import { createCssVariables, type ThemeTokens } from "../colors";
 import customComponents from "../components/map";
 import { type LayoutComponent, PestacleProvider } from "../context";
 import Layouts from "../layouts";
@@ -36,13 +36,7 @@ export type DeckType = {
 };
 
 interface ThemeOptions {
-  themeTokens: {
-    colors: Record<string, string>;
-    fonts?: {
-      header?: string;
-      text?: string;
-    };
-  };
+  themeTokens: ThemeTokens;
 }
 
 const componentsMap = {
@@ -123,11 +117,11 @@ export function Deck({
   // Inject global CSS variables and base styles
   React.useEffect(() => {
     injectGlobalStyles({
-      cssVariables: createCssVariables(theme.themeTokens.colors),
+      cssVariables: createCssVariables(theme.themeTokens),
       fontFamily: mergedTheme.fonts.text ?? "",
       fontSize: mergedTheme.fontSizes?.text ?? "24px",
-      backgroundColor: theme.themeTokens.colors.tertiary ?? "#1a1a2e",
-      color: theme.themeTokens.colors.primary ?? "#ffffff",
+      backgroundColor: theme.themeTokens.bg.base,
+      color: theme.themeTokens.text.base,
     });
   }, [theme, mergedTheme]);
 
@@ -355,13 +349,13 @@ export function Deck({
       skipTo: nav.skipTo,
       direction: nav.direction,
       theme: {
-        colors: theme.themeTokens.colors,
+        ...theme.themeTokens,
         fonts: mergedTheme.fonts,
       },
       registerStepper: nav.registerStepper,
       unregisterStepper: nav.unregisterStepper,
     }),
-    [nav, slideCount, theme.themeTokens.colors, mergedTheme.fonts],
+    [nav, slideCount, theme.themeTokens, mergedTheme.fonts],
   );
 
   const Component = currentSlide?.slideComponent;
@@ -397,7 +391,7 @@ export function Deck({
                   justifyContent: "center",
                   position: "relative",
                   overflow: "hidden",
-                  background: theme.themeTokens.colors.tertiary ?? "#1a1a2e",
+                  background: theme.themeTokens.bg.base,
                   containerType: "size",
                   containerName: "slide",
                 }}

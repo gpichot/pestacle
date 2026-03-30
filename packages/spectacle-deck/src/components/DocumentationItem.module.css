@@ -21,7 +21,7 @@
   text-decoration: none;
   font-weight: normal;
   font-family: var(--font-family);
-  color: var(--color-secondary);
+  color: var(--text-accent);
 }
 
 .docLinkItem {

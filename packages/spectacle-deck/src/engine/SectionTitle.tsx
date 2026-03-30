@@ -28,7 +28,7 @@ export function SectionTitle({ title }: { title: string }) {
           width: 3,
           height: "1.2cqw",
           borderRadius: 2,
-          background: "var(--color-secondary, #ffffff)",
+          background: "var(--text-accent, #ffffff)",
           opacity: 0.4,
           flexShrink: 0,
         }}
@@ -37,7 +37,7 @@ export function SectionTitle({ title }: { title: string }) {
         style={{
           fontSize: "1.3cqw",
           fontWeight: 500,
-          color: "var(--color-primary, #ffffff)",
+          color: "var(--text-base, #ffffff)",
           opacity: 0.45,
           fontFamily: "var(--font-header, inherit)",
           letterSpacing: "0.04cqw",

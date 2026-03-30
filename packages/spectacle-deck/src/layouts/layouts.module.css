@@ -11,7 +11,7 @@
   font-size: 10cqw;
   font-weight: 700;
   line-height: 1;
-  color: var(--color-secondary);
+  color: var(--text-accent);
   text-align: center;
 }
 
@@ -43,7 +43,7 @@
   }
 
   & h2 strong {
-    color: var(--color-secondary);
+    color: var(--text-accent);
     font-weight: 400;
   }
 }

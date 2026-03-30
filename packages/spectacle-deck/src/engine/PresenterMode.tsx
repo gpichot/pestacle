@@ -82,7 +82,7 @@ function SlidePreview({
           borderRadius: "8px",
           overflow: "hidden",
           border: "2px solid rgba(255,255,255,0.15)",
-          background: "var(--color-tertiary, #1a1a2e)",
+          background: "var(--bg-base, #1a1a2e)",
           minHeight: 0,
         }}
       >
@@ -104,7 +104,7 @@ function SlidePreview({
             padding: "2rem 3rem",
             boxSizing: "border-box",
             overflow: "hidden",
-            color: "var(--color-primary, #fff)",
+            color: "var(--text-base, #fff)",
           }}
         >
           {onNotesCollected ? (

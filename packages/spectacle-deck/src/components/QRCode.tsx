@@ -19,7 +19,7 @@ export function QRCode({ url, size = "md" }: QRCodeProps) {
   const id = React.useId().replace(/:/g, "___");
   const deck = useContext(DeckContext);
   const width = MapSize[size];
-  const backgroundColor = deck.theme?.colors?.primary || "#ffffff";
+  const backgroundColor = deck.theme?.text?.base || "#ffffff";
 
   React.useEffect(() => {
     const element = document.querySelector(`#${id}`);
@@ -31,7 +31,7 @@ export function QRCode({ url, size = "md" }: QRCodeProps) {
         text: url,
         radius: 0.5,
         ecLevel: "H", // L, M, Q, H
-        fill: deck.theme?.colors?.secondary || "#000000",
+        fill: deck.theme?.text?.accent || "#000000",
         background: backgroundColor,
         size: width,
       },
@@ -41,7 +41,7 @@ export function QRCode({ url, size = "md" }: QRCodeProps) {
     return () => {
       element.replaceChildren();
     };
-  }, [url, backgroundColor, deck.theme?.colors?.secondary, id, width]);
+  }, [url, backgroundColor, deck.theme?.text?.accent, id, width]);
 
   return (
     <div

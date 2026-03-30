@@ -4,7 +4,7 @@
   font-weight: 500;
 
   & strong {
-    color: var(--color-secondary);
+    color: var(--text-accent);
     font-weight: 500;
   }
 }
@@ -15,7 +15,7 @@
   font-weight: 400;
 
   & strong {
-    color: var(--color-secondary);
+    color: var(--text-accent);
     font-weight: 500;
   }
 }
@@ -27,7 +27,7 @@
   margin-top: 0;
 
   & strong {
-    color: var(--color-secondary);
+    color: var(--text-accent);
     font-weight: 500;
   }
 }

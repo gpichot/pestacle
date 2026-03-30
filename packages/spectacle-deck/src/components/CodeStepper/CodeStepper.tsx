@@ -187,7 +187,7 @@ export default function CodeStepper({
                       display: "block",
                       width: "100%",
                       backgroundColor: isHighlighted
-                        ? "rgba(var(--color-secondary-rgb), 0.13)"
+                        ? "rgba(var(--text-accent-rgb), 0.13)"
                         : "",
                     },
                   };

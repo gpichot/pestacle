@@ -47,10 +47,10 @@ export function createDecksPageFile({
   theme: string;
 }) {
   const themeModule = themes[theme as keyof typeof themes];
-  const colors = themeModule?.themeTokens?.colors;
-  const primary = colors?.primary ?? "#ffffff";
-  const secondary = colors?.secondary ?? "#F49676";
-  const tertiary = colors?.tertiary ?? "#042F3B";
+  const tokens = themeModule?.themeTokens;
+  const primary = tokens?.text?.base ?? "#ffffff";
+  const secondary = tokens?.text?.accent ?? "#F49676";
+  const tertiary = tokens?.bg?.base ?? "#042F3B";
 
   return `import React, { StrictMode, useState } from "react";
 import * as ReactDOM from "react-dom/client";

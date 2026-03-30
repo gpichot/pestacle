@@ -10,7 +10,7 @@ interface ProgressRingProps {
   size?: number;
   /** Stroke width in pixels. Default: 8 */
   strokeWidth?: number;
-  /** Ring color. Default: "var(--color-secondary)" */
+  /** Ring color. Default: "var(--text-accent)" */
   color?: string;
   /** Track color. Default: "rgba(255,255,255,0.1)" */
   trackColor?: string;
@@ -26,7 +26,7 @@ export function ProgressRing({
   value,
   size = 120,
   strokeWidth = 8,
-  color = "var(--color-secondary)",
+  color = "var(--text-accent)",
   trackColor = "rgba(255,255,255,0.1)",
   duration = 1000,
   delay = 0,

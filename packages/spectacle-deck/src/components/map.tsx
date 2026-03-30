@@ -129,7 +129,7 @@ const componentsMap: Record<string, React.ComponentType<any>> = {
         <a
           {...props}
           style={{
-            color: "var(--color-secondary)",
+            color: "var(--text-accent)",
             textDecoration: "none",
             ...style,
           }}

@@ -12,11 +12,11 @@
     &::before {
       content: " ";
       position: absolute;
-      background-color: rgba(var(--color-primary-rgb), 0.5);
+      background-color: rgba(var(--bg-surface-rgb), 0.5);
     }
 
     &[data-step-active="true"]::before {
-      background-color: var(--color-secondary);
+      background-color: var(--text-accent);
     }
   }
 }

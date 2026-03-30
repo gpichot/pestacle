@@ -27,9 +27,9 @@ export function Mermaid({ chart, width = "100%" }: MermaidProps) {
           themeVariables: {
             darkMode: true,
             background: "transparent",
-            primaryColor: resolve("--color-primary", "#1a1a2e"),
-            secondaryColor: resolve("--color-secondary", "#16213e"),
-            tertiaryColor: resolve("--color-tertiary", "#0f3460"),
+            primaryColor: resolve("--bg-base", "#1a1a2e"),
+            secondaryColor: resolve("--bg-surface", "#16213e"),
+            tertiaryColor: resolve("--bg-elevated", "#0f3460"),
             primaryTextColor: "#ffffff",
             secondaryTextColor: "#ffffffcc",
             lineColor: "#ffffffaa",
