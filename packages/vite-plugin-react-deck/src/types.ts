@@ -6,7 +6,7 @@ export type TransitionName = (typeof TransitionNames)[number];
 export interface ReactDeckOptions {
   rehypePlugins: any[];
   remarkPlugins: any[];
-  theme: "dark" | "green" | "light" | "purple" | "solarized-light";
+  theme: "dark" | "green" | "light" | "monokai" | "purple" | "solarized-light";
   /** Show the talks listing page. Defaults to true in dev, false in production. */
   startupPage?: boolean;
   /** Default slide transition. */
@@ -15,7 +15,7 @@ export interface ReactDeckOptions {
 
 export const PestacleConfigSchema = z.object({
   theme: z
-    .enum(["dark", "green", "light", "purple", "solarized-light"])
+    .enum(["dark", "green", "light", "monokai", "purple", "solarized-light"])
     .default("green"),
   startupPage: z.boolean().optional(),
   transition: z.enum(["fade", "slide", "drop", "none"]).optional(),
