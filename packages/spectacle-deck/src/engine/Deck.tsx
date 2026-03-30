@@ -39,6 +39,15 @@ interface ThemeOptions {
   themeTokens: ThemeTokens;
 }
 
+const defaultTheme: ThemeOptions = {
+  themeTokens: {
+    text: baseTheme.text,
+    bg: baseTheme.bg,
+    border: baseTheme.border,
+    fonts: baseTheme.fonts,
+  },
+};
+
 const componentsMap = {
   ...customComponents,
   wrapper: SlideWrapper,
@@ -46,12 +55,12 @@ const componentsMap = {
 
 export function Deck({
   deck,
-  theme,
+  theme = defaultTheme,
   layouts = Layouts,
   transition = "fade",
 }: {
   deck: DeckType;
-  theme: ThemeOptions;
+  theme?: ThemeOptions;
   layouts?: Record<string, LayoutComponent>;
   /** Default slide transition name: "fade", "slide", "drop", "morph", "none" */
   transition?: string;
