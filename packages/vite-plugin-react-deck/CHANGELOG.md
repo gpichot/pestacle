@@ -2,17 +2,23 @@
 
 ## [1.16.0](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.15.1...vite-plugin-react-deck-v1.16.0) (2026-03-30)
 
-
 ### Features
 
-* add presenter mode with speaker notes and cross-tab sync ([#77](https://github.com/gpichot/pestacle/issues/77)) ([8b22d2f](https://github.com/gpichot/pestacle/commit/8b22d2f6cab5129a205dd419ecff6a3018107c60))
-* improve print export styling for better PDF output ([#76](https://github.com/gpichot/pestacle/issues/76)) ([3b44af1](https://github.com/gpichot/pestacle/commit/3b44af16fb20ae51b17c4655acf088c00a82bb3a))
-* replace Biome with oxlint for code formatting ([#70](https://github.com/gpichot/pestacle/issues/70)) ([8b05a22](https://github.com/gpichot/pestacle/commit/8b05a22d1aee8eb6f0fef84983a88516722d6649))
-
+- add presenter mode with speaker notes and cross-tab sync
+  ([#77](https://github.com/gpichot/pestacle/issues/77))
+  ([8b22d2f](https://github.com/gpichot/pestacle/commit/8b22d2f6cab5129a205dd419ecff6a3018107c60))
+- improve print export styling for better PDF output
+  ([#76](https://github.com/gpichot/pestacle/issues/76))
+  ([3b44af1](https://github.com/gpichot/pestacle/commit/3b44af16fb20ae51b17c4655acf088c00a82bb3a))
+- replace Biome with oxlint for code formatting
+  ([#70](https://github.com/gpichot/pestacle/issues/70))
+  ([8b05a22](https://github.com/gpichot/pestacle/commit/8b05a22d1aee8eb6f0fef84983a88516722d6649))
 
 ### Bug Fixes
 
-* overview mode header positioning and spacing ([#74](https://github.com/gpichot/pestacle/issues/74)) ([ce19f8a](https://github.com/gpichot/pestacle/commit/ce19f8ae9f8054ff8d57fa73f4f2db6f9cf48b71))
+- overview mode header positioning and spacing
+  ([#74](https://github.com/gpichot/pestacle/issues/74))
+  ([ce19f8a](https://github.com/gpichot/pestacle/commit/ce19f8ae9f8054ff8d57fa73f4f2db6f9cf48b71))
 
 ## [1.15.1](https://github.com/gpichot/pestacle/compare/vite-plugin-react-deck-v1.15.0...vite-plugin-react-deck-v1.15.1) (2026-03-29)
 
