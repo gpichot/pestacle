@@ -30,7 +30,7 @@ export function injectGlobalStyles(options: {
       font-family: ${options.fontFamily};
       font-size: 24px;
     }
-    .pestacle-slide-container {
+    .pestacle-slide-container > * {
       font-size: ${options.fontSize};
     }
     @media print {
