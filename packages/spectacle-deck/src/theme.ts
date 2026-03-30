@@ -7,7 +7,7 @@ export default {
   text: {
     base: "#ffffff", // main text (white on dark backgrounds)
     muted: "rgba(255,255,255,0.65)", // subtle text
-    accent: "rgb(86,212,248)", // links, highlights
+    accent: "#F530EC", // links, highlights
   },
   bg: {
     base: "rgb(43,19,90)", // main background
