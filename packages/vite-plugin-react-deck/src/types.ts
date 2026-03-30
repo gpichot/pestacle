@@ -1,11 +1,14 @@
+import type { CompileOptions } from "@mdx-js/mdx";
 import { z } from "zod";
 
 export const TransitionNames = ["fade", "slide", "drop", "none"] as const;
 export type TransitionName = (typeof TransitionNames)[number];
 
+type PluginList = NonNullable<CompileOptions["remarkPlugins"]>;
+
 export interface ReactDeckOptions {
-  rehypePlugins: any[];
-  remarkPlugins: any[];
+  rehypePlugins: PluginList;
+  remarkPlugins: PluginList;
   theme: "dark" | "green" | "light" | "purple" | "solarized-light";
   /** Show the talks listing page. Defaults to true in dev, false in production. */
   startupPage?: boolean;

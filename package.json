@@ -18,9 +18,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^20.12.12",
-    "@types/react": "npm:types-react@19.0.0-rc.1",
-    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+    "@types/node": "^20.19.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "husky": "^9.1.7",
     "oxfmt": "^0.42.0",
     "oxlint": "^1.57.0",

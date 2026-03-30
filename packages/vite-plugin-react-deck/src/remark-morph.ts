@@ -18,6 +18,7 @@ import { SKIP, visit } from "unist-util-visit";
 const MORPH_EXPR_RE = /^morph\s*=\s*"([^"]+)"$/;
 
 export function remarkMorph() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- MDX-specific node types aren't available in @types/mdast
   return (tree: any) => {
     visit(tree, "mdxTextExpression", (node: any, index: any, parent: any) => {
       if (!parent || index == null) return;

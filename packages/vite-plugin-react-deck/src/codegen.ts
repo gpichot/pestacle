@@ -50,31 +50,4 @@ ${header}
     children: _content
   }) : _content;
   `.trim();
-
-  //const withWrapper = components.replace(
-  //  /};\s*return/gm,
-  //  "};\n  const {wrapper: MDXLayout} = "
-  //);
-
-  //const hasLayout = withWrapper.match(/\n\s*return (<>|_jsxs\(_Fragment)/gm);
-  //if (hasLayout) {
-  //  return withWrapper
-  //    .replace(/\n\s*return <>/gm, "\nreturn <MDXLayout {...props}>")
-  //    .replace(/<\/>;\s*$/gm, "</MDXLayout>;\n")
-  //    .replace(
-  //      /return _jsxs?\(_Fragment, \{/,
-  //      "  return _jsx(MDXLayout, {...props,"
-  //    );
-  //}
-
-  //const result = withWrapper
-  //  .replace(/\n\s*return\s*</gm, "\nreturn <MDXLayout {...props}><")
-  //  .replace(/>;\s*$/gm, "></MDXLayout>;\n")
-  //  .replace(
-  //    /return _jsxs?\(_components/gm,
-  //    "  return _jsx(MDXLayout, {...props, children: _jsx(_components"
-  //  )
-  //  .replace(/}\);$/gm, "})});");
-
-  //return result;
 }

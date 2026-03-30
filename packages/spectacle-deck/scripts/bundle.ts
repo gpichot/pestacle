@@ -12,7 +12,7 @@ rmSync("dist", { force: true, recursive: true });
 const serverOptions: BuildOptions = {
   bundle: true,
   platform: "node",
-  target: "node14",
+  target: "node20",
   legalComments: "inline",
   loader: {
     ".png": "dataurl",

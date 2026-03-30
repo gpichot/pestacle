@@ -12,6 +12,13 @@ import {
   InlineCode,
 } from "./styled";
 
+interface MorphableProps {
+  morph?: string;
+  style?: React.CSSProperties;
+  children?: React.ReactNode;
+  [key: string]: unknown;
+}
+
 /**
  * Wrap content in a <ViewTransition> if a morph name is provided.
  */
@@ -26,8 +33,8 @@ function MorphWrap({
   return <ViewTransition name={morph}>{children}</ViewTransition>;
 }
 
-const componentsMap: Record<string, React.ComponentType<any>> = {
-  inlineCode: ({ morph, style, ...props }: any) => (
+const componentsMap: Record<string, React.ComponentType<MorphableProps>> = {
+  inlineCode: ({ morph, style, ...props }: MorphableProps) => (
     <MorphWrap morph={morph}>
       <InlineCode
         {...props}
@@ -39,7 +46,7 @@ const componentsMap: Record<string, React.ComponentType<any>> = {
       />
     </MorphWrap>
   ),
-  table: ({ morph, style, ...props }: any) => (
+  table: ({ morph, style, ...props }: MorphableProps) => (
     <MorphWrap morph={morph}>
       <table
         {...props}
@@ -52,12 +59,12 @@ const componentsMap: Record<string, React.ComponentType<any>> = {
       />
     </MorphWrap>
   ),
-  tr: ({ morph, style, ...props }: any) => (
+  tr: ({ morph, style, ...props }: MorphableProps) => (
     <MorphWrap morph={morph}>
       <tr {...props} style={{ textAlign: "center", ...style }} />
     </MorphWrap>
   ),
-  td: ({ morph, style, ...props }: any) => (
+  td: ({ morph, style, ...props }: MorphableProps) => (
     <MorphWrap morph={morph}>
       <td
         {...props}
@@ -65,7 +72,7 @@ const componentsMap: Record<string, React.ComponentType<any>> = {
       />
     </MorphWrap>
   ),
-  h1: ({ morph, style, ...props }: any) => (
+  h1: ({ morph, style, ...props }: MorphableProps) => (
     <MorphWrap morph={morph}>
       <CustomHeading
         style={{
@@ -82,29 +89,29 @@ const componentsMap: Record<string, React.ComponentType<any>> = {
       </CustomHeading>
     </MorphWrap>
   ),
-  h2: ({ morph, style, ...props }: any) => (
+  h2: ({ morph, style, ...props }: MorphableProps) => (
     <MorphWrap morph={morph}>
       <HeadingTwo style={style}>{props.children}</HeadingTwo>
     </MorphWrap>
   ),
-  h3: ({ morph, style, ...props }: any) => (
+  h3: ({ morph, style, ...props }: MorphableProps) => (
     <MorphWrap morph={morph}>
       <HeadingThree {...props} style={style} />
     </MorphWrap>
   ),
-  img: ({ morph, style, ...props }: any) => (
+  img: ({ morph, style, ...props }: MorphableProps) => (
     <MorphWrap morph={morph}>
       <Image {...props} style={style} />
     </MorphWrap>
   ),
   pre: CodeStepper,
-  li: ({ morph, style, ...props }: any) => (
+  li: ({ morph, style, ...props }: MorphableProps) => (
     <MorphWrap morph={morph}>
       <li {...props} style={{ margin: "1.25cqw 0", ...style }} />
     </MorphWrap>
   ),
   Side: (props: React.ComponentProps<"div">) => <div {...props} />,
-  p: ({ morph, style, ...props }: any) => (
+  p: ({ morph, style, ...props }: MorphableProps) => (
     <MorphWrap morph={morph}>
       <p
         {...props}
@@ -117,13 +124,13 @@ const componentsMap: Record<string, React.ComponentType<any>> = {
       />
     </MorphWrap>
   ),
-  blockquote: ({ morph, style, ...props }: any) => (
+  blockquote: ({ morph, style, ...props }: MorphableProps) => (
     <MorphWrap morph={morph}>
       <CustomQuote {...props} style={style} />
     </MorphWrap>
   ),
-  a: ({ children, morph, style, ...props }: any) => {
-    const domain = new URL(props.href || "").hostname;
+  a: ({ children, morph, style, ...props }: MorphableProps) => {
+    const domain = new URL(String(props.href || "")).hostname;
     return (
       <MorphWrap morph={morph}>
         <a

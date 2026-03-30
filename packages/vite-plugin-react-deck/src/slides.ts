@@ -1,5 +1,5 @@
-import fs from "node:fs";
 import path from "node:path";
+import fs from "node:fs";
 
 import { compile } from "@mdx-js/mdx";
 import matter from "gray-matter";
@@ -68,12 +68,7 @@ export function resolveIncludes(
 }
 
 function myRemarkPlugin() {
-  /**
-   * @param {import('mdast').Root} tree
-   *   Tree.
-   * @returns {undefined}
-   *   Nothing.
-   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- remark-directive extends mdast with custom node types (attributes, name)
   return (tree: any) => {
     visit(tree, (node) => {
       if (
@@ -226,8 +221,6 @@ Deck.slides = [
   `,
     inlineModules,
   );
-
-  fs.writeFileSync("slides.js", output);
 
   return { code: output, includedFiles };
 }
