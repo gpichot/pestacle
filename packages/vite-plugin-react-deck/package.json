@@ -10,10 +10,6 @@
     "dev": "tnode scripts/bundle.ts --dev",
     "build": "tnode scripts/bundle.ts",
     "test": "vitest run",
-    "lint": "biome lint ./src",
-    "lint:fix": "biome lint --write ./src",
-    "format": "biome format --write ./src",
-    "format:check": "biome format ./src",
     "type-check": "tsc --noEmit"
   },
   "author": "",

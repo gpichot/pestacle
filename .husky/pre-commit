@@ -1,2 +1,3 @@
-npx @biomejs/biome check .
-npx prettier --check "**/*.md" "**/*.mdx"
+npx oxlint .
+npx oxfmt --ignore-path .gitignore --check .
+npx prettier --check .

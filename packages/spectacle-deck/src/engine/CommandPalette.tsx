@@ -26,7 +26,7 @@ export function CommandPalette({
   }, [commands, query]);
 
   // Reset selection when filter changes
-  // biome-ignore lint/correctness/useExhaustiveDependencies: intentional reset on filter change
+  // oxlint-disable-next-line react-hooks/exhaustive-deps -- intentional reset on filter change
   React.useEffect(() => {
     setSelectedIndex(0);
   }, [filtered]);

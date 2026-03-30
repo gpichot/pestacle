@@ -22,8 +22,8 @@
     "esModuleInterop": true,
     "declaration": true,
     "jsx": "react-jsx",
-    "types": ["./src/node.d.ts"],
+    "types": ["./src/node.d.ts"]
   },
   "include": ["src/**/*"],
-  "files": ["src/style.d.ts", "src/react-experimental.d.ts"],
+  "files": ["src/style.d.ts", "src/react-experimental.d.ts"]
 }
