@@ -4,6 +4,10 @@
   "description": "",
   "module": "src/index.tsx",
   "types": "src/index.d.ts",
+  "exports": {
+    ".": "./src/index.tsx",
+    "./index.css": "./dist/index.css"
+  },
   "scripts": {
     "test": "vitest run",
     "dev": "tnode scripts/bundle.ts",

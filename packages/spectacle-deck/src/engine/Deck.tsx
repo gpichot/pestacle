@@ -55,7 +55,7 @@ const componentsMap = {
 
 export function Deck({
   deck,
-  theme = defaultTheme,
+  theme: themeProp,
   layouts = Layouts,
   transition = "fade",
 }: {
@@ -65,6 +65,20 @@ export function Deck({
   /** Default slide transition name: "fade", "slide", "drop", "morph", "none" */
   transition?: string;
 }) {
+  // Deep-merge the provided theme with defaults so missing nested
+  // properties (e.g. bg, text) never cause runtime errors.
+  const theme: ThemeOptions = React.useMemo(() => {
+    if (!themeProp) return defaultTheme;
+    const tokens = themeProp.themeTokens ?? ({} as Partial<ThemeTokens>);
+    return {
+      themeTokens: {
+        text: { ...defaultTheme.themeTokens.text, ...tokens.text },
+        bg: { ...defaultTheme.themeTokens.bg, ...tokens.bg },
+        border: tokens.border ?? defaultTheme.themeTokens.border,
+        fonts: { ...defaultTheme.themeTokens.fonts, ...tokens.fonts },
+      },
+    };
+  }, [themeProp]);
   const slideCount = deck.slides.length;
 
   // Resolve the default transition
