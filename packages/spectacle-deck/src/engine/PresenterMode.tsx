@@ -12,10 +12,22 @@ const componentsMap = {
   wrapper: SlideWrapper,
 };
 
+const noAnimationClass = "presenter-no-animation";
+const noAnimationStyle = `
+.${noAnimationClass} * {
+  animation: none !important;
+  transition: none !important;
+  opacity: 1 !important;
+}
+`;
+
 /**
  * Renders a slide thumbnail for the presenter view.
  * Uses a mock DeckContext so Stepper components render correctly.
  */
+const SLIDE_W = 1920;
+const SLIDE_H = 1080;
+
 function SlidePreview({
   slide,
   slideIndex,
@@ -33,6 +45,24 @@ function SlidePreview({
 }) {
   const deck = useDeck();
   const Component = slide.slideComponent;
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [scale, setScale] = React.useState(0.3);
+
+  // Dynamically compute scale so the 1920×1080 slide fits the container
+  React.useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width, height } = entry.contentRect;
+        if (width > 0 && height > 0) {
+          setScale(Math.min(width / SLIDE_W, height / SLIDE_H));
+        }
+      }
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const previewContext = React.useMemo(
     () => ({
@@ -76,27 +106,31 @@ function SlidePreview({
         {label}
       </div>
       <div
+        ref={containerRef}
         style={{
           flex: 1,
           position: "relative",
           borderRadius: "8px",
           overflow: "hidden",
           border: "2px solid rgba(255,255,255,0.15)",
-          background: "var(--bg-base, #1a1a2e)",
+          background: "#000",
           minHeight: 0,
+          aspectRatio: "16 / 9",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        {/* Scaled-down slide */}
+        {/* Scaled-down slide — animations disabled */}
+        <style>{noAnimationStyle}</style>
         <div
+          className={noAnimationClass}
           style={{
-            width: "1920px",
-            height: "1080px",
-            transform: "scale(var(--presenter-slide-scale, 0.3))",
-            transformOrigin: "top left",
+            width: `${SLIDE_W}px`,
+            height: `${SLIDE_H}px`,
+            transform: `scale(${scale})`,
+            flexShrink: 0,
             pointerEvents: "none",
-            position: "absolute",
-            top: 0,
-            left: 0,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -104,6 +138,7 @@ function SlidePreview({
             padding: "2rem 3rem",
             boxSizing: "border-box",
             overflow: "hidden",
+            background: "var(--bg-base, #1a1a2e)",
             color: "var(--text-base, #fff)",
           }}
         >
@@ -219,22 +254,18 @@ export function PresenterMode({
   const nextSlide = slides[deck.slideIndex + 1];
   const [notes, setNotes] = React.useState<React.ReactNode>(null);
 
-  // Reset notes on slide change, then let the NotesContext collector repopulate
+  // Clear notes synchronously when the slide changes so the child
+  // Notes useEffect can repopulate them without racing against a
+  // parent useEffect that would fire after the child's.
   const notesSlideRef = React.useRef(deck.slideIndex);
   if (notesSlideRef.current !== deck.slideIndex) {
     notesSlideRef.current = deck.slideIndex;
-    // Will be set by the SlidePreview's onNotesCollected callback
+    setNotes(null);
   }
 
   const handleNotesCollected = React.useCallback((n: React.ReactNode) => {
     setNotes(n);
   }, []);
-
-  // Clear notes when slide changes
-  // biome-ignore lint/correctness/useExhaustiveDependencies: intentionally re-run on slideIndex change
-  React.useEffect(() => {
-    setNotes(null);
-  }, [deck.slideIndex]);
 
   // Close on Escape
   React.useEffect(() => {
@@ -332,16 +363,13 @@ export function PresenterMode({
 
       {/* Main content */}
       <div
-        style={
-          {
-            flex: 1,
-            display: "flex",
-            gap: "1rem",
-            padding: "1rem",
-            minHeight: 0,
-            "--presenter-slide-scale": "0.35",
-          } as React.CSSProperties
-        }
+        style={{
+          flex: 1,
+          display: "flex",
+          gap: "1rem",
+          padding: "1rem",
+          minHeight: 0,
+        }}
       >
         {/* Left: slides */}
         <div
