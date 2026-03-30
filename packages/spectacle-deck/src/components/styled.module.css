@@ -2,9 +2,9 @@
   font-family: Bitter, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 3.49cqw;
   font-weight: 500;
+  color: var(--text-accent);
 
   & strong {
-    color: var(--text-accent);
     font-weight: 500;
   }
 }
@@ -13,9 +13,9 @@
   font-family: Bitter, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 2.865cqw;
   font-weight: 400;
+  color: var(--text-accent);
 
   & strong {
-    color: var(--text-accent);
     font-weight: 500;
   }
 }
@@ -25,9 +25,9 @@
   font-size: 2.083cqw;
   font-weight: 400;
   margin-top: 0;
+  color: var(--text-accent);
 
   & strong {
-    color: var(--text-accent);
     font-weight: 500;
   }
 }
