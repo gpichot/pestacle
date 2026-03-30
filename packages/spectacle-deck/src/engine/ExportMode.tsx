@@ -80,8 +80,8 @@ function ExportSlide({
         maxHeight: "100vh",
         position: "relative",
         overflow: "hidden",
-        background: isPrint ? "#fff" : "var(--bg-primary, #1a1a2e)",
-        color: isPrint ? "#222" : "var(--color-primary, #fff)",
+        background: isPrint ? "#fff" : "var(--bg-base, #1a1a2e)",
+        color: isPrint ? "#222" : "var(--text-base, #fff)",
         flexShrink: 0,
         containerType: "size",
         containerName: "slide",
@@ -218,7 +218,7 @@ export function ExportMode({
               type="button"
               onClick={() => window.print()}
               style={{
-                background: "var(--color-secondary, #6366f1)",
+                background: "var(--text-accent, #6366f1)",
                 color: "#fff",
                 border: "none",
                 borderRadius: "6px",

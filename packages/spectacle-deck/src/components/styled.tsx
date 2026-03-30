@@ -7,7 +7,7 @@ export const Link = (props: { href: string; children: React.ReactNode }) => (
     href={props.href}
     target="_blank"
     rel="noopener noreferrer"
-    style={{ color: "var(--color-secondary)", textDecoration: "none" }}
+    style={{ color: "var(--text-accent)", textDecoration: "none" }}
   >
     {props.children} [{props.href}]
   </a>

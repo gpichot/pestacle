@@ -47,24 +47,24 @@ function SlideThumbnail({
       style={{
         position: "relative",
         border: isActive
-          ? "3px solid var(--color-primary, #fff)"
+          ? "3px solid var(--text-base, #fff)"
           : "3px solid transparent",
         borderRadius: "8px",
         overflow: "hidden",
         cursor: "pointer",
         padding: 0,
-        background: "var(--bg-primary, #1a1a2e)",
+        background: "var(--bg-base, #1a1a2e)",
         aspectRatio: "16 / 9",
         width: "100%",
         outline: "none",
         transition: "border-color 0.2s, transform 0.2s, box-shadow 0.2s",
         boxShadow: isActive
-          ? "0 0 0 2px var(--color-primary, #fff)"
+          ? "0 0 0 2px var(--text-base, #fff)"
           : "0 2px 8px rgba(0,0,0,0.3)",
       }}
       onMouseEnter={(e) => {
         if (!isActive) {
-          e.currentTarget.style.borderColor = "var(--color-secondary, #888)";
+          e.currentTarget.style.borderColor = "var(--text-accent, #888)";
           e.currentTarget.style.transform = "scale(1.03)";
         }
       }}
@@ -94,8 +94,8 @@ function SlideThumbnail({
           padding: "2cqh 3cqw",
           boxSizing: "border-box",
           overflow: "hidden",
-          background: "var(--bg-primary, #1a1a2e)",
-          color: "var(--color-primary, #fff)",
+          background: "var(--bg-base, #1a1a2e)",
+          color: "var(--text-base, #fff)",
           containerType: "size",
           containerName: "slide",
         }}

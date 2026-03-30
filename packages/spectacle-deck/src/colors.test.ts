@@ -29,37 +29,43 @@ describe("extractColors", () => {
 });
 
 describe("createCssVariables", () => {
-  it("should create --color-* variables from color map", () => {
+  it("should create --text-*, --bg-*, and --border variables", () => {
     const result = createCssVariables({
-      primary: "rgb(43,19,90)",
-      secondary: "#56d4f8",
+      text: { base: "rgb(43,19,90)", muted: "#999", accent: "#56d4f8" },
+      bg: { base: "#111113", surface: "#1C1C1F", elevated: "#252529" },
+      border: "rgba(255,255,255,0.12)",
     });
 
-    expect(result).toContain("--color-primary: rgb(43,19,90);");
-    expect(result).toContain("--color-secondary: #56d4f8;");
-    expect(result).toContain("--color-primary-rgb: 43, 19, 90;");
-    expect(result).toContain("--color-secondary-rgb: 86, 212, 248;");
+    // Text variables
+    expect(result).toContain("--text-base: rgb(43,19,90);");
+    expect(result).toContain("--text-muted: #999;");
+    expect(result).toContain("--text-accent: #56d4f8;");
+    expect(result).toContain("--text-base-rgb: 43, 19, 90;");
+    expect(result).toContain("--text-accent-rgb: 86, 212, 248;");
+
+    // Background variables
+    expect(result).toContain("--bg-base: #111113;");
+    expect(result).toContain("--bg-surface: #1C1C1F;");
+    expect(result).toContain("--bg-elevated: #252529;");
+    expect(result).toContain("--bg-base-rgb: 17, 17, 19;");
+
+    // Border variable
+    expect(result).toContain("--border: rgba(255,255,255,0.12);");
+    expect(result).toContain("--border-rgb: 255, 255, 255;");
   });
 
   it("should handle unsupported color formats gracefully", () => {
     const result = createCssVariables({
-      primary: "hsl(200, 50%, 50%)",
+      text: {
+        base: "hsl(200, 50%, 50%)",
+        muted: "#666",
+        accent: "#0077b6",
+      },
+      bg: { base: "#f5f5f7", surface: "#eaeaee", elevated: "#e0e0e5" },
+      border: "rgba(0,0,0,0.1)",
     });
 
-    expect(result).toContain("--color-primary: hsl(200, 50%, 50%);");
-    expect(result).not.toContain("--color-primary-rgb");
-  });
-
-  it("should create --bg-* variables when backgrounds are provided", () => {
-    const result = createCssVariables(
-      { primary: "#ffffff" },
-      { primary: "#111113", secondary: "#1C1C1F" },
-    );
-
-    expect(result).toContain("--color-primary: #ffffff;");
-    expect(result).toContain("--bg-primary: #111113;");
-    expect(result).toContain("--bg-secondary: #1C1C1F;");
-    expect(result).toContain("--bg-primary-rgb: 17, 17, 19;");
-    expect(result).toContain("--bg-secondary-rgb: 28, 28, 31;");
+    expect(result).toContain("--text-base: hsl(200, 50%, 50%);");
+    expect(result).not.toContain("--text-base-rgb");
   });
 });

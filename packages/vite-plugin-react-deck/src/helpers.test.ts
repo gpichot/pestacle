@@ -11,8 +11,8 @@ describe("createAppDeckFile", () => {
 
   it("should use the config theme by default", () => {
     const result = createAppDeckFile(baseArgs);
-    expect(result).toContain('"primary":"#FFFFFF"');
-    expect(result).toContain('"secondary":"#F49676"');
+    expect(result).toContain('"base":"#FFFFFF"');
+    expect(result).toContain('"accent":"#F49676"');
   });
 
   it("should override with a built-in theme from deckTheme", () => {
@@ -20,8 +20,8 @@ describe("createAppDeckFile", () => {
       ...baseArgs,
       deckTheme: "purple",
     });
-    expect(result).toContain('"secondary":"#F530EC"');
-    expect(result).not.toContain('"secondary":"#F49676"');
+    expect(result).toContain('"accent":"#F530EC"');
+    expect(result).not.toContain('"accent":"#F49676"');
   });
 
   it("should generate an import for a custom theme path", () => {

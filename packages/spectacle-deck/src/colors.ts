@@ -49,20 +49,31 @@ function cssVarsForGroup(
   return `${base}\n${rgbs}`;
 }
 
+export interface ThemeTokens {
+  text: { base: string; muted: string; accent: string };
+  bg: { base: string; surface: string; elevated: string };
+  border: string;
+  fonts?: { header?: string; text?: string };
+}
+
 /**
- * Create CSS custom properties for theme colors and backgrounds.
+ * Create CSS custom properties for theme tokens.
  *
- * Accepts either the legacy flat format `{ primary, secondary, tertiary }`
- * (produces `--color-*` variables only) or the new split format with separate
- * `colors` and `backgrounds` objects (produces `--color-*` and `--bg-*`).
+ * Produces `--text-*`, `--bg-*`, and `--border` variables
+ * (each color also gets a `-rgb` variant when parseable).
  */
-export function createCssVariables(
-  colors: { [key: string]: string },
-  backgrounds?: { [key: string]: string },
-): string {
-  const parts = [cssVarsForGroup("color", colors)];
-  if (backgrounds) {
-    parts.push(cssVarsForGroup("bg", backgrounds));
+export function createCssVariables(tokens: ThemeTokens): string {
+  const parts = [
+    cssVarsForGroup("text", tokens.text),
+    cssVarsForGroup("bg", tokens.bg),
+  ];
+
+  // Border as a single variable
+  parts.push(`--border: ${tokens.border};`);
+  const borderRgb = extractColors(tokens.border);
+  if (borderRgb) {
+    parts.push(`--border-rgb: ${borderRgb.r}, ${borderRgb.g}, ${borderRgb.b};`);
   }
+
   return parts.join("\n");
 }

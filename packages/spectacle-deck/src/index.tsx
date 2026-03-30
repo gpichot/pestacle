@@ -2,6 +2,7 @@ import React from "react";
 
 import { NotesContext } from "./engine/NotesContext";
 
+export type { ThemeTokens } from "./colors";
 // Animations (react-spring based, independent of Spectacle)
 export {
   AnimatedCounter,

@@ -4,16 +4,17 @@ import "@fontsource/bitter/500.css";
 import "@fontsource/bitter/700.css";
 
 export default {
-  colors: {
-    primary: "rgb(43,19,90)", // main text
-    secondary: "rgb(86,212,248)", // accent / highlights
-    tertiary: "rgb(100,80,140)", // subtle text
+  text: {
+    base: "rgb(43,19,90)", // main text
+    muted: "rgb(100,80,140)", // subtle text
+    accent: "rgb(86,212,248)", // links, highlights
   },
-  backgrounds: {
-    primary: "rgb(43,19,90)", // main background
-    secondary: "rgb(55,30,110)", // cards / surfaces
-    tertiary: "rgb(67,41,130)", // alternate sections
+  bg: {
+    base: "rgb(43,19,90)", // main background
+    surface: "rgb(55,30,110)", // cards, panels
+    elevated: "rgb(67,41,130)", // popovers, overlays
   },
+  border: "rgba(255,255,255,0.15)",
   fonts: {
     header: 'Bitter, "Helvetica Neue", Helvetica, Arial, sans-serif',
     text: 'Bitter, "Helvetica Neue", Helvetica, Arial, sans-serif',

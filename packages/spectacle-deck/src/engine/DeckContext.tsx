@@ -1,5 +1,7 @@
 import React from "react";
 
+import type { ThemeTokens } from "../colors";
+
 export interface DeckState {
   /** Current slide index (0-based) */
   slideIndex: number;
@@ -17,17 +19,19 @@ export interface DeckState {
   skipTo: (target: { slideIndex: number; stepIndex?: number }) => void;
   /** Direction of the last navigation ("forward" | "backward") */
   direction: "forward" | "backward";
-  /** Theme colors, backgrounds, and fonts */
-  theme: {
-    colors: Record<string, string>;
-    backgrounds: Record<string, string>;
-    fonts?: { header?: string; text?: string };
-  };
+  /** Theme tokens (text, bg, border, fonts) */
+  theme: ThemeTokens;
   /** Register steps for a Stepper component within the current slide */
   registerStepper: (id: string, count: number) => void;
   /** Unregister a Stepper (on unmount) */
   unregisterStepper: (id: string) => void;
 }
+
+const emptyTheme: ThemeTokens = {
+  text: { base: "", muted: "", accent: "" },
+  bg: { base: "", surface: "", elevated: "" },
+  border: "",
+};
 
 export const DeckContext = React.createContext<DeckState>({
   slideIndex: 0,
@@ -38,7 +42,7 @@ export const DeckContext = React.createContext<DeckState>({
   stepBackward: () => {},
   skipTo: () => {},
   direction: "forward",
-  theme: { colors: {}, backgrounds: {} },
+  theme: emptyTheme,
   registerStepper: () => {},
   unregisterStepper: () => {},
 });
