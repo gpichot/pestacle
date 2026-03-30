@@ -26,8 +26,7 @@ import {
     fontWeight: 900,
     letterSpacing: "-0.04em",
     lineHeight: 1,
-    background:
-      "linear-gradient(135deg, var(--color-primary), var(--color-secondary))",
+    background: "linear-gradient(135deg, var(--text-base), var(--text-accent))",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
     textAlign: "center",
@@ -50,7 +49,7 @@ transition: morph
       fontWeight: 900,
       letterSpacing: "-0.04em",
       lineHeight: 1,
-      background: "linear-gradient(135deg, var(--color-primary), var(--color-secondary))",
+      background: "linear-gradient(135deg, var(--text-base), var(--text-accent))",
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
       flexShrink: 0,
@@ -85,7 +84,7 @@ transition: morph
     fontWeight: 700,
     letterSpacing: "0.3em",
     textTransform: "uppercase",
-    color: "var(--color-secondary)",
+    color: "var(--text-accent)",
     opacity: 0.6,
   }}
 >
@@ -131,7 +130,7 @@ transition: morph
 <Morph
   name="item-design"
   style={{
-    background: "var(--color-primary)",
+    background: "var(--bg-surface)",
     borderRadius: 16,
     padding: "1.5rem 2rem",
     color: "#fff",
@@ -145,7 +144,7 @@ transition: morph
 <Morph
   name="item-build"
   style={{
-    background: "var(--color-secondary)",
+    background: "var(--text-accent)",
     borderRadius: 16,
     padding: "1.5rem 2rem",
     color: "#fff",
@@ -159,7 +158,7 @@ transition: morph
 <Morph
   name="item-ship"
   style={{
-    background: "var(--color-tertiary, var(--color-primary))",
+    background: "var(--bg-elevated)",
     borderRadius: 16,
     padding: "1.5rem 2rem",
     color: "#fff",
@@ -183,7 +182,7 @@ transition: morph
 <Morph
   name="item-design"
   style={{
-    background: "var(--color-primary)",
+    background: "var(--bg-surface)",
     borderRadius: 24,
     padding: "2.5rem",
     color: "#fff",
@@ -212,7 +211,7 @@ transition: morph
 <Morph
   name="item-build"
   style={{
-    background: "var(--color-secondary)",
+    background: "var(--text-accent)",
     borderRadius: 24,
     padding: "2.5rem",
     color: "#fff",
@@ -240,7 +239,7 @@ transition: morph
 <Morph
   name="item-ship"
   style={{
-    background: "var(--color-tertiary, var(--color-primary))",
+    background: "var(--bg-elevated)",
     borderRadius: 24,
     padding: "2.5rem",
     color: "#fff",
@@ -289,7 +288,7 @@ transition: morph
     height: 250,
     borderRadius: "50%",
     background:
-      "linear-gradient(135deg, var(--color-primary), var(--color-secondary))",
+      "linear-gradient(135deg, var(--bg-surface), var(--text-accent))",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -322,8 +321,7 @@ transition: morph
     width: 500,
     height: 120,
     borderRadius: 24,
-    background:
-      "linear-gradient(90deg, var(--color-secondary), var(--color-primary))",
+    background: "linear-gradient(90deg, var(--text-accent), var(--bg-surface))",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -356,8 +354,8 @@ transition: morph
     width: 160,
     height: 160,
     borderRadius: 32,
-    background: "linear-gradient(180deg, var(--color-primary), transparent)",
-    border: "4px solid var(--color-primary)",
+    background: "linear-gradient(180deg, var(--bg-surface), transparent)",
+    border: "4px solid var(--border)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -401,7 +399,7 @@ transition: morph
     fontSize: "20rem",
     fontWeight: 900,
     lineHeight: 1,
-    color: "var(--color-primary)",
+    color: "var(--text-base)",
     textAlign: "center",
   }}
 >
@@ -424,7 +422,7 @@ transition: morph
     fontSize: "8rem",
     fontWeight: 900,
     lineHeight: 1,
-    color: "var(--color-primary)",
+    color: "var(--text-base)",
     flexShrink: 0,
   }}
 >
@@ -459,26 +457,26 @@ transition: morph
   <div style={{ fontSize: "2rem", fontWeight: 700 }}>By the numbers</div>
 
   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
-    <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: 16, padding: "1.5rem", border: "1px solid rgba(255,255,255,0.1)" }}>
-      <div style={{ fontSize: "2.5rem", fontWeight: 800, color: "var(--color-secondary)" }}>
+    <div style={{ background: "var(--bg-surface)", borderRadius: 16, padding: "1.5rem", border: "1px solid var(--border)" }}>
+      <div style={{ fontSize: "2.5rem", fontWeight: 800, color: "var(--text-accent)" }}>
         <AnimatedCounter to={9} duration={1500} />
       </div>
       <div style={{ opacity: 0.6 }}>Layouts</div>
     </div>
-    <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: 16, padding: "1.5rem", border: "1px solid rgba(255,255,255,0.1)" }}>
-      <div style={{ fontSize: "2.5rem", fontWeight: 800, color: "var(--color-secondary)" }}>
+    <div style={{ background: "var(--bg-surface)", borderRadius: 16, padding: "1.5rem", border: "1px solid var(--border)" }}>
+      <div style={{ fontSize: "2.5rem", fontWeight: 800, color: "var(--text-accent)" }}>
         <AnimatedCounter to={7} duration={1500} />
       </div>
       <div style={{ opacity: 0.6 }}>Animations</div>
     </div>
-    <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: 16, padding: "1.5rem", border: "1px solid rgba(255,255,255,0.1)" }}>
-      <div style={{ fontSize: "2.5rem", fontWeight: 800, color: "var(--color-secondary)" }}>
+    <div style={{ background: "var(--bg-surface)", borderRadius: 16, padding: "1.5rem", border: "1px solid var(--border)" }}>
+      <div style={{ fontSize: "2.5rem", fontWeight: 800, color: "var(--text-accent)" }}>
         <AnimatedCounter to={5} duration={1500} />
       </div>
       <div style={{ opacity: 0.6 }}>Themes</div>
     </div>
-    <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: 16, padding: "1.5rem", border: "1px solid rgba(255,255,255,0.1)" }}>
-      <div style={{ fontSize: "2.5rem", fontWeight: 800, color: "var(--color-secondary)" }}>
+    <div style={{ background: "var(--bg-surface)", borderRadius: 16, padding: "1.5rem", border: "1px solid var(--border)" }}>
+      <div style={{ fontSize: "2.5rem", fontWeight: 800, color: "var(--text-accent)" }}>
         <AnimatedCounter to={0} duration={1500} />
       </div>
       <div style={{ opacity: 0.6 }}>Config files needed</div>
@@ -492,7 +490,7 @@ transition: morph
     fontSize: "4rem",
     fontWeight: 900,
     lineHeight: 1,
-    color: "var(--color-primary)",
+    color: "var(--text-base)",
     opacity: 0.3,
     flexShrink: 0,
   }}
@@ -522,7 +520,7 @@ transition: morph
     width: 140,
     height: 140,
     borderRadius: "50%",
-    background: "var(--color-primary)",
+    background: "var(--bg-surface)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -540,7 +538,7 @@ transition: morph
     width: 140,
     height: 140,
     borderRadius: "50%",
-    background: "var(--color-secondary)",
+    background: "var(--text-accent)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -558,7 +556,7 @@ transition: morph
     width: 140,
     height: 140,
     borderRadius: "50%",
-    background: "var(--color-tertiary, #e67e22)",
+    background: "var(--bg-elevated)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -588,7 +586,7 @@ transition: morph
     width: 80,
     height: 80,
     borderRadius: "50%",
-    background: "var(--color-primary)",
+    background: "var(--bg-surface)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -608,7 +606,7 @@ transition: morph
     width: 80,
     height: 80,
     borderRadius: "50%",
-    background: "var(--color-secondary)",
+    background: "var(--text-accent)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -628,7 +626,7 @@ transition: morph
     width: 80,
     height: 80,
     borderRadius: "50%",
-    background: "var(--color-tertiary, #e67e22)",
+    background: "var(--bg-elevated)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -647,8 +645,7 @@ transition: morph
   style={{
     fontSize: "5rem",
     fontWeight: 900,
-    background:
-      "linear-gradient(135deg, var(--color-primary), var(--color-secondary))",
+    background: "linear-gradient(135deg, var(--text-base), var(--text-accent))",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
   }}
@@ -671,8 +668,7 @@ transition: morph
   style={{
     fontSize: "3rem",
     fontWeight: 900,
-    background:
-      "linear-gradient(135deg, var(--color-primary), var(--color-secondary))",
+    background: "linear-gradient(135deg, var(--text-base), var(--text-accent))",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
   }}
@@ -688,7 +684,7 @@ transition: morph
     width: 50,
     height: 50,
     borderRadius: "50%",
-    background: "var(--color-primary)",
+    background: "var(--bg-surface)",
     opacity: 0.3,
   }}
 ></Morph>
@@ -699,7 +695,7 @@ transition: morph
     width: 50,
     height: 50,
     borderRadius: "50%",
-    background: "var(--color-secondary)",
+    background: "var(--text-accent)",
     opacity: 0.3,
   }}
 ></Morph>
@@ -710,7 +706,7 @@ transition: morph
     width: 50,
     height: 50,
     borderRadius: "50%",
-    background: "var(--color-tertiary, #e67e22)",
+    background: "var(--bg-elevated)",
     opacity: 0.3,
   }}
 ></Morph>
@@ -750,7 +746,7 @@ transition: morph
 
 <Morph
   name="typo-fast"
-  style={{ fontSize: "6rem", fontWeight: 900, color: "var(--color-primary)" }}
+  style={{ fontSize: "6rem", fontWeight: 900, color: "var(--text-base)" }}
 >
   FAST
 </Morph>
@@ -761,7 +757,7 @@ transition: morph
     fontSize: "6rem",
     fontWeight: 200,
     fontStyle: "italic",
-    color: "var(--color-secondary)",
+    color: "var(--text-accent)",
   }}
 >
   FLUID
@@ -773,7 +769,7 @@ transition: morph
     fontSize: "6rem",
     fontWeight: 900,
     letterSpacing: "0.3em",
-    color: "var(--color-tertiary, var(--color-primary))",
+    color: "var(--text-muted)",
   }}
 >
   FUN
@@ -797,7 +793,7 @@ transition: morph
     style={{
       fontSize: "2.5rem",
       fontWeight: 900,
-      color: "var(--color-primary)",
+      color: "var(--text-base)",
       flexShrink: 0,
     }}
   >
@@ -817,7 +813,7 @@ transition: morph
       fontSize: "2.5rem",
       fontWeight: 200,
       fontStyle: "italic",
-      color: "var(--color-secondary)",
+      color: "var(--text-accent)",
       flexShrink: 0,
     }}
   >
@@ -837,7 +833,7 @@ transition: morph
       fontSize: "2.5rem",
       fontWeight: 900,
       letterSpacing: "0.3em",
-      color: "var(--color-tertiary, var(--color-primary))",
+      color: "var(--text-muted)",
       flexShrink: 0,
     }}
   >
@@ -876,7 +872,7 @@ transition: morph
     lineHeight: 1,
     textAlign: "center",
     background:
-      "linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-primary) 100%)",
+      "linear-gradient(135deg, var(--text-base) 0%, var(--text-accent) 50%, var(--text-base) 100%)",
     backgroundSize: "200% 200%",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
