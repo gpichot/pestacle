@@ -24,6 +24,7 @@ import {
 import { type SyncMessage, useBroadcastSync } from "./useBroadcastSync";
 import { useKeyboard } from "./useKeyboard";
 import { useNavigation } from "./useNavigation";
+import { useSwipe } from "./useSwipe";
 
 export type SlideType = {
   metadata: Record<string, unknown> & { layout?: string; transition?: string };
@@ -360,6 +361,12 @@ export function Deck({
     },
   });
 
+  // Touch swipe navigation
+  useSwipe({
+    onSwipeLeft: nav.stepForward,
+    onSwipeRight: nav.stepBackward,
+  });
+
   // Build context value
   const contextValue = React.useMemo(
     () => ({
@@ -440,6 +447,38 @@ export function Deck({
                         {Component && <Component />}
                       </div>
                     </ViewTransition>
+
+                    {/* Tap zones for touch navigation (left = back, right = forward) */}
+                    <div
+                      onClick={nav.stepBackward}
+                      aria-label="Previous slide"
+                      role="button"
+                      style={{
+                        position: "absolute",
+                        left: 0,
+                        top: 0,
+                        width: "15%",
+                        height: "100%",
+                        zIndex: 5,
+                        cursor: "pointer",
+                        WebkitTapHighlightColor: "transparent",
+                      }}
+                    />
+                    <div
+                      onClick={nav.stepForward}
+                      aria-label="Next slide"
+                      role="button"
+                      style={{
+                        position: "absolute",
+                        right: 0,
+                        top: 0,
+                        width: "15%",
+                        height: "100%",
+                        zIndex: 5,
+                        cursor: "pointer",
+                        WebkitTapHighlightColor: "transparent",
+                      }}
+                    />
 
                     {/* Section title overlay */}
                     <SectionTitle

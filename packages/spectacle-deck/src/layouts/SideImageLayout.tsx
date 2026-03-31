@@ -35,9 +35,8 @@ export const SidedImageLayout = ({
   }
   return (
     <div
-      className={styles.divWithHeading}
+      className={`${styles.divWithHeading} ${styles.responsiveRow}`}
       style={{
-        display: "flex",
         flexDirection: isReversed ? "row-reverse" : "row",
         position: "absolute",
         left: 0,

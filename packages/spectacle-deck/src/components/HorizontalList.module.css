@@ -23,7 +23,7 @@
 .itemContent {
   & > * {
     font-size: 1cqw;
-    padding: 4px !important;
+    padding: 0.3cqw !important;
     line-height: 1.5cqw !important;
     margin-top: 0;
   }

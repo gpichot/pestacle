@@ -1,5 +1,6 @@
 import type React from "react";
 
+import styles from "./layouts.module.css";
 import { getHeading, getMatchingMdxType, Margins } from "./utils";
 
 export function TwoColumnLayout({ children }: { children: React.ReactNode }) {
@@ -31,9 +32,8 @@ export function TwoColumnLayout({ children }: { children: React.ReactNode }) {
         </div>
       )}
       <div
+        className={styles.responsiveRow}
         style={{
-          display: "flex",
-          flexDirection: "row",
           flex: 1,
           gap: "2cqw",
           padding: `0 ${Margins.horizontal}`,

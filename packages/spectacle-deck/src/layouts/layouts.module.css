@@ -60,6 +60,13 @@
   align-items: center;
 }
 
+/* Stack columns vertically on narrow (portrait) containers */
+@container slide (max-aspect-ratio: 1/1) {
+  .columnsContainer {
+    flex-direction: column !important;
+  }
+}
+
 /* Default3Layout */
 .default3Side {
   & svg {
@@ -182,6 +189,42 @@
 .codeSide {
   & pre {
     font-size: 0.9cqw;
+  }
+}
+
+/* Responsive row that stacks on portrait containers */
+.responsiveRow {
+  display: flex;
+  flex-direction: row;
+}
+
+@container slide (max-aspect-ratio: 1/1) {
+  .responsiveRow {
+    flex-direction: column !important;
+  }
+
+  .responsiveRow > * {
+    flex: 1 1 0 !important;
+  }
+
+  .fullImageOverlay {
+    padding: 2cqh 3cqw;
+  }
+
+  .quoteBase {
+    & .blockquote > :first-child::before {
+      font-size: 10cqw;
+      left: -3cqw;
+    }
+
+    & .blockquote > :first-child::after {
+      font-size: 10cqw;
+    }
+
+    & .blockquote * {
+      font-size: 2cqw;
+      line-height: 3cqw !important;
+    }
   }
 }
 

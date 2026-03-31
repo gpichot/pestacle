@@ -35,9 +35,15 @@ export function Template({
     border: "none",
     color: "#ffffff77",
     cursor: "pointer",
-    fontSize: "1.2cqw",
-    padding: "0.25cqw",
+    fontSize: "max(1.2cqw, 16px)",
+    padding: "max(0.5cqw, 8px)",
     lineHeight: 1,
+    // Ensure minimum 44px touch target
+    minWidth: "44px",
+    minHeight: "44px",
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
   };
 
   return (
@@ -97,11 +103,11 @@ export function Template({
       </div>
 
       {/* Progress bar */}
-      <div style={{ width: "100%", height: "4px", background: "#ffffff11" }}>
+      <div style={{ width: "100%", height: "0.3cqh", background: "#ffffff11" }}>
         <div
           style={{
             width: `${percentage}%`,
-            height: "2px",
+            height: "0.15cqh",
             background: "#ffffff77",
             transition: "width 0.3s ease",
           }}

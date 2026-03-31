@@ -16,7 +16,7 @@
 
 .itemContent {
   display: flex;
-  padding: 0.7cqh 0 1cqh 12px;
+  padding: 0.7cqh 0 1cqh 1cqw;
 }
 
 .itemContentPhantom {
@@ -39,24 +39,24 @@
 
 .guide {
   width: 100%;
-  padding-top: 2px;
+  padding-top: 0.15cqw;
   display: flex;
   flex-flow: row;
   align-items: center;
 
   & svg {
-    height: 28px;
-    width: 28px;
+    height: 2cqw;
+    width: 2cqw;
 
     & path {
       fill: #ffffff;
     }
 
-    margin-right: 4px;
+    margin-right: 0.3cqw;
   }
 }
 
 .guideLine {
-  border-top: 4px solid #ffffff;
-  margin-right: 4px;
+  border-top: 0.3cqw solid #ffffff;
+  margin-right: 0.3cqw;
 }

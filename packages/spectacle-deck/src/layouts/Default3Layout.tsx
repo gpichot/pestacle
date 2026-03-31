@@ -106,11 +106,10 @@ export const Default3Layout = ({
   const isReversed = position === "left";
   return (
     <div
-      className={styles.default2Container}
+      className={`${styles.default2Container} ${styles.responsiveRow}`}
       style={{
-        display: "flex",
-        position: "absolute",
         flexDirection: isReversed ? "row-reverse" : "row",
+        position: "absolute",
         inset: 0,
         alignItems: "center",
       }}

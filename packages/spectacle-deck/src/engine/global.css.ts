@@ -23,6 +23,8 @@ export function injectGlobalStyles(options: {
       width: 100%;
       height: 100%;
       overflow: hidden;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
     body {
       background: ${options.backgroundColor};
