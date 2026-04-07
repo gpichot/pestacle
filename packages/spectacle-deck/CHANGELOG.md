@@ -1,5 +1,40 @@
 # Changelog
 
+## [1.19.0](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.18.1...spectacle-deck-v1.19.0) (2026-03-30)
+
+### Features
+
+- add presenter mode with speaker notes and cross-tab sync
+  ([#77](https://github.com/gpichot/pestacle/issues/77))
+  ([8b22d2f](https://github.com/gpichot/pestacle/commit/8b22d2f6cab5129a205dd419ecff6a3018107c60))
+- improve print export styling for better PDF output
+  ([#76](https://github.com/gpichot/pestacle/issues/76))
+  ([3b44af1](https://github.com/gpichot/pestacle/commit/3b44af16fb20ae51b17c4655acf088c00a82bb3a))
+- replace Biome with oxlint for code formatting
+  ([#70](https://github.com/gpichot/pestacle/issues/70))
+  ([8b05a22](https://github.com/gpichot/pestacle/commit/8b05a22d1aee8eb6f0fef84983a88516722d6649))
+- replace fixed units with container query units for responsive sizing
+  ([#67](https://github.com/gpichot/pestacle/issues/67))
+  ([e683dc1](https://github.com/gpichot/pestacle/commit/e683dc17175c12b140c9fb48341be034ffdd68cf))
+
+### Bug Fixes
+
+- font size styling for slide container children
+  ([#81](https://github.com/gpichot/pestacle/issues/81))
+  ([42b0463](https://github.com/gpichot/pestacle/commit/42b046315db0464c3a9d2e5c3f7a8baa885505b5))
+- overview mode header positioning and spacing
+  ([#74](https://github.com/gpichot/pestacle/issues/74))
+  ([ce19f8a](https://github.com/gpichot/pestacle/commit/ce19f8ae9f8054ff8d57fa73f4f2db6f9cf48b71))
+- presenter mode slide scaling and positioning
+  ([#79](https://github.com/gpichot/pestacle/issues/79))
+  ([7f0976d](https://github.com/gpichot/pestacle/commit/7f0976d6f4bdc8e4a047ad981bc5b37fea7279ac))
+- theme merging and add package exports
+  ([#83](https://github.com/gpichot/pestacle/issues/83))
+  ([10c70b0](https://github.com/gpichot/pestacle/commit/10c70b0902cfceed375f808d85925d4f7a5b0344))
+- theme prop optional with default theme in Deck component
+  ([#82](https://github.com/gpichot/pestacle/issues/82))
+  ([b38d991](https://github.com/gpichot/pestacle/commit/b38d9915ab8d17072f537a00076415725a1f507f))
+
 ## [1.18.1](https://github.com/gpichot/pestacle/compare/spectacle-deck-v1.18.0...spectacle-deck-v1.18.1) (2026-03-29)
 
 ### Bug Fixes
